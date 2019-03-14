@@ -2,7 +2,7 @@
 /**
  * 
  */
-class Index extends CI_Controller
+class Rencana extends CI_Controller
 {
 	
 	function __construct()
@@ -11,10 +11,46 @@ class Index extends CI_Controller
 		$this->load->model('database_model');
 	}
 	function index(){
-		$data['judul'] = "Home";
+		$data['judul'] = "Data Rencana Kerja";
 		$this->load->view('parts/header');
 		$this->load->view('parts/menu');
-		$this->load->view('v_index', $data);
+		$this->load->view('pages/v_data_kerja');
+		$this->load->view('parts/footer');
+	}
+
+	function sop_pemadaman(){
+		$data['judul'] = "SOP Pemadaman";
+		$this->load->view('parts/header');
+		$this->load->view('parts/menu');
+		$this->load->view('pages/v_form_sop');
+		$this->load->view('parts/footer');
+	}
+	function slp(){
+		$data['judul'] = "SLP Penyulang";
+		$this->load->view('parts/header');
+		$this->load->view('parts/menu');
+		$this->load->view('pages/v_form_slp');
+		$this->load->view('parts/footer');
+	}
+	function working_permit(){
+		$data['judul'] = "Working Permit";
+		$this->load->view('parts/header');
+		$this->load->view('parts/menu');
+		$this->load->view('pages/v_form_wp');
+		$this->load->view('parts/footer');
+	}
+	function jsa(){
+		$data['judul'] = "JSA";
+		$this->load->view('parts/header');
+		$this->load->view('parts/menu');
+		$this->load->view('pages/v_form_jsa');
+		$this->load->view('parts/footer');
+	}
+	function hirarc(){
+		$data['judul'] = "HIRARC";
+		$this->load->view('parts/header');
+		$this->load->view('parts/menu');
+		$this->load->view('pages/v_form_hirarc');
 		$this->load->view('parts/footer');
 	}
 	function get_kode_project(){
