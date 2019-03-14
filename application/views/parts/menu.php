@@ -66,12 +66,20 @@
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
+
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
                         <h3 class="text-themecolor mb-0 mt-0"><?php echo strtoupper($this->uri->segment(2)) ?></h3>
                         <ol class="breadcrumb">
-                            <li><?php echo anchor('Index','Home','class="breadcrumb-item"'); ?></li>
-                            <li><?php echo anchor('Index/'.$this->uri->segment(2),strtoupper($this->uri->segment(2)),'class="breadcrumb-item active"'); ?></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo anchor('Index','Home','class="breadcrumb-item"'); ?></a></li>
+                            <li class="breadcrumb-item active"><?php echo anchor('Index/'.$this->uri->segment(2),strtoupper($this->uri->segment(2)),'class="breadcrumb-item active"'); ?></li>
                         </ol>
                     </div>
+                    <div class="col-md-6 col-4 align-self-center">
+                        <div class="dropdown float-right mr-2 hidden-sm-down">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> January 2019 </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">February 2019</a> <a class="dropdown-item" href="#">Maret     2019</a> <a class="dropdown-item" href="#">Maret 2019</a> </div>
+                        </div>
+                    </div>
+                </div>
                     
