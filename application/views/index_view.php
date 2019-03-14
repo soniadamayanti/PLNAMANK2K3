@@ -2,6 +2,14 @@
 $this->load->view('parts/header');
 $this->load->view('parts/menu');
 ?>
+<div class="col-md-6 col-4 align-self-center">
+        <?php echo anchor('Index/sop','<i class="mdi mdi-plus-circle"></i> Buat SOP Pemadaman','class="btn float-right hidden-sm-down btn-success"'); ?>
+        <div class="dropdown float-right mr-2 hidden-sm-down">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> January 2019 </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">February 2019</a> <a class="dropdown-item" href="#">Maret     2019</a> <a class="dropdown-item" href="#">Maret 2019</a> </div>
+        </div>
+    </div>
+</div>
                 <div class="row">
                     <!-- Column -->
                     <div class="col-md-6 col-lg-3 col-xlg-3">
