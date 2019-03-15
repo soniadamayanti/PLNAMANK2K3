@@ -34,6 +34,17 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?php echo site_url(); ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script type="text/javascript">
+        $('#sop_pemadaman').ready(function() {
+            var type = $('#type').val();  
+            if (type == '') {
+                $('#BuatRencanaKerja').modal('show'); 
+            }
+        });
+        $(document).on('click','#btnModalBuatRencanaKerja',function(){
+            $('#BuatRencanaKerja').modal('show');
+      });
+    </script>
      <?php 
     $this->load->view('parts/jquery');
      ?>
