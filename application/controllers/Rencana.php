@@ -19,6 +19,7 @@ class Rencana extends CI_Controller
 	}
 
 	function sop_pemadaman(){
+		$data['pelaksana'] = $this->database_model->get('tb_pelaksana');
 		$data['judul'] = "SOP Pemadaman";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);

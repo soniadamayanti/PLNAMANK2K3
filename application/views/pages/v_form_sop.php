@@ -125,21 +125,16 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pelaksana</label>
                                     <div class="col-md-8">
-                                    <div class="row mb-3">
-                                        <div class="col-md-10">
-                                            <select class="form-control custom-select" tabindex="1">
-                                                <option value="PT. Mahiza Karya Mandiri">PT. Mahiza Karya Mandiri</option>
-                                                <option value="PT. Usaha Leletikan">PT. Usaha Leletikan</option>
-                                            </select>
-                                        </div>
-                                    </div>
 
                                     <div class="row mb-3">
                                         <div class="col-md-10">
                                             <select class="form-control custom-select" tabindex="1">
-                                                <option value="PT. Mahiza Karya Mandiri">PT. Mahiza Karya Mandiri</option>
-                                                <option value="PT. Usaha Leletikan">PT. Usaha Leletikan</option>
-                                            </select>
+                                                    <?php 
+                                                    foreach ($pelaksana as $data) {
+                                                        echo "<option value='".$data['kode_pelaksana']."'>".$data['nama_pelaksana']."</option>";
+                                                    }
+                                                     ?>
+                                                </select>
                                         </div>
                                         <div class="col-md-1">
                                             <div class="btn-group">
