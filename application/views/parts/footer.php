@@ -35,6 +35,17 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?php echo site_url(); ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script>
+    $(document).on('click','#btnSimpanProject',fuction(){
+        var tgl_pembebasan_jaringan = $('#tgl_pembebasan_jaringan').val();
+        var sistem_tegangan = $('#sistem_tegangan').val();
+        var keperluan = $('#keperluan').val();
+        var material = $('#material').val();
+        var jumlah_tenaga_kerja = $('#jumlah_tenaga_kerja').val();
+        var sistem_tegangan = $('#sistem_tegangan').val();
+
+    })
+    </script>
 </body>
 
 

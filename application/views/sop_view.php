@@ -1,9 +1,6 @@
 <?php
 $this->load->view('parts/header');
 $this->load->view('parts/menu');
-
-$char = "P";
-$newID = $char . sprintf("%03s", $noUrut);
 ?>
     <div class="row">
         <div class="col-lg-12">

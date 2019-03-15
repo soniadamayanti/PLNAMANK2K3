@@ -57,16 +57,14 @@ class Index extends CI_Controller
 				break;
 		}	
 		$data['kode'] = $this->database_model->get_max_id_project();
-		$max = json_encode($data['kode']);
-		$kode_max = $max[0]['kode'];
-		echo $max[0]['kode'];
-		// $kode = ".".sprintf("0%3",$kode_max)."/AMANK2K3/CIANJUR/".$bulan."/".$tahun;
-		// echo $kode;
-		// P.001/AMANK2K3/KOTA/III/2019
+		$max = array();
+			foreach ($data['kode'] as $u) {
+				$max[] = $u;
+			};
+	
+		$kode = ".".sprintf("%03s", $max[0]['kode'])."/AMANK2K3/CIANJUR/".$bulan."/".$tahun;
+		echo $kode;
 	}
-	function getRomawi($bln){
-		
-   }
 }
 
  ?>
