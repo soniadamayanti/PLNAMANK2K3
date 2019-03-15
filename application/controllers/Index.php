@@ -17,6 +17,13 @@ class Index extends CI_Controller
 		$this->load->view('v_index', $data);
 		$this->load->view('parts/footer');
 	}
+	function sop(){
+		$data['judul'] = "Home";
+		$this->load->view('parts/header');
+		$this->load->view('parts/menu');
+		$this->load->view('sop_view', $data);
+		$this->load->view('parts/footer');
+	}
 	function get_kode_project(){
 		$tahun = date('Y');
 		switch (date('m')){
