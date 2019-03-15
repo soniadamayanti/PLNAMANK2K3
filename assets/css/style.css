@@ -4029,6 +4029,9 @@ Timeline page
 .timeline-badge.info {
   background-color: #009efb; }
 
+.timeline-badge.secondary {
+  background-color: #54667a; }
+
 .timeline-title {
   margin-top: 0;
   color: inherit;

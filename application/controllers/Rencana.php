@@ -12,98 +12,77 @@ class Rencana extends CI_Controller
 	}
 	function index(){
 		$data['judul'] = "Data Rencana Kerja";
-		$this->load->view('parts/header');
-		$this->load->view('parts/menu');
-		$this->load->view('pages/v_data_kerja');
-		$this->load->view('parts/footer');
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_data_kerja', $data);
+		$this->load->view('parts/footer', $data);
 	}
 
 	function sop_pemadaman(){
+		$data['pelaksana'] = $this->database_model->get('tb_pelaksana');
 		$data['judul'] = "SOP Pemadaman";
-		$this->load->view('parts/header');
-		$this->load->view('parts/menu');
-		$this->load->view('pages/v_form_sop');
-		$this->load->view('parts/footer');
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_form_sop', $data);
+		$this->load->view('parts/footer', $data);
 	}
 	function slp(){
 		$data['judul'] = "SLP Penyulang";
-		$this->load->view('parts/header');
-		$this->load->view('parts/menu');
-		$this->load->view('pages/v_form_slp');
-		$this->load->view('parts/footer');
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_form_slp', $data);
+		$this->load->view('parts/footer', $data);
 	}
 	function working_permit(){
 		$data['judul'] = "Working Permit";
-		$this->load->view('parts/header');
-		$this->load->view('parts/menu');
-		$this->load->view('pages/v_form_wp');
-		$this->load->view('parts/footer');
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_form_wp', $data);
+		$this->load->view('parts/footer', $data);
 	}
 	function jsa(){
 		$data['judul'] = "JSA";
-		$this->load->view('parts/header');
-		$this->load->view('parts/menu');
-		$this->load->view('pages/v_form_jsa');
-		$this->load->view('parts/footer');
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_form_jsa', $data);
+		$this->load->view('parts/footer', $data);
 	}
 	function hirarc(){
 		$data['judul'] = "HIRARC";
-		$this->load->view('parts/header');
-		$this->load->view('parts/menu');
-		$this->load->view('pages/v_form_hirarc');
-		$this->load->view('parts/footer');
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_form_hirarc', $data);
+		$this->load->view('parts/footer', $data);
 	}
-	function get_kode_project(){
-		$tahun = date('Y');
-		switch (date('m')){
-			case '01': 
-				$bulan = "I";
-				break;
-			case '02':
-				$bulan = "II";
-				break;
-			case '03':
-				$bulan = "III";
-				break;
-			case '04':
-				$bulan = "IV";
-				break;
-			case '05':
-				$bulan = "V";
-				break;
-			case '06':
-				$bulan = "VI";
-				break;
-			case '07':
-				$bulan = "VII";
-				break;
-			case '08':
-				$bulan = "VIII";
-				break;
-			case '09':
-				$bulan = "IX";
-				break;
-			case '10':
-				$bulan = "X";
-				break;
-			case '11':
-				$bulan = "XI";
-				break;
-			case '12':
-				$bulan = "XII";
-				break;
-		}	
-		$data['kode'] = $this->database_model->get_max_id_project();
-		$max = json_encode($data['kode']);
-		$kode_max = $max[0]['kode'];
-		echo $max[0]['kode'];
-		// $kode = ".".sprintf("0%3",$kode_max)."/AMANK2K3/CIANJUR/".$bulan."/".$tahun;
-		// echo $kode;
-		// P.001/AMANK2K3/KOTA/III/2019
+	function insert_temp_uraian_pekerjaan(){
+		$uraian_perkerjaan = $this->input->post('uraian_perkerjaan');
+		$jam = $this->input->post('jam');
+		$keterangan = $this->input->post('keterangan');
+		$kode_project = $this->input->post('kode_project');
+		$data_uraian = array(
+			'kode_uraian_pekerjaan' => '',
+			'uraian_perkerjaan' => $uraian_perkerjaan,
+			'jam' => $jam,
+			'keterangan' => $keterangan,
+			'kode_project' => $kode_project
+		);
+		if (is_null($kode_project)) {
+			echo "Kode project masih kosong,reload kembali";
+		}else if(is_null($uraian_perkerjaan) || is_null($jam)){
+			echo "Uraian pekerjaan dan waktu tidak boleh kosong";
+		}else{
+			$this->database_model->insert('tb_temp_uraian_pekerjaan',$data_uraian);
+		}
 	}
-	function getRomawi($bln){
-		
-   }
+	function insert_temp_pelaksana(){
+		$kode_project = $this->input->post('kode_project');
+		$kode_pelaksana = $this->input->post('kode_pelaksana');
+		$data = array(
+			'kode_pelaksana' => $kode_pelaksana,
+			'kode_project' => $kode_project
+		);
+		$this->database_model->insert('tb_temp_pelaksana',$data);
+	}
 }
 
  ?>
