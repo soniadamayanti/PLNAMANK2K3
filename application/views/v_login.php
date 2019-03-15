@@ -34,7 +34,7 @@
         <div class="login-register" style="background-image:url(<?php echo site_url(); ?>assets/images/background/login-register.jpg);">        
             <div class="login-box card">
             <div class="card-body">
-                <form class="form-horizontal form-material" id="loginform" action="https://wrappixel.com/demos/admin-templates/monster-admin/main/index.html">
+                <?php echo form_open('Login/login') ?>
                     <h3 class="box-title mb-3">Masuk</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
@@ -56,7 +56,7 @@
                             <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log In</button>
                         </div>
                     </div>
-                </form>
+                <?php echo form_close(); ?>
                 <form class="form-horizontal" id="recoverform" action="https://wrappixel.com/demos/admin-templates/monster-admin/main/index.html">
                     <div class="form-group ">
                         <div class="col-xs-12">
