@@ -90,7 +90,13 @@
 
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0"><?php echo $judul ?></h3>
+                        <h3 class="text-themecolor mb-0 mt-0"><?php 
+                        if($this->uri->segment(2) == null){
+                            echo "Dashboard";
+                        }else{
+                            echo strtoupper($this->uri->segment(2));
+                        }
+                         ?></h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo anchor('Index','Home','class="breadcrumb-item"'); ?></a></li>
                             <li class="breadcrumb-item active"><?php echo anchor('Index/'.$this->uri->segment(2),strtoupper($this->uri->segment(2)),'class="breadcrumb-item active"'); ?></li>

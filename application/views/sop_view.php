@@ -1,7 +1,4 @@
-<?php
-$this->load->view('parts/header');
-$this->load->view('parts/menu');
-?>
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card card-outline-info">
@@ -321,7 +318,4 @@ $this->load->view('parts/menu');
                 </div>
             </div>
         </div>
-    </  div>
-<?php
-$this->load->view('parts/footer');
-?>
+    </div>
