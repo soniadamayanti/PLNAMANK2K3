@@ -125,17 +125,11 @@
                                         <div class="row mb-3">
                                             <div class="col-md-10">
                                                 <select class="form-control custom-select" tabindex="1">
-                                                    <option value="PT. Mahiza Karya Mandiri">PT. Mahiza Karya Mandiri</option>
-                                                    <option value="PT. Usaha Leletikan">PT. Usaha Leletikan</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <div class="col-md-10">
-                                                <select class="form-control custom-select" tabindex="1">
-                                                    <option value="PT. Mahiza Karya Mandiri">PT. Mahiza Karya Mandiri</option>
-                                                    <option value="PT. Usaha Leletikan">PT. Usaha Leletikan</option>
+                                                    <?php 
+                                                    foreach ($pelaksana as $data) {
+                                                        echo "<option value='".$data['kode_pelaksana']."'>".$data['nama_pelaksana']."</option>";
+                                                    }
+                                                     ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-1">
@@ -144,9 +138,7 @@
                                                     <i class="ti-plus"></i>
                                                 </button>
                                                 </div>
-
                                             </div>
-                                        </div>
                                         </div>
                                     </div>
                                 </div>
