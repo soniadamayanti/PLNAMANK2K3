@@ -20,4 +20,9 @@
           confirmButtonText: 'Print'
         })
     });
+      $(document).on('click','#btnBuatRencanaKerja',function(){
+        var data = $(this).attr('data-type');
+        window.location='Rencana/sop_pemadaman/'+data
+      });
+      
 </script>

@@ -94,16 +94,16 @@
                         if($this->uri->segment(2) == null){
                             echo "Dashboard";
                         }else{
-                            echo strtoupper($this->uri->segment(2));
+                            echo strtoupper(str_replace('_', ' ', $this->uri->segment(2)));
                         }
                          ?></h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo anchor('Index','Home','class="breadcrumb-item"'); ?></a></li>
-                            <li class="breadcrumb-item active"><?php echo anchor('Index/'.$this->uri->segment(2),strtoupper($this->uri->segment(2)),'class="breadcrumb-item active"'); ?></li>
+                            <li class="breadcrumb-item active"><?php echo anchor('Index/'.$this->uri->segment(2),strtoupper(str_replace('_', ' ', $this->uri->segment(2))),'class="breadcrumb-item active"'); ?></li>
                         </ol>
                     </div>
                     <div class="col-md-6 col-4 align-self-center">
-                        <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal" data-target="#BuatRencanaKerja"><i class="mdi mdi-plus-circle"></i> Buat Rencana Kerja</button>
+                        <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal" id="btnModalBuatRencanaKerja"><i class="mdi mdi-plus-circle"></i> Buat Rencana Kerja</button>
                         <div class="dropdown float-right mr-2 hidden-sm-down">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> January 2019 </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">February 2019</a> <a class="dropdown-item" href="#">Maret     2019</a> <a class="dropdown-item" href="#">Maret 2019</a> </div>
@@ -121,10 +121,10 @@
                             <div class="modal-body">
                                 <div class="row">
                                 <div class="col-lg-6 col-md-6">
-                                    <button type="button" class="btn btn-block btn-lg btn-info">Preventif</button>
+                                    <?php echo anchor('Rencana/sop_pemadaman/Preventif','Preventif','class="btn btn-block btn-lg btn-info"') ?>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
-                                    <button type="button" class="btn btn-block btn-lg btn-success">Korektif</button>
+                                    <?php echo anchor('Rencana/sop_pemadaman/Korektif','Korektif','class="btn btn-block btn-lg btn-success"') ?>
                                 </div>
                                 </div>
                             </div>
