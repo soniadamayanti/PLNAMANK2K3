@@ -22,12 +22,12 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">PERSONAL</li>
                         <li>
-                            <a class="" href="index" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</a>
+                            <a class="" href="<?php echo base_url() ?>index" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</a>
                         </li>
                         <li>
-                            <a class="has-arrow " href="rencana" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Rencana Kerja </span></a>
+                            <a class="has-arrow " href="<?php echo base_url() ?>rencana" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Rencana Kerja </span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="rencana">Data Pekerjaan <span class="label label-rounded label-primary">1</span></a></li>
+                                <li><a href="<?php echo base_url() ?>rencana">Data Pekerjaan <span class="label label-rounded label-primary">1</span></a></li>
                                 <li><a href="rencana/tolak">Pekerjaan Ditolak <span class="label label-rounded label-warning">2</span></a></li>
                                 <li><a href="app-chat.html">Pembatalan Pekerjaan</a></li>
                                 <li><a href="app-chat.html">Pekerjaan Selesai</a></li>
