@@ -11,10 +11,11 @@ class Index extends CI_Controller
 		$this->load->model('database_model');
 	}
 	function index(){
-		$this->load->view('index_view');
-	}
-	function sop(){
-		$this->load->view('sop_view');
+		$data['judul'] = "Home";
+		$this->load->view('parts/header');
+		$this->load->view('parts/menu');
+		$this->load->view('v_index', $data);
+		$this->load->view('parts/footer');
 	}
 	function get_kode_project(){
 		$tahun = date('Y');
