@@ -10,13 +10,13 @@ class Rencana extends CI_Controller
 		parent::__construct();
 		$this->load->model('database_model');
 	}
-	// function index(){
-	// 	$data['judul'] = "Data Rencana Kerja";
-	// 	$this->load->view('parts/header', $data);
-	// 	$this->load->view('parts/menu', $data);
-	// 	$this->load->view('pages/v_data_kerja', $data);
-	// 	$this->load->view('parts/footer', $data);
-	// }
+	function index(){
+		$data['judul'] = "Data Rencana Kerja";
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_data_kerja', $data);
+		$this->load->view('parts/footer', $data);
+	}
 
 	function sop_pemadaman(){
 		$data['pelaksana'] = $this->database_model->get('tb_pelaksana');
@@ -53,7 +53,6 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/menu', $data);
 		$this->load->view('pages/v_form_hirarc', $data);
 		$this->load->view('parts/footer', $data);
-	}
 	}
 	function insert_temp_uraian_pekerjaan(){
 		$uraian_perkerjaan = $this->input->post('uraian_perkerjaan');
