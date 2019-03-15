@@ -54,54 +54,6 @@ class Rencana extends CI_Controller
 		$this->load->view('pages/v_form_hirarc', $data);
 		$this->load->view('parts/footer', $data);
 	}
-	function get_kode_project(){
-		$tahun = date('Y');
-		switch (date('m')){
-			case '01': 
-				$bulan = "I";
-				break;
-			case '02':
-				$bulan = "II";
-				break;
-			case '03':
-				$bulan = "III";
-				break;
-			case '04':
-				$bulan = "IV";
-				break;
-			case '05':
-				$bulan = "V";
-				break;
-			case '06':
-				$bulan = "VI";
-				break;
-			case '07':
-				$bulan = "VII";
-				break;
-			case '08':
-				$bulan = "VIII";
-				break;
-			case '09':
-				$bulan = "IX";
-				break;
-			case '10':
-				$bulan = "X";
-				break;
-			case '11':
-				$bulan = "XI";
-				break;
-			case '12':
-				$bulan = "XII";
-				break;
-		}	
-		$data['kode'] = $this->database_model->get_max_id_project();
-		$kode_max = array();
-		foreach ($data['kode'] as $kode_m) {
-			$kode_max[] = $kode_m;
-		}
-		$kode = ".".sprintf("%03s",$kode_max[0]['kode'])."/AMANK2K3/CIANJUR/".$bulan."/".$tahun;
-		echo $kode;
-		// P.001/AMANK2K3/KOTA/III/2019
 	}
 	function insert_temp_uraian_pekerjaan(){
 		$uraian_pekerjaan = $this->input->post('uraian_pekerjaan');
