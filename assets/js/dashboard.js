@@ -1,9 +1,4 @@
-/*
-Template Name: Monster Admin
-Author: Themedesigner
-Email: niravjoshi87@gmail.com
-File: js
-*/
+
 $(function () {
     "use strict";
    // ============================================================== 
@@ -20,9 +15,7 @@ $(function () {
         , low: 0
         , showArea: true
         , fullWidth: true
-        , plugins: [
-        Chartist.plugins.tooltip()
-      ], // As this is axis specific we need to tell Chartist to use whole numbers only on the concerned axis
+        ,// As this is axis specific we need to tell Chartist to use whole numbers only on the concerned axis
         axisY: {
             onlyInteger: true
             , offset: 20

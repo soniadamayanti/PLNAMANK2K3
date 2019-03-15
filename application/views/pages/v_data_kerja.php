@@ -70,7 +70,7 @@
                             <span class="label label-warning">Belum Selesai</span></td>
                             <td class="txt-oflo">April 18, 2019</td>
                             <td class="txt-oflo">
-                                <button type="submit" class="btn btn-secondary" disabled>Kirim SOP</button>
+                                <button type="button" class="btn btn-info" name="btnKirimRencanaKerja" id="btnKirimRencanaKerja">Kirim Rencan Kerja</button>
                             </td>
                         </tr>
                         <tr>
