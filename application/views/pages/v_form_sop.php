@@ -200,10 +200,7 @@ $tahun = date('Y');
                             </div>
                             <!--/span-->
                         </div>
-                        <!--/row-->
-                    </div>
-
-                    <h3 class="box-title">Jadwal Pekerjaan</h3>
+                        <!--/row--><h3 class="box-title">Jadwal Pekerjaan</h3>
                     <hr class="mt-2 mb-3">
                     <!--/row-->
                     <div class="row">
@@ -362,6 +359,8 @@ $tahun = date('Y');
                             <div class="col-md-6"> </div>
                         </div>
                     </div>
+                    </div>
+                    
                 </form>
             </div>
         </div>
