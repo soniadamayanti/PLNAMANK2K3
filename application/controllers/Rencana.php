@@ -56,19 +56,24 @@ class Rencana extends CI_Controller
 	}
 	}
 	function insert_temp_uraian_pekerjaan(){
-		$uraian_pekerjaan = $this->input->post('uraian_pekerjaan');
-		$kode_project = $this->input->post('kode_project');
+		$uraian_perkerjaan = $this->input->post('uraian_perkerjaan');
 		$jam = $this->input->post('jam');
 		$keterangan = $this->input->post('keterangan');
+		$kode_project = $this->input->post('kode_project');
 		$data_uraian = array(
 			'kode_uraian_pekerjaan' => '',
-			'uraian_pekerjaan' => $uraian_pekerjaan,
+			'uraian_perkerjaan' => $uraian_perkerjaan,
 			'jam' => $jam,
 			'keterangan' => $keterangan,
 			'kode_project' => $kode_project
 		);
-		$this->database_model->insert('tb_temp_uraian_pekerjaan',$data_uraian);
-		echo 1;
+		if (is_null($kode_project)) {
+			echo "Kode project masih kosong,reload kembali";
+		}else if(is_null($uraian_perkerjaan) || is_null($jam)){
+			echo "Uraian pekerjaan dan waktu tidak boleh kosong";
+		}else{
+			$this->database_model->insert('tb_temp_uraian_pekerjaan',$data_uraian);
+		}
 	}
 	function insert_temp_pelaksana(){
 		$kode_project = $this->input->post('kode_project');
