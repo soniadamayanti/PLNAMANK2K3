@@ -21,6 +21,17 @@ class Database_model extends CI_Model
 		return $query->result_array($query);
 
 	}
+	function cek_data(){
+		$this->db->where($data);
+		$query = $this->db->get($table);
+		return $query->result_array();
+	}
+	function login($username,$password){
+		$this->db->where('username',$username);
+		$this->db->where('password',$password);
+		$query = $this->db->get('tb_users');
+		return $query->result_array();
+	}
 }
 
  ?>

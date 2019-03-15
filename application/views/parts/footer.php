@@ -43,7 +43,31 @@
         });
         $(document).on('click','#btnModalBuatRencanaKerja',function(){
             $('#BuatRencanaKerja').modal('show');
-      });
+        });
+        $(document).on('click','#btnTambahUraianPekerjaan',function(){
+            var kode_project = $('#kode_project').val();
+            var uraian_pekerjaan = $('#uraian_pekerjaan').val();
+            var jam = $('#jam').val();
+            var keterangan = $('#keterangan').val();
+            alert(kode_project);
+            alert(uraian_pekerjaan);
+            alert(jam);
+            alert(keterangan);
+            var data = {
+                kode_project:kode_project,
+                uraian_pekerjaan:uraian_pekerjaan,
+                jam:jam,
+                keterangan:keterangan
+            };
+            $.ajax({
+                url:'Rencana/insert_temp_uraian_pekerjaan',
+                type:'POST',
+                data:data,
+                success:function(data){
+                    alert(data);
+                }
+            });
+        });
     </script>
      <?php 
     $this->load->view('parts/jquery');

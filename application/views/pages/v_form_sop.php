@@ -61,7 +61,7 @@ $tahun = date('Y');
                     <div class="form-body">
                         <h4><b>PERMOHONAN PEMBEBASAN TEGANGAN</b> <span class="float-right" id="kode_project_view"><?php echo $kode ?></span></h4>
                         <hr class="mt-0 mb-5">
-                        <input type="hidden" class="form-control" id="kode_project">
+                        <input type="hidden" class="form-control" id="kode_project" value="<?php echo $kode ?>">
                         <input type="hidden" class="form-control" id="type" value="<?php echo $this->uri->segment(3) ?>"> </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
@@ -86,7 +86,7 @@ $tahun = date('Y');
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pembebasan Jaringan Hari / Tanggal</label>
                                     <div class="col-md-8">
-                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy"></div>
+                                        <input type="datetime-local" class="form-control" placeholder="dd/mm/yyyy"></div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -211,7 +211,7 @@ $tahun = date('Y');
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">Uraian</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="uraian_pekerjaan">
                                 </div>
                             </div>
                         </div>
@@ -222,7 +222,7 @@ $tahun = date('Y');
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">Rencana Jam</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control">
+                                    <input type="time" class="form-control" id="jam">
                                 </div>
                             </div>
                         </div>
@@ -234,7 +234,7 @@ $tahun = date('Y');
                                 <label class="col-sm-4 text-left col-form-label">Keterangan</label>
                                 <div class="col-md-8">
                                     
-                                    <textarea class="form-control" rows=2></textarea>
+                                    <textarea class="form-control" rows=2 id="keterangan"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -245,7 +245,7 @@ $tahun = date('Y');
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">&nbsp;</label>
                                 <div class="col-md-8">
-                                    <button type="submit" class="btn btn-info"><i class="ti-plus"></i> Tambah</button>
+                                    <button class="btn btn-info" id="btnTambahUraianPekerjaan"><i class="ti-plus"></i> Tambah</button>
                                 </div>
                             </div>
                         </div>

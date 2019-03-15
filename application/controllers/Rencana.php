@@ -10,16 +10,16 @@ class Rencana extends CI_Controller
 		parent::__construct();
 		$this->load->model('database_model');
 	}
-	function index(){
-		$data['judul'] = "Data Rencana Kerja";
-		$this->load->view('parts/header', $data);
-		$this->load->view('parts/menu', $data);
-		$this->load->view('pages/v_data_kerja', $data);
-		$this->load->view('parts/footer', $data);
-	}
+	// function index(){
+	// 	$data['judul'] = "Data Rencana Kerja";
+	// 	$this->load->view('parts/header', $data);
+	// 	$this->load->view('parts/menu', $data);
+	// 	$this->load->view('pages/v_data_kerja', $data);
+	// 	$this->load->view('parts/footer', $data);
+	// }
 
 	function sop_pemadaman(){
-
+		$data['pelaksana'] = $this->database_model->get('tb_pelaksana');
 		$data['judul'] = "SOP Pemadaman";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -54,58 +54,31 @@ class Rencana extends CI_Controller
 		$this->load->view('pages/v_form_hirarc', $data);
 		$this->load->view('parts/footer', $data);
 	}
-	function get_kode_project(){
-		$tahun = date('Y');
-		switch (date('m')){
-			case '01': 
-				$bulan = "I";
-				break;
-			case '02':
-				$bulan = "II";
-				break;
-			case '03':
-				$bulan = "III";
-				break;
-			case '04':
-				$bulan = "IV";
-				break;
-			case '05':
-				$bulan = "V";
-				break;
-			case '06':
-				$bulan = "VI";
-				break;
-			case '07':
-				$bulan = "VII";
-				break;
-			case '08':
-				$bulan = "VIII";
-				break;
-			case '09':
-				$bulan = "IX";
-				break;
-			case '10':
-				$bulan = "X";
-				break;
-			case '11':
-				$bulan = "XI";
-				break;
-			case '12':
-				$bulan = "XII";
-				break;
-		}	
-		$data['kode'] = $this->database_model->get_max_id_project();
-		$kode_max = array();
-		foreach ($data['kode'] as $kode_m) {
-			$kode_max[] = $kode_m;
-		}
-		$kode = ".".sprintf("%03s",$kode_max[0]['kode'])."/AMANK2K3/CIANJUR/".$bulan."/".$tahun;
-		echo $kode;
-		// P.001/AMANK2K3/KOTA/III/2019
 	}
-	function getRomawi($bln){
-		
-   }
+	function insert_temp_uraian_pekerjaan(){
+		$uraian_pekerjaan = $this->input->post('uraian_pekerjaan');
+		$kode_project = $this->input->post('kode_project');
+		$jam = $this->input->post('jam');
+		$keterangan = $this->input->post('keterangan');
+		$data_uraian = array(
+			'kode_uraian_pekerjaan' => '',
+			'uraian_pekerjaan' => $uraian_pekerjaan,
+			'jam' => $jam,
+			'keterangan' => $keterangan,
+			'kode_project' => $kode_project
+		);
+		$this->database_model->insert('tb_temp_uraian_pekerjaan',$data_uraian);
+		echo 1;
+	}
+	function insert_temp_pelaksana(){
+		$kode_project = $this->input->post('kode_project');
+		$kode_pelaksana = $this->input->post('kode_pelaksana');
+		$data = array(
+			'kode_pelaksana' => $kode_pelaksana,
+			'kode_project' => $kode_project
+		);
+		$this->database_model->insert('tb_temp_pelaksana',$data);
+	}
 }
 
  ?>
