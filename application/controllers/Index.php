@@ -11,11 +11,11 @@ class Index extends CI_Controller
 		$this->load->model('database_model');
 	}
 	function index(){
-		$data['judul'] = "Home";
-		$this->load->view('parts/header');
-		$this->load->view('parts/menu');
+		$data['judul'] = "Dashboard";
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
 		$this->load->view('v_index', $data);
-		$this->load->view('parts/footer');
+		$this->load->view('parts/footer', $data);
 	}
 }
 

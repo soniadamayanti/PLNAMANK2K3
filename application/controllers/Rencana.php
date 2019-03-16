@@ -32,6 +32,7 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function slp(){
+		$data['sld'] = $this->database_model->get('tb_sld');
 		$data['judul'] = "SLP Penyulang";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -78,6 +79,13 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
 		$this->load->view('pages/v_data_kerja_selesai', $data);
+		$this->load->view('parts/footer', $data);
+	}
+	function dibatalkan(){
+		$data['judul'] = "Rencana Kerja Dibatalkan";
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_data_kerja_dibatalkan', $data);
 		$this->load->view('parts/footer', $data);
 	}
 	function insert_temp_uraian_pekerjaan(){

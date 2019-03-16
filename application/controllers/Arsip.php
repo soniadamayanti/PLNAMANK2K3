@@ -32,6 +32,13 @@ class Arsip extends CI_Controller
 		$this->load->view('pages/v_arsip_jenis_pekerjaan', $data);
 		$this->load->view('parts/footer', $data);
 	}
+  function perusahaan_pelaksana(){
+    $data['judul'] = "Perusahaan Pelaksana";
+    $this->load->view('parts/header', $data);
+    $this->load->view('parts/menu', $data);
+    $this->load->view('pages/v_arsip_perusahaan_pelaksana', $data);
+    $this->load->view('parts/footer', $data);
+  }
 
  	function dt_sld()
      {
@@ -88,6 +95,38 @@ class Arsip extends CI_Controller
             $data[] = array(
                 $r->nama_jenis_pekerjaan,
                 $r->kode_jenis_pekerjaan,
+                $button
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => $query->num_rows(),
+                 "recordsFiltered" => $query->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+     }
+     function dt_perusahaan_pelaksana()
+     {
+          // Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+
+
+          $query = $this->arsip_model->get_arsip_perusahaan_pelaksana();
+          $data = array();
+          foreach($query->result() as $r) {
+            $button = '
+            <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
+            <button type="button" class="btn waves-effect waves-light btn-danger">Delete</button>
+            ';
+
+            $data[] = array(
+                $r->kode_pelaksana,
+                $r->nama_pelaksana,
                 $button
                );
           }

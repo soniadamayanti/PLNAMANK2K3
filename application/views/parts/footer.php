@@ -49,6 +49,17 @@
     <script src="<?php echo base_url() ?>assets/js/export/pdfmake.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/export/vfs_fonts.js"></script>
     <script type="text/javascript">
+        var pictureList = [
+            "<?php echo base_url() ?>arsip/sld/S0001",
+            "<?php echo base_url() ?>arsip/sld/S0002",
+            "<?php echo base_url() ?>arsip/sld/S0003",
+            "<?php echo base_url() ?>arsip/sld/S0004",
+            "<?php echo base_url() ?>arsip/sld/S0005", ];
+
+        $('#picDD').change(function () {
+            var val = parseInt($('#picDD').val());
+            $('img').attr("src",pictureList[val]);
+        });
         $('#sop_pemadaman').ready(function() {
             var type = $('#type').val();  
             if (type == '') {
@@ -135,6 +146,12 @@
         $('#table_arsip_jenis_pekerjaan').DataTable({
             "ajax": {
                 url:'<?php echo base_url() ?>arsip/dt_jenis_pekerjaan',
+                "type": "POST"
+            },
+        });
+        $('#table_arsip_perusahaan_pelaksana').DataTable({
+            "ajax": {
+                url:'<?php echo base_url() ?>arsip/dt_perusahaan_pelaksana',
                 "type": "POST"
             },
         });

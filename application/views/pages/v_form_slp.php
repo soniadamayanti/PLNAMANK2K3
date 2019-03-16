@@ -17,13 +17,17 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pilih SLP</label>
                                     <div class="col-md-8">
-                                        <select class="form-control custom-select" tabindex="1">
-                                            <option value="1">P.LPGN-R.BLK</option>
-                                            <option value="SLP2">SLP2</option>
-                                            <option value="SLP2">SLP3</option>
-                                            <option value="SLP2">SLP4</option>
-                                            <option value="SLP2">SLP5</option>
+                                        <select class="form-control custom-select" tabindex="1" onchange="$('#imageToSwap').attr('src', this.options[this.selectedIndex].value);">
+                                            <?php 
+                                            foreach ($sld as $a) {
+                                                echo  "<option value='".base_url()."assets/arsip/sld/".$a['src']."'>".$a['nama_sld']."</option>";
+                                            }
+                                             ?>
                                         </select>
+                                        <br><br>
+
+                                        <img id="imageToSwap" class="profile" src="<?php echo base_url() ?>assets/arsip/sld/S0001.jpg">
+                                        
                                     </div>
                                 </div>
                             </div>
