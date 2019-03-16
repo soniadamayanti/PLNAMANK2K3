@@ -51,7 +51,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 text-left col-form-label">Lokasi Pekerjaan</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" value="P.LPGN-R.BLK">
+                                            <input type="text" class="form-control" value="P.LPGN-R.BLK" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@
                                     <div class="form-group row">
                                         <label class="control-label text-left col-md-4">Tanggal Mulai</label>
                                         <div class="col-md-8">
-                                            <input type="date" class="form-control" placeholder="14/03/2019">
+                                            <input type="text" class="form-control" placeholder="14/03/2019" disabled>
                                         </div>
                                     </div>
                                 </div>

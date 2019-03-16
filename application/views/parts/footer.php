@@ -49,29 +49,66 @@
             var uraian_pekerjaan = $('#uraian_pekerjaan').val();
             var jam = $('#jam').val();
             var keterangan = $('#keterangan').val();
-            alert(kode_project);
-            alert(uraian_pekerjaan);
-            alert(jam);
-            alert(keterangan);
-            var data = {
+            var value = {
                 kode_project:kode_project,
                 uraian_pekerjaan:uraian_pekerjaan,
                 jam:jam,
                 keterangan:keterangan
             };
             $.ajax({
-                url:'Rencana/insert_temp_uraian_pekerjaan',
+                url:'<?php echo base_url() ?>Rencana/insert_temp_uraian_pekerjaan',
+                data:value,
                 type:'POST',
-                data:data,
                 success:function(data){
                     alert(data);
                 }
             });
         });
+        $(document).on('click','#btnSimpanTempPelaksana',function(){
+            var kode_project = $('#kode_project').val();
+            var kode_pelaksana = $('#kode_pelaksana').val();
+            var value = {
+                kode_pelaksana:kode_pelaksana,
+                kode_project:kode_project
+            };
+            $.ajax({
+                url:'<?php echo base_url() ?>Rencana/insert_temp_pelaksana',
+                data:value,
+                type:'POST',
+                success:function(data){
+                    get_temp_pelaksana(kode_project);   
+                }
+            });
+        });
+        function get_temp_uraian(kode_project){
+            var data = {
+                kode_project:kode_project
+            };
+            $.ajax({
+                url:'<?php echo base_url() ?>Rencana/get_temp_uraian_pekerjaan',
+                data:value,
+                type:'POST',
+                success:function(data){
+                    var json = jQuery.parseJSON(data);
+                    $('tbody temp_pelaksana').html('<td>'+json.uraian_pekerjaan+'</td><td>'+json.jam+'</td><td>'+json.keterangan+'</td>');
+                }
+            });
+        }
+        function get_temp_plaksana(kode_project){
+            var data = {
+                kode_project:kode_project
+            };
+            $.ajax({
+                url:'<?php echo base_url() ?>Rencana/get_temp_pelaksaan',
+                data:value,
+                type:'POST',
+                success:function(data){
+                    var json = jQuery.parseJSON(data);
+                    $('body_pelaksana').html('<td>'+json.uraian_pekerjaan+'</td><td>'+json.jam+'</td><td>'+json.keterangan+'</td>');
+                }
+            });
+        }
     </script>
-     <?php 
-    $this->load->view('parts/jquery');
-     ?>
 </body>
 
 </html>

@@ -1,54 +1,9 @@
-
- <!-- Start Page Content -->
-<!-- ============================================================== -->
-<!-- Row -->
-<?php
-$awal = substr($this->uri->segment(3), 0,1);
-$tahun = date('Y');
-        switch (date('m')){
-            case '01': 
-                $bulan = "I";
-                break;
-            case '02':
-                $bulan = "II";
-                break;
-            case '03':
-                $bulan = "III";
-                break;
-            case '04':
-                $bulan = "IV";
-                break;
-            case '05':
-                $bulan = "V";
-                break;
-            case '06':
-                $bulan = "VI";
-                break;
-            case '07':
-                $bulan = "VII";
-                break;
-            case '08':
-                $bulan = "VIII";
-                break;
-            case '09':
-                $bulan = "IX";
-                break;
-            case '10':
-                $bulan = "X";
-                break;
-            case '11':
-                $bulan = "XI";
-                break;
-            case '12':
-                $bulan = "XII";
-                break;
-        }   
-        $data['kode'] = $this->database_model->get_max_id_project();
-        $kode_max = array();
-        foreach ($data['kode'] as $kode_m) {
-            $kode_max[] = $kode_m;
-        }
-        $kode = $awal.".".sprintf("%03s",$kode_max[0]['kode'])."/AMANK2K3/CIANJUR/".$bulan."/".$tahun;
+<?php 
+$a = array();
+foreach ($kode_project as $data) {
+    $a[] = $data;
+}
+$kode = $a[0]['kode_project'];
  ?>
 <div class="row" id="sop_pemadaman">
     <div class="col-lg-12">
@@ -86,7 +41,7 @@ $tahun = date('Y');
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pembebasan Jaringan Hari / Tanggal</label>
                                     <div class="col-md-8">
-                                        <input type="datetime-local" class="form-control" placeholder="dd/mm/yyyy"></div>
+                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy"></div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -109,11 +64,17 @@ $tahun = date('Y');
                                     <div class="col-md-8">
                                     <div class="row mb-3">
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control"> 
+                                        <select class="form-control custom-select" tabindex="1">
+                                            <?php 
+                                            foreach ($nama_jenis_pekerjaan as $a) {
+                                                echo  "<option value='".$a['kode_jenis_pekerjaan']."'>".$a['nama_jenis_pekerjaan']."</option>";
+                                            }
+                                             ?>
+                                        </select>
                                         </div>
                                         <div class="col-md-1">
                                             <div class="btn-group">
-                                            <button type="button" class="btn btn-info" aria-haspopup="true" aria-expanded="false">
+                                            <button type="button" id="btnSimpanTempPelaksana" class="btn btn-info" aria-haspopup="true" aria-expanded="false">
                                                 <i class="ti-plus"></i>
                                             </button>
                                             </div>
@@ -241,7 +202,7 @@ $tahun = date('Y');
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">&nbsp;</label>
                                 <div class="col-md-8">
-                                    <button class="btn btn-info" id="btnTambahUraianPekerjaan"><i class="ti-plus"></i> Tambah</button>
+                                    <button type="button" class="btn btn-info" id="btnTambahUraianPekerjaan"><i class="ti-plus"></i>Tambah</button>
                                 </div>
                             </div>
                         </div>
@@ -364,6 +325,3 @@ $tahun = date('Y');
         </div>
     </div>
 </div>
-<!-- Row -->
-<!-- ============================================================== -->
-<!-- End PAge Content -->

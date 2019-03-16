@@ -19,7 +19,12 @@ class Rencana extends CI_Controller
 	}
 
 	function sop_pemadaman(){
+		$where = array(
+			'uniqid' => $this->uri->segment(3)
+		);
 		$data['pelaksana'] = $this->database_model->get('tb_pelaksana');
+		$data['jenis_pekerjaan'] = $this->database_model->get('tb_jenis_pekerjaan');
+		$data['kode_project'] = $this->database_model->get_where('tb_project',$where);
 		$data['judul'] = "SOP Pemadaman";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -55,24 +60,76 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function insert_temp_uraian_pekerjaan(){
-		$uraian_perkerjaan = $this->input->post('uraian_perkerjaan');
+		$uraian_pekerjaan = $this->input->post('uraian_pekerjaan');
 		$jam = $this->input->post('jam');
 		$keterangan = $this->input->post('keterangan');
 		$kode_project = $this->input->post('kode_project');
 		$data_uraian = array(
-			'kode_uraian_pekerjaan' => '',
-			'uraian_perkerjaan' => $uraian_perkerjaan,
+			'uraian_pekerjaan' => $uraian_pekerjaan,
 			'jam' => $jam,
 			'keterangan' => $keterangan,
 			'kode_project' => $kode_project
 		);
-		if (is_null($kode_project)) {
-			echo "Kode project masih kosong,reload kembali";
-		}else if(is_null($uraian_perkerjaan) || is_null($jam)){
-			echo "Uraian pekerjaan dan waktu tidak boleh kosong";
-		}else{
-			$this->database_model->insert('tb_temp_uraian_pekerjaan',$data_uraian);
-		}
+		$this->database_model->insert('tb_temp_uraian_pekerjaan',$data_uraian);
+		
+	}
+	function insert_project($jenis){
+		$kota = "CIANJUR";
+		// $kota = $this->session->userdata('kota');
+		$awal = substr($jenis, 0,1);
+		$tahun = date('Y');
+        switch (date('m')){
+            case '01': 
+                $bulan = "I";
+                break;
+            case '02':
+                $bulan = "II";
+                break;
+            case '03':
+                $bulan = "III";
+                break;
+            case '04':
+                $bulan = "IV";
+                break;
+            case '05':
+                $bulan = "V";
+                break;
+            case '06':
+                $bulan = "VI";
+                break;
+            case '07':
+                $bulan = "VII";
+                break;
+            case '08':
+                $bulan = "VIII";
+                break;
+            case '09':
+                $bulan = "IX";
+                break;
+            case '10':
+                $bulan = "X";
+                break;
+            case '11':
+                $bulan = "XI";
+                break;
+            case '12':
+                $bulan = "XII";
+                break;
+        }   
+        $data['kode'] = $this->database_model->get_max_id_project($jenis);
+        $kode_max = array();
+        foreach ($data['kode'] as $kode_m) {
+            $kode_max[] = $kode_m;
+        }
+        $uniqid = uniqid();
+        $kode_project = $awal.".".sprintf("%03s",$kode_max[0]['kode'])."/AMANK2K3/".$kota."/".$bulan."/".$tahun;
+        $data = array(
+        	'kode_project' =>$kode_project,
+        	'jenis_project' => $jenis,
+        	'uniqid' => $uniqid 
+        );
+        $this->database_model->insert('tb_project',$data);
+        redirect('Rencana/sop_pemadaman/'.$uniqid);
 	}
 	function insert_temp_pelaksana(){
 		$kode_project = $this->input->post('kode_project');
@@ -82,6 +139,26 @@ class Rencana extends CI_Controller
 			'kode_project' => $kode_project
 		);
 		$this->database_model->insert('tb_temp_pelaksana',$data);
+	}
+	function get_temp_uraian_pekerjaan(){
+		$kode = $this->input->post('kode_project');
+		$where = array('kode_project'=>$kode);
+		$data['uraian_pekerjaan'] = $this->database_model->get_where('tb_temp_uraian_pekerjaan',$where);
+		$temp = array();
+		foreach ($data['uraian_pekerjaan'] as $uraian_pekerjaan) {
+			$temp[]= $uraian_pekerjaan;
+		}
+		echo json_encode($temp);
+	}
+	function get_temp_pelaksaan(){
+		$kode = $this->input->post('kode_project');
+		$where = array('kode_project'=>$kode);
+		$data['temp_pelaksana'] = $this->database_model->get_where('tb_temp_pelaksana',$where);
+		$temp = array();
+		foreach ($data['temp_pelaksana'] as $temp_pelaksana) {
+			$temp[]= $temp_pelaksana;
+		}
+		echo json_encode($temp);
 	}
 }
 

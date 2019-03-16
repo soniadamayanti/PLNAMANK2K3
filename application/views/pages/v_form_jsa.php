@@ -31,11 +31,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Jenis Pekerjaan</label>
                                     <div class="col-md-8">
-                                        <select class="form-control custom-select" tabindex="1">
-                                            <option value="GROWS">GROWS</option>
-                                            <option value="CINTA">CINTA</option>
-                                            <option value="KAMU">KAMU</option>
-                                        </select>
+                                        <input type="text" class="form-control" value="GROWS" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +253,7 @@
                     <hr class="mt-2 mb-3">
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
-                                <h1><i>DI ISI GAMBAR DARI DATABASE SESUAI JENIS PEKERJAAN</i></h1>
+                                <embed src="<?php echo site_url(); ?>assets/JSA.pdf" width="600" height="500" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">
                             </div>
                         </div>
                     <hr>

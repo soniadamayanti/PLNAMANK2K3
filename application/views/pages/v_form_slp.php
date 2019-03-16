@@ -18,7 +18,7 @@
                                     <label class="col-sm-4 text-left col-form-label">Pilih SLP</label>
                                     <div class="col-md-8">
                                         <select class="form-control custom-select" tabindex="1">
-                                            <option value="SLP1">SLP1</option>
+                                            <option value="1">P.LPGN-R.BLK</option>
                                             <option value="SLP2">SLP2</option>
                                             <option value="SLP2">SLP3</option>
                                             <option value="SLP2">SLP4</option>

@@ -21,8 +21,8 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">PERSONAL</li>
-                        <li
-                            <a class="" href="<?php echo base_url() ?>index" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</a>
+                        <li>
+                            <a href="<?php echo base_url() ?>index" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</a>
                         </li>
                         <li>
                             <a class="has-arrow " href="<?php echo base_url() ?>rencana" aria-expanded="false" ><i class="mdi mdi-book"></i><span class="hide-menu">Rencana Kerja </span></a>
@@ -121,10 +121,10 @@
                             <div class="modal-body">
                                 <div class="row">
                                 <div class="col-lg-6 col-md-6">
-                                    <?php echo anchor('Rencana/sop_pemadaman/Preventif','Preventif','class="btn btn-block btn-lg btn-info"') ?>
+                                    <?php echo anchor('Rencana/insert_project/Preventif','Preventif','class="btn btn-block btn-lg btn-info"') ?>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
-                                    <?php echo anchor('Rencana/sop_pemadaman/Korektif','Korektif','class="btn btn-block btn-lg btn-success"') ?>
+                                    <?php echo anchor('Rencana/insert_project/Korektif','Korektif','class="btn btn-block btn-lg btn-success"') ?>
                                 </div>
                                 </div>
                             </div>

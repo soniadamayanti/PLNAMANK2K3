@@ -31,7 +31,6 @@ class Login extends CI_Controller
 			echo "Username atau password salah";
 		}
 	}
-
 }
 
  ?>

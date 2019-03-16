@@ -34,15 +34,14 @@
         <div class="login-register" style="background-image:url(<?php echo site_url(); ?>assets/images/background/login-register.jpg);">        
             <div class="login-box card">
             <div class="card-body">
-                <?php echo form_open('Login/login') ?>
                     <h3 class="box-title mb-3">Masuk</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Username"> </div>
+                            <input class="form-control" type="text" id="username" required="" placeholder="Username"> </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required="" placeholder="Password"> </div>
+                            <input class="form-control" type="password" required="" id="password" placeholder="Password"> </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
@@ -53,10 +52,9 @@
                     </div>
                     <div class="form-group text-center mt-3">
                         <div class="col-xs-12">
-                            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log In</button>
+                            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" id="btnLogin">Log In</button>
                         </div>
                     </div>
-                <?php echo form_close(); ?>
                 <form class="form-horizontal" id="recoverform" action="https://wrappixel.com/demos/admin-templates/monster-admin/main/index.html">
                     <div class="form-group ">
                         <div class="col-xs-12">
@@ -107,6 +105,24 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?php echo site_url(); ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script type="text/javascript">
+        $('#btnLogin').click(function(){
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var data = {
+                username:username,
+                password:password
+            };
+            $.ajax({
+                url:'Login/login',
+                type:'POST',
+                data:data,
+                success:function(data){
+                    alert(data);
+                }
+            })
+        });
+    </script>
 </body>
 
 </html>
