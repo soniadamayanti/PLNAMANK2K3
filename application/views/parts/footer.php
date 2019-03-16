@@ -34,6 +34,20 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?php echo site_url(); ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+    <script src="<?php echo site_url(); ?>assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+
+
+    <script src="<?php echo base_url() ?>assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/plugins/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/export/buttons.html5.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/export/buttons.flash.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/export/buttons.print.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/export/jszip.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/export/pdfmake.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/export/vfs_fonts.js"></script>
     <script type="text/javascript">
         $('#sop_pemadaman').ready(function() {
             var type = $('#type').val();  
@@ -80,6 +94,9 @@
                 }
             });
         });
+        $(document).on('click','#btnHistoryApproval',function(){
+            location.href = "<?php echo base_url() ?>Rencana/history_approval";
+        });
         function get_temp_uraian(kode_project){
             var data = {
                 kode_project:kode_project
@@ -108,7 +125,21 @@
                 }
             });
         }
+
+        $('#table_arsip_sld').DataTable({
+            "ajax": {
+                url:'<?php echo base_url() ?>arsip/dt_sld',
+                "type": "POST"
+            },
+        });
+        $('#table_arsip_jenis_pekerjaan').DataTable({
+            "ajax": {
+                url:'<?php echo base_url() ?>arsip/dt_jenis_pekerjaan',
+                "type": "POST"
+            },
+        });
     </script>
+
 </body>
 
 </html>

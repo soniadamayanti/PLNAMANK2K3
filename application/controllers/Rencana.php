@@ -59,6 +59,27 @@ class Rencana extends CI_Controller
 		$this->load->view('pages/v_form_hirarc', $data);
 		$this->load->view('parts/footer', $data);
 	}
+	function history_approval(){
+		$data['judul'] = "Approval";
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_approval', $data);
+		$this->load->view('parts/footer', $data);
+	}
+	function ditolak(){
+		$data['judul'] = "Rencana Kerja DItolak";
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_data_kerja_ditolak', $data);
+		$this->load->view('parts/footer', $data);
+	}
+	function selesai(){
+		$data['judul'] = "Rencana Kerja Selesai";
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_data_kerja_selesai', $data);
+		$this->load->view('parts/footer', $data);
+	}
 	function insert_temp_uraian_pekerjaan(){
 		$uraian_pekerjaan = $this->input->post('uraian_pekerjaan');
 		$jam = $this->input->post('jam');

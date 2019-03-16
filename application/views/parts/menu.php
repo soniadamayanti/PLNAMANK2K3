@@ -28,9 +28,8 @@
                             <a class="has-arrow " href="<?php echo base_url() ?>rencana" aria-expanded="false" ><i class="mdi mdi-book"></i><span class="hide-menu">Rencana Kerja </span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url() ?>rencana">Data Pekerjaan <span class="label label-rounded label-primary">1</span></a></li>
-                                <li><a href="rencana/tolak">Pekerjaan Ditolak <span class="label label-rounded label-warning">2</span></a></li>
-                                <li><a href="app-chat.html">Pembatalan Pekerjaan</a></li>
-                                <li><a href="app-chat.html">Pekerjaan Selesai</a></li>
+                                <li><a href="<?php echo base_url() ?>rencana/ditolak">Pekerjaan Ditolak <span class="label label-rounded label-warning">2</span></a></li>
+                                <li><a href="<?php echo base_url() ?>rencana/dibatalkan">Pembatalan Pekerjaan</a></li>
                             </ul>
                         </li>
                         <li>
@@ -40,19 +39,19 @@
                             <a class="" href="#" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i><span class="hide-menu">Pencapaian Kinerja</span></a>
                         </li>
                         <li>
-                            <a class="" href="#" aria-expanded="false"><i class="mdi mdi-checkbox-multiple-marked-outline"></i><span class="hide-menu">Penyelesaian Pekerjaan</span></a>
+                            <a class="" href="<?php echo base_url() ?>rencana/selesai" aria-expanded="false"><i class="mdi mdi-checkbox-multiple-marked-outline"></i><span class="hide-menu">Penyelesaian Pekerjaan</span></a>
                         </li>
                         <li>
                             <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-archive"></i><span class="hide-menu">Arsip</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="data-sop.html">Gardu Induk</a></li>
-                                <li><a href="app-chat.html">Penyulang</a></li>
-                                <li><a href="app-chat.html">Gardu Distribusi</a></li>
-                                <li><a href="app-chat.html">Single Line Diagram (SLD)</a></li>
-                                <li><a href="app-chat.html">HIRARC</a></li>
-                                <li><a href="app-chat.html">Jenis Pekerjaan</a></li>
-                                <li><a href="app-chat.html">Perusahaan Pelaksana Pekerjaan</a></li>
-                                <li><a href="app-chat.html">Pelaksana Pekerjaan</a></li>
+                                <li><a href="<?php echo base_url() ?>arsip/gardu_induk">Gardu Induk</a></li>
+                                <li><a href="<?php echo base_url() ?>arsip/penyulang">Penyulang</a></li>
+                                <li><a href="<?php echo base_url() ?>arsip/gardu_distribusi">Gardu Distribusi</a></li>
+                                <li><a href="<?php echo base_url() ?>arsip/sld">Single Line Diagram (SLD)</a></li>
+                                <li><a href="<?php echo base_url() ?>arsip/hirarc">HIRARC</a></li>
+                                <li><a href="<?php echo base_url() ?>arsip/jenis_pekerjaan">Jenis Pekerjaan</a></li>
+                                <li><a href="<?php echo base_url() ?>arsip/perusahaan_pelaksana">Perusahaan Pelaksana Pekerjaan</a></li>
+                                <li><a href="<?php echo base_url() ?>arsip/pelaksana_pekerjaan">Pelaksana Pekerjaan</a></li>
                             </ul>
                         </li>
                         <li class="nav-devider"></li>
@@ -91,11 +90,7 @@
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
                         <h3 class="text-themecolor mb-0 mt-0"><?php 
-                        if($this->uri->segment(2) == null){
-                            echo "Dashboard";
-                        }else{
-                            echo strtoupper(str_replace('_', ' ', $this->uri->segment(2)));
-                        }
+                        echo $judul;
                          ?></h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo anchor('Index','Home','class="breadcrumb-item"'); ?></a></li>

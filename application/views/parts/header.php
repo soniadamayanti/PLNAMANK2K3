@@ -10,11 +10,16 @@
     <link href="<?php echo site_url(); ?>assets/plugins/chartist-js/dist/chartist-init.css" rel="stylesheet">
     <link href="<?php echo site_url(); ?>assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
     <link href="<?php echo site_url(); ?>assets/plugins/css-chart/css-chart.css" rel="stylesheet">
+    
     <!-- Custom CSS -->
     <link href="<?php echo site_url() ?>assets/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="<?php echo site_url() ?>assets/css/colors/blue.css" id="theme" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/jquery.toast.css">
+
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables.net-select-bs4/css/select.bootstrap4.min.css">
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">

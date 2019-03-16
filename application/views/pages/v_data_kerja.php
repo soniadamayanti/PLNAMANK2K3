@@ -106,7 +106,7 @@
                             </td>
                             <td class="txt-oflo">April 18, 2019</td>
                             <td class="txt-oflo">
-                                <button type="button" class="btn btn-info mb-3" name="btnHistory" id="btnHistory">History Approval</button><br>
+                                <button type="button" class="btn btn-info mb-3" name="btnHistoryApproval" id="btnHistoryApproval">History Approval</button><br>
                             </td>
                         </tr>
                         
