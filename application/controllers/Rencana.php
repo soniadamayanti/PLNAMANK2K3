@@ -183,6 +183,7 @@ class Rencana extends CI_Controller
 		$material = $this->input->post('material');
 		$peralatan_kerja = $this->input->post('peralatan_kerja');
 		$gardu = $this->input->post('gardu');
+		$nama_penyulang = $this->input->post('nama_penyulang');
 		$data_project = array(
 			'tgl_project' => $tgl,
 			'tegangan' => $tegangan,
