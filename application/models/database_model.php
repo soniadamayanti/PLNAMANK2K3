@@ -62,6 +62,10 @@ class Database_model extends CI_Model
 		$this->db->where('kode_project',$kode_project);
 		$this->db->update('tb_project',$data);
 	}
+	function delete($table,$where,$kode){
+		$this->db->where($where,$kode);
+		$this->db->table($table);
+	}
 
 }
 

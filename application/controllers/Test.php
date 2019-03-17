@@ -33,13 +33,6 @@ class Test extends CI_Controller
 		print_r($atasan);
 		echo "</pre>";
 	}
-	function coba(){
-		$where = array(
-			'kode_project' =>'K.005/AMANK2K3/CIANJUR/III/2019'
-		);
-		
-		
-	}
 
 }
 

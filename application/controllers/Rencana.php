@@ -194,7 +194,7 @@ class Rencana extends CI_Controller
 			'last_modified_user' => $this->session->userdata('kode_user'),
 		);
 		$this->database_model->update($kode_project,$data);
-		// redirect('Rencana');
+		
 
 		$where = array(
 			'kode_project' =>$kode_project
@@ -221,6 +221,7 @@ class Rencana extends CI_Controller
 			$this->database_model->insert('tb_det_uraian_pekerjaan',$array);
 			$this->database_model->delete('tb_temp_uraian_pekerjaan','kode_project',$a['kode_project']);
 		}
+		// redirect('Rencana');
 
 	}
 	function insert_temp_pelaksana(){
