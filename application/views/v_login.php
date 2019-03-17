@@ -99,6 +99,7 @@
     <script src="<?php echo site_url(); ?>assets/js/sidebarmenu.js"></script>
     <!--stickey kit -->
     <script src="<?php echo site_url(); ?>assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.toast.js"></script>
     <!--Custom JavaScript -->
     <script src="<?php echo site_url(); ?>assets/js/custom.min.js"></script>
     <!-- ============================================================== -->
@@ -114,11 +115,15 @@
                 password:password
             };
             $.ajax({
-                url:'Login/login',
+                url:'<?php echo base_url() ?>Login/login',
                 type:'POST',
                 data:data,
                 success:function(data){
-                    alert(data);
+                    if (data ==1) {
+                        window.location='<?php echo base_url(); ?>Index'
+                    }else{
+                        alert(data);
+                    }
                 }
             })
         });

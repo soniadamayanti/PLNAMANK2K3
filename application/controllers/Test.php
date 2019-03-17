@@ -9,6 +9,7 @@ class Test extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('database_model');
+		$this->load->model('test_model');
 	}
 	function index(){
 		$data['judul'] = "Test UI";
@@ -16,6 +17,28 @@ class Test extends CI_Controller
 		$this->load->view('parts/menu', $data);
 		$this->load->view('pages/v_approval', $data);
 		$this->load->view('parts/footer', $data);
+	}
+	function get_atasan(){
+		$where = array(
+			'tb_users.lokasi' => 'Cianjur',
+			'tb_divisi.parent_divisi' => 2
+		);
+		// $data['divisi'] = $this->database_model->get_where('tb_users',$where);
+		$data['atasan'] = $this->test_model->get_atasan($where);
+		$atasan = array();
+		foreach ($data['atasan'] as $r) {
+			$atasan[] = $r;
+		}
+		echo "<pre>";
+		print_r($atasan);
+		echo "</pre>";
+	}
+	function coba(){
+		$where = array(
+			'kode_project' =>'K.005/AMANK2K3/CIANJUR/III/2019'
+		);
+		
+		
 	}
 
 }

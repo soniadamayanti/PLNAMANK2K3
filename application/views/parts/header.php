@@ -1,3 +1,10 @@
+<?php
+$kode_user =  $this->session->userdata('kode_user');
+if (!isset($kode_user)) {
+    redirect('Login');
+}
+ ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -254,7 +261,7 @@
                                         <div class="dw-user-box">
                                             <div class="u-img"><img src="<?php echo site_url(); ?>assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
-                                                <h4>Riky Japutra</h4>
+                                                <h4><?php echo $this->session->userdata('nama_user') ?></h4>
                                                 <p class="text-muted">Staf Teknisi ULP</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
                                         </div>
                                     </li>

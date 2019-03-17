@@ -31,11 +31,36 @@ class Database_model extends CI_Model
 		$query = $this->db->get($table);
 		return $query->result_array();
 	}
-	function login($username,$password){
-		$this->db->where('username',$username);
-		$this->db->where('password',$password);
-		$query = $this->db->get('tb_users');
+	function get_atasan($data){
+		$this->db->select('*');
+		$this->db->from('tb_users');
+		$this->db->join('tb_divisi','tb_divisi.kode_divisi = tb_users.kode_divisi');
+		$this->db->where($data);
+		$query = $this->db->get();
 		return $query->result_array();
+	}
+	function login($data){
+		$this->db->select('*');
+		$this->db->from('tb_users');
+		$this->db->join('tb_divisi','tb_divisi.kode_divisi = tb_users.kode_divisi');
+		$this->db->where($data);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	function get_temp_uraian($kode){
+		$this->db->where('kode_project',$kode);
+        return $this->db->get("tb_temp_uraian_pekerjaan");
+	}
+	function get_temp_pelaksana($kode){
+		$this->db->select('*');
+		$this->db->from('tb_pelaksana');
+		$this->db->join('tb_temp_pelaksana','tb_temp_pelaksana.kode_pelaksana = tb_pelaksana.kode_pelaksana');
+        $this->db->where('tb_temp_pelaksana.kode_project',$kode);
+        return $this->db->get();
+	}
+	function update_project($kode_project,$data){
+		$this->db->where('kode_project',$kode_project);
+		$this->db->update('tb_project',$data);
 	}
 
 }

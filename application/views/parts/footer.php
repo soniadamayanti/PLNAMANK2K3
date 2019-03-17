@@ -85,11 +85,16 @@
                 data:value,
                 type:'POST',
                 success:function(data){
-                    alert(data);
+                    if (data == 1) {
+                        var table = $('#table_temp_uraian_pekerjaan').DataTable();
+                        table.ajax.reload(null,false);
+                    }else{
+                        alert(data);
+                    }
                 }
             });
         });
-        $(document).on('click','#btnSimpanTempPelaksana',function(){
+        $(document).on('click','#btnTambahPelaksana',function(){
             var kode_project = $('#kode_project').val();
             var kode_pelaksana = $('#kode_pelaksana').val();
             var value = {
@@ -100,43 +105,19 @@
                 url:'<?php echo base_url() ?>Rencana/insert_temp_pelaksana',
                 data:value,
                 type:'POST',
-                success:function(data){
-                    get_temp_pelaksana(kode_project);   
+                success:function(data){ 
+                    if (data == 1) {
+                        var table = $('#table_temp_pelaksana').DataTable();
+                        table.ajax.reload(null,false);
+                    }else{
+                        alert(data);
+                    }
                 }
             });
         });
         $(document).on('click','#btnHistoryApproval',function(){
             location.href = "<?php echo base_url() ?>Rencana/history_approval";
         });
-        function get_temp_uraian(kode_project){
-            var data = {
-                kode_project:kode_project
-            };
-            $.ajax({
-                url:'<?php echo base_url() ?>Rencana/get_temp_uraian_pekerjaan',
-                data:value,
-                type:'POST',
-                success:function(data){
-                    var json = jQuery.parseJSON(data);
-                    $('tbody temp_pelaksana').html('<td>'+json.uraian_pekerjaan+'</td><td>'+json.jam+'</td><td>'+json.keterangan+'</td>');
-                }
-            });
-        }
-        function get_temp_plaksana(kode_project){
-            var data = {
-                kode_project:kode_project
-            };
-            $.ajax({
-                url:'<?php echo base_url() ?>Rencana/get_temp_pelaksaan',
-                data:value,
-                type:'POST',
-                success:function(data){
-                    var json = jQuery.parseJSON(data);
-                    $('body_pelaksana').html('<td>'+json.uraian_pekerjaan+'</td><td>'+json.jam+'</td><td>'+json.keterangan+'</td>');
-                }
-            });
-        }
-
         $('#table_arsip_sld').DataTable({
             "ajax": {
                 url:'<?php echo base_url() ?>arsip/dt_sld',
@@ -152,6 +133,19 @@
         $('#table_arsip_perusahaan_pelaksana').DataTable({
             "ajax": {
                 url:'<?php echo base_url() ?>arsip/dt_perusahaan_pelaksana',
+                "type": "POST"
+            },
+        });
+        var type = $('#type').val();
+        $('#table_temp_uraian_pekerjaan').DataTable({
+            "ajax": {
+                url:'<?php echo base_url() ?>Rencana/get_temp_uraian_pekerjaan/'+type,
+                "type": "POST"
+            },
+        });
+        $('#table_temp_pelaksana').DataTable({
+            "ajax": {
+                url:'<?php echo base_url() ?>Rencana/get_temp_pelaksaan/'+type,
                 "type": "POST"
             },
         });

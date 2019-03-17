@@ -13,7 +13,7 @@
                     <!-- User profile image -->
                     <div class="profile-img"> <img src="<?php echo site_url(); ?>assets/images/users/1.jpg" alt="user" /> </div>
                     <!-- User profile text-->
-                    <div class="profile-text"> <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Riky Japutra<span class="caret"></span></a>
+                    <div class="profile-text"> <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><?php echo $this->session->userdata('nama_user') ?><span class="caret"></span></a>
                     </div>
                 </div>
                 <!-- End User profile text-->
@@ -68,7 +68,7 @@
                 <!-- item-->
                 <a href="#" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
                 <!-- item-->
-                <a href="#" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+                <?php echo anchor('Login/logout','<i class="mdi mdi-power"></i>','class="link" data-toggle="tooltip" title="Logout"') ?>
             </div>
             <!-- End Bottom points-->
         </aside>

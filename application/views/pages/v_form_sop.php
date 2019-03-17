@@ -3,6 +3,12 @@ $a = array();
 foreach ($kode_project as $data) {
     $a[] = $data;
 }
+$b = array();
+foreach ($atasan as $r) {
+    $b[] = $r;
+}
+$nama_atasan = $b[0]['nama_user'];
+$divisi_atasan = $b[0]['nama_divisi'];
 $kode = $a[0]['kode_project'];
  ?>
 <div class="row" id="sop_pemadaman">
@@ -17,13 +23,15 @@ $kode = $a[0]['kode_project'];
                         <h4><b>PERMOHONAN PEMBEBASAN TEGANGAN</b> <span class="float-right" id="kode_project_view"><?php echo $kode ?></span></h4>
                         <hr class="mt-0 mb-5">
                         <input type="hidden" class="form-control" id="kode_project" value="<?php echo $kode ?>">
-                        <input type="hidden" class="form-control" id="type" value="<?php echo $this->uri->segment(3) ?>"> </div>
+                        <input type="hidden" class="form-control" id="type" value="<?php echo $this->uri->segment(3) ?>"> 
+                    </div>
+
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pengawas</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" value="Ainul Yaqin" disabled> </div>
+                                        <input type="text" class="form-control" value="<?php echo $nama_atasan ?>"disabled> </div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -32,7 +40,7 @@ $kode = $a[0]['kode_project'];
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Jabatan</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" value="AE PENGADILAN KONTRUKSI" disabled> </div>
+                                        <input type="text" class="form-control" value="<?php echo $divisi_atasan ?>" disabled> </div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -139,7 +147,7 @@ $kode = $a[0]['kode_project'];
 
                                     <div class="row mb-3">
                                         <div class="col-md-10">
-                                            <select class="form-control custom-select" tabindex="1">
+                                            <select class="form-control custom-select" tabindex="1" id="kode_pelaksana">
                                                     <?php 
                                                     foreach ($pelaksana as $data) {
                                                         echo "<option value='".$data['kode_pelaksana']."'>".$data['nama_pelaksana']."</option>";
@@ -149,7 +157,7 @@ $kode = $a[0]['kode_project'];
                                         </div>
                                         <div class="col-md-1">
                                             <div class="btn-group">
-                                            <button type="button" class="btn btn-info" aria-haspopup="true" aria-expanded="false">
+                                            <button type="button" id="btnTambahPelaksana"class="btn btn-info" aria-haspopup="true" aria-expanded="false">
                                                 <i class="ti-plus"></i>
                                             </button>
                                             </div>
@@ -161,6 +169,29 @@ $kode = $a[0]['kode_project'];
                             </div>
                             <!--/span-->
                         </div>
+                        <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-4 text-left col-form-label">&nbsp;</label>
+                                <div class="col-md-8">
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table" id="table_temp_pelaksana">
+                                            <thead class="bg-info text-white">
+                                                <tr>
+                                                    <th>Pelaksana</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
                         <!--/row--><h3 class="box-title">Jadwal Pekerjaan</h3>
                     <hr class="mt-2 mb-3">
                     <!--/row-->
@@ -216,35 +247,16 @@ $kode = $a[0]['kode_project'];
                                 <div class="col-md-8">
                                     
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table" id="table_temp_uraian_pekerjaan">
                                             <thead class="bg-info text-white">
                                                 <tr>
                                                     <th>Uraian Jadwal Pekerjaan</th>
                                                     <th>Rencana Jam</th>
                                                     <th>Keterangan</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Permohonan Padam</td>
-                                                    <td>09.00 WIB</td>
-                                                    <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Mulai Pekerjaan</td>
-                                                    <td>09.15 WIB</td>
-                                                    <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Selesai Pekerjaan</td>
-                                                    <td>14.45 WIB</td>
-                                                    <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Penormalan Tegangan</td>
-                                                    <td>15.00 WIB</td>
-                                                    <td>-</td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
