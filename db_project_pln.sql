@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2019 at 07:45 AM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Mar 17, 2019 at 07:12 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -74,7 +74,8 @@ CREATE TABLE `tb_det_pelaksana` (
 --
 
 INSERT INTO `tb_det_pelaksana` (`kode_pelaksana`, `kode_project`) VALUES
-(2, 'K.005/AMANK2K3/CIANJUR/III/2019');
+(1, 'K.001/AMANK2K3/CIANJUR/III/2019'),
+(2, 'K.001/AMANK2K3/CIANJUR/III/2019');
 
 -- --------------------------------------------------------
 
@@ -117,8 +118,8 @@ CREATE TABLE `tb_det_uraian_pekerjaan` (
 --
 
 INSERT INTO `tb_det_uraian_pekerjaan` (`kode_uraian_pekerjaan`, `uraian_pekerjaan`, `jam`, `keterangan`, `kode_project`) VALUES
-(14, 'Cobaan yah', '09:00:00', 'hehe', 'K.005'),
-(15, 'Apalagi yaah', '10:00:00', 'hehe', 'K.005');
+(1, 'Penormalan tegangan', '12:00:00', '', 'K.001'),
+(2, 'Mulai pekerjaan', '09:00:00', '', 'K.001');
 
 -- --------------------------------------------------------
 
@@ -260,17 +261,8 @@ CREATE TABLE `tb_project` (
 --
 
 INSERT INTO `tb_project` (`kode_project`, `tgl_project`, `tgl_pelaksanaan`, `tgl_selesai`, `tgl_approval`, `tegangan`, `alamat_project`, `jml_tenaga_kerja`, `material`, `peralatan_kerja`, `gardu`, `jenis_project`, `last_modified`, `last_modified_user`, `kode_user`, `kode_jenis_pekerjaan`, `kode_line`, `uniqid`) VALUES
-('K.001/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Korektif', '0000-00-00 00:00:00', '', '', '', '', '5'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Korektif', '0000-00-00 00:00:00', '', '', '', '', '5c8bf357b139a'),
-('K.003/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Korektif', '0000-00-00 00:00:00', '', '', '', '', '5c8db55898ce5'),
-('K.004/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Korektif', '0000-00-00 00:00:00', '', '', '', '', '5c8db561230e5'),
-('K.005/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Korektif', '0000-00-00 00:00:00', '', 'U0001', '', '', '5c8de8a1d2fc5'),
-('P.001/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', '', '', '', '5c8bf3b651dbe'),
-('P.002/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', '', '', '', '5c8db57692f99'),
-('P.003/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', '', '', '', '5c8db5c431cda'),
-('P.004/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', 'U0002', '', '', '5c8dba883ab8f'),
-('P.005/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', 'U0001', '', '', '5c8de560a0fae'),
-('P.006/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', 'U0001', '', '', '5c8de5874df7d');
+('K.001/AMANK2K3/CIANJUR/III/2019', '2019-03-17 20:31:11', '2019-03-17 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 20, '', 10, 'Lengkap', 'Lengkap', 'PMS,BPRK,HHHA,PJSA,SELA,SEL,BLKR', 'Korektif', '2019-03-17 20:31:11', 'U0001', 'U0001', 'H0005', 'S0002', '5c8e49d35045b'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Korektif', '0000-00-00 00:00:00', '', 'U0001', '', '', '5c8e4eb337e3b');
 
 -- --------------------------------------------------------
 
@@ -308,11 +300,11 @@ CREATE TABLE `tb_sld` (
 --
 
 INSERT INTO `tb_sld` (`kode_sld`, `nama_sld`, `lokasi`, `tgl_input_sld`, `last_modified`, `last_modified_user`, `src`) VALUES
-('S0001', 'P.GBRG - REC.LSH', 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', '100', 'S0001.jpg'),
-('S0002', 'P.LPGN - SP.TBB dan SP.CNA', 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', '100', 'S0002.jpg'),
-('S0003', 'P.DPRD - SP.PRN', 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', '100', 'S0003.jpg'),
-('S0004', 'P.KOTU - REC.PNB', 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', '100', 'S0004.jpg'),
-('S0005', 'P.BNJT - REC.TGA', 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', '100', 'S0005.jpg');
+('S0001', 'P.GBRG - REC.LSH', 'CIANJUR', '2019-03-16 00:00:00', '2019-03-16 00:00:00', '100', 'S0001.jpg'),
+('S0002', 'P.LPGN - SP.TBB dan SP.CNA', 'CIANJUR', '2019-03-16 00:00:00', '2019-03-16 00:00:00', '100', 'S0002.jpg'),
+('S0003', 'P.DPRD - SP.PRN', 'CIANJUR', '2019-03-16 00:00:00', '2019-03-16 00:00:00', '100', 'S0003.jpg'),
+('S0004', 'P.KOTU - REC.PNB', 'CIANJUR', '2019-03-16 00:00:00', '2019-03-16 00:00:00', '100', 'S0004.jpg'),
+('S0005', 'P.BNJT - REC.TGA', 'CIANJUR', '2019-03-16 00:00:00', '2019-03-16 00:00:00', '100', 'S0005.jpg');
 
 -- --------------------------------------------------------
 
@@ -324,18 +316,6 @@ CREATE TABLE `tb_temp_pelaksana` (
   `kode_pelaksana` int(11) NOT NULL,
   `kode_project` char(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_temp_pelaksana`
---
-
-INSERT INTO `tb_temp_pelaksana` (`kode_pelaksana`, `kode_project`) VALUES
-(2, 'K.005/AMANK2K3/CIANJUR/III/2019'),
-(2, 'P.003/AMANK2K3/CIANJUR/III/2019'),
-(2, 'P.006/AMANK2K3/CIANJUR/III/2019'),
-(3, 'P.006/AMANK2K3/CIANJUR/III/2019'),
-(4, 'P.003/AMANK2K3/CIANJUR/III/2019'),
-(4, 'P.006/AMANK2K3/CIANJUR/III/2019');
 
 -- --------------------------------------------------------
 
@@ -350,16 +330,6 @@ CREATE TABLE `tb_temp_uraian_pekerjaan` (
   `keterangan` text NOT NULL,
   `kode_project` char(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_temp_uraian_pekerjaan`
---
-
-INSERT INTO `tb_temp_uraian_pekerjaan` (`kode_uraian_pekerjaan`, `uraian_pekerjaan`, `jam`, `keterangan`, `kode_project`) VALUES
-(12, '123', '05:00:00', 'hehe', 'P.003/AMANK2K3/CIANJUR/III/2019'),
-(13, '123123', '12:23:00', '123123', 'P.006/AMANK2K3/CIANJUR/III/2019'),
-(14, 'Cobaan yah', '09:00:00', 'hehe', 'K.005/AMANK2K3/CIANJUR/III/2019'),
-(15, 'Apalagi yaah', '10:00:00', 'hehe', 'K.005/AMANK2K3/CIANJUR/III/2019');
 
 -- --------------------------------------------------------
 
@@ -554,25 +524,21 @@ ALTER TABLE `tb_users`
 --
 ALTER TABLE `tb_approval`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `tb_pelaksana`
 --
 ALTER TABLE `tb_pelaksana`
   MODIFY `kode_pelaksana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `tb_temp_uraian_pekerjaan`
 --
 ALTER TABLE `tb_temp_uraian_pekerjaan`
-  MODIFY `kode_uraian_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `kode_uraian_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_uraian_pekerjaan`
 --
 ALTER TABLE `tb_uraian_pekerjaan`
   MODIFY `kode_uraian_pekerjaan` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- Constraints for dumped tables
 --
