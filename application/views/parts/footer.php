@@ -153,6 +153,9 @@
         $(document).on('click','#btnHistoryApproval',function(){
             location.href = "<?php echo base_url() ?>Rencana/history_approval";
         });
+        $(document).on('click','#btnPrintRencanaKerja',function(){
+            location.href = "<?php echo base_url() ?>Download/printPDF";
+        });
         $('#table_arsip_sld').DataTable({
             "ajax": {
                 url:'<?php echo base_url() ?>arsip/dt_sld',
