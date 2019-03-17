@@ -1,6 +1,6 @@
-<!-- Start Page Content -->
-<!-- ============================================================== -->
-<!-- Row -->
+<?php foreach ($sld as $data): ?>
+    
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card card-outline-info">
@@ -8,25 +8,18 @@
                 <h4 class="mb-0 text-white">SINGLE LINE (SLP)  </h4>
             </div>
             <div class="card-body">
-                <form action="#" class="form-horizontal">
+                <?php echo form_open('Rencana/working_permit/'.$this->uri->segment(3)) ?>
                     <div class="form-body">
-                        <h4><b>P.LAPEGAN s.d REC.BLK</b> <span class="float-right">P.001/AMANK2K3/KOTA/III/2019</span></h4>
+                        <h4><b><?php echo $data['nama_sld'] ?></b> <span class="float-right"></span></h4>
                         <hr class="mt-0 mb-5">
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pilih SLP</label>
                                     <div class="col-md-8">
-                                        <select class="form-control custom-select" tabindex="1" onchange="$('#imageToSwap').attr('src', this.options[this.selectedIndex].value);">
-                                            <?php 
-                                            foreach ($sld as $a) {
-                                                echo  "<option value='".base_url()."assets/arsip/sld/".$a['src']."'>".$a['nama_sld']."</option>";
-                                            }
-                                             ?>
-                                        </select>
+                                        <input type="text" class="custom-control-input" value="<?php echo $data['nama_sld'] ?>">
                                         <br><br>
-
-                                        <img id="imageToSwap" class="profile" src="<?php echo base_url() ?>assets/arsip/sld/S0001.jpg">
+                                        <img id="imageToSwap" class="profile" src="<?php echo base_url() ?>assets/arsip/sld/<?php echo $data['kode_sld'] ?>.jpg">
                                         
                                     </div>
                                 </div>
@@ -40,8 +33,7 @@
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button type="submit" class="btn btn-success">Simpan</button>
-                                        <button type="button" class="btn btn-inverse">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Lanjut</button>
                                     </div>
                                 </div>
                             </div>
@@ -53,6 +45,7 @@
         </div>
     </div>
 </div>
+<?php endforeach ?>
 <!-- Row -->
 <!-- ============================================================== -->
 <!-- End PAge Content -->

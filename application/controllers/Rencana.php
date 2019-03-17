@@ -13,6 +13,10 @@ class Rencana extends CI_Controller
 		$uniqid = $this->uri->segment(3);
 	}
 	function index(){
+		$where = array(
+			'kode_user' => $this->session->userdata('kode_user')
+		);
+		$data['project'] = $this->database_model->get_where('tb_project',$where);
 		$data['judul'] = "Data Rencana Kerja";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -28,6 +32,10 @@ class Rencana extends CI_Controller
 			'tb_users.lokasi' => $this->session->userdata('lokasi'),
 			'tb_divisi.kode_divisi' => $this->session->userdata('parent_divisi')
 		);
+		$a = array(
+			'lokasi' => $this->session->userdata('lokasi')
+		);
+		$data['sld'] = $this->database_model->get_where('tb_sld',$a);
 		$data['atasan'] = $this->database_model->get_atasan($where_atasan);
 		$data['pelaksana'] = $this->database_model->get('tb_pelaksana');
 		$data['jenis_pekerjaan'] = $this->database_model->get('tb_jenis_pekerjaan');
@@ -39,7 +47,23 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function slp(){
-		$data['sld'] = $this->database_model->get('tb_sld');
+		$wk = array(
+			'uniqid' => $this->uri->segment(3)
+		);
+		$data['kode_project'] = $this->database_model->get_where('tb_project',$wk);
+		$data_wk = array();
+		foreach ($data['kode_project'] as $data) {
+			$data_wk[] = $data;
+		}
+		$kode_project = $data_wk[0]['uniqid'];
+		$kode_sld = $data_wk[0]['kode_line'];
+		if ($this->uri->segment(3) == ''|| $this->uri->segment(3) != $kode_project) {
+			redirect('Rencana/sop_pemadaman');
+		}
+		$where = array(
+			'kode_sld' => $kode_sld
+		);
+		$data['sld'] = $this->database_model->get_where('tb_sld',$where);
 		$data['judul'] = "SLP Penyulang";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -47,6 +71,23 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function working_permit(){
+		$wk = array(
+			'uniqid' => $this->uri->segment(3)
+		);
+		$data['kode_project'] = $this->database_model->get_where('tb_project',$wk);
+		$data_wk = array();
+		foreach ($data['kode_project'] as $data) {
+			$data_wk[] = $data;
+		}
+		$kode_project = $data_wk[0]['uniqid'];
+		if ($this->uri->segment(3) == ''|| $this->uri->segment(3) != $kode_project) {
+			redirect('Rencana/sop_pemadaman');
+		}
+		$data['klasifikasi_kerja'] = $this->database_model->get('tb_klasifikasi_kerja');
+		$data['detail_project'] = $this->database_model->detail_project($this->uri->segment(3));
+		$data['prosedur_kerja'] = $this->database_model->get('tb_prosedur_kerja');
+		$data['lampiran_izin_kerja'] = $this->database_model->get('tb_lampiran_izin_kerja');
+
 		$data['judul'] = "Working Permit";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -54,6 +95,18 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function jsa(){
+		$wk = array(
+			'uniqid' => $this->uri->segment(3)
+		);
+		$data['kode_project'] = $this->database_model->get_where('tb_project',$wk);
+		$data_wk = array();
+		foreach ($data['kode_project'] as $data) {
+			$data_wk[] = $data;
+		}
+		$kode_project = $data_wk[0]['uniqid'];
+		if ($this->uri->segment(3) == ''|| $this->uri->segment(3) != $kode_project) {
+			redirect('Rencana/sop_pemadaman');
+		}	
 		$data['judul'] = "JSA";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -61,6 +114,18 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function hirarc(){
+		$wk = array(
+			'kode_project' => $this->uri->segment(3)
+		);
+		$data['kode_project'] = $this->database_model->get_where('tb_project',$wk);
+		$data_wk = array();
+		foreach ($data['kode_project'] as $data) {
+			$data_wk[] = $data;
+		}
+		$kode_project = $data_wk[0]['uniqid'];
+		if ($this->uri->segment(3) == '' || $this->uri->segment(3) != $kode_project) {
+			redirect('Rencana/sop_pemadaman');
+		}
 		$data['judul'] = "HIRARC";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -114,6 +179,15 @@ class Rencana extends CI_Controller
 		$this->database_model->insert('tb_temp_uraian_pekerjaan',$data_uraian);
 		echo 1;
 		
+	}
+	function insert_slp(){
+		$kode_slp = $this->input->post('kode_slp');
+		$kode_project = $this->input->post('kode_project');
+		$array = array(
+			'kode_line' =>$kode_slp
+		);
+		$this->database_model->update('tb_project',$kode_project,$array);
+		echo 1;
 	}
 	function insert_project($jenis){
 		$kota = "CIANJUR";
@@ -178,25 +252,30 @@ class Rencana extends CI_Controller
 		$kode_project = $this->input->post('kode_project');
 		$tgl = date('Y-m-d H:i:s');
 		$tegangan = $this->input->post('tegangan');
+		$tgl_project = $this->input->post('tgl_project');
 		$alamat_project = $this->input->post('alamat_project');
-		$jumlah_tenaga_kerja = $this->input->post('jumlah_tenaga_kerja');
+		$jumlah_tenaga_kerja = $this->input->post('jml_tenaga_kerja');
 		$material = $this->input->post('material');
 		$peralatan_kerja = $this->input->post('peralatan_kerja');
 		$gardu = $this->input->post('gardu');
 		$nama_penyulang = $this->input->post('nama_penyulang');
+		$kode_jenis_pekerjaan = $this->input->post('kode_jenis_pekerjaan');
+		$kode_line = $this->input->post('kode_line');
 		$data_project = array(
+			'kode_jenis_pekerjaan' => $kode_jenis_pekerjaan,
 			'tgl_project' => $tgl,
+			'tgl_pelaksanaan' => $tgl_project,
 			'tegangan' => $tegangan,
 			'alamat_project' => $alamat_project,
 			'jml_tenaga_kerja' => $jumlah_tenaga_kerja,
 			'material' => $material,
 			'peralatan_kerja' => $peralatan_kerja,
 			'gardu'=> $gardu,
-			'last_modified_user' => $this->session->userdata('kode_user'),
+			'kode_line'=> $kode_line,
+			'last_modified' => $tgl,
+			'last_modified_user' => $this->session->userdata('kode_user')
 		);
-		$this->database_model->update($kode_project,$data);
-		
-
+		$this->database_model->update_project($kode_project,$data_project);
 		$where = array(
 			'kode_project' =>$kode_project
 		);
@@ -207,9 +286,8 @@ class Rencana extends CI_Controller
 				'kode_project' => $a['kode_project']
 			);
 			$this->database_model->insert('tb_det_pelaksana',$array);
-			$this->database_model->delete('tb_temp_pelaksana','kode_project',$a['kode_project']);
+			$this->database_model->delete('tb_temp_pelaksana','kode_project',$kode_project);
 		}
-		
 		$data['temp_uraian_pekerjaan'] = $this->database_model->get_where('tb_temp_uraian_pekerjaan',$where);
 		foreach ($data['temp_uraian_pekerjaan'] as $a) {
 			$array = array(
@@ -220,9 +298,9 @@ class Rencana extends CI_Controller
 				'kode_project' => $a['kode_project'],
 			);
 			$this->database_model->insert('tb_det_uraian_pekerjaan',$array);
-			$this->database_model->delete('tb_temp_uraian_pekerjaan','kode_project',$a['kode_project']);
+			$this->database_model->delete('tb_temp_uraian_pekerjaan','kode_project',$kode_project);
 		}
-		// redirect('Rencana');
+		echo 1;
 
 	}
 	function insert_temp_pelaksana(){

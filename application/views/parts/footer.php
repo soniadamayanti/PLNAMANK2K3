@@ -49,6 +49,7 @@
     <script src="<?php echo base_url() ?>assets/js/export/pdfmake.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/export/vfs_fonts.js"></script>
     <script type="text/javascript">
+        var type = $('#type').val();
         var pictureList = [
             "<?php echo base_url() ?>arsip/sld/S0001",
             "<?php echo base_url() ?>arsip/sld/S0002",
@@ -115,6 +116,40 @@
                 }
             });
         });
+        $(document).on('click','#btnSimpanProject',function(){
+            var kode_project = $('#kode_project').val();
+            var kode_jenis_pekerjaan = $('#kode_jenis_pekerjaan').val();
+            var tgl_project = $('#tgl_project').val();
+            var tegangan = $('#tegangan').val();
+            var alamat_project = $('#alamat_project').val();
+            var material = $('#material').val();
+            var jml_tenaga_kerja = $('#jml_tenaga_kerja').val();
+            var peralatan_kerja = $('#peralatan_kerja').val();
+            var gardu = $('#gardu').val();
+            var kode_line = $('#kode_line').val();
+            var value = {
+                kode_project:kode_project,
+                kode_jenis_pekerjaan:kode_jenis_pekerjaan,
+                tgl_project:tgl_project,
+                tegangan:tegangan,
+                alamat_project:alamat_project,
+                jml_tenaga_kerja:jml_tenaga_kerja,
+                peralatan_kerja:peralatan_kerja,
+                gardu:gardu,
+                material:material,
+                kode_line:kode_line
+            };
+            $.ajax({
+                url:'<?php echo base_url(); ?>Rencana/update_project',
+                type:'POST',
+                data:value,
+                success:function(data){
+                    if (data ==1) {
+                        window.location='Rencana/slp/'+type
+                    }
+                }
+            });
+        });
         $(document).on('click','#btnHistoryApproval',function(){
             location.href = "<?php echo base_url() ?>Rencana/history_approval";
         });
@@ -136,7 +171,7 @@
                 "type": "POST"
             },
         });
-        var type = $('#type').val();
+        
         $('#table_temp_uraian_pekerjaan').DataTable({
             "ajax": {
                 url:'<?php echo base_url() ?>Rencana/get_temp_uraian_pekerjaan/'+type,

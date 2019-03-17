@@ -18,7 +18,6 @@ $kode = $a[0]['kode_project'];
                 <h4 class="mb-0 text-white">SOP PEMADAMAN  </h4>
             </div>
             <div class="card-body">
-                <form action="#" class="form-horizontal">
                     <div class="form-body">
                         <h4><b>PERMOHONAN PEMBEBASAN TEGANGAN</b> <span class="float-right" id="kode_project_view"><?php echo $kode ?></span></h4>
                         <hr class="mt-0 mb-5">
@@ -31,7 +30,7 @@ $kode = $a[0]['kode_project'];
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pengawas</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" value="<?php echo $nama_atasan ?>"disabled> </div>
+                                        <input type="text" class="form-control" value="<?php echo $nama_atasan ?>" disabled> </div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -49,7 +48,7 @@ $kode = $a[0]['kode_project'];
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pembebasan Jaringan Hari / Tanggal</label>
                                     <div class="col-md-8">
-                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy"></div>
+                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_project"></div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -59,7 +58,7 @@ $kode = $a[0]['kode_project'];
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Sistem Tegangan</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control"> </div>
+                                        <input type="text" class="form-control" id="tegangan"> </div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -71,23 +70,23 @@ $kode = $a[0]['kode_project'];
                                     
                                     <div class="col-md-8">
                                     <div class="row mb-3">
-                                        <div class="col-md-10">
-                                        <select class="form-control custom-select" tabindex="1">
+                                        <div class="col-md-11">
+                                        <select class="form-control custom-select" tabindex="1" id="kode_jenis_pekerjaan">
                                             <?php 
-                                            foreach ($nama_jenis_pekerjaan as $a) {
+                                            foreach ($jenis_pekerjaan as $a) {
                                                 echo  "<option value='".$a['kode_jenis_pekerjaan']."'>".$a['nama_jenis_pekerjaan']."</option>";
                                             }
                                              ?>
                                         </select>
                                         </div>
-                                        <div class="col-md-1">
+<!--                                         <div class="col-md-1">
                                             <div class="btn-group">
                                             <button type="button" id="btnSimpanTempPelaksana" class="btn btn-info" aria-haspopup="true" aria-expanded="false">
                                                 <i class="ti-plus"></i>
                                             </button>
                                             </div>
 
-                                        </div>
+                                        </div> -->
                                     </div>
                                     </div>
                                 </div>
@@ -103,7 +102,7 @@ $kode = $a[0]['kode_project'];
                                     <label class="col-sm-4 text-left col-form-label">Material</label>
                                     <div class="col-md-8">
                                         
-                                    <select class="form-control custom-select" tabindex="1">
+                                    <select class="form-control custom-select" tabindex="1" id="material">
                                         <option value="Lengkap">Lengkap</option>
                                         <option value="Belum Lengkap">Belum Lengkap</option>
                                     </select>
@@ -118,7 +117,7 @@ $kode = $a[0]['kode_project'];
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Jumlah Tenaga Kerja</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control"> </div>
+                                        <input type="text" class="form-control" id="jml_tenaga_kerja"> </div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -130,7 +129,7 @@ $kode = $a[0]['kode_project'];
                                     <label class="col-sm-4 text-left col-form-label">Peralatan Kerja</label>
                                     <div class="col-md-8">
                                         
-                                    <select class="form-control custom-select" tabindex="1">
+                                    <select class="form-control custom-select" tabindex="1" id="peralatan_kerja">
                                         <option value="Lengkap">Lengkap</option>
                                         <option value="Belum Lengkap">Belum Lengkap</option>
                                     </select>
@@ -157,7 +156,7 @@ $kode = $a[0]['kode_project'];
                                         </div>
                                         <div class="col-md-1">
                                             <div class="btn-group">
-                                            <button type="button" id="btnTambahPelaksana"class="btn btn-info" aria-haspopup="true" aria-expanded="false">
+                                            <button type="button" id="btnTambahPelaksana" class="btn btn-info" aria-haspopup="true" aria-expanded="false">
                                                 <i class="ti-plus"></i>
                                             </button>
                                             </div>
@@ -276,7 +275,16 @@ $kode = $a[0]['kode_project'];
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">Nama Penyulang</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control">
+                                    <select class="form-control custom-select" tabindex="1" onchange="
+                                        $('#imageToSwap').attr('src', '<?php echo base_url() ?>assets/arsip/sld/'+this.options[this.selectedIndex].value+'.jpg');
+                                        $('#kode_line').val(this.options[this.selectedIndex].value)">
+                                            <?php 
+                                            foreach ($sld as $a) {
+                                                echo  "<option value='".$a['kode_sld']."'>".$a['nama_sld']."</option>";
+                                            }
+                                             ?>
+                                        </select>
+                                        <input type="hidden" id="kode_line" >
                                 </div>
                             </div>
                         </div>
@@ -287,7 +295,7 @@ $kode = $a[0]['kode_project'];
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">Gardu Padam</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="gardu">
                                 </div>
                             </div>
                         </div>
@@ -299,13 +307,13 @@ $kode = $a[0]['kode_project'];
                                 <label class="col-sm-4 text-left col-form-label">Lokasi Padam</label>
                                 <div class="col-md-8">
                                     
-                                    <textarea class="form-control" rows=2></textarea>
+                                    <textarea class="form-control" rows=2 id="alamat_project"></textarea>
                                 </div>
                             </div>
                         </div>
                         <!--/span-->
                     </div>
-                    <div class="row">
+<!--                     <div class="row">
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">Pelaksana Pembebasan</label>
@@ -315,15 +323,14 @@ $kode = $a[0]['kode_project'];
                             </div>
                         </div>
                         <!--/span-->
-                    </div>
-
+                    <!-- </div> -->
                     <hr>
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                        <button type="submit" class="btn btn-success" id="btnSimpanProject">Simpan</button>
                                         <button type="button" class="btn btn-inverse">Cancel</button>
                                     </div>
                                 </div>
@@ -332,7 +339,6 @@ $kode = $a[0]['kode_project'];
                         </div>
                     </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>

@@ -1,3 +1,6 @@
+<?php foreach ($detail_project as $data): ?>
+    
+<?php endforeach ?>
     <!-- Start Page Content -->
     <!-- ============================================================== -->
     <!-- Row -->
@@ -10,7 +13,7 @@
                 <div class="card-body">
                     <form action="#" class="form-horizontal">
                         <div class="form-body">
-                            <h4><b>P.LAPEGAN s.d REC.BLK</b> <span class="float-right">P.001/AMANK2K3/KOTA/III/2019</span></h4>
+                            <h4><b><?php echo $data['nama_sld'] ?></b> <span class="float-right"><?php echo $data['kode_project'] ?></span></h4>
                             <hr class="mt-0 mb-5">
 
 
@@ -21,7 +24,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 text-left col-form-label">Tanggal Pengajuan</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" value="14 Maret 2019" disabled>
+                                            <input type="text" class="form-control" value="<?php echo $data['tgl_project'] ?>" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -31,7 +34,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 text-left col-form-label">Jenis Pekerjaan</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" value="GROWS & Penggantian Isolator" disabled>
+                                            <input type="text" class="form-control" value="<?php echo $data['nama_jenis_pekerjaan'] ?>" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -41,7 +44,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 text-left col-form-label">Detail Pekerjaan</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" value="GROWS & Penggantian Isolator">
+                                            <input type="text" class="form-control"  value="<?php echo $data['nama_jenis_pekerjaan'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +54,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 text-left col-form-label">Lokasi Pekerjaan</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" value="P.LPGN-R.BLK" disabled>
+                                            <input type="text" class="form-control" value="<?php echo $data['nama_sld'] ?>" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +103,7 @@
                                     <div class="form-group row">
                                         <label class="control-label text-left col-md-4">Tanggal Mulai</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" placeholder="14/03/2019" disabled>
+                                            <input type="text" class="form-control" placeholder="<?php echo $data['tgl_pelaksanaan'] ?>" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -138,46 +141,12 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group row">
                                         <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                <label class="custom-control-label" for="customCheck1">Pekerjaan Bertegangan Listrik</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                                <label class="custom-control-label" for="customCheck2">Pekerjaan Bertegangan Listrik</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                                <label class="custom-control-label" for="customCheck3">Pekerjaan Bertegangan Listrik</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                                <label class="custom-control-label" for="customCheck4">Pekerjaan Bertegangan Listrik</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                                <label class="custom-control-label" for="customCheck5">Pekerjaan Bertegangan Listrik</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck6">
-                                                <label class="custom-control-label" for="customCheck6">Pekerjaan Bertegangan Listrik</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck7">
-                                                <label class="custom-control-label" for="customCheck7">Pekerjaan Bertegangan Listrik</label>
-                                            </div>
+                                            <?php foreach ($klasifikasi_kerja as $klasifikasi): ?>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $klasifikasi['kode_klasifikasi_kerja'] ?>">
+                                                    <label class="custom-control-label" for="customCheck2"><?php echo $klasifikasi['nama_klasifikasi_kerja'] ?></label>
+                                                </div>
+                                            <?php endforeach ?>
                                         </div>
                                     </div>
                                 </div>
@@ -188,48 +157,12 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck1">
-                                                <label class="custom-control-label" for="ProsedurCheck1">Pemeliharaan Fuse Cut Out</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck2">
-                                                <label class="custom-control-label" for="ProsedurCheck2">Pemeliharaan Fuse Cut Out</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck3">
-                                                <label class="custom-control-label" for="ProsedurCheck3">Pemeliharaan Fuse Cut Out</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck4">
-                                                <label class="custom-control-label" for="ProsedurCheck4">Pemeliharaan Fuse Cut Out</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck5">
-                                                <label class="custom-control-label" for="ProsedurCheck5">Pemeliharaan Fuse Cut Out</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck6">
-                                                <label class="custom-control-label" for="ProsedurCheck6">Pemeliharaan Fuse Cut Out</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck7">
-                                                <label class="custom-control-label" for="ProsedurCheck7">Pemeliharaan Fuse Cut Out</label>
-                                            </div>
-                                        </div>
+                                        <?php foreach ($prosedur_kerja as $prosedur_kerja): ?>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $prosedur_kerja['kode_prosedur_kerja'] ?>">
+                                                    <label class="custom-control-label" for="customCheck2"><?php echo $prosedur_kerja['nama_prosedur_kerja'] ?></label>
+                                                </div>
+                                            <?php endforeach ?>
                                     </div>
                                 </div>
                             </div>
@@ -238,30 +171,12 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group row">
-                                        <div class="col-md-4">
+                                        <?php foreach ($lampiran_izin_kerja as $lampiran_izin_kerja): ?>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck1">
-                                                <label class="custom-control-label" for="ProsedurCheck1">Job Safety Analysis</label>
+                                                <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $lampiran_izin_kerja['kode_lampiran_izin_kerja'] ?>">
+                                                <label class="custom-control-label" for="customCheck2"><?php echo $lampiran_izin_kerja['nama_lampiran_izin_kerja'] ?></label>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck2">
-                                                <label class="custom-control-label" for="ProsedurCheck2">Job Safety Analysis</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck3">
-                                                <label class="custom-control-label" for="ProsedurCheck3">Job Safety Analysis</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="ProsedurCheck4">
-                                                <label class="custom-control-label" for="ProsedurCheck4">Job Safety Analysis</label>
-                                            </div>
-                                        </div>
+                                        <?php endforeach ?>
                                 </div>
                             </div>
                         </div>

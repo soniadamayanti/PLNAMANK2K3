@@ -64,7 +64,16 @@ class Database_model extends CI_Model
 	}
 	function delete($table,$where,$kode){
 		$this->db->where($where,$kode);
-		$this->db->table($table);
+		$this->db->delete($table);
+	}
+	function detail_project($uniqid){
+		$this->db->select('*');
+		$this->db->from('tb_project');
+		$this->db->join('tb_sld','tb_sld.kode_sld=tb_project.kode_line');
+		$this->db->join('tb_jenis_pekerjaan','tb_project.kode_jenis_pekerjaan=tb_jenis_pekerjaan.kode_jenis_pekerjaan');
+		$this->db->where('tb_project.uniqid',$uniqid);
+		$query = $this->db->get();
+		return $query->result_array();
 	}
 
 }
