@@ -203,6 +203,9 @@
         $(document).on('click','#btnTambahSld',function(){
             location.href = "<?php echo base_url() ?>Arsip/tambah_sld";
         });
+        $(document).on('click','#btnTambahJenisPekerjaan',function(){
+            location.href = "<?php echo base_url() ?>Arsip/tambah_jenis_pekerjaan";
+        });
         $('#table_arsip_sld').DataTable({
             "ajax": {
                 url:'<?php echo base_url() ?>arsip/dt_sld',
@@ -307,7 +310,9 @@
                 data:value,
                 type:'POST',
                 success:function(data){
-                    alert(data);
+                    if (data == 1) {
+                        window.location='<?php echo base_url(); ?>Rencana/hirarc/';
+                    }
                 }
             });
         });

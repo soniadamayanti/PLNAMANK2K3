@@ -58,6 +58,13 @@ class Database_model extends CI_Model
         $this->db->where('tb_temp_pelaksana.kode_project',$kode);
         return $this->db->get();
 	}
+	function get_det_pelaksana($kode){
+		$this->db->select('*');
+		$this->db->from('tb_pelaksana');
+		$this->db->join('tb_det_pelaksana','tb_det_pelaksana.kode_pelaksana = tb_pelaksana.kode_pelaksana');
+        $this->db->where('tb_det_pelaksana.kode_project',$kode);
+        return $this->db->get();
+	}
 	function update_project($kode_project,$data){
 		$this->db->where('kode_project',$kode_project);
 		$this->db->update('tb_project',$data);
@@ -72,6 +79,14 @@ class Database_model extends CI_Model
 		$this->db->join('tb_sld','tb_sld.kode_sld=tb_project.kode_line');
 		$this->db->join('tb_jenis_pekerjaan','tb_project.kode_jenis_pekerjaan=tb_jenis_pekerjaan.kode_jenis_pekerjaan');
 		$this->db->where('tb_project.uniqid',$uniqid);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	function data_project(){
+		$this->db->select('*,SUBSTR(tb_project.tgl_pelaksanaan,1,10) as tgl');
+		$this->db->from('tb_project');
+		$this->db->join('tb_sld','tb_sld.kode_sld=tb_project.kode_line');
+		$this->db->join('tb_jenis_pekerjaan','tb_project.kode_jenis_pekerjaan=tb_jenis_pekerjaan.kode_jenis_pekerjaan');
 		$query = $this->db->get();
 		return $query->result_array();
 	}

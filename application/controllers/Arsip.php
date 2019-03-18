@@ -30,7 +30,7 @@ class Arsip extends CI_Controller
 	}
 	function jenis_pekerjaan(){
     $data['new'] = "
-    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnTambahHirarc'><i class='mdi mdi-plus-circle'></i> Tambah Jenis Pekerjaan</button>
+    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnTambahJenisPekerjaan'><i class='mdi mdi-plus-circle'></i> Tambah Jenis Pekerjaan</button>
     ";
 		$data['judul'] = "Jenis Pekerjaan & HIRARC";
 		$this->load->view('parts/header', $data);
@@ -57,6 +57,16 @@ class Arsip extends CI_Controller
     $this->load->view('parts/header', $data);
     $this->load->view('parts/menu', $data);
     $this->load->view('pages/v_arsip_sld_tambah', $data);
+    $this->load->view('parts/footer', $data);
+  }
+  function tambah_jenis_pekerjaan(){
+    $data['judul'] = "Jenis Pekerjaan";
+    $data['new'] = "
+    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnTambahJenisPekerjaan'><i class='mdi mdi-plus-circle'></i> Tambah Jenis Pekerjaan</button>
+    ";
+    $this->load->view('parts/header', $data);
+    $this->load->view('parts/menu', $data);
+    $this->load->view('pages/v_arsip_jenis_pekerjaan_tambah', $data);
     $this->load->view('parts/footer', $data);
   }
  	function dt_sld()

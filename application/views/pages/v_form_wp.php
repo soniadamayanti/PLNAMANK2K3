@@ -1,6 +1,14 @@
 <?php foreach ($detail_project as $data): ?>
     
 <?php endforeach ?>
+<?php 
+foreach ($atasan as $atasan) {
+    # code...
+}
+foreach ($atasan2 as $atasan2) {
+    # code...
+}
+ ?>
     <!-- Start Page Content -->
     <!-- ============================================================== -->
     <!-- Row -->
@@ -68,10 +76,10 @@
                                         <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" value="Ainul Yaqin" disabled>
+                                                <input type="text" class="form-control" value="<?php echo $atasan['nama_user'] ?>" disabled>
                                             </div>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" value="087742359100" disabled>
+                                                <input type="text" class="form-control" value="<?php echo $atasan['no_telp_user'] ?>" disabled>
                                             </div>
                                         </div>
                                         </div>
@@ -85,10 +93,10 @@
                                         <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" value="Virgea Krismanda" disabled>
+                                                <input type="text" class="form-control" value="<?php echo $atasan2['nama_user'] ?>" disabled>
                                             </div>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" value="082175551733" disabled>
+                                                <input type="text" class="form-control" value="<?php echo $atasan2['no_telp_user'] ?>" disabled>
                                             </div>
                                         </div>
                                         </div>

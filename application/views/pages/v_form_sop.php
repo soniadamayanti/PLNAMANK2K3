@@ -10,6 +10,9 @@ foreach ($atasan as $r) {
 $nama_atasan = $b[0]['nama_user'];
 $divisi_atasan = $b[0]['nama_divisi'];
 $kode = $a[0]['kode_project'];
+foreach ($detail_project as $data_project) {
+    # code...
+}
  ?>
 <div class="row" id="sop_pemadaman">
     <div class="col-lg-12">
@@ -48,7 +51,7 @@ $kode = $a[0]['kode_project'];
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pembebasan Jaringan Hari / Tanggal</label>
                                     <div class="col-md-8">
-                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_project"></div>
+                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_project" value="<?php echo ($data_project['tgl_project'] != '')? $data_project['tgl_project'] : ""  ?>"></div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -58,7 +61,7 @@ $kode = $a[0]['kode_project'];
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Sistem Tegangan</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="tegangan"> </div>
+                                        <input type="text" class="form-control" id="tegangan" value="<?php echo ($data_project['tegangan'] != '')? $data_project['tegangan'] : ""  ?>"> </div>
                                 </div>
                             </div>
                             <!--/span-->

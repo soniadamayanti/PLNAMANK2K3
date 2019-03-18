@@ -1,6 +1,4 @@
-Start Page Content -->
-<!-- ============================================================== -->
-<!-- Row -->
+
 <div class="row">
     <!-- Column -->
     <div class="col-lg-12">
@@ -24,7 +22,7 @@ Start Page Content -->
                     <div class="col-6">
                         <h2 class="mb-0">Maret   2019</h2>
                         <h4 class="font-light mt-0">Project SOP Pemadaman</h4></div>
-                    <div class="col-6 align-self-center display-6 text-info text-right">2</div>
+                    <div class="col-6 align-self-center display-6 text-info text-right"><?php echo $jml_project ?></div>
                 </div>
             </div>
             <div class="table-responsive">
@@ -40,75 +38,57 @@ Start Page Content -->
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                        $i =1;
+                        foreach ($data_project as $data): ?>
                         <tr>
-                            <td class="text-center">1</td>
+                            <td class="text-center"><?php echo $i ?></td>
                             <td class="txt-oflo">
-                                <b>P.001/AMANK2K3/KOTA/III/2019</b><br>
+                                <b><?php echo $data['kode_project'] ?></b><br>
                                
-                                <small> P.WARUNGKONDANG s.d REC.WRK<br>1.Grows dan Penggantian Isolator/Areester</small>
+                                <!-- <small><?php echo $data['nama_sld'] ?><br><?php echo $data['nama_jenis_pekerjaan'] ?></small> -->
                             </td>
                             <td>
                                 <ul class="feeds">
                                     <li>
-                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/sop_pemadaman">SOP Pemdaman</a>
+                                        <i class="fa fa-circle mr-1 <?php echo ($data['kode_jenis_pekerjaan'] == '')? 'text-secondary' : 'text-success' ?>"></i> <a href="rencana/sop_pemadaman/<?php echo $data['uniqid'] ?>">SOP Pemdaman</a>
                                     </li>
                                     <li>
-                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/slp">SLP Penyulang</a>
+                                        <i class="fa fa-circle mr-1 <?php echo ($data['kode_line'] == '')? 'text-secondary' : 'text-success' ?>"></i> <a href="rencana/slp/<?php echo $data['uniqid'] ?>">SLP Penyulang</a>
                                     </li>
                                     <li>
-                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/working_permit">Working Permit</a>
+                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/working_permit/<?php echo $data['uniqid'] ?>">Working Permit</a>
                                     </li>
                                     <li>
-                                        <i class="fa fa-circle mr-1 text-secondary"></i> <a href="rencana/jsa">JSA</a>
+                                        <i class="fa fa-circle mr-1 text-secondary"></i> <a href="rencana/jsa/<?php echo $data['uniqid'] ?>">JSA</a>
                                     </li>
                                     <li>
-                                        <i class="fa fa-circle mr-1 text-secondary"></i> <a href="rencana/hirarc">HIRARC</a>
+                                        <i class="fa fa-circle mr-1 text-secondary"></i> <a href="rencana/hirarc/<?php echo $data['uniqid'] ?>">HIRARC</a>
                                     </li>
                                 </ul>
                             </td>
                             <td class="txt-oflo">
                             <span class="label label-warning">Belum Selesai</span></td>
-                            <td class="txt-oflo">April 18, 2019</td>
+                            <td class="txt-oflo"><?php echo $data['tgl_project'] ?></td>
                             <td class="txt-oflo">
+                                <?php 
+                                if ($this->session->userdata('kode_divisi') == 1) {
+                                    # code...
+                                
+                                 ?>
+                                 <button type="button" class="btn btn-success" name="btnKirimRencanaKerja" id="btnKirimRencanaKerja" uniqid="<?php echo $data['uniqid'] ?>">Kirim Rencan Kerja</button>
+                                 <?php 
+                                    }else{
 
-                                <button type="button" class="btn btn-success" name="btnKirimRencanaKerja" id="btnKirimRencanaKerja">Kirim Rencan Kerja</button>
+                                        echo anchor('Rencana/approval/'.$data['uniqid'],'Setuju','class="btn btn-info"'); 
+                                    }
+                                   ?>
+                                
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">2</td>
-                            <td class="txt-oflo">
-                                <b>K.001/AMANK2K3/KOTA/III/2019</b><br>
-                               
-                                <small> P.LAMPEGAN s.d REC.BLK<br>1.Grows dan Penggantian Isolator/Areester</small></td>
-                            
-                            <td>
-                                <ul class="feeds">
-                                    <li>
-                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/sop_pemadaman">SOP Pemdaman</a>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/slp">SLP Penyulang</a>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/working_permit">Working Permit</a>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/jsa">JSA</a>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/hirarc">HIRARC</a>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td class="txt-oflo">
-                                <span class="label label-primary">Pending</span><br>
-                                <small>Menunggu Persetujuan SPV. Teknik.</small>
-                            </td>
-                            <td class="txt-oflo">April 18, 2019</td>
-                            <td class="txt-oflo">
-                                <button type="button" class="btn btn-info mb-3" name="btnHistoryApproval" id="btnHistoryApproval">History Approval</button><br>
-                            </td>
-                        </tr>
+                        </tr>    
+                        <?php 
+                        $i++;
+                        endforeach ?>
                         
                     </tbody>
                 </table>

@@ -13,6 +13,8 @@ class Rencana extends CI_Controller
 		$uniqid = $this->uri->segment(3);
 	}
 	function index(){
+		$data['data_project'] = $this->database_model->get('tb_project');
+		$data['jml_project'] = count($data['data_project']);
 		$where = array(
 			'kode_user' => $this->session->userdata('kode_user')
 		);
@@ -41,6 +43,7 @@ class Rencana extends CI_Controller
 		$a = array(
 			'lokasi' => $this->session->userdata('lokasi')
 		);
+		$data['detail_project'] = $this->database_model->detail_project($this->uri->segment(3));
 		$data['sld'] = $this->database_model->get_where('tb_sld',$a);
 		$data['atasan'] = $this->database_model->get_atasan($where_atasan);
 		$data['pelaksana'] = $this->database_model->get('tb_pelaksana');
@@ -53,9 +56,7 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function slp(){
-	    $data['new'] = "
-	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
-	    ";
+	    
 		$wk = array(
 			'uniqid' => $this->uri->segment(3)
 		);
@@ -72,6 +73,9 @@ class Rencana extends CI_Controller
 		$where = array(
 			'kode_sld' => $kode_sld
 		);
+		$data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$data['sld'] = $this->database_model->get_where('tb_sld',$where);
 		$data['judul'] = "SLP Penyulang";
 		$this->load->view('parts/header', $data);
@@ -80,9 +84,15 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function working_permit(){
-	    $data['new'] = "
-	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
-	    ";
+	    $where_atasan = array(
+			'tb_users.lokasi' => $this->session->userdata('lokasi'),
+			'tb_divisi.kode_divisi' => 3
+		);
+		$where_atasan2 = array(
+			'tb_users.lokasi' => $this->session->userdata('lokasi'),
+			'tb_divisi.kode_divisi' => 2
+		);
+		
 		$wk = array(
 			'uniqid' => $this->uri->segment(3)
 		);
@@ -95,11 +105,15 @@ class Rencana extends CI_Controller
 		if ($this->uri->segment(3) == ''|| $this->uri->segment(3) != $kode_project) {
 			redirect('Rencana/sop_pemadaman');
 		}
+		
+		$data['atasan2'] = $this->database_model->get_atasan($where_atasan2);
+		$data['atasan'] = $this->database_model->get_atasan($where_atasan);
 		$data['klasifikasi_kerja'] = $this->database_model->get('tb_klasifikasi_kerja');
 		$data['detail_project'] = $this->database_model->detail_project($this->uri->segment(3));
 		$data['prosedur_kerja'] = $this->database_model->get('tb_prosedur_kerja');
 		$data['lampiran_izin_kerja'] = $this->database_model->get('tb_lampiran_izin_kerja');
-
+		$data['new'] = "<button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$data['judul'] = "Working Permit";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -291,6 +305,31 @@ class Rencana extends CI_Controller
         	'uniqid' => $uniqid 
         );
         $this->database_model->insert('tb_project',$data);
+        $data_approval = array(
+				'id' => '',
+				'kode_project' => $kode_project,
+				'kode_user'=> $this->session->userdata('kode_user')
+			);
+			$this->database_model->insert('tb_approval',$data_approval);
+		$get_ttd = array(
+			'lokasi' => $this->session->userdata('lokasi'),
+			'kode_divisi !=' =>$this->session->userdata('kode_divisi')
+		);
+		$data['ttd'] = $this->database_model->get_where('tb_users',$ttd);
+		foreach ($data['ttd'] as $r) {
+			$array = array(
+				'kode_project'=> $kode_project,
+				'kode_user' =>$r['kode_user']
+			);
+			$this->database_model->insert('tb_det_project',$array);
+		}
+		$array_status = array(
+				'kode_project'=> $kode_project,
+				'status_project' =>'pending',
+				'tgl' => date('Y-m-d H:i:s'),
+				'kode_user' => $this->session->userdata('kode_user')
+			);
+		$this->database_model->insert('tb_status_project',$array_status);
         redirect('Rencana/sop_pemadaman/'.$uniqid);
 	}
 	function update_project(){
@@ -410,7 +449,16 @@ class Rencana extends CI_Controller
           foreach ($data['temp_pekerjaan'] as $b) {
           	$uraian_pekerjaan[] = $b;
           }
-          $query = $this->database_model->get_temp_pelaksana($uraian_pekerjaan[0]['kode_project']);
+          $where_pelaksana = array(
+          	'kode_project' => $uraian_pekerjaan[0]['kode_project']
+          );
+          $data['temp_pelaksana'] = $this->database_model->get_where('tb_project',$where_pelaksana);
+          if (count($data['temp_pelaksana']) > 0) {
+          	$query = $this->database_model->get_det_pelaksana($uraian_pekerjaan[0]['kode_project']);
+          }else{
+          	$query = $this->database_model->get_temp_pelaksana($uraian_pekerjaan[0]['kode_project']);
+          }
+          
           $data = array();
           foreach($query->result() as $r) {
           	$button = '
@@ -502,6 +550,45 @@ class Rencana extends CI_Controller
 			$this->database_model->insert('tb_pekerja',$array);
 		}
 		echo 1;
+	}
+	function approval($uniqid){
+		$where_project = array(
+			'uniqid' => $uniqid
+		);
+		$data['project'] = $this->database_model->get_where('tb_project',$where_project);
+		foreach ($data['project'] as $data) {
+			$kode_project =  $data['kode_project'];
+		}
+		$where = array(
+			'kode_divisi' => $this->session->userdata('child_divisi')
+		);
+		$data['user'] = $this->database_model->get_where('tb_users',$where);
+		foreach ($data['user'] as $data) {
+			$kode =  $data['kode_user'];
+			$nama_divisi = $data['nama_user'];
+		}
+		$where_cari_user = array(
+			'kode_user' => $kode
+		);
+		$data['data_approval'] = $this->database_model->get_where('tb_approval',$where_cari_user);
+		if (count($data['data_approval']) == 0) {
+			echo $nama_user." belum menyetujui";
+		}else{
+			$data_approval = array(
+				'id' => '',
+				'kode_project' => $kode_project,
+				'kode_user'=> $this->session->userdata('kode_user')
+			);
+			$this->database_model->insert('tb_approval',$data_approval);
+			$array_status = array(
+				'kode_project'=> $kode_project,
+				'status_project' =>'approve',
+				'tgl' => date('Y-m-d H:i:s'),
+				'kode_user' => $this->session->userdata('kode_user')
+			);
+		$this->database_model->insert('tb_status_project',$array_status);
+			echo 1;
+		}
 	}
 }
 
