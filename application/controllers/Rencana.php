@@ -30,7 +30,7 @@ class Rencana extends CI_Controller
 		);
 		$where_atasan = array(
 			'tb_users.lokasi' => $this->session->userdata('lokasi'),
-			'tb_divisi.kode_divisi' => $this->session->userdata('parent_divisi')
+			'tb_divisi.kode_divisi' => 3
 		);
 		$a = array(
 			'lokasi' => $this->session->userdata('lokasi')
@@ -115,7 +115,7 @@ class Rencana extends CI_Controller
 	}
 	function hirarc(){
 		$wk = array(
-			'kode_project' => $this->uri->segment(3)
+			'uniqid' => $this->uri->segment(3)
 		);
 		$data['kode_project'] = $this->database_model->get_where('tb_project',$wk);
 		$data_wk = array();
@@ -123,9 +123,14 @@ class Rencana extends CI_Controller
 			$data_wk[] = $data;
 		}
 		$kode_project = $data_wk[0]['uniqid'];
+		$kode_hirarc = $data_wk[0]['kode_jenis_pekerjaan'];
 		if ($this->uri->segment(3) == '' || $this->uri->segment(3) != $kode_project) {
 			redirect('Rencana/sop_pemadaman');
 		}
+		$where = array(
+			'kode_jenis_pekerjaan' => $kode_hirarc
+		);
+		$data['hirarc'] = $this->database_model->get_where('tb_jenis_pekerjaan',$where);
 		$data['judul'] = "HIRARC";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);

@@ -19,7 +19,7 @@
                     <hr class="mt-2 mb-3">
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
-                                <h1><i>DI ISI GAMBAR DARI DATABASE SESUAI JENIS PEKERJAAN</i></h1>
+                                <img src="<?php echo base_url() ?>assets/arsip/hirarc/H0002.jpg" width="100%">
                             </div>
                         </div>
                     <hr>

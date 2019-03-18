@@ -137,49 +137,47 @@
 
                         <h4 class="box-title">C. KLASIFIKASI PEKERJAAN</h4>
                         <hr class="mt-2 mb-3">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <?php foreach ($klasifikasi_kerja as $klasifikasi): ?>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $klasifikasi['kode_klasifikasi_kerja'] ?>">
-                                                    <label class="custom-control-label" for="customCheck2"><?php echo $klasifikasi['nama_klasifikasi_kerja'] ?></label>
-                                                </div>
-                                            <?php endforeach ?>
-                                        </div>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <?php foreach ($klasifikasi_kerja as $klasifikasi): ?>
+                                            <div class="custom-control custom-checkbox col-lg-4 col-md-4">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $klasifikasi['kode_klasifikasi_kerja'] ?>">
+                                                <label class="custom-control-label" for="customCheck2"><?php echo $klasifikasi['nama_klasifikasi_kerja'] ?></label>
+                                            </div>
+                                        <?php endforeach ?>
                                     </div>
                                 </div>
                             </div>
 
                         <h4 class="box-title"> D. PROSEDUR PEKERJAANYANG TELAH DIJELASKAN KEPADA PEKERJA</h4>
                         <hr class="mt-2 mb-3">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="form-group row">
-                                        <?php foreach ($prosedur_kerja as $prosedur_kerja): ?>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $prosedur_kerja['kode_prosedur_kerja'] ?>">
-                                                    <label class="custom-control-label" for="customCheck2"><?php echo $prosedur_kerja['nama_prosedur_kerja'] ?></label>
-                                                </div>
-                                            <?php endforeach ?>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <div class="row">
+                                    <?php foreach ($prosedur_kerja as $prosedur_kerja): ?>
+                                            <div class="custom-control custom-checkbox col-lg-4 col-md-4">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $prosedur_kerja['kode_prosedur_kerja'] ?>">
+                                                <label class="custom-control-label" for="customCheck2"><?php echo $prosedur_kerja['nama_prosedur_kerja'] ?></label>
+                                            </div>
+                                        <?php endforeach ?>
                                     </div>
                                 </div>
                             </div>
                         <h4 class="box-title">E. LAMPIRAN IZIN KERJA (WAJIB DILAMPIRKAN)</h4>
                         <hr class="mt-2 mb-3">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="form-group row">
-                                        <?php foreach ($lampiran_izin_kerja as $lampiran_izin_kerja): ?>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $lampiran_izin_kerja['kode_lampiran_izin_kerja'] ?>">
-                                                <label class="custom-control-label" for="customCheck2"><?php echo $lampiran_izin_kerja['nama_lampiran_izin_kerja'] ?></label>
-                                            </div>
-                                        <?php endforeach ?>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <div class="row">
+                                    <?php foreach ($lampiran_izin_kerja as $lampiran_izin_kerja): ?>
+                                        <div class="custom-control custom-checkbox col-lg-4 col-md-4">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $lampiran_izin_kerja['kode_lampiran_izin_kerja'] ?>">
+                                            <label class="custom-control-label" for="customCheck2"><?php echo $lampiran_izin_kerja['nama_lampiran_izin_kerja'] ?></label>
+                                        </div>
+                                    <?php endforeach ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <hr>
                         <div class="form-actions">
                             <div class="row">
