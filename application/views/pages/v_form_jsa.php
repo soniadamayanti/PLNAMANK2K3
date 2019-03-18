@@ -8,7 +8,6 @@
                 <h4 class="mb-0 text-white">JOB SAFETY ANALYSIS</h4>
             </div>
             <div class="card-body">
-                <form action="#" class="form-horizontal">
                     <div class="form-body">
                         <h4><b><?php echo $data['nama_sld'] ?></b> <span class="float-right"><?php echo $data['kode_project'] ?></span></h4>
                         <hr class="mt-0 mb-5">
@@ -32,6 +31,7 @@
                                     <label class="col-sm-4 text-left col-form-label">Jenis Pekerjaan</label>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" value="<?php echo $data['nama_jenis_pekerjaan'] ?>" disabled>
+                                        <input type="hidden" id="kode_project" value="<?php echo $data['kode_project'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                                             <?php for ($i=0;$i<$data['jml_tenaga_kerja'];$i++){
                                                 echo '
                                                 <div class="col-md-6 mb-3">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" name="nama_pekerja[]">
                                                     <div class="custom-control custom-switch">
                                                       <input type="checkbox" class="custom-control-input" id="customSwitch1">
                                                       <label class="custom-control-label" for="customSwitch1">Tanda Tangan Pekerja</label>
@@ -106,14 +106,14 @@
                                     <div class="col-md-8">
 
                                         <div class="form-group row">            
-                                        <?php foreach ($perlindungan as $data): ?>
+                                        <?php $i=0;foreach ($perlindungan as $data): ?>
                                             <div class="col-md-4">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="p">
-                                                    <label class="custom-control-label" for="customCheck1"><?php echo $data['nama_perlengkapan_kerja'] ?></label>
+                                                    <input type="checkbox" class="custom-control-input" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="perlindungan" id="p<?php echo $i; ?>">
+                                                    <label class="custom-control-label" for="p<?php echo $i; ?>"><?php echo $data['nama_peralatan_kerja'] ?></label>
                                                 </div>
                                             </div>  
-                                        <?php endforeach ?>
+                                        <?php $i++;endforeach ?>
                                         </div>
                                             
                                         </div>
@@ -128,37 +128,14 @@
                                     <div class="col-md-8">
 
                                         <div class="form-group row">
-                                                    
+                                            <?php $i=0;foreach ($keselamatan as $data): ?>
                                             <div class="col-md-4">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">Pemadam Api</label>
+                                                    <input type="checkbox" class="custom-control-input" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="keselamatan" id="k<?php echo $i; ?>">
+                                                    <label class="custom-control-label" for="k<?php echo $i; ?>"><?php echo $data['nama_peralatan_kerja'] ?></label>
                                                 </div>
                                             </div>  
-                                            <div class="col-md-4">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">Rambu Keselamatan</label>
-                                                </div>
-                                            </div>  
-                                            <div class="col-md-4">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">LOTO</label>
-                                                </div>
-                                            </div>  
-                                            <div class="col-md-4">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">Radio</label>
-                                                </div>
-                                            </div>  
-                                            <div class="col-md-4">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">Lain-lain</label>
-                                                </div>
-                                            </div>
+                                        <?php $i++;endforeach ?>
                                         </div>
                                             
                                         </div>
@@ -180,7 +157,7 @@
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                        <button type="submit" class="btn btn-success" id="btnSimpanJsa">Simpan</button>
                                         <button type="button" class="btn btn-inverse">Cancel</button>
                                     </div>
                                 </div>
@@ -190,7 +167,6 @@
                     </div>
 
                     </div>
-                </form>
             </div>
         </div>
     </div>

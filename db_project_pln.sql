@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2019 at 10:10 AM
+-- Generation Time: Mar 18, 2019 at 11:54 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -101,6 +101,17 @@ CREATE TABLE `tb_det_pelaksana` (
 INSERT INTO `tb_det_pelaksana` (`kode_pelaksana`, `kode_project`) VALUES
 (1, 'K.001/AMANK2K3/CIANJUR/III/2019'),
 (2, 'K.001/AMANK2K3/CIANJUR/III/2019');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_det_peralatan_kerja`
+--
+
+CREATE TABLE `tb_det_peralatan_kerja` (
+  `kode_project` char(35) NOT NULL,
+  `kode_peralatan_kerja` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -266,6 +277,17 @@ INSERT INTO `tb_lampiran_izin_kerja` (`kode_lampiran_izin_kerja`, `nama_lampiran
 ('26038', 'Prosedur Kerja', '2019-03-18 12:06:53', '2019-03-18 12:06:53', 'U0000', 'U0000'),
 ('35449', 'Identifikasi Bahaya,penilaian dan pengendalian resiko', '2019-03-18 12:06:53', '2019-03-18 12:06:53', 'U0000', 'U0000'),
 ('3969', 'Job Safery Analysis', '2019-03-18 12:06:53', '2019-03-18 12:06:53', 'U0000', 'U0000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pekerja`
+--
+
+CREATE TABLE `tb_pekerja` (
+  `kode_project` char(35) NOT NULL,
+  `kode_user` char(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

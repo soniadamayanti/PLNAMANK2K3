@@ -107,9 +107,7 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function jsa(){
-	    $data['new'] = "
-	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
-	    ";
+	    
 		$wk = array(
 			'uniqid' => $this->uri->segment(3)
 		);
@@ -124,6 +122,17 @@ class Rencana extends CI_Controller
 		}	
 		$data['detail_project'] = $this->database_model->detail_project($this->uri->segment(3));
 		$data['judul'] = "JSA";
+		$data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
+	    $wpk1 = array(
+	    	'type'=>'Perlindungan'
+	    );
+	    $wpk2 = array(
+	    	'type'=>'Keselamatan'
+	    );
+	    $data['perlindungan'] =$this->database_model->get_where('tb_peralatan_kerja',$wpk1);
+	    $data['keselamatan'] =$this->database_model->get_where('tb_peralatan_kerja',$wpk2);
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
 		$this->load->view('pages/v_form_jsa', $data);
@@ -464,6 +473,34 @@ class Rencana extends CI_Controller
 			$this->database_model->insert('tb_det_lampiran_izin_kerja',$array);
 		}
 		$this->database_model->update_project($kode_project,$data_project);
+		echo 1;
+	}
+	function insert_jsa(){
+		$kode_project = $this->input->post('kode_project');
+		$perlindungan = $this->input->post('perlindungan');
+		$keselamatan = $this->input->post('keselamatan');
+		$pekerja = $this->input->post('pekerja');
+		foreach ($perlindungan as $data) {
+			$array = array(
+				'kode_project' => $kode_project,
+				'kode_peralatan_kerja' => $data
+			);
+			$this->database_model->insert('tb_det_peralatan_kerja',$array);
+		}
+		foreach ($keselamatan as $data) {
+			$array = array(
+				'kode_project' => $kode_project,
+				'kode_peralatan_kerja' => $data
+			);
+			$this->database_model->insert('tb_det_peralatan_kerja',$array);
+		}
+		foreach ($pekerja as $data) {
+			$array = array(
+				'kode_project' => $kode_project,
+				'kode_user' => $data
+			);
+			$this->database_model->insert('tb_pekerja',$array);
+		}
 		echo 1;
 	}
 }
