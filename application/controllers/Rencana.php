@@ -107,6 +107,7 @@ class Rencana extends CI_Controller
 		if ($this->uri->segment(3) == ''|| $this->uri->segment(3) != $kode_project) {
 			redirect('Rencana/sop_pemadaman');
 		}	
+		$data['detail_project'] = $this->database_model->detail_project($this->uri->segment(3));
 		$data['judul'] = "JSA";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -393,6 +394,47 @@ class Rencana extends CI_Controller
             );
           echo json_encode($output);
           exit();
+	}
+	function insert_working_permit(){
+
+		$kode_project = $this->input->post('kode_project');
+		$tgl_mulai = $this->input->post('tgl_mulai');
+		$tgl_selesai = $this->input->post('tgl_selesai');
+		$jam_mulai = $this->input->post('jam_mulai');
+		$jam_selesai = $this->input->post('jam_selesai');
+		$klasifikasi_kerja = $this->input->post('klasifikasi');
+		$prosedur_kerja = $this->input->post('prosedur_kerja');
+		$tgl_selesai_fix = $tgl_selesai." ".$jam_selesai.":00";
+		$tgl_mulai_fix = $tgl_mulai." ".$jam_mulai.":00";
+		$lampiran_izin = $this->input->post('lampiran_izin');
+		$data_project = array(
+			'tgl_pelaksanaan' => $tgl_mulai_fix,
+			'tgl_selesai' => $tgl_selesai_fix,
+
+		);
+		foreach ($klasifikasi_kerja as $data) {
+			$array = array(
+				'kode_project' => $kode_project,
+				'kode_klasifikasi_kerja' => $data
+			);
+			$this->database_model->insert('tb_det_klasifikasi',$array);
+		}
+		foreach ($prosedur_kerja as $data) {
+			$array = array(
+				'kode_project' => $kode_project,
+				'kode_prosedur_kerja' => $data
+			);
+			$this->database_model->insert('tb_det_prosedur_kerja',$array);
+		}
+		foreach ($lampiran_izin as $data) {
+			$array = array(
+				'kode_project' => $kode_project,
+				'kode_lampiran_izin_kerja' => $data
+			);
+			$this->database_model->insert('tb_det_lampiran_izin_kerja',$array);
+		}
+		$this->database_model->update_project($kode_project,$data_project);
+		echo 1;
 	}
 }
 

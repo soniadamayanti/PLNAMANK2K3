@@ -67,7 +67,7 @@ class Database_model extends CI_Model
 		$this->db->delete($table);
 	}
 	function detail_project($uniqid){
-		$this->db->select('*');
+		$this->db->select('*,SUBSTR(tb_project.tgl_pelaksanaan,1,10) as tgl');
 		$this->db->from('tb_project');
 		$this->db->join('tb_sld','tb_sld.kode_sld=tb_project.kode_line');
 		$this->db->join('tb_jenis_pekerjaan','tb_project.kode_jenis_pekerjaan=tb_jenis_pekerjaan.kode_jenis_pekerjaan');
