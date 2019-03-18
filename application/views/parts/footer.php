@@ -145,7 +145,7 @@
                 data:value,
                 success:function(data){
                     if (data ==1) {
-                        window.location='Rencana/slp/'+type
+                        window.location='<?php echo base_url(); ?>Rencana/slp/'+type
                     }
                 }
             });
@@ -176,12 +176,20 @@
         });
         
         $('#table_temp_uraian_pekerjaan').DataTable({
+            searching: false,
+            paging:   false,
+            ordering: false,
+            info:     false,
             "ajax": {
                 url:'<?php echo base_url() ?>Rencana/get_temp_uraian_pekerjaan/'+type,
                 "type": "POST"
             },
         });
         $('#table_temp_pelaksana').DataTable({
+            searching: false,
+            paging:   false,
+            ordering: false,
+            info:     false,
             "ajax": {
                 url:'<?php echo base_url() ?>Rencana/get_temp_pelaksaan/'+type,
                 "type": "POST"

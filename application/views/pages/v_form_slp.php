@@ -17,7 +17,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pilih SLP</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="custom-control-input" value="<?php echo $data['nama_sld'] ?>">
+                                        <input type="text" class="form-control" value="<?php echo $data['nama_sld'] ?>" disabled>
                                         <br><br>
                                         <img id="imageToSwap" class="profile" src="<?php echo base_url() ?>assets/arsip/sld/<?php echo $data['kode_sld'] ?>.jpg">
                                         

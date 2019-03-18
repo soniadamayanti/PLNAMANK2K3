@@ -143,17 +143,15 @@
                                         
                                             <?php foreach ($klasifikasi_kerja as $klasifikasi): ?>
                                                 <div class="col-md-4">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $klasifikasi['kode_klasifikasi_kerja'] ?>">
-                                                    <label class="custom-control-label" for="customCheck2"><?php echo $klasifikasi['nama_klasifikasi_kerja'] ?></label>
-                                                </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $klasifikasi['kode_klasifikasi_kerja'] ?>">
+                                                        <label class="custom-control-label" for="customCheck2"><?php echo $klasifikasi['nama_klasifikasi_kerja'] ?></label>
+                                                    </div>
                                                 </div>
                                             <?php endforeach ?>
-                                        
                                     </div>
                                 </div>
                             </div>
-
                         <h4 class="box-title"> D. PROSEDUR PEKERJAANYANG TELAH DIJELASKAN KEPADA PEKERJA</h4>
                         <hr class="mt-2 mb-3">
                             <div class="row">
@@ -168,10 +166,10 @@
                                                 </div>
                                                 </div>   
                                             <?php endforeach ?>
-                                        
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         <h4 class="box-title">E. LAMPIRAN IZIN KERJA (WAJIB DILAMPIRKAN)</h4>
                         <hr class="mt-2 mb-3">
                             <div class="row">
@@ -183,11 +181,11 @@
                                                     <input type="checkbox" class="custom-control-input" id="customCheck2" value="<?php echo $lampiran_izin_kerja['kode_lampiran_izin_kerja'] ?>">
                                                     <label class="custom-control-label" for="customCheck2"><?php echo $lampiran_izin_kerja['nama_lampiran_izin_kerja'] ?></label>
                                                 </div>
-                                                </div>
+                                            </div>
                                         <?php endforeach ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <hr>
                         <div class="form-actions">
                             <div class="row">
