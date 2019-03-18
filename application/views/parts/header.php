@@ -27,6 +27,7 @@ if (!isset($kode_user)) {
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables.net-select-bs4/css/select.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/dropify/dist/css/dropify.min.css">
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">

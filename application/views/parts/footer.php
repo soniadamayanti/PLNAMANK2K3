@@ -38,6 +38,8 @@
     <script src="<?php echo site_url(); ?>assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
 
 
+    <script src="<?php echo base_url() ?>assets/plugins/dropify/dist/js/dropify.min.js"></script>
+
     <script src="<?php echo base_url() ?>assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url() ?>assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="<?php echo base_url() ?>assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
@@ -48,6 +50,48 @@
     <script src="<?php echo base_url() ?>assets/js/export/jszip.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/export/pdfmake.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/export/vfs_fonts.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Basic
+        $('.dropify').dropify();
+
+        // Translated
+        $('.dropify-fr').dropify({
+            messages: {
+                default: 'Glissez-déposez un fichier ici ou cliquez',
+                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                remove: 'Supprimer',
+                error: 'Désolé, le fichier trop volumineux'
+            }
+        });
+
+        // Used events
+        var drEvent = $('#input-file-events').dropify();
+
+        drEvent.on('dropify.beforeClear', function(event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+
+        drEvent.on('dropify.afterClear', function(event, element) {
+            alert('File deleted');
+        });
+
+        drEvent.on('dropify.errors', function(event, element) {
+            console.log('Has Errors');
+        });
+
+        var drDestroy = $('#input-file-to-destroy').dropify();
+        drDestroy = drDestroy.data('dropify')
+        $('#toggleDropify').on('click', function(e) {
+            e.preventDefault();
+            if (drDestroy.isDropified()) {
+                drDestroy.destroy();
+            } else {
+                drDestroy.init();
+            }
+        })
+    });
+    </script>
     <script type="text/javascript">
         var type = $('#type').val();
         var pictureList = [
@@ -155,6 +199,9 @@
         });
         $(document).on('click','#btnPrintRencanaKerja',function(){
             location.href = "<?php echo base_url() ?>Download/printPDF";
+        });
+        $(document).on('click','#btnTambahSld',function(){
+            location.href = "<?php echo base_url() ?>Arsip/tambah_sld";
         });
         $('#table_arsip_sld').DataTable({
             "ajax": {
