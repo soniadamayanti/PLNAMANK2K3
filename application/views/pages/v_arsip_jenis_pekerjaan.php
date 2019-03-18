@@ -7,7 +7,6 @@
                     <h4 class="card-title">Arsip Jenis Pekerjaan</h4>
                     <div class="ml-auto">
                         
-                        <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal" id="btnModalBuatRencanaKerja"><i class="mdi mdi-plus-circle"></i> Tambah Jenis Pekerjaan</button>
                     </div>
                 </div>
                 <h6 class="card-subtitle">5 Jenis Pekerjaan </h6>

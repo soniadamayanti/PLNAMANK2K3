@@ -20,12 +20,18 @@ class Arsip extends CI_Controller
 	}
 	function sld(){
 		$data['judul'] = "Single Line Diagram";
+    $data['new'] = "
+    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnTambahSld'><i class='mdi mdi-plus-circle'></i> Tambah SLD</button>
+    ";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
 		$this->load->view('pages/v_arsip_sld', $data);
 		$this->load->view('parts/footer', $data);
 	}
 	function jenis_pekerjaan(){
+    $data['new'] = "
+    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnTambahHirarc'><i class='mdi mdi-plus-circle'></i> Tambah Jenis Pekerjaan</button>
+    ";
 		$data['judul'] = "Jenis Pekerjaan & HIRARC";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -33,6 +39,9 @@ class Arsip extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
   function perusahaan_pelaksana(){
+    $data['new'] = "
+    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnTambahPerusahaan'><i class='mdi mdi-plus-circle'></i> Tambah Perusahaan</button>
+    ";
     $data['judul'] = "Perusahaan Pelaksana";
     $this->load->view('parts/header', $data);
     $this->load->view('parts/menu', $data);
@@ -40,6 +49,16 @@ class Arsip extends CI_Controller
     $this->load->view('parts/footer', $data);
   }
 
+  function tambah_sld(){
+    $data['judul'] = "Single Line Diagram";
+    $data['new'] = "
+    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnTambahSld'><i class='mdi mdi-plus-circle'></i> Tambah SLD</button>
+    ";
+    $this->load->view('parts/header', $data);
+    $this->load->view('parts/menu', $data);
+    $this->load->view('pages/v_arsip_sld_tambah', $data);
+    $this->load->view('parts/footer', $data);
+  }
  	function dt_sld()
      {
 
