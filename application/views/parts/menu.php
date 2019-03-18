@@ -48,7 +48,7 @@
                                 <li><a href="<?php echo base_url() ?>arsip/penyulang">Penyulang</a></li>
                                 <li><a href="<?php echo base_url() ?>arsip/gardu_distribusi">Gardu Distribusi</a></li>
                                 <li><a href="<?php echo base_url() ?>arsip/sld">Single Line Diagram (SLD)</a></li>
-                                <li><a href="<?php echo base_url() ?>arsip/hirarc">HIRARC</a></li>
+                                <li><a href="<?php echo base_url() ?>arsip/jenis_pekerjaan">HIRARC</a></li>
                                 <li><a href="<?php echo base_url() ?>arsip/jenis_pekerjaan">Jenis Pekerjaan</a></li>
                                 <li><a href="<?php echo base_url() ?>arsip/perusahaan_pelaksana">Perusahaan Pelaksana Pekerjaan</a></li>
                                 <li><a href="<?php echo base_url() ?>arsip/pelaksana_pekerjaan">Pelaksana Pekerjaan</a></li>
@@ -98,7 +98,10 @@
                         </ol>
                     </div>
                     <div class="col-md-6 col-4 align-self-center">
-                        <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal" id="btnModalBuatRencanaKerja"><i class="mdi mdi-plus-circle"></i> Buat Rencana Kerja</button>
+                        <?php 
+                        echo $new;
+                         ?>
+                        
                         <div class="dropdown float-right mr-2 hidden-sm-down">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> January 2019 </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">February 2019</a> <a class="dropdown-item" href="#">Maret     2019</a> <a class="dropdown-item" href="#">Maret 2019</a> </div>

@@ -18,6 +18,9 @@ class Rencana extends CI_Controller
 		);
 		$data['project'] = $this->database_model->get_where('tb_project',$where);
 		$data['judul'] = "Data Rencana Kerja";
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
 		$this->load->view('pages/v_data_kerja', $data);
@@ -25,6 +28,9 @@ class Rencana extends CI_Controller
 	}
 
 	function sop_pemadaman(){
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$where = array(
 			'uniqid' => $this->uri->segment(3)
 		);
@@ -47,6 +53,9 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function slp(){
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$wk = array(
 			'uniqid' => $this->uri->segment(3)
 		);
@@ -71,6 +80,9 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function working_permit(){
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$wk = array(
 			'uniqid' => $this->uri->segment(3)
 		);
@@ -95,6 +107,9 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function jsa(){
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$wk = array(
 			'uniqid' => $this->uri->segment(3)
 		);
@@ -114,6 +129,9 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function hirarc(){
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$wk = array(
 			'uniqid' => $this->uri->segment(3)
 		);
@@ -138,6 +156,9 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function history_approval(){
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$data['judul'] = "Approval";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -145,6 +166,9 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function ditolak(){
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$data['judul'] = "Rencana Kerja DItolak";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -152,6 +176,9 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function selesai(){
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$data['judul'] = "Rencana Kerja Selesai";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -159,6 +186,9 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function dibatalkan(){
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$data['judul'] = "Rencana Kerja Dibatalkan";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
