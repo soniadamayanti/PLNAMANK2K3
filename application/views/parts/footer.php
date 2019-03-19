@@ -91,8 +91,6 @@
             }
         })
     });
-    </script>
-    <script type="text/javascript">
         var type = $('#type').val();
         var pictureList = [
             "<?php echo base_url() ?>arsip/sld/S0001",
@@ -317,14 +315,59 @@
                 }
             });
         });
-        // $(document).click('#btnCancel',function(){
-        //     $.ajax({
-        //         url:'<?php echo base_url() ?>Rencana/get_checked_klasifikasi',
-        //         success:function(data){
-        //             alert(data);
-        //         }
-        //     });
-        // });
+        var kode_project = $('#kode_project').val();
+        var value = {
+            kode_project:kode_project
+        }
+        $.ajax({
+            url:'<?php echo base_url() ?>Rencana/get_checked_klasifikasi',
+            data:value,
+            type:'POST',
+            success:function(data){
+                var json = jQuery.parseJSON(data);
+                for (var i = 0; i < json.length; i++) {
+                    $('input.klasifikasi[value="'+json[i]+'"]').prop('checked', true);
+                }
+
+            }
+        });
+        $.ajax({
+            url:'<?php echo base_url() ?>Rencana/get_checked_prosedur',
+            data:value,
+            type:'POST',
+            success:function(data){
+                var json = jQuery.parseJSON(data);
+                for (var i = 0; i < json.length; i++) {
+                    $('input.prosedur_kerja[value="'+json[i]+'"]').prop('checked', true);
+                }
+
+            }
+        });
+        $.ajax({
+            url:'<?php echo base_url() ?>Rencana/get_checked_lampiran',
+            data:value,
+            type:'POST',
+            success:function(data){
+                var json = jQuery.parseJSON(data);
+                for (var i = 0; i < json.length; i++) {
+                    $('input.lampiran_izin[value="'+json[i]+'"]').prop('checked', true);
+                }
+
+            }
+        });
+        $.ajax({
+            url:'<?php echo base_url() ?>Rencana/get_checked_peralatan',
+            data:value,
+            type:'POST',
+            success:function(data){
+                var json = jQuery.parseJSON(data);
+                for (var i = 0; i < json.length; i++) {
+                    $('input.peralatan[value="'+json[i]+'"]').prop('checked', true);
+                }
+
+            }
+        });
+        
         
     </script>
 

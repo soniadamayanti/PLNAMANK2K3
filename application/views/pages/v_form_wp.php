@@ -34,7 +34,6 @@ foreach ($atasan2 as $atasan2) {
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" value="<?php echo $data['tgl_project'] ?>" disabled>
                                             <input type="hidden" id="kode_project" value="<?php echo $data['kode_project'] ?>">
-                                            <input type="hidden" id="uniqid" value="<?php echo $data['uniqid'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +170,7 @@ foreach ($atasan2 as $atasan2) {
                                             <?php $i=0;foreach ($prosedur_kerja as $prosedur_kerja): ?>
                                                 <div class="col-md-4">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" name="prosedur_kerja" id="p<?php echo $i ?>" value="<?php echo $prosedur_kerja['kode_prosedur_kerja'] ?>">
+                                                    <input type="checkbox" class="custom-control-input prosedur_kerja" name="prosedur_kerja" id="p<?php echo $i ?>" value="<?php echo $prosedur_kerja['kode_prosedur_kerja'] ?>">
                                                     <label class="custom-control-label" for="p<?php echo $i ?>"><?php echo $prosedur_kerja['nama_prosedur_kerja'] ?></label>
                                                 </div>
                                                 </div>   
@@ -188,7 +187,7 @@ foreach ($atasan2 as $atasan2) {
                                         <?php $i=0;foreach ($lampiran_izin_kerja as $lampiran_izin_kerja): ?>
                                             <div class="col-md-4">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" name="lampiran_izin" id="l<?php echo $i ?>" value="<?php echo $lampiran_izin_kerja['kode_lampiran_izin_kerja'] ?>">
+                                                    <input type="checkbox" class="custom-control-input lampiran_izin" name="lampiran_izin" id="l<?php echo $i ?>" value="<?php echo $lampiran_izin_kerja['kode_lampiran_izin_kerja'] ?>">
                                                     <label class="custom-control-label" for="l<?php echo $i ?>"><?php echo $lampiran_izin_kerja['nama_lampiran_izin_kerja'] ?></label>
                                                 </div>
                                             </div>

@@ -607,7 +607,7 @@ class Rencana extends CI_Controller
 	}
 	function get_checked_klasifikasi(){
 		$where = array(
-			'kode_project' => 'P.001/AMANK2K3/CIANJUR/III/2019'
+			'kode_project' => $this->input->post('kode_project')
 		);
 		$data['data_klasifikasi'] = $this->database_model->get_where('tb_det_klasifikasi',$where);
 		$data_klasifikasi = array();
@@ -619,27 +619,39 @@ class Rencana extends CI_Controller
 	}
 	function get_checked_prosedur(){
 		$where = array(
-			'kode_project' => 'P.001/AMANK2K3/CIANJUR/III/2019'
+			'kode_project' => $this->input->post('kode_project')
 		);
 		$data['data_prosedur'] = $this->database_model->get_where('tb_det_prosedur_kerja',$where);
 		$data_prosedur = array();
 		foreach ($data['data_prosedur'] as $r) {
-			$data_prosedur[] = $r;
+			$data_prosedur[] = $r['kode_prosedur_kerja'];
 		}
 
 		echo json_encode($data_prosedur);
 	}
 	function get_checked_lampiran(){
 		$where = array(
-			'kode_project' => 'P.001/AMANK2K3/CIANJUR/III/2019'
+			'kode_project' => $this->input->post('kode_project')
 		);
-		$data['data_lampiran'] = $this->database_model->get_where('tb_lampiran_izin_kerja',$where);
+		$data['data_lampiran'] = $this->database_model->get_where('tb_det_lampiran_izin_kerja',$where);
 		$data_lampiran = array();
 		foreach ($data['data_lampiran'] as $r) {
-			$data_lampiran[] = $r;
+			$data_lampiran[] = $r['kode_lampiran_izin_kerja'];
 		}
 
 		echo json_encode($data_lampiran);
+	}
+	function get_checked_peralatan(){
+		$where = array(
+			'kode_project' => $this->input->post('kode_project')
+		);
+		$data['data_peralatan'] = $this->database_model->get_where('tb_det_peralatan_kerja',$where);
+		$data_peralatan = array();
+		foreach ($data['data_peralatan'] as $r) {
+			$data_peralatan[] = $r['kode_peralatan_kerja'];
+		}
+
+		echo json_encode($data_peralatan);
 	}
 }
 

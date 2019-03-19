@@ -110,7 +110,7 @@
                                         <?php $i=0;foreach ($perlindungan as $data): ?>
                                             <div class="col-md-4">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="perlindungan" id="p<?php echo $i; ?>">
+                                                    <input type="checkbox" class="custom-control-input peralatan" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="perlindungan" id="p<?php echo $i; ?>">
                                                     <label class="custom-control-label" for="p<?php echo $i; ?>"><?php echo $data['nama_peralatan_kerja'] ?></label>
                                                 </div>
                                             </div>  
@@ -132,7 +132,7 @@
                                             <?php $i=0;foreach ($keselamatan as $data): ?>
                                             <div class="col-md-4">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="keselamatan" id="k<?php echo $i; ?>">
+                                                    <input type="checkbox" class="custom-control-input peralatan" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="keselamatan" id="k<?php echo $i; ?>">
                                                     <label class="custom-control-label" for="k<?php echo $i; ?>"><?php echo $data['nama_peralatan_kerja'] ?></label>
                                                 </div>
                                             </div>  
