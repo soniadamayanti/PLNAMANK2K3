@@ -5,7 +5,7 @@
                     <div class="col-md-6 col-lg-3 col-xlg-3">
                         <div class="card card-inverse card-inverse">
                             <div class="box bg-primary text-center">
-                                <h1 class="font-light text-white">1</h1>
+                                <h1 class="font-light text-white"><?php echo $pending; ?></h1>
                                 <h6 class="text-white">Pending</h6>
                             </div>
                         </div>
@@ -14,7 +14,7 @@
                     <div class="col-md-6 col-lg-3 col-xlg-3">
                         <div class="card card-info card-info">
                             <div class="box text-center">
-                                <h1 class="font-light text-white">0</h1>
+                                <h1 class="font-light text-white"><?php echo $berjalan; ?></h1>
                                 <h6 class="text-white">Berjalan</h6>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                     <div class="col-md-6 col-lg-3 col-xlg-3">
                         <div class="card card-inverse card-success">
                             <div class="box text-center">
-                                <h1 class="font-light text-white">10</h1>
+                                <h1 class="font-light text-white"><?php echo $selesai; ?></h1>
                                 <h6 class="text-white">Selesai</h6>
                             </div>
                         </div>
