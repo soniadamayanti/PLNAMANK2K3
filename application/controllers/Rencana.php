@@ -410,8 +410,18 @@ class Rencana extends CI_Controller
           foreach ($data['temp_pekerjaan'] as $b) {
           	$uraian_pekerjaan[] = $b;
           }
-          $query = $this->database_model->get_temp_uraian($uraian_pekerjaan[0]['kode_project']);
+          $where_pelaksana = array(
+          	'kode_project' => $uraian_pekerjaan[0]['kode_project']
+          );
+          $data['temp_pelaksana'] = $this->database_model->get_where('tb_project',$where_pelaksana);
+
+          if (count($data['temp_pelaksana']) > 0) {
+          	$query = $this->database_model->get_det_uraian($uraian_pekerjaan[0]['kode_project']);
+          }else{
+          	$query = $this->database_model->get_temp_uraian($uraian_pekerjaan[0]['kode_project']);
           $data = array();
+          }
+          
           foreach($query->result() as $r) {
           	$button = '
 	          <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
