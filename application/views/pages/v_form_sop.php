@@ -51,7 +51,7 @@ foreach ($detail_project as $data_project) {
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pembebasan Jaringan Hari / Tanggal</label>
                                     <div class="col-md-8">
-                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_project" value="<?php echo ($data_project['tgl_project'] != '')? $data_project['tgl_project'] : ""  ?>"></div>
+                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_project" value="<?php echo (isset($data_project['tgl_project']) != '')? $data_project['tgl_project'] : ""  ?>"></div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -61,7 +61,7 @@ foreach ($detail_project as $data_project) {
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Sistem Tegangan</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="tegangan" value="<?php echo ($data_project['tegangan'] != '')? $data_project['tegangan'] : ""  ?>"> </div>
+                                        <input type="text" class="form-control" id="tegangan" value="<?php echo (isset($data_project['tegangan']) != '')? $data_project['tegangan'] : ""  ?>"> </div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -120,7 +120,7 @@ foreach ($detail_project as $data_project) {
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Jumlah Tenaga Kerja</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="jml_tenaga_kerja"> </div>
+                                        <input type="text" class="form-control" id="jml_tenaga_kerja" value="<?php echo (isset($data_project['jml_tenaga_kerja']) != '')? $data_project['jml_tenaga_kerja'] : ""  ?>"> </div>
                                 </div>
                             </div>
                             <!--/span-->
