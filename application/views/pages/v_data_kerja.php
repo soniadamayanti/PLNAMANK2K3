@@ -74,11 +74,11 @@
                                 <?php 
                                 if ($this->session->userdata('kode_divisi') == 1) {
                                  ?>
-                                 <button type="button" class="btn btn-success" name="btnKirimRencanaKerja" id="btnKirimRencanaKerja" uniqid="<?php echo $data['uniqid'] ?>">Kirim Rencan Kerja</button>
+                                 <button type="button" class="btn btn-success" name="btnKirimRencanaKerja" id="btnKirimRencanaKerja" uniqid="<?php echo $data['uniqid'] ?>">Kirim & TTD Rencan Kerja</button>
                                  <?php 
                                     }else{
 
-                                        echo anchor('Rencana/approval/'.$data['uniqid'],'Setuju','class="btn btn-info"'); 
+                                        echo anchor('Rencana/approval/'.$data['uniqid'],'Setuju & TTD','class="btn btn-info"'); 
                                     }
                                    ?>
                                 

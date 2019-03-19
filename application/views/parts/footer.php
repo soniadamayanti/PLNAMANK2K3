@@ -44,6 +44,7 @@
     <script src="<?php echo base_url() ?>assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="<?php echo base_url() ?>assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
     <script src="<?php echo base_url() ?>assets/plugins/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/export/buttons.html5.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/export/buttons.flash.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/export/buttons.print.min.js"></script>
@@ -51,6 +52,11 @@
     <script src="<?php echo base_url() ?>assets/js/export/pdfmake.min.js"></script>
     <script src="<?php echo base_url() ?>assets/js/export/vfs_fonts.js"></script>
     <script>
+        $(function () {
+            $('#jam_selesai').datetimepicker({
+                use24hours: true
+            });
+        });
     $(document).ready(function() {
         // Basic
         $('.dropify').dropify();
