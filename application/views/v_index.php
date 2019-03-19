@@ -105,6 +105,11 @@
                                                             <span class="label label-light-warning">
                                                             Belum Selesai
                                                             </span>';
+                                                        }elseif($r->type == 'send'){
+                                                            echo '
+                                                            <span class="label label-light-primary">
+                                                            Dikirim
+                                                            </span>';
                                                         }elseif($r->type == 'pending'){
                                                             echo '
                                                             <span class="label label-light-primary">
