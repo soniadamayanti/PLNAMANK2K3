@@ -612,10 +612,34 @@ class Rencana extends CI_Controller
 		$data['data_klasifikasi'] = $this->database_model->get_where('tb_det_klasifikasi',$where);
 		$data_klasifikasi = array();
 		foreach ($data['data_klasifikasi'] as $r) {
-			$data_klasifikasi[] = $r;
+			$data_klasifikasi[] = $r['kode_klasifikasi_kerja'];
 		}
 
 		echo json_encode($data_klasifikasi);
+	}
+	function get_checked_prosedur(){
+		$where = array(
+			'kode_project' => 'P.001/AMANK2K3/CIANJUR/III/2019'
+		);
+		$data['data_prosedur'] = $this->database_model->get_where('tb_det_prosedur_kerja',$where);
+		$data_prosedur = array();
+		foreach ($data['data_prosedur'] as $r) {
+			$data_prosedur[] = $r;
+		}
+
+		echo json_encode($data_prosedur);
+	}
+	function get_checked_lampiran(){
+		$where = array(
+			'kode_project' => 'P.001/AMANK2K3/CIANJUR/III/2019'
+		);
+		$data['data_lampiran'] = $this->database_model->get_where('tb_lampiran_izin_kerja',$where);
+		$data_lampiran = array();
+		foreach ($data['data_lampiran'] as $r) {
+			$data_lampiran[] = $r;
+		}
+
+		echo json_encode($data_lampiran);
 	}
 }
 

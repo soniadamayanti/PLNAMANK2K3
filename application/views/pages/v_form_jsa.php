@@ -21,6 +21,7 @@
                                     <label class="col-sm-4 text-left col-form-label">Tanggal Pengajuan</label>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" value="<?php echo $data['tgl_project'] ?>" disabled>
+                                        <input type="hidden" id="uniqid" value="<?php echo $this->uri->segment(3) ?>">
                                     </div>
                                 </div>
                             </div>

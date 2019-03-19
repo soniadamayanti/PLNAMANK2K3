@@ -288,6 +288,7 @@
             
         });
         $(document).on('click','#btnSimpanJsa',function(){
+            var uniqid = $('#uniqid').val();
             var kode_project = $('#kode_project').val();
             var perlindungan = [];
             $.each($("input[name='perlindungan']:checked"), function(){            
@@ -316,6 +317,15 @@
                 }
             });
         });
+        // $(document).click('#btnCancel',function(){
+        //     $.ajax({
+        //         url:'<?php echo base_url() ?>Rencana/get_checked_klasifikasi',
+        //         success:function(data){
+        //             alert(data);
+        //         }
+        //     });
+        // });
+        
     </script>
 
 </body>

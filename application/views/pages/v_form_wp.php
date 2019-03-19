@@ -203,7 +203,7 @@ foreach ($atasan2 as $atasan2) {
                                     <div class="row">
                                         <div class="col-md-offset-3 col-md-9">
                                             <button type="submit" class="btn btn-success" id="btnSimpanWp">Simpan</button>
-                                            <button type="button" class="btn btn-inverse">Cancel</button>
+                                            <button type="button" id="btnCancel" class="btn btn-inverse">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
