@@ -210,6 +210,12 @@
                 "type": "POST"
             },
         });
+        $('#table_selesai').DataTable({
+            "ajax": {
+                url:'<?php echo base_url() ?>Rencana/get_project',
+                "type": "POST"
+            },
+        });
         $('#table_arsip_jenis_pekerjaan').DataTable({
             "ajax": {
                 url:'<?php echo base_url() ?>arsip/dt_jenis_pekerjaan',

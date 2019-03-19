@@ -14,10 +14,9 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-hover no-wrap">
+                <table class="table table-hover no-wrap" id="table_selesai">
                     <thead>
                         <tr>
-                            <th class="text-center">#</th>
                             <th>PENYULANG</th>
                             <th>TGL PENGAJUAN</th>
                             <th>TGL SELESAI</th>
@@ -25,20 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center  ">1</td>
-                            <td class="txt-oflo">
-                                <b>P.001/AMANK2K3/KOTA/III/2019</b><br>
-                               
-                                <small> P.WARUNGKONDANG s.d REC.WRK<br>1.Grows dan Penggantian Isolator/Areester</small>
-                            </td>
-                            <td class="txt-oflo">April 11, 2019</td>
-                            <td class="txt-oflo">April 18, 2019</td>
-                            <td class="txt-oflo">
-
-                                <button type="button" class="btn btn-info" name="btnPrintRencanaKerja" id="btnPrintRencanaKerja"><i class="ti-printer"></i> PDF</button>
-                            </td>
-                        </tr>
+                        
                         
                     </tbody>
                 </table>

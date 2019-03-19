@@ -203,6 +203,11 @@ class Rencana extends CI_Controller
 	    $data['new'] = "
 	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
 	    ";
+	    $where = array(
+	    	'kode_user' => $this->session->userdata('kode_user')
+	    );
+
+	    $data['data_project'] = $this->database_model->get_where('tb_project', $where);
 		$data['judul'] = "Rencana Kerja Selesai";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -457,6 +462,36 @@ class Rencana extends CI_Controller
                  "recordsTotal" => $query->num_rows(),
                  "bPaginate"=> false,
                  "recordsFiltered" => $query->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+	}
+	function get_project(){
+		// Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+          $where = array(
+          	'kode_user' => $this->session->userdata('kode_user')
+          );
+          $project['data_project'] = $this->database_model->get_where('tb_project',$where);
+          $data = array();
+          foreach($project['data_project'] as $r) {
+          	$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-info"');
+            $data[] = array(
+                $r['kode_project'],
+                $r['tgl_project'],
+                $r['tgl_selesai'],
+                $button
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => count($project['data_project']),
+                 "bPaginate"=> false,
+                 "recordsFiltered" => count($project['data_project']),
                  "data" => $data
             );
           echo json_encode($output);
