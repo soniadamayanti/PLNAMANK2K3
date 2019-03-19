@@ -26,6 +26,13 @@ class Database_model extends CI_Model
 		$query = $this->db->get($table);
 		return $query->result_array();
 	}
+	function select_where($select, $table,$data){
+		$this->db->select($select);
+		$this->db->from($table);
+		$this->db->where($data);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 	function cek_data(){
 		$this->db->where($data);
 		$query = $this->db->get($table);

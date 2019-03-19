@@ -315,7 +315,7 @@ class Rencana extends CI_Controller
 			'lokasi' => $this->session->userdata('lokasi'),
 			'kode_divisi !=' =>$this->session->userdata('kode_divisi')
 		);
-		$data['ttd'] = $this->database_model->get_where('tb_users',$ttd);
+		$data['ttd'] = $this->database_model->get_where('tb_users',$get_ttd);
 		foreach ($data['ttd'] as $r) {
 			$array = array(
 				'kode_project'=> $kode_project,

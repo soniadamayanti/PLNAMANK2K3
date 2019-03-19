@@ -103,8 +103,7 @@
                          ?>
                         
                         <div class="dropdown float-right mr-2 hidden-sm-down">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> January 2019 </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">February 2019</a> <a class="dropdown-item" href="#">Maret     2019</a> <a class="dropdown-item" href="#">Maret 2019</a> </div>
+                            <button class="btn btn-secondary" type="button" aria-haspopup="true" aria-expanded="false"> <?php echo date('F Y');?> </button>
                         </div>
                     </div>
                 </div>
