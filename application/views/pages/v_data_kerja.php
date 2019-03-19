@@ -73,8 +73,6 @@
                             <td class="txt-oflo">
                                 <?php 
                                 if ($this->session->userdata('kode_divisi') == 1) {
-                                    # code...
-                                
                                  ?>
                                  <button type="button" class="btn btn-success" name="btnKirimRencanaKerja" id="btnKirimRencanaKerja" uniqid="<?php echo $data['uniqid'] ?>">Kirim Rencan Kerja</button>
                                  <?php 

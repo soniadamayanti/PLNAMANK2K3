@@ -28,6 +28,7 @@ class Index extends CI_Controller
 		$data['berjalan']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="berjalan"')->num_rows();
 		$data['selesai']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="selesai"')->num_rows();
 		$data['dibatalkan']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="dibatalkan"')->num_rows();
+		$data['ditolak']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="ditolak"')->num_rows();
 		$data['judul'] = "Dashboard";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', compact('data','headerbulan'));

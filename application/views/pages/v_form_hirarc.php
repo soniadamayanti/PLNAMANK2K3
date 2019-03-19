@@ -28,7 +28,7 @@
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                        <button type="submit" class="btn btn-success">Selesai</button>
                                         <button type="button" class="btn btn-inverse">Cancel</button>
                                     </div>
                                 </div>
