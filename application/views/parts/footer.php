@@ -311,7 +311,7 @@
                 type:'POST',
                 success:function(data){
                     if (data == 1) {
-                        window.location='<?php echo base_url(); ?>Rencana/hirarc/';
+                        window.location='<?php echo base_url(); ?>Rencana/hirarc/'+uniqid;
                     }
                 }
             });
