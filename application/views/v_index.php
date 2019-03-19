@@ -5,7 +5,7 @@
                     <div class="col-md-6 col-lg-3 col-xlg-3">
                         <div class="card card-inverse card-inverse">
                             <div class="box bg-primary text-center">
-                                <h1 class="font-light text-white">1 </h1>
+                                <h1 class="font-light text-white">1</h1>
                                 <h6 class="text-white">Pending</h6>
                             </div>
                         </div>
@@ -73,24 +73,56 @@
                                             <th>PENYULANG</th>
                                             <th>FORM</th>
                                             <th>STATUS</th>
-                                            <th>TANGGAL</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                        <?php 
+                                        $i =1;
+                                        foreach ($data_project as $data): ?>
                                         <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="txt-oflo">P.LAMPEGAN s.d REC.BLK</td>
+
+                                            <td class="text-center"><?php echo $i; ?></td>
+                                            <td class="txt-oflo"><?php echo $data['kode_project'] ?>
+                                                <br> <small>Tanggal : <?php echo substr($data['tgl_project'], 0, 10)  ?></small>
+                                                
+                                            </td>
                                             <td>
-                                                <i class="fa fa-circle mr-1 text-success"></i>
-                                                <i class="fa fa-circle mr-1 text-success"></i>
-                                                <i class="fa fa-circle mr-1 text-success"></i>
-                                                <i class="fa fa-circle mr-1 text-success"></i>
-                                                <i class="fa fa-circle mr-1 text-success"></i>
+                                                <i class="fa fa-circle mr-1 <?php echo ($data['kode_jenis_pekerjaan'] == '')? 'text-secondary' : 'text-success' ?>"></i>
+                                                <i class="fa fa-circle mr-1 <?php echo ($data['kode_line'] == '')? 'text-secondary' : 'text-success' ?>"></i>
+                                                <i class="fa fa-circle mr-1 text-secondary"></i>
+                                                <i class="fa fa-circle mr-1 text-secondary"></i>
+                                                <i class="fa fa-circle mr-1 text-secondary"></i>
                                             </td>
                                             <td class="txt-oflo">
-                                            <span class="label label-light-info">Pending</span></td>
-                                            <td class="txt-oflo">April 18, 2019</td>
-                                        </tr>
+                                                <?php 
+                                                    $kode = $data['kode_project'] ;
+                                                    $sql = "SELECT * FROM tb_approval WHERE kode_project = '$kode' ORDER BY tgl DESC LIMIT 1";
+                                                    $result = $this->db->query($sql);
+                                                    foreach ($result->result() as $r) {
+                                                        if( $r->type == 'new'){
+                                                            echo '
+                                                            <span class="label label-light-warning">
+                                                            Belum Selesai
+                                                            </span>';
+                                                        }elseif($r->type == 'pending'){
+                                                            echo '
+                                                            <span class="label label-light-primary">
+                                                            Menunggu Approval
+                                                            </span>';
+                                                        }elseif($r->type == 'approve'){
+                                                            echo '
+                                                            <span class="label label-light-success">
+                                                            Disetujui
+                                                            </span>';
+                                                        }
+                                                    }
+                                                ?></td>
+                                        
+                                        </tr>    
+                                        <?php 
+                                        $i++;
+                                        endforeach ?>
                                         
                                     </tbody>
                                 </table>
@@ -106,7 +138,10 @@
                             </div>
                             <div class="comment-widgets">
                                 <!-- Comment Row -->
-                                <div class="d-flex flex-row comment-row active">
+                                <?php 
+                                $i =1;
+                                foreach ($history_project as $history): ?>
+                                <div class="d-flex flex-row comment-row">
                                     <div class="p-2"><span class="round"><img src="<?php echo site_url(); ?>assets/images/users/2.jpg" alt="user" width="50"></span></div>
                                     <div class="comment-text active w-100">
                                         <h5>Ainul Yaqin</h5>
@@ -122,7 +157,11 @@
                                                 </span>
                                         </div>
                                     </div>
-                                </div>
+                                </div>  
+                                <?php 
+                                $i++;
+                                endforeach ?>
+                                
                                 <!-- Comment Row -->
                                 <div class="d-flex flex-row comment-row ">
                                     <div class="p-2"><span class="round"><img src="<?php echo site_url(); ?>assets/images/users/2.jpg" alt="user" width="50"></span></div>
