@@ -154,7 +154,7 @@ foreach ($atasan2 as $atasan2) {
                                             <?php $i = 0;foreach ($klasifikasi_kerja as $klasifikasi): ?>
                                                 <div class="col-md-4">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="k<?php echo $i ?>" name="klasifikasi" value="<?php echo $klasifikasi['kode_klasifikasi_kerja'] ?>">
+                                                        <input type="checkbox" class="custom-control-input klasifikasi" id="k<?php echo $i ?>" name="klasifikasi" value="<?php echo $klasifikasi['kode_klasifikasi_kerja'] ?>">
                                                         <label for="k<?php echo $i ?>" class="custom-control-label"><?php echo $klasifikasi['nama_klasifikasi_kerja'] ?></label>
                                                     </div>
                                                 </div>

@@ -51,7 +51,7 @@ foreach ($detail_project as $data_project) {
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Pembebasan Jaringan Hari / Tanggal</label>
                                     <div class="col-md-8">
-                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_project" value="<?php echo (isset($data_project['tgl_project']) != '')? $data_project['tgl_project'] : ""  ?>"></div>
+                                        <input type="date" class="form-control" placeholder="dd-mm-yyyy" id="tgl_project" value="<?php echo (isset($data_project['tgl_project']) != '')? $data_project['tgl_project'] : ""  ?>"></div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -74,9 +74,13 @@ foreach ($detail_project as $data_project) {
                                     <div class="col-md-8">
                                     <div class="row mb-3">
                                         <div class="col-md-11">
+                                            
                                         <select class="form-control custom-select" tabindex="1" id="kode_jenis_pekerjaan">
                                             <?php foreach ($jenis_pekerjaan as $a): ?>
-                                                <option value="<?php echo $a['kode_jenis_pekerjaan'] ?>" <?php echo (isset($data_project['kode_jenis_pekerjaan']) == $a['kode_jenis_pekerjaan'])? 'selected' : ""  ?>
+
+                                                <option 
+                                                value="<?php echo $a['kode_jenis_pekerjaan'] ?>" 
+                                                    <?php echo (isset($data_project['kode_jenis_pekerjaan']) == $a['kode_jenis_pekerjaan'])? 'selected="selected"' : ""  ?>
                                                     ><?php echo $a['nama_jenis_pekerjaan'] ?></option>
                                             <?php endforeach ?>
                                         </select>
@@ -105,8 +109,8 @@ foreach ($detail_project as $data_project) {
                                     <div class="col-md-8">
                                         
                                     <select class="form-control custom-select" tabindex="1" id="material">
-                                        <option value="Lengkap">Lengkap</option>
-                                        <option value="Belum Lengkap">Belum Lengkap</option>
+                                        <option value="Lengkap" <?php echo (isset($data_project['material']) == 'Lengkap')? 'selected="selected"' : ""  ?>>Lengkap</option>
+                                        <option value="Belum Lengkap" <?php echo (isset($data_project['material']) == 'Tidak Lengkap')? 'selected="selected"' : ""  ?>>Belum Lengkap</option>
                                     </select>
                                     </div>
                                 </div>
@@ -132,8 +136,8 @@ foreach ($detail_project as $data_project) {
                                     <div class="col-md-8">
                                         
                                     <select class="form-control custom-select" tabindex="1" id="peralatan_kerja">
-                                        <option value="Lengkap">Lengkap</option>
-                                        <option value="Belum Lengkap">Belum Lengkap</option>
+                                        <option value="Lengkap" <?php echo (isset($data_project['peralatan_kerja']) == 'Lengkap')? 'selected="selected"' : ""  ?>>Lengkap</option>
+                                        <option value="Belum Lengkap" <?php echo (isset($data_project['peralatan_kerja']) == 'Belum Lengkap')? 'selected="selected"' : ""  ?>>Belum Lengkap</option>
                                     </select>
                                     </div>
                                 </div>
@@ -332,8 +336,7 @@ foreach ($detail_project as $data_project) {
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button type="submit" class="btn btn-success" id="btnSimpanProject">Simpan</button>
-                                        <button type="button" class="btn btn-inverse">Cancel</button>
+                                        <button type="submit" class="btn btn-success" id="btnSimpanProject">Lanjut</button>
                                     </div>
                                 </div>
                             </div>

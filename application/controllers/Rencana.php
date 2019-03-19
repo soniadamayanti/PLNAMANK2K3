@@ -399,13 +399,12 @@ class Rencana extends CI_Controller
 			'kode_pelaksana' => $kode_pelaksana,
 			'kode_project' => $kode_project
 		);
-		$data['temp_pelaksana'] = $this->database_model->get_det_pelaksana($kode_project)->result();
-		if (count($data['temp_pelaksana']) > 0 ) {
+		$a['temp_pelaksana'] = $this->database_model->get_det_pelaksana($kode_project)->result();
+		if (count($a['temp_pelaksana']) > 0 ) {
 			$this->database_model->insert('tb_det_pelaksana',$data);
 		}else{
 			$this->database_model->insert('tb_temp_pelaksana',$data);	
 		}
-		
 		echo 1;
 	}
 	function get_temp_uraian_pekerjaan(){
@@ -605,6 +604,18 @@ class Rencana extends CI_Controller
 		$this->database_model->insert('tb_status_project',$array_status);
 			echo 1;
 		}
+	}
+	function get_checked_klasifikasi(){
+		$where = array(
+			'kode_project' => 'P.001/AMANK2K3/CIANJUR/III/2019'
+		);
+		$data['data_klasifikasi'] = $this->database_model->get_where('tb_det_klasifikasi',$where);
+		$data_klasifikasi = array();
+		foreach ($data['data_klasifikasi'] as $r) {
+			$data_klasifikasi[] = $r;
+		}
+
+		echo json_encode($data_klasifikasi);
 	}
 }
 
