@@ -612,7 +612,7 @@ class Rencana extends CI_Controller
 				'kode_user' => $this->session->userdata('kode_user')
 			);
 		$this->database_model->insert('tb_status_project',$array_status);
-			echo 1;
+		redirect('Rencana');
 		}
 	}
 	function get_checked_klasifikasi(){
