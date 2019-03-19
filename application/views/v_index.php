@@ -140,21 +140,33 @@
                                 <!-- Comment Row -->
                                 <?php 
                                 $i =1;
-                                foreach ($history_project as $history): ?>
+                                foreach ($history_project as $his): ?>
                                 <div class="d-flex flex-row comment-row">
                                     <div class="p-2"><span class="round"><img src="<?php echo site_url(); ?>assets/images/users/2.jpg" alt="user" width="50"></span></div>
                                     <div class="comment-text active w-100">
-                                        <h5>Ainul Yaqin</h5>
-                                        <b class="mb-1">P.LAMPEGAN s.d REC.BLK</b>
-                                        <p class="mb-1">Menunggu Persetujuan SPV. Teknik.</p>
+                                        <h5><?php echo $his['kode_user'] ?></h5>
+                                        <b class="mb-1"><?php echo $his['kode_project'] ?></b>
                                         <div class="comment-footer">
-                                            <span class="text-muted float-right">April 14, 2016</span>
-                                            <span class="label label-light-info">Pending</span>
-                                            <span class="action-icons">
-                                                    <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
-                                                    <a href="javascript:void(0)"><i class="ti-check"></i></a>
-                                                    <a href="javascript:void(0)"><i class="ti-heart"></i></a>    
-                                                </span>
+                                            <span class="text-muted float-right"><?php echo substr($his['tgl'], 0,10) ?></span>
+                                                <?php 
+                                                if( $his['type'] == 'send'){
+                                                    echo '
+                                                    <span class="label label-light-info">
+                                                    Dikirim
+                                                    </span>';
+                                                }elseif($his['type'] == 'pending'){
+                                                    echo '
+                                                    <span class="label label-light-primary">
+                                                    Menunggu Approval
+                                                    </span>';
+                                                }elseif($his['type'] == 'approve'){
+                                                    echo '
+                                                    <span class="label label-light-success">
+                                                    Disetujui
+                                                    </span>';
+                                                }
+                                                 ?>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>  
@@ -162,24 +174,6 @@
                                 $i++;
                                 endforeach ?>
                                 
-                                <!-- Comment Row -->
-                                <div class="d-flex flex-row comment-row ">
-                                    <div class="p-2"><span class="round"><img src="<?php echo site_url(); ?>assets/images/users/2.jpg" alt="user" width="50"></span></div>
-                                    <div class="comment-text w-100">
-                                        <h5>Ainul Yaqin</h5>
-                                        <b class="mb-1">P.LAMPEGAN s.d REC.BLK</b>
-                                        <p class="mb-1">SOP Pemadaman & Penyulangan P.LAMPEGAN s.d REC.BLK telah disetujui & sedang di proses<P></P></p>
-                                        <div class="comment-footer ">
-                                            <span class="text-muted float-right">April 14, 2016</span>
-                                            <span class="label label-light-success">Approved</span>
-                                            <span class="action-icons active">
-                                                    <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
-                                                    <a href="javascript:void(0)"><i class="icon-close"></i></a>
-                                                    <a href="javascript:void(0)"><i class="ti-heart text-danger"></i></a>    
-                                                </span>
-                                        </div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
