@@ -153,9 +153,6 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function hirarc(){
-	    $data['new'] = "
-	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
-	    ";
 		$wk = array(
 			'uniqid' => $this->uri->segment(3)
 		);
@@ -174,6 +171,9 @@ class Rencana extends CI_Controller
 		);
 		$data['hirarc'] = $this->database_model->get_where('tb_jenis_pekerjaan',$where);
 		$data['judul'] = "HIRARC";
+	    $data['new'] = "
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    ";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
 		$this->load->view('pages/v_form_hirarc', $data);
@@ -245,6 +245,16 @@ class Rencana extends CI_Controller
 		
 	}
 	function insert_slp(){
+		$kode_slp = $this->input->post('kode_slp');
+		$kode_project = $this->input->post('kode_project');
+		$array = array(
+			'kode_line' =>$kode_slp
+		);
+		$this->database_model->update('tb_project',$kode_project,$array);
+		echo 1;
+	}
+	function kirim_rencana(){
+        $uniqid = uniqid();
 		$kode_slp = $this->input->post('kode_slp');
 		$kode_project = $this->input->post('kode_project');
 		$array = array(

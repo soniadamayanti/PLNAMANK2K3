@@ -367,7 +367,14 @@
 
             }
         });
-        
+        $(document).on('click','#btnSimpanHirarc',function(){
+            location.href = "<?php echo base_url() ?>Rencana";
+        });
+        $(document).on('click','#btnKirimRencanaKerja',function(){
+            var uniqid = $('#uniqid').val();
+            location.href = '<?php echo base_url() ?>Rencana/kirim_rencana/'+uniqid;
+        });
+
         
     </script>
 
