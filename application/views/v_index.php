@@ -5,7 +5,7 @@
                     <div class="col-md-6 col-lg-3 col-xlg-3">
                         <div class="card card-inverse card-inverse">
                             <div class="box bg-primary text-center">
-                                <h1 class="font-light text-white">1 </h1>
+                                <h1 class="font-light text-white">1</h1>
                                 <h6 class="text-white">Pending</h6>
                             </div>
                         </div>
@@ -95,16 +95,29 @@
                                                 <i class="fa fa-circle mr-1 text-secondary"></i>
                                             </td>
                                             <td class="txt-oflo">
-                                            <span class="label label-light-info">
                                                 <?php 
                                                     $kode = $data['kode_project'] ;
                                                     $sql = "SELECT * FROM tb_approval WHERE kode_project = '$kode' ORDER BY tgl DESC LIMIT 1";
                                                     $result = $this->db->query($sql);
                                                     foreach ($result->result() as $r) {
-                                                        echo $r->type;
+                                                        if( $r->type == 'new'){
+                                                            echo '
+                                                            <span class="label label-light-warning">
+                                                            Belum Selesai
+                                                            </span>';
+                                                        }elseif($r->type == 'pending'){
+                                                            echo '
+                                                            <span class="label label-light-primary">
+                                                            Menunggu Approval
+                                                            </span>';
+                                                        }elseif($r->type == 'approve'){
+                                                            echo '
+                                                            <span class="label label-light-success">
+                                                            Disetujui
+                                                            </span>';
+                                                        }
                                                     }
-                                                ?>
-                                            </span></td>
+                                                ?></td>
                                         
                                         </tr>    
                                         <?php 
