@@ -51,6 +51,10 @@ class Database_model extends CI_Model
 		$this->db->where('kode_project',$kode);
         return $this->db->get("tb_temp_uraian_pekerjaan");
 	}
+	function get_det_uraian($kode){
+		$this->db->where('kode_project',$kode);
+        return $this->db->get("tb_det_uraian_pekerjaan");
+	}
 	function get_temp_pelaksana($kode){
 		$this->db->select('*');
 		$this->db->from('tb_pelaksana');
