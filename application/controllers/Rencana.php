@@ -230,12 +230,17 @@ class Rencana extends CI_Controller
 			'keterangan' => $keterangan,
 			'kode_project' => $kode_project
 		);
+		$data['temp_pelaksana'] = $this->database_model->get_det_uraian($kode_project)->result();
 		if (is_null($kode_project)) {
 			echo "Something wrong : Project code is null (ER001)";
 		}else if (is_null($uraian_pekerjaan) || is_null($jam)) {
 			echo "Something wrong : Field must be not null (ER002)";
+		}else if (count($data['temp_pelaksana']) > 0){
+			$this->database_model->insert('tb_det_uraian_pekerjaan',$data_uraian);
+		}else{
+			$this->database_model->insert('tb_temp_uraian_pekerjaan',$data_uraian);	
 		}
-		$this->database_model->insert('tb_temp_uraian_pekerjaan',$data_uraian);
+		
 		echo 1;
 		
 	}
@@ -394,7 +399,13 @@ class Rencana extends CI_Controller
 			'kode_pelaksana' => $kode_pelaksana,
 			'kode_project' => $kode_project
 		);
-		$this->database_model->insert('tb_temp_pelaksana',$data);
+		$data['temp_pelaksana'] = $this->database_model->get_det_pelaksana($kode_project)->result();
+		if (count($data['temp_pelaksana']) > 0 ) {
+			$this->database_model->insert('tb_det_pelaksana',$data);
+		}else{
+			$this->database_model->insert('tb_temp_pelaksana',$data);	
+		}
+		
 		echo 1;
 	}
 	function get_temp_uraian_pekerjaan(){
@@ -405,23 +416,19 @@ class Rencana extends CI_Controller
           $where = array(
           	'uniqid' => $this->uri->segment(3)
           );
-          $data['temp_pekerjaan'] = $this->database_model->get_where('tb_project',$where);
+          $c['temp_pekerjaan'] = $this->database_model->get_where('tb_project',$where);
           $uraian_pekerjaan = array();
-          foreach ($data['temp_pekerjaan'] as $b) {
+          foreach ($c['temp_pekerjaan'] as $b) {
           	$uraian_pekerjaan[] = $b;
           }
-          $where_pelaksana = array(
-          	'kode_project' => $uraian_pekerjaan[0]['kode_project']
-          );
-          $data['temp_pelaksana'] = $this->database_model->get_where('tb_project',$where_pelaksana);
+          $c['temp_pelaksana'] = $this->database_model->get_det_uraian($uraian_pekerjaan[0]['kode_project'])->result();
 
-          if (count($data['temp_pelaksana']) > 0) {
+          if (count($c['temp_pelaksana']) > 0) {
           	$query = $this->database_model->get_det_uraian($uraian_pekerjaan[0]['kode_project']);
-          }else{
+          }else {
           	$query = $this->database_model->get_temp_uraian($uraian_pekerjaan[0]['kode_project']);
-          $data = array();
           }
-          
+          $data = array();
           foreach($query->result() as $r) {
           	$button = '
 	          <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
@@ -459,13 +466,12 @@ class Rencana extends CI_Controller
           foreach ($data['temp_pekerjaan'] as $b) {
           	$uraian_pekerjaan[] = $b;
           }
-          $where_pelaksana = array(
-          	'kode_project' => $uraian_pekerjaan[0]['kode_project']
-          );
-          $data['temp_pelaksana'] = $this->database_model->get_where('tb_project',$where_pelaksana);
+          $data['temp_pelaksana'] = $this->database_model->get_det_pelaksana($uraian_pekerjaan[0]['kode_project'])->result();
+
+
           if (count($data['temp_pelaksana']) > 0) {
           	$query = $this->database_model->get_det_pelaksana($uraian_pekerjaan[0]['kode_project']);
-          }else{
+          }else {
           	$query = $this->database_model->get_temp_pelaksana($uraian_pekerjaan[0]['kode_project']);
           }
           
