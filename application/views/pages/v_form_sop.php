@@ -75,11 +75,10 @@ foreach ($detail_project as $data_project) {
                                     <div class="row mb-3">
                                         <div class="col-md-11">
                                         <select class="form-control custom-select" tabindex="1" id="kode_jenis_pekerjaan">
-                                            <?php 
-                                            foreach ($jenis_pekerjaan as $a) {
-                                                echo  "<option value='".$a['kode_jenis_pekerjaan']."'>".$a['nama_jenis_pekerjaan']."</option>";
-                                            }
-                                             ?>
+                                            <?php foreach ($jenis_pekerjaan as $a): ?>
+                                                <option value="<?php echo $a['kode_jenis_pekerjaan'] ?>" <?php echo (isset($data_project['kode_jenis_pekerjaan']) == $a['kode_jenis_pekerjaan'])? 'selected' : ""  ?>
+                                                    ><?php echo $a['nama_jenis_pekerjaan'] ?></option>
+                                            <?php endforeach ?>
                                         </select>
                                         </div>
 <!--                                         <div class="col-md-1">
@@ -298,7 +297,7 @@ foreach ($detail_project as $data_project) {
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">Gardu Padam</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" id="gardu">
+                                    <input type="text" class="form-control" id="gardu"value="<?php echo (isset($data_project['gardu']) != '')? $data_project['gardu'] : ""  ?>">
                                 </div>
                             </div>
                         </div>
@@ -310,7 +309,7 @@ foreach ($detail_project as $data_project) {
                                 <label class="col-sm-4 text-left col-form-label">Lokasi Padam</label>
                                 <div class="col-md-8">
                                     
-                                    <textarea class="form-control" rows=2 id="alamat_project"></textarea>
+                                    <textarea class="form-control" rows=2 id="alamat_project"><?php echo (isset($data_project['alamat_project']) != '')? $data_project['alamat_project'] : ""  ?></textarea>
                                 </div>
                             </div>
                         </div>
