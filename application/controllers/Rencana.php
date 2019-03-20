@@ -389,6 +389,52 @@ class Rencana extends CI_Controller
           echo json_encode($output);
           exit();
 	}
+	function approval($uniqid){
+		$where_project = array(
+			'uniqid' => $uniqid
+		);
+		$data['project'] = $this->database_model->get_where('tb_project',$where_project);
+		foreach ($data['project'] as $data) {
+			$kode_project =  $data['kode_project'];
+		}
+		$where = array(
+			'kode_divisi' => $this->session->userdata('child_divisi')
+		);
+		$data['user'] = $this->database_model->get_where('tb_users',$where);
+		foreach ($data['user'] as $data) {
+			$kode =  $data['kode_user'];
+			$nama_divisi = $data['nama_user'];
+		}
+		$where_cari_user = array(
+			'kode_user' => $kode
+		);
+		$data['data_approval'] = $this->database_model->get_where('tb_approval',$where_cari_user);
+		if (count($data['data_approval']) == 0) {
+			echo $nama_user." belum menyetujui";
+		}else{
+			$data_approval = array(
+				'id' => '',
+				'kode_project' => $kode_project,
+				'kode_user'=> $this->session->userdata('kode_user')
+			);
+			$this->database_model->insert('tb_approval',$data_approval);
+			$array_status = array(
+				'kode_project'=> $kode_project,
+				'status_project' =>'approve',
+				'tgl' => date('Y-m-d H:i:s'),
+				'kode_user' => $this->session->userdata('kode_user')
+			);
+		$this->database_model->insert('tb_status_project',$array_status);
+		$data_berkas = array(
+			'kode_project' => $kode_project,
+			'kode_divisi' => $this->session->userdata('kode_divisi'),
+			'parent_divisi' => $this->session->userdata('parent_divisi'),
+			'tgl' => date('Y-m-d H:i:s')
+		);
+		$this->database_model->insert('tb_berkas_terakhir',$data_berkas);
+			echo 1;
+		}
+	}
 	function get_temp_pelaksaan(){
 		// Datatables Variables
           $draw = intval($this->input->get("draw"));
