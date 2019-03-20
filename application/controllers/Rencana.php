@@ -201,8 +201,13 @@ class Rencana extends CI_Controller
 	}
 	function selesai(){
 	    $data['new'] = "
-	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
+	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja' ><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
 	    ";
+	    $where = array(
+	    	'kode_user' => $this->session->userdata('kode_user')
+	    );
+
+	    $data['data_project'] = $this->database_model->get_where('tb_project', $where);
 		$data['judul'] = "Rencana Kerja Selesai";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -352,6 +357,7 @@ class Rencana extends CI_Controller
 		$tgl = date('Y-m-d H:i:s');
 		$tegangan = $this->input->post('tegangan');
 		$tgl_project = $this->input->post('tgl_project');
+		$pengajuan = $this->input->post('pengajuan');
 		$alamat_project = $this->input->post('alamat_project');
 		$jumlah_tenaga_kerja = $this->input->post('jml_tenaga_kerja');
 		$material = $this->input->post('material');
@@ -457,6 +463,43 @@ class Rencana extends CI_Controller
                  "recordsTotal" => $query->num_rows(),
                  "bPaginate"=> false,
                  "recordsFiltered" => $query->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+	}
+	function get_project(){
+		// Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+          $where = array(
+          	'kode_user' => $this->session->userdata('kode_user')
+          );
+          $project['data_project'] = $this->database_model->get_where('tb_project',$where);
+          $data = array();
+          foreach($project['data_project'] as $r) {
+          	$b['cek_approval'] = $this->database_model->cek_approval($r['kode_project'],4);
+          	if (count($b['cek_approval']) > 0) {
+          		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-info"');
+          	}else{
+          		// $button = "<a class='btn btn-info' disabled href='".base_url()."Download/printPDF/".$r['uniqid']."'>Print PDF</a>";
+          		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-secondary disabled" ');
+          	}
+          	
+            $data[] = array(
+                $r['kode_project'],
+                $r['tgl_project'],
+                $r['tgl_selesai'],
+                $button
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => count($project['data_project']),
+                 "bPaginate"=> false,
+                 "recordsFiltered" => count($project['data_project']),
                  "data" => $data
             );
           echo json_encode($output);

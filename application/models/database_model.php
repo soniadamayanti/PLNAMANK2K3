@@ -85,7 +85,7 @@ class Database_model extends CI_Model
 		$this->db->delete($table);
 	}
 	function detail_project($uniqid){
-		$this->db->select('*,SUBSTR(tb_project.tgl_pelaksanaan,1,10) as tgl');
+		$this->db->select('*,SUBSTR(tb_project.tgl_pelaksanaan,1,10) as tgl,DATE_FORMAT(tgl_approval,"%d, %M %Y") as tgl_approval,DATE_FORMAT(tgl_pelaksanaan,"%d %M %Y") as tgl_pelaksanaan,DATE_FORMAT(tgl_pelaksanaan,"%d %M %Y") as tgl_pelaksanaan,DATE_FORMAT(tgl_pelaksanaan,"%H:%i") as jam_pelaksanaan,DATE_FORMAT(tgl_selesai,"%d %M %Y") as tgl_selesai,DATE_FORMAT(tgl_pelaksanaan,"%H:%i") as jam_selesai');
 		$this->db->from('tb_project');
 		$this->db->join('tb_sld','tb_sld.kode_sld=tb_project.kode_line');
 		$this->db->join('tb_jenis_pekerjaan','tb_project.kode_jenis_pekerjaan=tb_jenis_pekerjaan.kode_jenis_pekerjaan');
@@ -98,6 +98,60 @@ class Database_model extends CI_Model
 		$this->db->from('tb_project');
 		$this->db->join('tb_sld','tb_sld.kode_sld=tb_project.kode_line');
 		$this->db->join('tb_jenis_pekerjaan','tb_project.kode_jenis_pekerjaan=tb_jenis_pekerjaan.kode_jenis_pekerjaan');
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	function detail_pelaksana($kode){
+		$this->db->select('*');
+		$this->db->from('tb_pelaksana');
+		$this->db->join('tb_det_pelaksana','tb_pelaksana.kode_pelaksana = tb_det_pelaksana.kode_pelaksana');
+		$this->db->where('kode_project',$kode);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	function detail_klasifikasi($kode){
+		$this->db->select('*');
+		$this->db->from('tb_klasifikasi_kerja');
+		$this->db->join('tb_det_klasifikasi','tb_klasifikasi_kerja.kode_klasifikasi_kerja = tb_det_klasifikasi.kode_klasifikasi_kerja');
+		$this->db->where('kode_project',$kode);
+		$query = $this->db->get();
+		return $query->result_array();
+
+	}
+	function detail_prosedur_kerja($kode){
+		$this->db->select('*');
+		$this->db->from('tb_prosedur_kerja');
+		$this->db->join('tb_det_prosedur_kerja','tb_prosedur_kerja.kode_prosedur_kerja = tb_det_prosedur_kerja.kode_prosedur_kerja');
+		$this->db->where('kode_project',$kode);
+		$query = $this->db->get();
+		return $query->result_array();
+
+	}
+	function detail_lampiran_izin_kerja($kode){
+		$this->db->select('*');
+		$this->db->from('tb_lampiran_izin_kerja');
+		$this->db->join('tb_det_lampiran_izin_kerja','tb_lampiran_izin_kerja.kode_lampiran_izin_kerja = tb_det_lampiran_izin_kerja.kode_lampiran_izin_kerja');
+		$this->db->where('kode_project',$kode);
+		$query = $this->db->get();
+		return $query->result_array();
+
+	}
+	function detail_peralatan($kode){
+		$this->db->select('*');
+		$this->db->from('tb_peralatan_kerja');
+		$this->db->join('tb_det_peralatan_kerja','tb_peralatan_kerja.kode_peralatan_kerja = tb_det_peralatan_kerja.kode_peralatan_kerja');
+		$this->db->where($kode);
+		$query = $this->db->get();
+		return $query->result_array();
+
+	}
+	function cek_approval($kode,$divisi){
+		$this->db->select('*');
+		$this->db->from('tb_approval');
+		$this->db->join('tb_users','tb_approval.kode_user = tb_users.kode_user');
+		$this->db->where('tb_approval.kode_project',$kode);
+		$this->db->where('tb_users.kode_divisi',$divisi);
+
 		$query = $this->db->get();
 		return $query->result_array();
 	}

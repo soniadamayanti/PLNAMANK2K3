@@ -1,3 +1,7 @@
+<?php foreach ($project as $project): ?>
+    
+<?php endforeach ?>
+
 <link href="<?php echo site_url(); ?>css/grid.css" rel="stylesheet" />
     <div class="page">
         
@@ -23,6 +27,11 @@
             <table class="rencana">
                 <tbody>
                 <tr>
+                    <td style="width: 44%">Kode</td>
+                    <td style="width: 3%">:</td>
+                    <td style="width: 53%"><?php echo $project['kode_project'] ?></td>
+                </tr>
+                <tr>
                     <td style="width: 44%">PENGAWAS</td>
                     <td style="width: 3%">:</td>
                     <td style="width: 53%">AINUL YAQIN</td>
@@ -35,17 +44,17 @@
                 <tr>
                     <td>PEMBEBASAN JARINGAN HARI/TANGGAL</td>
                     <td>:</td>
-                    <td>13, Maret 2019</td>
+                    <td><?php echo $project['tgl_pelaksanaan'] ?></td>
                 </tr>
                 <tr>
                     <td>SISTEM TEGANGAN</td>
                     <td>:</td>
-                    <td>20 KV</td>
+                    <td><?php echo $project['tegangan'] ?> KV</td>
                 </tr>
                 <tr>
                     <td>UNTUK KEPERLUAN</td>
                     <td>:</td>
-                    <td>1. GROWS</td>
+                    <td><?php echo $project['nama_jenis_pekerjaan'] ?></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -56,22 +65,30 @@
                 <tr>
                     <td>Material</td>
                     <td>:</td>
-                    <td>Lengkap</td>
+                    <td><?php echo $project['material'] ?></td>
                 </tr>
                 <tr>
                     <td>Jumlah Tenaga Kerja</td>
                     <td>:</td>
-                    <td>10 Orang</td>
+                    <td><?php echo $project['jml_tenaga_kerja'] ?> Orang</td>
                 </tr>
                 <tr>
                     <td>Peralatan Kerja</td>
                     <td>:</td>
-                    <td>Lengkap</td>
+                    <td><?php echo $project['peralatan_kerja'] ?></td>
                 </tr>
                 <tr>
                     <td>Pelaksana</td>
                     <td>:</td>
-                    <td>1. PT. MKM</td>
+                    <td>
+                        <?php 
+                        $i=1;
+                        foreach ($detail_pelaksana2 as $detail_pelaksana2) {
+                            echo $i.". ".$detail_pelaksana2['nama_pelaksana'].'<br>';
+                        $i++;
+                        }
+                         ?>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -85,26 +102,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Permohonan Padam</td>
-                        <td  class="center">09.00 WIB</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>Mulai Pekerjaan</td>
-                        <td  class="center">09.15 WIB</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>Selesai Pekerjaan</td>
-                        <td  class="center">14.00 WIB</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>Penormalan Tegangan</td>
-                        <td  class="center">15.00 WIB</td>
-                        <td>&nbsp;</td>
-                    </tr>
+                    <?php foreach ($uraian_pekerjaan as $uraian_pekerjaan): ?>
+                        <tr>
+                            <td><?php echo $uraian_pekerjaan['uraian_pekerjaan'] ?></td>
+                            <td><?php echo $uraian_pekerjaan['jam'] ?></td>
+                            <td><?php echo $uraian_pekerjaan['keterangan'] ?></td>
+                        </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
 
@@ -116,22 +120,28 @@
                 <tr>
                     <td style="width: 44%">Nama Penyulang</td>
                     <td style="width: 3%">:</td>
-                    <td style="width: 53%">P. LAMPEGAN - REC. BLK</td>
+                    <td style="width: 53%"><?php echo $project['nama_sld'] ?></td>
                 </tr>
                 <tr>
                     <td>Gardu Padam</td>
                     <td>:</td>
-                    <td>PMS, SAHS, AST, ASA, ASHAG, ASHIAP</td>
+                    <td><?php echo $project['gardu'] ?></td>
                 </tr>
                 <tr>
                     <td>Lokasi Padam</td>
                     <td>:</td>
-                    <td>Perumahan Jaya anu kamari tea ayasad asjk </td>
+                    <td><?php echo $project['alamat_project'] ?></td>
                 </tr>
                 <tr>
                     <td>Pelaksana Pembebasan</td>
                     <td>:</td>
-                    <td>PT. MKN dan ULP Kota</td>
+                    <td><?php 
+                        $i=1;
+                        foreach ($detail_pelaksana as $detail_pelaksana) {
+                            echo $i.". ".$detail_pelaksana['nama_pelaksana'].'<br>';
+                        $i++;
+                        }
+                         ?></td>
                 </tr>
             </table>
 
@@ -140,7 +150,13 @@
                 <tbody>
                     <tr>
                         <td colspan="2">&nbsp;</td>
-                        <td>Cianjur, 8 Maret 2019</td>
+                        <td><?php  
+                        $awal =strpos($project['kode_project'], '/',14);
+                        $akhir = strpos($project['kode_project'], '/',15);
+                        $len = strlen($project['kode_project']);
+                        $panjang = ($len-$awal)-($len-$akhir); 
+                        echo substr($project['kode_project'], $awal+1,$panjang-1);
+                        ?>, <?php echo $project['tgl_approval'] ?></td>
                     </tr>
                     <tr>
                         <td>Menyetujui</td>
@@ -172,15 +188,16 @@
         <div class="col-sm-12 b-full center">
             <h1>
                 Gambar Terlampir<br>
-                SINGLE LINE 20kV<br>
-                P.LAMPEGAN
+                SINGLE LINE <?php echo $project['tegangan'] ?> KV<br>
+                <?php echo $project['nama_sld'] ?>
             </h1>
         </div>
 
     </div>
 
     <div class="page">
-        <img src="<?php echo site_url(); ?>assets/arsip/sld/S0001.jpg" class="imgsld">
+        <?php echo $project['kode_project'] ?><br>
+        <img src="<?php echo site_url(); ?>assets/arsip/sld/<?php echo $project['kode_line'] ?>.jpg" class="imgsld">
     </div>
 
     <div class="page">
@@ -195,28 +212,34 @@
                     <td colspan="5" class="bold">A. INFORMASI PEKERJAAN</td>
                 </tr>
                 <tr>
+                    <td style="width: 3%">#</td>
+                    <td style="width: 29%">Kode Pekerjaan</td>
+                    <td style="width: 3%">:</td>
+                    <td style="width: 70%" colspan="2"><?php echo $project['kode_project'] ?></td>
+                </tr>
+                <tr>
                     <td style="width: 3%">1.</td>
                     <td style="width: 29%">Tanggal Pengajuan</td>
                     <td style="width: 3%">:</td>
-                    <td style="width: 70%" colspan="2">14 Maret 2019</td>
+                    <td style="width: 70%" colspan="2"><?php echo $project['tgl_project'] ?></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Jenis Pekerjaan</td>
                     <td>:</td>
-                    <td colspan="2">GROWS</td>
+                    <td colspan="2"><?php echo $project['nama_jenis_pekerjaan'] ?></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Detail Pekerjaan</td>
                     <td>:</td>
-                    <td colspan="2">GROWS & ANu</td>
+                    <td colspan="2"><?php echo $project['nama_jenis_pekerjaan'] ?></td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>Lokasi Pekerjaan</td>
                     <td>:</td>
-                    <td colspan="2">P.LPGN - R.BLK</td>
+                    <td colspan="2"><?php echo $project['nama_sld'] ?></td>
                 </tr>
                 <tr>
                     <td>5</td>
@@ -240,12 +263,12 @@
                 </tr>
                 <tr class="bc-full">
                     <td colspan="2" rowspan="2">Durasi Kerja</td>
-                    <td colspan="2">Tanggal Mulai : 13 Maret 2019</td>
-                    <td>Jam Mulai : 19.00</td>
+                    <td colspan="2">Tanggal Mulai : <?php echo $project['tgl_pelaksanaan'] ?></td>
+                    <td>Jam Mulai : <?php echo $project['jam_pelaksanaan'] ?></td>
                 </tr>
                 <tr class="bc-full">
-                    <td colspan="2">Tanggal Selasa : 13 Maret 2019</td>
-                    <td>Jam Selasa : 19.00</td>
+                    <td colspan="2">Tanggal Selesai : <?php echo $project['tgl_selesai'] ?></td>
+                    <td>Jam Selasa : <?php echo $project['jam_selesai'] ?></td>
                 </tr>
                 <tr class="b-top">
                     <td colspan="5" class="bold">C. KLASIFIKASI PEKERJAAN</td>
@@ -255,10 +278,13 @@
                     <td colspan="5" class="tampilcekbox">
 
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">1. Pekerjaan Pohon</div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">2. Pekerjaan Perampalan  Pohon</div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">3. Pekerjaan Panas</div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">4. Cinta Damai</div>
+                            <?php 
+                            $i =1;
+                            foreach ($detail_klasifikasi as $detail_klasifikasi) {
+                                echo '<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">'.$i.'. '.$detail_klasifikasi['nama_klasifikasi_kerja'].'</div>';
+                            $i++;
+                            }
+                             ?>
                         </div>
                         </td>
                 </tr>
@@ -269,13 +295,13 @@
 
                 <tr>
                     <td colspan="5" class="tampilcekbox">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">1. Pkerjaan Diketinggian</div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">2. Pekerjaan Perampalan  Pohon</div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">3. Pekerjaan Panas</div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">4. Cinta Damai</div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">5. Pekerjaan Perampalan  Pohon</div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">6. Pekerjaan Panas</div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">5. Pekerjaan Perampalan  Pohon</div>
+                    <?php 
+                            $i =1;
+                            foreach ($detail_prosedur_kerja as $detail_prosedur_kerja) {
+                                echo '<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">'.$i.'. '.$detail_prosedur_kerja['nama_prosedur_kerja'].'</div>';
+                            $i++;
+                            }
+                             ?>
                     </td>
                 </tr>
 
@@ -286,10 +312,10 @@
 
                 <tr>
                     <td colspan="5" class="tampilcekbox">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">1. Pkerjaan Diketinggian</div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">2. Pekerjaan Perampalan  Pohon</div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">3. Pekerjaan Panas</div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">4. Cinta Damai</div>
+                        <?php $i=1;foreach ($detail_lampiran_izin_kerja as $detail_lampiran_izin_kerja): ?>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><?php echo $i ?>. <?php echo $detail_lampiran_izin_kerja['nama_lampiran_izin_kerja'] ?></div>        
+                        <?php $i++;endforeach ?>
+                    
                     </td>
                 </tr>
 
@@ -308,7 +334,7 @@
                         <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0001.png"></td>
                         <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0002.png"></td>
                         <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0003.png"></td>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0004.png"></td>
+                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/<?php echo $this->session->userdata('ttd') ?>"></td>
                     </tr>
                     <tr>
                         <td>
@@ -321,7 +347,7 @@
                             (VIRGEA KRISMANDA)
                         </td>
                         <td>
-                            (RIKY JAPUTRA)
+                            (<?php echo strtoupper($this->session->userdata('nama_user')) ?>)
                         </td>
                     </tr>
                 </tbody>
@@ -350,25 +376,33 @@
                     <td style="width: 3%">1</td>
                     <td style="width: 24%">Tanggal</td>
                     <td style="width: 3%">:</td>
-                    <td style="width: 60%">14 Maret 2019</td>
+                    <td style="width: 60%"><?php echo $project['tgl_project'] ?></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Jenis Pekerjaan</td>
                     <td>:</td>
-                    <td>GROWS</td>
+                    <td><?php echo $project['nama_jenis_pekerjaan'] ?></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Lokasi</td>
                     <td>:</td>
-                    <td>P.LPGN - R.BLK</td>
+                    <td><?php echo $project['nama_sld'] ?></td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>Perusahaan Pelaksana Kerja</td>
                     <td>:</td>
-                    <td>PT. Mahiza Karya Mandiri</td>
+                    <td>
+                        <?php 
+                        $i=1;
+                        foreach ($detail_pelaksana3 as $detail_pelaksana3) {
+                            echo $detail_pelaksana3['nama_pelaksana'].', ';
+                        $i++;
+                        }
+                         ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>5</td>
@@ -410,10 +444,9 @@
                     <td>ALAT PELINDUNG DIRI</td>
                     <td>:</td>
                     <td>
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">1. Helm</div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">2. Sepatu Keselamatan</div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">3. Sarung Tangan</div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">4. Full Body Harness</div>
+                        <?php $i=1;foreach ($detail_perlindungan as $detail_perlindungan): ?>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><?php echo $i ?>. <?php echo $detail_perlindungan['nama_peralatan_kerja'] ?></div>    
+                        <?php $i++;endforeach ?>
                     </td>
                 </tr>
                 <tr>
@@ -421,10 +454,9 @@
                     <td>PERLENGKAPAN KESELAMATAN & DARURAT</td>
                     <td>:</td>
                     <td>
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">1. Helm</div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">2. Sepatu Keselamatan</div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">3. Sarung Tangan</div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">4. Full Body Harness</div>
+                        <?php $i=1;foreach ($detail_keselamatan as $detail_keselamatan): ?>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><?php echo $i ?>. <?php echo $detail_keselamatan['nama_peralatan_kerja'] ?></div>    
+                        <?php $i++;endforeach ?>
                     </td>
                 </tr>
                 <tr class="bold">
