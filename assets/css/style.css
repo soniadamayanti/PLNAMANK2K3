@@ -4635,11 +4635,9 @@ Stylish tooltip
     transform: translate3d(0, 0, 0); }
 
 .tooltip-item {
-  background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
   display: inline-block;
-  font-weight: 500;
-  padding: 0 10px; }
+  font-weight: 500; }
 
 .tooltip-item::after {
   content: '';
@@ -4655,7 +4653,7 @@ Stylish tooltip
 
 .tooltip-content {
   position: absolute;
-  z-index: 9999;
+  z-index: 9999 !important;
   width: 360px;
   left: 50%;
   margin: 0 0 20px -180px;

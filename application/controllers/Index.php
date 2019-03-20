@@ -18,11 +18,11 @@ class Index extends CI_Controller
 	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
 	    ";
 
-		$data['data_project'] = $this->database_model->get('tb_project');
-		$data['jml_project'] = count($data['data_project']);
 		$where = array(
 			'kode_user' => $this->session->userdata('kode_user')
 		);
+		$data['data_project'] = $this->index_model->get_data_project($lokasi);
+		$data['jml_project'] = count($data['data_project']);
 		$data['project'] = $this->database_model->get_where('tb_project',$where);
 		$data['history_project'] = $this->index_model->get_history();
 		$data['pending']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="pending"')->num_rows();

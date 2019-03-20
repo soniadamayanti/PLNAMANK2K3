@@ -62,7 +62,7 @@
                                     <div class="col-6">
                                         <h2 class="mb-0">Maret   2019</h2>
                                         <h4 class="font-light mt-0">Project SOP Pemadaman</h4></div>
-                                    <div class="col-6 align-self-center display-6 text-info text-right">1</div>
+                                    <div class="col-6 align-self-center display-6 text-info text-right"><?php echo $jml_project; ?></div>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -71,7 +71,7 @@
                                         <tr>
                                             <th class="text-center">#</th>
                                             <th>PENYULANG</th>
-                                            <th>FORM</th>
+                                            <th>APPROVAL</th>
                                             <th>STATUS</th>
                                         </tr>
                                     </thead>
@@ -88,11 +88,34 @@
                                                 
                                             </td>
                                             <td>
-                                                <i class="fa fa-circle mr-1 <?php echo ($data['kode_jenis_pekerjaan'] == '')? 'text-secondary' : 'text-success' ?>"></i>
-                                                <i class="fa fa-circle mr-1 <?php echo ($data['kode_line'] == '')? 'text-secondary' : 'text-success' ?>"></i>
-                                                <i class="fa fa-circle mr-1 text-secondary"></i>
-                                                <i class="fa fa-circle mr-1 text-secondary"></i>
-                                                <i class="fa fa-circle mr-1 text-secondary"></i>
+
+                                                <?php 
+                                                    $kode = $data['kode_project'] ;
+                                                    $sql = "SELECT s.*,u.nama_user,u.kode_divisi,d.nama_divisi FROM tb_status_project s INNER JOIN (tb_users u INNER JOIN tb_divisi d ON u.kode_divisi=d.kode_divisi) ON u.kode_user = s.kode_user WHERE kode_project = '$kode' ORDER BY kode_divisi ASC";
+                                                    $result = $this->db->query($sql);
+                                                    foreach ($result->result() as $r) {
+                                                        echo '
+
+                                                        <span class="mytooltip tooltip-effect-5">
+                                                            <span class="tooltip-item">';
+                                                            if ($r->status_project == 'approve') {
+                                                                echo '<i class="fa fa-circle mr-1 text-success"></i>';
+                                                            }elseif($r->status_project == 'pending') {
+                                                                echo '<i class="fa fa-circle mr-1 text-secondary"></i>';
+                                                            }elseif($r->status_project == 'denied') {
+                                                                echo '<i class="fa fa-circle mr-1 text-warning"></i>';
+                                                            }elseif($r->status_project == 'failed') {
+                                                                echo '<i class="fa fa-circle mr-1 text-danger"></i>';
+                                                            }
+                                                            echo '
+                                                            </span>
+                                                            <span class="tooltip-content clearfix">
+                                                              <span class="tooltip-text">'.$r->nama_user.'<br>('.$r->nama_divisi.')</span>
+                                                            </span>
+                                                        </span>
+                                                        ';
+                                                    }
+                                                ?>
                                             </td>
                                             <td class="txt-oflo">
                                                 <?php 
@@ -122,7 +145,9 @@
                                                             </span>';
                                                         }
                                                     }
-                                                ?></td>
+                                                ?>
+                                                    
+                                                </td>
                                         
                                         </tr>    
                                         <?php 
