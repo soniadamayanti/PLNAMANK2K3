@@ -129,19 +129,19 @@
                 jam:jam,
                 keterangan:keterangan
             };
-            $.ajax({
-                url:'<?php echo base_url() ?>Rencana/insert_temp_uraian_pekerjaan',
-                data:value,
-                type:'POST',
-                success:function(data){
-                    if (data == 1) {
+            if (kode_project == '') {
+                $.toast('Kode pekerjaan kosong');
+            }else{
+                $.ajax({
+                    url:'<?php echo base_url() ?>Test/insert_temp_uraian_pekerjaan',
+                    data:value,
+                    type:'POST',
+                    success:function(data){
                         var table = $('#table_temp_uraian_pekerjaan').DataTable();
                         table.ajax.reload(null,false);
-                    }else{
-                        alert(data);
                     }
-                }
-            });
+                });
+            }
         });
         $(document).on('click','#btnTambahPelaksana',function(){
             var kode_project = $('#kode_project').val();
@@ -150,56 +150,68 @@
                 kode_pelaksana:kode_pelaksana,
                 kode_project:kode_project
             };
-            $.ajax({
-                url:'<?php echo base_url() ?>Rencana/insert_temp_pelaksana',
-                data:value,
-                type:'POST',
-                success:function(data){ 
-                    if (data == 1) {
-                        var table = $('#table_temp_pelaksana').DataTable();
-                        table.ajax.reload(null,false);
-                    }else{
-                        alert(data);
+            if (kode_project == '') {
+                alert('Kode pekerjaan kosong')
+            }else if (kode_pelaksana == '') {
+                alert('pelaksana tidak boleh kosong');
+            }else{
+                $.ajax({
+                    url:'<?php echo base_url() ?>Test/insert_temp_pelaksana',
+                    data:value,
+                    type:'POST',
+                    success:function(data){ 
+                    var table = $('#table_temp_pelaksana').DataTable();
+                    table.ajax.reload(null,false);
+                        
                     }
-                }
-            });
+                });
+            }
         });
         $(document).on('click','#btnSimpanProject',function(){
             var kode_project = $('#kode_project').val();
-            var kode_jenis_pekerjaan = $('#kode_jenis_pekerjaan').val();
-            var tgl_project = $('#tgl_project').val();
             var tegangan = $('#tegangan').val();
-            var alamat_project = $('#alamat_project').val();
+            var kode_jenis_pekerjaan = $('#kode_jenis_pekerjaan').val();
             var material = $('#material').val();
-            var jml_tenaga_kerja = $('#jml_tenaga_kerja').val();
             var peralatan_kerja = $('#peralatan_kerja').val();
+            var alamat_project = $('#alamat_project').val();
+            var tgl_pengajuan = $('#tgl_pengajuan').val();
+            var tgl_mulai = $('#tgl_mulai').val();
+            var tgl_selesai = $('#tgl_selesai').val();
+            var jam_mulai = $('#jam_mulai').val();
+            var jam_selesai = $('#jam_selesai').val();
+            var jml_tenaga_kerja = $('#jml_tenaga_kerja').val();
+            
             var gardu = $('#gardu').val();
             var kode_line = $('#kode_line').val();
             var value = {
-                kode_project:kode_project,
-                kode_jenis_pekerjaan:kode_jenis_pekerjaan,
-                tgl_project:tgl_project,
-                tegangan:tegangan,
-                alamat_project:alamat_project,
-                jml_tenaga_kerja:jml_tenaga_kerja,
-                peralatan_kerja:peralatan_kerja,
-                gardu:gardu,
-                material:material,
+                kode_project:kode_project
+                tegangan:tegangan
+                kode_jenis_pekerjaan:kode_jenis_pekerjaan
+                material:material
+                alamat_project:alamat_project
+                tgl_pengajuan:tgl_pengajuan
+                tgl_mulai:tgl_mulai
+                tgl_selesai:tgl_selesai
+                jam_mulai:jam_mulai
+                jam_selesai:jam_selesai
+                jml_tenaga_kerja:jml_tenaga_kerja
+                peralatan_kerja:peralatan_kerja
+                gardu:gardu
                 kode_line:kode_line
             };
             $.ajax({
-                url:'<?php echo base_url(); ?>Rencana/update_project',
+                url:'<?php echo base_url(); ?>Test/update_project',
                 type:'POST',
                 data:value,
                 success:function(data){
                     if (data ==1) {
-                        window.location='<?php echo base_url(); ?>Rencana/slp/'+type
+                        window.location='<?php echo base_url(); ?>Test/slp/'+type
                     }
                 }
             });
         });
         $(document).on('click','#btnHistoryApproval',function(){
-            location.href = "<?php echo base_url() ?>Rencana/history_approval";
+            location.href = "<?php echo base_url() ?>Test/history_approval";
         });
         $(document).on('click','#btnPrintRencanaKerja',function(){
             location.href = "<?php echo base_url() ?>Download/printPDF";
@@ -218,7 +230,7 @@
         });
         $('#table_selesai').DataTable({
             "ajax": {
-                url:'<?php echo base_url() ?>Rencana/get_project',
+                url:'<?php echo base_url() ?>Test/get_project',
                 "type": "POST"
             },
         });
@@ -241,7 +253,7 @@
             ordering: false,
             info:     false,
             "ajax": {
-                url:'<?php echo base_url() ?>Rencana/get_temp_uraian_pekerjaan/'+type,
+                url:'<?php echo base_url() ?>Test/get_temp_uraian_pekerjaan/'+type,
                 "type": "POST"
             },
         });
@@ -251,88 +263,18 @@
             ordering: false,
             info:     false,
             "ajax": {
-                url:'<?php echo base_url() ?>Rencana/get_temp_pelaksaan/'+type,
+                url:'<?php echo base_url() ?>Test/get_temp_pelaksaan/'+type,
                 "type": "POST"
             },
         });
-        $("#btnSimpanWp").click(function(){
-            var uniqid = $('#uniqid').val();
-            var jam_mulai = $('#jam_mulai').val();
-            var kode_project = $('#kode_project').val();
-            var jam_selesai = $('#jam_selesai').val();
-            var tgl_mulai = $('#tgl_mulai').val();
-            var tgl_selesai = $('#tgl_selesai').val();
-            var kode_project = $('#kode_project').val();
-            var klasifikasi = [];
-            $.each($("input[name='klasifikasi']:checked"), function(){            
-                klasifikasi.push($(this).val());
-            });
-            var prosedur_kerja = [];
-            $.each($("input[name='prosedur_kerja']:checked"), function(){            
-                prosedur_kerja.push($(this).val());
-            });
-            var lampiran_izin = [];
-            $.each($("input[name='lampiran_izin']:checked"), function(){            
-                lampiran_izin.push($(this).val());
-            });
-            var value = {
-                kode_project:kode_project,
-                jam_mulai:jam_mulai,
-                jam_selesai:jam_selesai,
-                tgl_mulai:tgl_mulai,
-                tgl_selesai:tgl_selesai,
-                klasifikasi:klasifikasi,
-                prosedur_kerja:prosedur_kerja,
-                lampiran_izin:lampiran_izin
-            };
-            $.ajax({
-                url:'<?php echo base_url() ?>Rencana/insert_working_permit',
-                data:value,
-                type:'POST',
-                success:function(data){
-                    if (data == 1) {
-                        window.location='<?php echo base_url(); ?>Rencana/jsa/'+uniqid
-                    }
-                }
-            });
-            
-        });
-        $(document).on('click','#btnSimpanJsa',function(){
-            var uniqid = $('#uniqid').val();
-            var kode_project = $('#kode_project').val();
-            var perlindungan = [];
-            $.each($("input[name='perlindungan']:checked"), function(){            
-                perlindungan.push($(this).val());
-            });
-            var keselamatan = [];
-            $.each($("input[name='keselamatan']:checked"), function(){            
-                keselamatan.push($(this).val());
-            });
-            var pekerja = $("input[name='nama_pekerja[]']")
-              .map(function(){return $(this).val();}).get();
-            var value = {
-                kode_project:kode_project,
-                perlindungan:perlindungan,
-                keselamatan:keselamatan,
-                pekerja:pekerja
-            };
-            $.ajax({
-                url:'<?php echo base_url() ?>Rencana/insert_jsa',
-                data:value,
-                type:'POST',
-                success:function(data){
-                    if (data == 1) {
-                        window.location='<?php echo base_url(); ?>Rencana/hirarc/'+uniqid;
-                    }
-                }
-            });
-        });
+
+        
         var kode_project = $('#kode_project').val();
         var value = {
             kode_project:kode_project
         }
         $.ajax({
-            url:'<?php echo base_url() ?>Rencana/get_checked_klasifikasi',
+            url:'<?php echo base_url() ?>Test/get_checked_klasifikasi',
             data:value,
             type:'POST',
             success:function(data){
@@ -344,7 +286,7 @@
             }
         });
         $.ajax({
-            url:'<?php echo base_url() ?>Rencana/get_checked_prosedur',
+            url:'<?php echo base_url() ?>Test/get_checked_prosedur',
             data:value,
             type:'POST',
             success:function(data){
@@ -356,7 +298,7 @@
             }
         });
         $.ajax({
-            url:'<?php echo base_url() ?>Rencana/get_checked_lampiran',
+            url:'<?php echo base_url() ?>Test/get_checked_lampiran',
             data:value,
             type:'POST',
             success:function(data){
@@ -368,7 +310,7 @@
             }
         });
         $.ajax({
-            url:'<?php echo base_url() ?>Rencana/get_checked_peralatan',
+            url:'<?php echo base_url() ?>Test/get_checked_peralatan',
             data:value,
             type:'POST',
             success:function(data){
@@ -384,7 +326,7 @@
         });
         $(document).on('click','#btnKirimRencanaKerja',function(){
             var uniqid = $('#uniqid').val();
-            location.href = '<?php echo base_url() ?>Rencana/kirim_rencana/'+uniqid;
+            location.href = '<?php echo base_url() ?>Test/kirim_Test/'+uniqid;
         });
 
         

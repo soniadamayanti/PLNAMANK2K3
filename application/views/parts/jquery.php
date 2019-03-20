@@ -1,28 +1,77 @@
 <script type="text/javascript">
   
-    $(document).on('click','#btnSimpanProject',fuction(){
-        var tgl_pembebasan_jaringan = $('#tgl_pembebasan_jaringan').val();
-        var sistem_tegangan = $('#sistem_tegangan').val();
-        var keperluan = $('#keperluan').val();
-        var material = $('#material').val();
-        var jumlah_tenaga_kerja = $('#jumlah_tenaga_kerja').val();
-        var sistem_tegangan = $('#sistem_tegangan').val();
+            $("#btnSimpanWp").click(function(){
+            var uniqid = $('#uniqid').val();
+            var jam_mulai = $('#jam_mulai').val();
+            var kode_project = $('#kode_project').val();
+            var jam_selesai = $('#jam_selesai').val();
+            var tgl_mulai = $('#tgl_mulai').val();
+            var tgl_selesai = $('#tgl_selesai').val();
+            var kode_project = $('#kode_project').val();
+            var klasifikasi = [];
+            $.each($("input[name='klasifikasi']:checked"), function(){            
+                klasifikasi.push($(this).val());
+            });
+            var prosedur_kerja = [];
+            $.each($("input[name='prosedur_kerja']:checked"), function(){            
+                prosedur_kerja.push($(this).val());
+            });
+            var lampiran_izin = [];
+            $.each($("input[name='lampiran_izin']:checked"), function(){            
+                lampiran_izin.push($(this).val());
+            });
+            var value = {
+                kode_project:kode_project,
+                jam_mulai:jam_mulai,
+                jam_selesai:jam_selesai,
+                tgl_mulai:tgl_mulai,
+                tgl_selesai:tgl_selesai,
+                klasifikasi:klasifikasi,
+                prosedur_kerja:prosedur_kerja,
+                lampiran_izin:lampiran_izin
+            };
+            $.ajax({
+                url:'<?php echo base_url() ?>Rencana/insert_working_permit',
+                data:value,
+                type:'POST',
+                success:function(data){
+                    if (data == 1) {
+                        window.location='<?php echo base_url(); ?>Rencana/jsa/'+uniqid
+                    }
+                }
+            });
+            
+        });
 
-    })
-    $(document).on("click","#btnKirimRencanaKerja", function() {
-       Swal({
-          title: 'Print Invoice',
-          text: "Klik print untuk mencetak Invoice",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Print'
-        })
-    });
-      $(document).on('click','#btnBuatRencanaKerja',function(){
-        var data = $(this).attr('data-type');
-        window.location='Rencana/sop_pemadaman/'+data
-      });
+        $(document).on('click','#btnSimpanJsa',function(){
+            var uniqid = $('#uniqid').val();
+            var kode_project = $('#kode_project').val();
+            var perlindungan = [];
+            $.each($("input[name='perlindungan']:checked"), function(){            
+                perlindungan.push($(this).val());
+            });
+            var keselamatan = [];
+            $.each($("input[name='keselamatan']:checked"), function(){            
+                keselamatan.push($(this).val());
+            });
+            var pekerja = $("input[name='nama_pekerja[]']")
+              .map(function(){return $(this).val();}).get();
+            var value = {
+                kode_project:kode_project,
+                perlindungan:perlindungan,
+                keselamatan:keselamatan,
+                pekerja:pekerja
+            };
+            $.ajax({
+                url:'<?php echo base_url() ?>Rencana/insert_jsa',
+                data:value,
+                type:'POST',
+                success:function(data){
+                    if (data == 1) {
+                        window.location='<?php echo base_url(); ?>Rencana/hirarc/'+uniqid;
+                    }
+                }
+            });
+        });
       
 </script>
