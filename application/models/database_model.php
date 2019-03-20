@@ -145,6 +145,16 @@ class Database_model extends CI_Model
 		return $query->result_array();
 
 	}
+	function cek_approval($kode,$divisi){
+		$this->db->select('*');
+		$this->db->from('tb_approval');
+		$this->db->join('tb_users','tb_approval.kode_user = tb_users.kode_user');
+		$this->db->where('tb_approval.kode_project',$kode);
+		$this->db->where('tb_users.kode_divisi',$divisi);
+
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
 }
 

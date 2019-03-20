@@ -1,4 +1,27 @@
+<?php 
+$a = array();
+foreach ($kode_project as $data) {
+    $a[] = $data;
+}
+$b = array();
+foreach ($atasan as $r) {
+    $b[] = $r;
+}
+$k3 = array();
+foreach ($pengawas_k3 as $k) {
+    $k3[] = $k;
+}
+$nama_atasan = $b[0]['nama_user'];
+$no_telp_atasan = $b[0]['no_telp_user'];
 
+$nama_atasan_k3 = $k3[0]['nama_user'];
+$no_telp_k3 = $k3[0]['no_telp_user'];
+
+$kode = $a[0]['kode_project'];
+foreach ($detail_project as $data_project) {
+    # code...
+}
+ ?>
 <div class="row" id="">
     <div class="col-lg-12">
         <div class="card card-outline-info">
@@ -20,10 +43,10 @@
                                     <div class="col-md-8">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" value="Ainul" disabled>
+                                            <input type="text" class="form-control" value="<?php echo $nama_atasan ?>" disabled>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" class="form-control" value="019310" disabled>
+                                            <input type="text" class="form-control" value="<?php echo $no_telp_atasan ?>" disabled>
                                         </div>
                                     </div>
                                     </div>
@@ -37,10 +60,10 @@
                                     <div class="col-md-8">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" value="Virgea" disabled>
+                                            <input type="text" class="form-control" value="<?php echo $nama_atasan_k3 ?>" disabled>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" class="form-control" value="0293587867" disabled>
+                                            <input type="text" class="form-control" value="<?php echo $no_telp_k3 ?>" disabled>
                                         </div>
                                     </div>
                                     </div>
@@ -240,7 +263,7 @@
                             <div class="form-group row">
                                 <label class="control-label text-left col-md-4">Tanggal Mulai</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" value="<?php echo date('Y-m-d'); ?>" id="tgl_mulai">
+                                    <input type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>" id="tgl_mulai">
                                 </div>
                             </div>
                         </div>
