@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2019 at 03:56 PM
+-- Generation Time: Mar 20, 2019 at 06:56 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -272,8 +272,8 @@ CREATE TABLE `tb_det_uraian_pekerjaan` (
 --
 
 INSERT INTO `tb_det_uraian_pekerjaan` (`kode_uraian_pekerjaan`, `uraian_pekerjaan`, `jam`, `keterangan`, `kode_project`) VALUES
-(1, 'Mulai', '09:10:00', 'asd', 'K.002/AMANK2K3/CIANJUR/III/2019'),
-(2, 'Mulai juga', '11:10:00', '', 'K.002/AMANK2K3/CIANJUR/III/2019'),
+(1, 'Mulai', '09:10:00', 'asd', 'K.001/AMANK2K3/CIANJUR/III/2019'),
+(2, 'Mulai juga', '11:10:00', '', 'K.001/AMANK2K3/CIANJUR/III/2019'),
 (3, 'Mulai 1', '09:00:00', '', 'K.003/AMANK2K3/CIANJUR/III/2019'),
 (4, 'Mulai 2', '10:00:00', '', 'K.003/AMANK2K3/CIANJUR/III/2019');
 
@@ -672,6 +672,7 @@ CREATE TABLE `tb_users` (
   `nama_user` varchar(50) NOT NULL,
   `no_telp_user` char(15) NOT NULL,
   `lokasi` varchar(40) NOT NULL,
+  `ulp` varchar(50) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(100) NOT NULL,
   `ttd` varchar(40) NOT NULL,
@@ -685,13 +686,13 @@ CREATE TABLE `tb_users` (
 -- Dumping data for table `tb_users`
 --
 
-INSERT INTO `tb_users` (`kode_user`, `nama_user`, `no_telp_user`, `lokasi`, `username`, `password`, `ttd`, `tgl_input_user`, `last_modified`, `last_modified_user`, `kode_divisi`) VALUES
-('U0000', 'Admin', '089503800600', 'Kota', 'admin', 'admin', 'U0000.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '100'),
-('U0001', 'Riky Japutra', '081809661255', 'KOTA', 'riky', 'riky', 'U0001.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '1'),
-('U0002', 'Virgea Krismanda', '0821755517033', 'KOTA', 'virgea', 'virgea', 'U0002.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '2'),
-('U0003', 'Ainul Yaqin', '087742359100', 'KOTA', 'ainul', 'ainul', 'U0003.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '3'),
-('U0004', 'Andis Verinda Putra', '082232473311', 'KOTA', 'andis', 'andis', 'U0004.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '4'),
-('U0011', 'WIlly Setiawan', '089503800600', 'KOTA', 'willy', 'willy', 'U0011.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '1');
+INSERT INTO `tb_users` (`kode_user`, `nama_user`, `no_telp_user`, `lokasi`, `ulp`, `username`, `password`, `ttd`, `tgl_input_user`, `last_modified`, `last_modified_user`, `kode_divisi`) VALUES
+('U0000', 'Admin', '089503800600', 'Kota', 'CIANJUR', 'admin', 'admin', 'U0000.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '100'),
+('U0001', 'Riky Japutra', '081809661255', 'KOTA', 'CIANJUR', 'riky', 'riky', 'U0001.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '1'),
+('U0002', 'Virgea Krismanda', '0821755517033', 'KOTA', 'CIANJUR', 'virgea', 'virgea', 'U0002.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '2'),
+('U0003', 'Ainul Yaqin', '087742359100', 'KOTA', 'CIANJUR', 'ainul', 'ainul', 'U0003.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '3'),
+('U0004', 'Andis Verinda Putra', '082232473311', 'KOTA', 'CIANJUR', 'andis', 'andis', 'U0004.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '4'),
+('U0011', 'WIlly Setiawan', '089503800600', 'KOTA', 'CIANJUR', 'willy', 'willy', 'U0011.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '1');
 
 -- --------------------------------------------------------
 
@@ -714,113 +715,16 @@ CREATE TABLE `v_berkas_terakhir` (
 --
 DROP TABLE IF EXISTS `v_berkas_terakhir`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_berkas_terakhir`  AS  select `p`.`kode_project` AS `kode_project`,`b`.`kode_divisi` AS `kode_divisi`,`b`.`parent_divisi` AS `parent_divisi`,`p`.`kode_user` AS `kode_user`,`u`.`lokasi` AS `lokasi` from (`tb_berkas_terakhir` `b` join (`tb_project` `p` join `tb_users` `u` on((`p`.`kode_user` = `u`.`kode_user`))) on((`b`.`kode_project` = `p`.`kode_project`))) where (`b`.`parent_divisi` = '1') ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_berkas_terakhir`  AS  select `p`.`kode_project` AS `kode_project`,`b`.`kode_divisi` AS `kode_divisi`,`b`.`parent_divisi` AS `parent_divisi`,`p`.`kode_user` AS `kode_user`,`u`.`lokasi` AS `lokasi` from (`tb_berkas_terakhir` `b` join (`tb_project` `p` join `tb_users` `u` on((`p`.`kode_user` = `u`.`kode_user`))) on((`b`.`kode_project` = `p`.`kode_project`))) ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tb_approval`
---
-ALTER TABLE `tb_approval`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `kode_user` (`kode_user`),
-  ADD KEY `kode_project` (`kode_project`,`kode_user`) USING BTREE;
-
---
--- Indexes for table `tb_det_klasifikasi`
---
-ALTER TABLE `tb_det_klasifikasi`
-  ADD PRIMARY KEY (`kode_project`,`kode_klasifikasi_kerja`),
-  ADD KEY `kode_klasifikasi_kerja` (`kode_klasifikasi_kerja`);
-
---
--- Indexes for table `tb_det_lampiran_izin_kerja`
---
-ALTER TABLE `tb_det_lampiran_izin_kerja`
-  ADD PRIMARY KEY (`kode_project`,`kode_lampiran_izin_kerja`),
-  ADD KEY `kode_lampiran_izin_kerja` (`kode_lampiran_izin_kerja`);
-
---
--- Indexes for table `tb_det_pelaksana`
---
-ALTER TABLE `tb_det_pelaksana`
-  ADD PRIMARY KEY (`kode_pelaksana`,`kode_project`),
-  ADD KEY `kode_project` (`kode_project`);
-
---
--- Indexes for table `tb_det_project`
---
-ALTER TABLE `tb_det_project`
-  ADD PRIMARY KEY (`kode_project`,`kode_user`),
-  ADD KEY `kode_user` (`kode_user`);
-
---
--- Indexes for table `tb_det_prosedur_kerja`
---
-ALTER TABLE `tb_det_prosedur_kerja`
-  ADD PRIMARY KEY (`kode_project`,`kode_prosedur_kerja`),
-  ADD KEY `kode_prosedur_kerja` (`kode_prosedur_kerja`);
-
---
 -- Indexes for table `tb_det_uraian_pekerjaan`
 --
 ALTER TABLE `tb_det_uraian_pekerjaan`
-  ADD PRIMARY KEY (`kode_uraian_pekerjaan`,`kode_project`);
-
---
--- Indexes for table `tb_divisi`
---
-ALTER TABLE `tb_divisi`
-  ADD PRIMARY KEY (`kode_divisi`);
-
---
--- Indexes for table `tb_lampiran_izin_kerja`
---
-ALTER TABLE `tb_lampiran_izin_kerja`
-  ADD PRIMARY KEY (`kode_lampiran_izin_kerja`);
-
---
--- Indexes for table `tb_pelaksana`
---
-ALTER TABLE `tb_pelaksana`
-  ADD PRIMARY KEY (`kode_pelaksana`);
-
---
--- Indexes for table `tb_pelaksana_pekerja`
---
-ALTER TABLE `tb_pelaksana_pekerja`
-  ADD PRIMARY KEY (`kode_pelaksana_pekerja`);
-
---
--- Indexes for table `tb_peralatan_kerja`
---
-ALTER TABLE `tb_peralatan_kerja`
-  ADD PRIMARY KEY (`kode_peralatan_kerja`);
-
---
--- Indexes for table `tb_project`
---
-ALTER TABLE `tb_project`
-  ADD PRIMARY KEY (`kode_project`);
-
---
--- Indexes for table `tb_temp_pekerja`
---
-ALTER TABLE `tb_temp_pekerja`
-  ADD PRIMARY KEY (`kode_project`,`kode_user`);
-
---
--- Indexes for table `tb_temp_pelaksana`
---
-ALTER TABLE `tb_temp_pelaksana`
-  ADD PRIMARY KEY (`kode_pelaksana`,`kode_project`);
-
---
--- Indexes for table `tb_temp_uraian_pekerjaan`
---
-ALTER TABLE `tb_temp_uraian_pekerjaan`
   ADD PRIMARY KEY (`kode_uraian_pekerjaan`);
 
 --
@@ -828,31 +732,7 @@ ALTER TABLE `tb_temp_uraian_pekerjaan`
 --
 ALTER TABLE `tb_users`
   ADD PRIMARY KEY (`kode_user`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tb_approval`
---
-ALTER TABLE `tb_approval`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `tb_det_pelaksana`
---
-ALTER TABLE `tb_det_pelaksana`
-  MODIFY `kode_pelaksana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `tb_det_uraian_pekerjaan`
---
-ALTER TABLE `tb_det_uraian_pekerjaan`
-  MODIFY `kode_uraian_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `tb_temp_uraian_pekerjaan`
---
-ALTER TABLE `tb_temp_uraian_pekerjaan`
-  MODIFY `kode_uraian_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;COMMIT;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
