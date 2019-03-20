@@ -14,6 +14,16 @@ class Index_model extends CI_Model
 		return $query->result_array();
 
 	}
+	function get_data_project($lokasi){
+
+		$this->db->select('*');
+		$this->db->from('tb_project');
+		$this->db->join('tb_users','tb_users.kode_user = tb_project.kode_user');
+        $this->db->where('tb_project.status!=','finish');
+		$this->db->where('lokasi',$lokasi);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
 }
 
