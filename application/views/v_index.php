@@ -145,56 +145,65 @@
                                 
                                 <ul class="timelinemini">
                                     <li class="timelinemini-inverted">
-                                        <div class="timelinemini-badge info">1</div>
+                                        <div class="timelinemini-badge info"><?php echo $berkas_staff; ?></div>
                                         <div class="timelinemini-panel">
                                             <div class="timelinemini-heading">
-                                                <h5 class="timelinemini-title"><b>PPK3U ULP</b> (Virgea)</h5>
-                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                                <h5 class="timelinemini-title"><b>Staff Teknisi ULP</b></h5>
+                                                <small class="text-muted"><?php echo $berkas_staff; ?> Berkas Menunggu Approval</small>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="timelinemini-inverted">
-                                        <div class="timelinemini-badge info">4</div>
+                                        <div class="timelinemini-badge info"><?php echo $berkas_k3; ?></div>
                                         <div class="timelinemini-panel">
                                             <div class="timelinemini-heading">
-                                                <h5 class="timelinemini-title"><b>SPV. ULP</b> (Ainul Yaqin)</h5>
-                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                                <h5 class="timelinemini-title"><b>PPK3U ULP</b></h5>
+                                                <small class="text-muted"><?php echo $berkas_k3; ?> Berkas Menunggu Approval</small>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="timelinemini-inverted">
-                                        <div class="timelinemini-badge info">1</div>
+                                        <div class="timelinemini-badge info"><?php echo $berkas_spvulp; ?></div>
                                         <div class="timelinemini-panel">
                                             <div class="timelinemini-heading">
-                                                <h5 class="timelinemini-title"><b>MULP</b> (Andis)</h5>
-                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                                <h5 class="timelinemini-title"><b>SPV. ULP</b></h5>
+                                                <small class="text-muted"><?php echo $berkas_spvulp; ?> Berkas Menunggu Approval</small>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="timelinemini-inverted">
-                                        <div class="timelinemini-badge info">1</div>
+                                        <div class="timelinemini-badge info"><?php echo $berkas_mulp; ?></div>
                                         <div class="timelinemini-panel">
                                             <div class="timelinemini-heading">
-                                                <h5 class="timelinemini-title"><b>SPV.HARJAR</b> (Willy Wilgan Setiawan)</h5>
-                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                                <h5 class="timelinemini-title"><b>MULP</b></h5>
+                                                <small class="text-muted"><?php echo $berkas_mulp; ?> Berkas Menunggu Approval</small>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="timelinemini-inverted">
-                                        <div class="timelinemini-badge info">1</div>
+                                        <div class="timelinemini-badge info"><?php echo $berkas_harjar; ?></div>
                                         <div class="timelinemini-panel">
                                             <div class="timelinemini-heading">
-                                                <h5 class="timelinemini-title"><b>SPV.OPOIST</b> (Rizki)</h5>
-                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                                <h5 class="timelinemini-title"><b>SPV.HARJAR</b></h5>
+                                                <small class="text-muted"><?php echo $berkas_harjar; ?> Berkas Menunggu Approval</small>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="timelinemini-inverted">
-                                        <div class="timelinemini-badge info">1</div>
+                                        <div class="timelinemini-badge info"><?php echo $berkas_opoist; ?></div>
                                         <div class="timelinemini-panel">
                                             <div class="timelinemini-heading">
-                                                <h5 class="timelinemini-title"><b>MB.JARINGAN</b> (Yusup)</h5>
-                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                                <h5 class="timelinemini-title"><b>SPV.OPOIST</b></h5>
+                                                <small class="text-muted"><?php echo $berkas_opoist; ?> Berkas Menunggu Approval</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="timelinemini-inverted">
+                                        <div class="timelinemini-badge info"><?php echo $berkas_mbjaringan; ?></div>
+                                        <div class="timelinemini-panel">
+                                            <div class="timelinemini-heading">
+                                                <h5 class="timelinemini-title"><b>MB.JARINGAN</b></h5>
+                                                <small class="text-muted"><?php echo $berkas_mbjaringan; ?> Berkas Menunggu Approval</small>
                                             </div>
                                         </div>
                                     </li>   
