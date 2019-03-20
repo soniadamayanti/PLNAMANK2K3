@@ -142,44 +142,63 @@
                                 <h6 class="card-subtitle">24 new support ticket request generate</h6>
                             </div>
                             <div class="comment-widgets">
-                                <!-- Comment Row -->
-                                <?php 
-                                $i =1;
-                                foreach ($history_project as $his): ?>
-                                <div class="d-flex flex-row comment-row">
-                                    <div class="p-2"><span class="round"><img src="<?php echo site_url(); ?>assets/images/users/2.jpg" alt="user" width="50"></span></div>
-                                    <div class="comment-text active w-100">
-                                        <h5><?php echo $his['kode_user'] ?></h5>
-                                        <b class="mb-1"><?php echo $his['kode_project'] ?></b>
-                                        <div class="comment-footer">
-                                            <span class="text-muted float-right"><?php echo substr($his['tgl'], 0,10) ?></span>
-                                                <?php 
-                                                if( $his['type'] == 'send'){
-                                                    echo '
-                                                    <span class="label label-light-info">
-                                                    Dikirim
-                                                    </span>';
-                                                }elseif($his['type'] == 'pending'){
-                                                    echo '
-                                                    <span class="label label-light-primary">
-                                                    Menunggu Approval
-                                                    </span>';
-                                                }elseif($his['type'] == 'approve'){
-                                                    echo '
-                                                    <span class="label label-light-success">
-                                                    Disetujui
-                                                    </span>';
-                                                }
-                                                 ?>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>  
-                                <?php 
-                                $i++;
-                                endforeach ?>
                                 
-                                </div>
+                                <ul class="timelinemini">
+                                    <li class="timelinemini-inverted">
+                                        <div class="timelinemini-badge info">1</div>
+                                        <div class="timelinemini-panel">
+                                            <div class="timelinemini-heading">
+                                                <h5 class="timelinemini-title"><b>PPK3U ULP</b> (Virgea)</h5>
+                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="timelinemini-inverted">
+                                        <div class="timelinemini-badge info">4</div>
+                                        <div class="timelinemini-panel">
+                                            <div class="timelinemini-heading">
+                                                <h5 class="timelinemini-title"><b>SPV. ULP</b> (Ainul Yaqin)</h5>
+                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="timelinemini-inverted">
+                                        <div class="timelinemini-badge info">1</div>
+                                        <div class="timelinemini-panel">
+                                            <div class="timelinemini-heading">
+                                                <h5 class="timelinemini-title"><b>MULP</b> (Andis)</h5>
+                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="timelinemini-inverted">
+                                        <div class="timelinemini-badge info">1</div>
+                                        <div class="timelinemini-panel">
+                                            <div class="timelinemini-heading">
+                                                <h5 class="timelinemini-title"><b>SPV.HARJAR</b> (Willy Wilgan Setiawan)</h5>
+                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="timelinemini-inverted">
+                                        <div class="timelinemini-badge info">1</div>
+                                        <div class="timelinemini-panel">
+                                            <div class="timelinemini-heading">
+                                                <h5 class="timelinemini-title"><b>SPV.OPOIST</b> (Rizki)</h5>
+                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="timelinemini-inverted">
+                                        <div class="timelinemini-badge info">1</div>
+                                        <div class="timelinemini-panel">
+                                            <div class="timelinemini-heading">
+                                                <h5 class="timelinemini-title"><b>MB.JARINGAN</b> (Yusup)</h5>
+                                                <small class="text-muted">1 Berkas Menunggu Approval</small>
+                                            </div>
+                                        </div>
+                                    </li>   
+                                </ul>
                             </div>
                         </div>
                     </div>
