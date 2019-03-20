@@ -30,10 +30,10 @@ foreach ($detail_project as $data_project) {
             </div>
             <div class="card-body">
                     <div class="form-body">
-                        <h4><b>PERMOHONAN PEMBEBASAN TEGANGAN</b> <span class="float-right" id="kode_project_view">K.001</span></h4>
+                        <h4><b>PERMOHONAN PEMBEBASAN TEGANGAN</b> <span class="float-right" id="kode_project_view"><?php echo  $a[0]['kode_project'] ?></span></h4>
                         <hr class="mt-0 mb-5">
-                        <input type="hidden" class="form-control" id="kode_project" value="">
-                        <input type="hidden" class="form-control" id="type" value=""> 
+                        <input type="hidden" class="form-control" id="kode_project" value="<?php echo  $a[0]['kode_project'] ?>">
+                        <input type="hidden" class="form-control" id="type" value="<?php echo  $this->uri->segment(3) ?>"> 
                     </div>
 
                         <div class="row">
@@ -75,7 +75,7 @@ foreach ($detail_project as $data_project) {
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Tegangan</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" id="tegangan" value="20 KV"> </div>
+                                        <input type="text" class="form-control" id="tegangan" value="20" disabled> </div>
                                 </div>
                             </div>
                             <!--/span-->
@@ -91,7 +91,7 @@ foreach ($detail_project as $data_project) {
                                             <?php foreach ($jenis_pekerjaan as $a): ?>
 
                                                 <option 
-                                                value="" 
+                                                value="<?php echo $a['kode_jenis_pekerjaan'] ?>" 
                                                     <?php echo (isset($data_project['kode_jenis_pekerjaan']) == $a['kode_jenis_pekerjaan'])? 'selected="selected"' : ""  ?>
                                                     ><?php echo $a['nama_jenis_pekerjaan'] ?></option>
                                             <?php endforeach ?>
@@ -172,7 +172,7 @@ foreach ($detail_project as $data_project) {
                                 <div class="col-md-8">
                                     
                                     <div class="table-responsive">
-                                        <table class="table" id="">
+                                        <table class="table" id="table_temp_pelaksana">
                                             <thead class="bg-info text-white">
                                                 <tr>
                                                     <th>Pelaksana</th>
@@ -198,7 +198,7 @@ foreach ($detail_project as $data_project) {
 	                                    <div class="row mb-3">
 	                                        <div class="col-md-10">
 	                                        	
-                                            	<select class="form-control custom-select" tabindex="1" id="kode_pelaksana">
+                                            	<select class="form-control custom-select" tabindex="1" id="kode_pekerja">
                                                     <?php 
                                                     foreach ($pelaksana as $data) {
                                                         echo "<option value='".$data['kode_pelaksana']."'>".$data['nama_pelaksana']."</option>";
@@ -208,7 +208,7 @@ foreach ($detail_project as $data_project) {
 	                                        </div>
 	                                        <div class="col-md-1">
 	                                            <div class="btn-group">
-	                                            <button type="button" id="btnTambahPelaksana" class="btn btn-info" aria-haspopup="true" aria-expanded="false">
+	                                            <button type="button" id="btnTambahPekerja" class="btn btn-info" aria-haspopup="true" aria-expanded="false">
 	                                                <i class="ti-plus"></i>
 	                                            </button>
 	                                            </div>
@@ -252,7 +252,7 @@ foreach ($detail_project as $data_project) {
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">Tanggal Pengajuan</label>
                                 <div class="col-md-8">
-                                    <input type="date" class="form-control" placeholder="dd-mm-yyyy" id="tgl_project" value="<?php echo date('Y-m-d'); ?>"></div>
+                                    <input type="date" class="form-control" placeholder="dd-mm-yyyy" id="tgl_pengajuan" value="<?php echo date('Y-m-d'); ?>"></div>
                             </div>
                         </div>
                         <!--/span-->
@@ -346,7 +346,7 @@ foreach ($detail_project as $data_project) {
                                 <div class="col-md-8">
                                     
                                     <div class="table-responsive">
-                                        <table class="table" id="">
+                                        <table class="table" id="table_temp_uraian_pekerjaan">
                                             <thead class="bg-info text-white">
                                                 <tr>
                                                     <th>Uraian Jadwal Pekerjaan</th>
