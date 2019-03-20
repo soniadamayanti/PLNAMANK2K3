@@ -76,6 +76,14 @@ class Database_model extends CI_Model
         $this->db->where('tb_det_pelaksana.kode_project',$kode);
         return $this->db->get();
 	}
+
+	function get_det_pekerja($kode){
+		$this->db->select('*');
+		$this->db->from('tb_pelaksana_pekerja');
+		$this->db->join('tb_det_pekerja','tb_det_pekerja.kode_user = tb_pelaksana_pekerja.kode_pelaksana_pekerja');
+        $this->db->where('tb_det_pekerja.kode_project',$kode);
+        return $this->db->get();
+	}
 	function update_project($kode_project,$data){
 		$this->db->where('kode_project',$kode_project);
 		$this->db->update('tb_project',$data);
@@ -83,6 +91,10 @@ class Database_model extends CI_Model
 	function delete($table,$where,$kode){
 		$this->db->where($where,$kode);
 		$this->db->delete($table);
+	}
+	function delete_detail($table,$data){
+		$this->db->where($data);
+		$this->db->delete($table);	
 	}
 	function detail_project($uniqid){
 		$this->db->select('*,SUBSTR(tb_project.tgl_pelaksanaan,1,10) as tgl,DATE_FORMAT(tgl_approval,"%d, %M %Y") as tgl_approval,DATE_FORMAT(tgl_pelaksanaan,"%d %M %Y") as tgl_pelaksanaan,DATE_FORMAT(tgl_pelaksanaan,"%d %M %Y") as tgl_pelaksanaan,DATE_FORMAT(tgl_pelaksanaan,"%H:%i") as jam_pelaksanaan,DATE_FORMAT(tgl_selesai,"%d %M %Y") as tgl_selesai,DATE_FORMAT(tgl_pelaksanaan,"%H:%i") as jam_selesai');

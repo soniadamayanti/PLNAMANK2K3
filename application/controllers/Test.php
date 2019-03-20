@@ -40,6 +40,7 @@ class Test extends CI_Controller
 		$data['new'] = "
 	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
 	    ";
+		$data['pelaksana_pekerja'] = $this->database_model->get('tb_pelaksana_pekerja');
 		$data['atasan'] = $this->database_model->get_atasan($where_atasan);
 		$data['pengawas_k3'] = $this->database_model->get_atasan($where_pengawas_k3);
 	    $data['perlindungan'] =$this->database_model->get_where('tb_peralatan_kerja',$wpk1);
@@ -79,12 +80,16 @@ class Test extends CI_Controller
 			'kode_pelaksana' => $kode_pelaksana,
 			'kode_project' => $kode_project
 		);
-		$a['temp_pelaksana'] = $this->database_model->get_det_pelaksana($kode_project)->result();
-		if (count($a['temp_pelaksana']) > 0 ) {
-			$this->database_model->insert('tb_det_pelaksana',$data);
-		}else{
-			$this->database_model->insert('tb_temp_pelaksana',$data);	
-		}
+		$this->database_model->insert('tb_det_pelaksana',$data);
+	}
+	function insert_det_pekerja(){
+		$kode_project = $this->input->post('kode_project');
+		$kode_pekerja = $this->input->post('kode_pekerja');
+		$data = array(
+			'kode_user' => $kode_pekerja,
+			'kode_project' => $kode_project
+		);
+		$this->database_model->insert('tb_det_pekerja',$data);
 	}
 	function insert_temp_uraian_pekerjaan(){
 		$uraian_pekerjaan = $this->input->post('uraian_pekerjaan');
@@ -102,10 +107,8 @@ class Test extends CI_Controller
 			echo "Something wrong : Project code is null (ER001)";
 		}else if (is_null($uraian_pekerjaan) || is_null($jam)) {
 			echo "Something wrong : Field must be not null (ER002)";
-		}else if (count($data['temp_pelaksana']) > 0){
-			$this->database_model->insert('tb_det_uraian_pekerjaan',$data_uraian);
 		}else{
-			$this->database_model->insert('tb_temp_uraian_pekerjaan',$data_uraian);	
+			$this->database_model->insert('tb_det_uraian_pekerjaan',$data_uraian);
 		}	
 	}
 	function insert_temp_pekerja(){
@@ -119,107 +122,103 @@ class Test extends CI_Controller
 			'kode_project' => $kode_project
 		);
 		$cek = $this->database_model->get_where('tb_pekerja',$where);
-		if ($cek > 0) {
-			$this->database_model->insert('tb_pekerja',$value);
-		}else{
-			$this->database_model->insert('tb_temp_pekerja',$value);
-		}
+		$this->database_model->insert('tb_pekerja',$value);
 	}
 	function update_project(){
-		$kode_project = $this->input->post('kode_project');
-		$tgl = date('Y-m-d H:i:s');
-		$tegangan = $this->input->post('tegangan');
-		$tgl_project = $this->input->post('tgl_project');
-		$tgl_pengajuan = $this->input->post('tgl_pengajuan');
-		$alamat_project = $this->input->post('alamat_project');
-		$jumlah_tenaga_kerja = $this->input->post('jml_tenaga_kerja');
-		$material = $this->input->post('material');
-		$tgl_mulai = $this->input->post('tgl_mulai');
-		$tgl_selesai = $this->input->post('tgl_selesai');
-		$jam_mulai = $this->input->post('jam_mulai');
-		$jam_selesai = $this->input->post('jam_selesai');
-		$tgl_selesai_fix = $tgl_selesai." ".$jam_selesai.":00";
-		$tgl_mulai_fix = $tgl_mulai." ".$jam_mulai.":00";
-		$peralatan_kerja = $this->input->post('peralatan_kerja');
-		$gardu = $this->input->post('gardu');
-		$nama_penyulang = $this->input->post('nama_penyulang');
-		$kode_jenis_pekerjaan = $this->input->post('kode_jenis_pekerjaan');
-		$kode_line = $this->input->post('kode_line');
-		$klasifikasi_kerja = $this->input->post('klasifikasi');
-		$prosedur_kerja = $this->input->post('prosedur_kerja');
-		$lampiran_izin = $this->input->post('lampiran_izin');
+
+		$kode_project = $this->input->post('kode_project'); 
+		$tegangan = $this->input->post('tegangan'); 
+		$kode_jenis_pekerjaan = $this->input->post('kode_jenis_pekerjaan'); 
+		$material = $this->input->post('material'); 
+		$alamat_project = $this->input->post('alamat_project'); 
+		$tgl_pengajuan = $this->input->post('tgl_pengajuan'); 
+		$tgl_mulai = $this->input->post('tgl_mulai'); 
+		$tgl_selesai = $this->input->post('tgl_selesai'); 
+		$jam_mulai = $this->input->post('jam_mulai'); 
+		$jam_selesai = $this->input->post('jam_selesai'); 
+		$jml_tenaga_kerja = $this->input->post('jml_tenaga_kerja'); 
+		$peralatan_kerja = $this->input->post('peralatan_kerja'); 
+		$gardu = $this->input->post('gardu'); 
+		$kode_line = $this->input->post('kode_line'); 
+		$lampiran_izin = $this->input->post('lampiran_izin'); 
+		$klasifikasi = $this->input->post('klasifikasi'); 
+		$prosedur_kerja = $this->input->post('prosedur_kerja'); 
+		$perlindungan = $this->input->post('perlindungan'); 
+		$keselamatan = $this->input->post('keselamatan'); 
+		$mulai_fix = $tgl_mulai. " ".$jam_mulai.":00";
+		$selesai_fix = $tgl_selesai. " ".$jam_selesai.":00";
 		$data_project = array(
 			'kode_jenis_pekerjaan' => $kode_jenis_pekerjaan,
-			'tgl_project' => $tgl,
+			'tgl_project' => date('Y-m-d H:i:s'),
 			'tgl_pengajuan' => $tgl_pengajuan,
-			'tgl_pelaksanaan' => $tgl_project,
+			'tgl_pelaksanaan' => $mulai_fix,
+			'tgl_selesai' => $selesai_fix,
 			'tegangan' => $tegangan,
 			'alamat_project' => $alamat_project,
-			'jml_tenaga_kerja' => $jumlah_tenaga_kerja,
+			'jml_tenaga_kerja' => 0,
 			'material' => $material,
 			'peralatan_kerja' => $peralatan_kerja,
 			'gardu'=> $gardu,
 			'kode_line'=> $kode_line,
-			'last_modified' => $tgl,
+			'last_modified' => date('Y-m-d H:i:s'),
 			'last_modified_user' => $this->session->userdata('kode_user')
 		);
 		$this->database_model->update_project($kode_project,$data_project);
-		$where = array(
-			'kode_project' =>$kode_project
+		$berkas_terakhir = array(
+			'kode_project' => $kode_project,
+			'kode_divisi' => $this->session->userdata('kode_divisi'),
+			'parent_divisi' => $this->session->userdata('parent_divisi'),
+			'tgl' => date('Y-m-d H:i:s')
 		);
-		$data['temp_pelaksana'] = $this->database_model->get_where('tb_temp_pelaksana',$where);
-		foreach ($data['temp_pelaksana'] as $a) {
-			$array = array(
-				'kode_pelaksana' => $a['kode_pelaksana'],
-				'kode_project' => $a['kode_project']
-			);
-			$this->database_model->insert('tb_det_pelaksana',$array);
-			$this->database_model->delete('tb_temp_pelaksana','kode_project',$kode_project);
+		$this->database_model->insert('tb_berkas_terakhir',$berkas_terakhir);
+		if (isset($klasifikasi)) {
+			foreach ($klasifikasi as $data) {
+				$array = array(
+					'kode_project' => $kode_project,
+					'kode_klasifikasi_kerja' => $data
+				);
+				$this->database_model->insert('tb_det_klasifikasi',$array);
+			}	
 		}
-		$data['temp_pekerja'] = $this->database_model->get_where('tb_temp_pekerja',$where);
-		foreach ($data['temp_pekerja'] as $a) {
-			$array = array(
-				'kode_user' => $a['kode_user'],
-				'kode_project' => $a['kode_project']
-			);
-			$this->database_model->insert('tb_pekerja',$array);
-			$this->database_model->delete('tb_temp_pekerja','kode_project',$kode_project);
+		if (isset($prosedur_kerja)) {
+			foreach ($prosedur_kerja as $data) {
+				$array = array(
+					'kode_project' => $kode_project,
+					'kode_prosedur_kerja' => $data
+				);
+				$this->database_model->insert('tb_det_prosedur_kerja',$array);
+			}
 		}
-		$data['temp_uraian_pekerjaan'] = $this->database_model->get_where('tb_temp_uraian_pekerjaan',$where);
-		foreach ($data['temp_uraian_pekerjaan'] as $a) {
-			$array = array(
-				'kode_uraian_pekerjaan' => $a['kode_uraian_pekerjaan'],
-				'uraian_pekerjaan' => $a['uraian_pekerjaan'],
-				'jam' => $a['jam'],
-				'keterangan' => $a['keterangan'],
-				'kode_project' => $a['kode_project'],
-			);
-			$this->database_model->insert('tb_det_uraian_pekerjaan',$array);
-			$this->database_model->delete('tb_temp_uraian_pekerjaan','kode_project',$kode_project);
+		if (isset($lampiran_izin)) {
+			foreach ($lampiran_izin as $data) {
+				$array = array(
+					'kode_project' => $kode_project,
+					'kode_lampiran_izin_kerja' => $data
+				);
+				$this->database_model->insert('tb_det_lampiran_izin_kerja',$array);
+			}
 		}
-
-
-		foreach ($klasifikasi_kerja as $data) {
-			$array = array(
-				'kode_project' => $kode_project,
-				'kode_klasifikasi_kerja' => $data
-			);
-			$this->database_model->insert('tb_det_klasifikasi',$array);
+		if (isset($perlindungan)) {
+			foreach ($perlindungan as $data) {
+				$array = array(
+					'kode_project' => $kode_project,
+					'kode_peralatan_kerja' => $data
+				);
+				$this->database_model->insert('tb_det_peralatan_kerja',$array);
+			}
+		}if (isset($keselamatan)) {
+			
+			foreach ($keselamatan as $data) {
+				$array = array(
+					'kode_project' => $kode_project,
+					'kode_peralatan_kerja' => $data
+				);
+				$this->database_model->insert('tb_det_peralatan_kerja',$array);
+			}
 		}
-		foreach ($prosedur_kerja as $data) {
-			$array = array(
-				'kode_project' => $kode_project,
-				'kode_prosedur_kerja' => $data
-			);
-			$this->database_model->insert('tb_det_prosedur_kerja',$array);
-		}
-		foreach ($lampiran_izin as $data) {
-			$array = array(
-				'kode_project' => $kode_project,
-				'kode_lampiran_izin_kerja' => $data
-			);
-			$this->database_model->insert('tb_det_lampiran_izin_kerja',$array);
-		}
+		
+		
+		echo 1;
 	}
 	function insert_project($jenis){
 		$kota = "CIANJUR";
@@ -281,7 +280,9 @@ class Test extends CI_Controller
         $data_approval = array(
 				'id' => '',
 				'kode_project' => $kode_project,
-				'kode_user'=> $this->session->userdata('kode_user')
+				'kode_user'=> $this->session->userdata('kode_user'),
+				'tgl' => date('Y-m-d H:i:s'),
+				'type'=> 'new'
 			);
 			$this->database_model->insert('tb_approval',$data_approval);
 		$get_ttd = array(
@@ -318,21 +319,11 @@ class Test extends CI_Controller
           foreach ($data['temp_pekerjaan'] as $b) {
           	$uraian_pekerjaan[] = $b;
           }
-          $data['temp_pelaksana'] = $this->database_model->get_det_pelaksana($uraian_pekerjaan[0]['kode_project'])->result();
-
-
-          if (count($data['temp_pelaksana']) > 0) {
-          	$query = $this->database_model->get_det_pelaksana($uraian_pekerjaan[0]['kode_project']);
-          }else {
-          	$query = $this->database_model->get_temp_pelaksana($uraian_pekerjaan[0]['kode_project']);
-          }
-          
+		$query = $this->database_model->get_det_pelaksana($uraian_pekerjaan[0]['kode_project']);  
           $data = array();
           foreach($query->result() as $r) {
-          	$button = '
-	          <button type="button" class="btn waves-effect waves-light btn-danger"><i class="mdi mdi-delete"></i></button>
+          	$button = '<button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.'" kode_pelaksana="'.$r->kode_pelaksana.'"><i class="mdi mdi-delete"></i></button>
           	';
-
             $data[] = array(
                 $r->nama_pelaksana,
                 $button
@@ -362,18 +353,12 @@ class Test extends CI_Controller
           foreach ($c['temp_pekerjaan'] as $b) {
           	$uraian_pekerjaan[] = $b;
           }
-          $c['temp_pelaksana'] = $this->database_model->get_det_uraian($uraian_pekerjaan[0]['kode_project'])->result();
-
-          if (count($c['temp_pelaksana']) > 0) {
-          	$query = $this->database_model->get_det_uraian($uraian_pekerjaan[0]['kode_project']);
-          }else {
-          	$query = $this->database_model->get_temp_uraian($uraian_pekerjaan[0]['kode_project']);
-          }
+          $query = $this->database_model->get_det_uraian($uraian_pekerjaan[0]['kode_project']);
           $data = array();
+          
           foreach($query->result() as $r) {
           	$button = '
-	          
-	          <button type="button" class="btn waves-effect waves-light btn-danger"><i class="mdi mdi-delete"></i></button>
+	          <button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.' kode_uraian_pekerjaan="'.$r->kode_uraian_pekerjaan.'"><i class="mdi mdi-delete"></i></button>
           	';
 
             $data[] = array(
@@ -393,6 +378,90 @@ class Test extends CI_Controller
             );
           echo json_encode($output);
           exit();
+	}
+	function get_temp_pekerja(){
+		// Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+          $where = array(
+          	'uniqid' => $this->uri->segment(3)
+          );
+          $c['perkerja'] = $this->database_model->get_where('tb_project',$where);
+          $uraian_pekerjaan = array();
+          foreach ($c['perkerja'] as $b) {
+          	$uraian_pekerjaan[] = $b;
+          }
+          $query = $this->database_model->get_det_pekerja($uraian_pekerjaan[0]['kode_project']);
+          $data = array();
+          foreach($query->result() as $r) {
+          	$button = '
+	          <button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.' kode_user="'.$r->kode_user.'"><i class="mdi mdi-delete"></i></button>
+          	';
+
+            $data[] = array(
+                $r->nama_pelaksana_pekerja,
+                $button
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => $query->num_rows(),
+                 "bPaginate"=> false,
+                 "recordsFiltered" => $query->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+	}
+	function get_checked_klasifikasi(){
+		$where = array(
+			'kode_project' => $this->input->post('kode_project')
+		);
+		$data['data_klasifikasi'] = $this->database_model->get_where('tb_det_klasifikasi',$where);
+		$data_klasifikasi = array();
+		foreach ($data['data_klasifikasi'] as $r) {
+			$data_klasifikasi[] = $r['kode_klasifikasi_kerja'];
+		}
+
+		echo json_encode($data_klasifikasi);
+	}
+	function get_checked_prosedur(){
+		$where = array(
+			'kode_project' => $this->input->post('kode_project')
+		);
+		$data['data_prosedur'] = $this->database_model->get_where('tb_det_prosedur_kerja',$where);
+		$data_prosedur = array();
+		foreach ($data['data_prosedur'] as $r) {
+			$data_prosedur[] = $r['kode_prosedur_kerja'];
+		}
+
+		echo json_encode($data_prosedur);
+	}
+	function get_checked_lampiran(){
+		$where = array(
+			'kode_project' => $this->input->post('kode_project')
+		);
+		$data['data_lampiran'] = $this->database_model->get_where('tb_det_lampiran_izin_kerja',$where);
+		$data_lampiran = array();
+		foreach ($data['data_lampiran'] as $r) {
+			$data_lampiran[] = $r['kode_lampiran_izin_kerja'];
+		}
+
+		echo json_encode($data_lampiran);
+	}
+	function get_checked_peralatan(){
+		$where = array(
+			'kode_project' => $this->input->post('kode_project')
+		);
+		$data['data_peralatan'] = $this->database_model->get_where('tb_det_peralatan_kerja',$where);
+		$data_peralatan = array();
+		foreach ($data['data_peralatan'] as $r) {
+			$data_peralatan[] = $r['kode_peralatan_kerja'];
+		}
+
+		echo json_encode($data_peralatan);
 	}		
 
 }

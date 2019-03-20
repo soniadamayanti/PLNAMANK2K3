@@ -200,8 +200,8 @@ foreach ($detail_project as $data_project) {
 	                                        	
                                             	<select class="form-control custom-select" tabindex="1" id="kode_pekerja">
                                                     <?php 
-                                                    foreach ($pelaksana as $data) {
-                                                        echo "<option value='".$data['kode_pelaksana']."'>".$data['nama_pelaksana']."</option>";
+                                                    foreach ($pelaksana_pekerja as $data) {
+                                                        echo "<option value='".$data['kode_pelaksana_pekerja']."'>".$data['nama_pelaksana_pekerja']."</option>";
                                                     }
                                                      ?>
                                                 </select>
@@ -227,7 +227,7 @@ foreach ($detail_project as $data_project) {
                                 <div class="col-md-8">
                                     
                                     <div class="table-responsive">
-                                        <table class="table" id="">
+                                        <table class="table" id="table_pekerja">
                                             <thead class="bg-info text-white">
                                                 <tr>
                                                     <th>Nama Tenaga Kerja</th>
@@ -429,8 +429,8 @@ foreach ($detail_project as $data_project) {
                                         <?php $i=0;foreach ($perlindungan as $data): ?>
                                             <div class="col-md-4">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input peralatan" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="perlindungan" id="p<?php echo $i; ?>">
-                                                    <label class="custom-control-label" for="p<?php echo $i; ?>"><?php echo $data['nama_peralatan_kerja'] ?></label>
+                                                    <input type="checkbox" class="custom-control-input peralatan" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="perlindungan" id="perl<?php echo $i; ?>">
+                                                    <label class="custom-control-label" for="perl<?php echo $i; ?>"><?php echo $data['nama_peralatan_kerja'] ?></label>
                                                 </div>
                                             </div>  
                                         <?php $i++;endforeach ?>
@@ -451,8 +451,8 @@ foreach ($detail_project as $data_project) {
                                             <?php $i=0;foreach ($keselamatan as $data): ?>
                                             <div class="col-md-4">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input peralatan" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="keselamatan" id="k<?php echo $i; ?>">
-                                                    <label class="custom-control-label" for="k<?php echo $i; ?>"><?php echo $data['nama_peralatan_kerja'] ?></label>
+                                                    <input type="checkbox" class="custom-control-input peralatan" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="keselamatan" id="ke<?php echo $i; ?>">
+                                                    <label class="custom-control-label" for="ke<?php echo $i; ?>"><?php echo $data['nama_peralatan_kerja'] ?></label>
                                                 </div>
                                             </div>  
                                         <?php $i++;endforeach ?>
@@ -471,8 +471,8 @@ foreach ($detail_project as $data_project) {
                                             <?php $i = 0;foreach ($klasifikasi_kerja as $klasifikasi): ?>
                                                 <div class="col-md-4">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input klasifikasi" id="k<?php echo $i ?>" name="klasifikasi" value="<?php echo $klasifikasi['kode_klasifikasi_kerja'] ?>">
-                                                        <label for="k<?php echo $i ?>" class="custom-control-label"><?php echo $klasifikasi['nama_klasifikasi_kerja'] ?></label>
+                                                        <input type="checkbox" class="custom-control-input klasifikasi" id="klas<?php echo $i ?>" name="klasifikasi" value="<?php echo $klasifikasi['kode_klasifikasi_kerja'] ?>">
+                                                        <label for="klas<?php echo $i ?>" class="custom-control-label"><?php echo $klasifikasi['nama_klasifikasi_kerja'] ?></label>
                                                     </div>
                                                 </div>
                                             <?php $i++;endforeach ?>
@@ -488,8 +488,8 @@ foreach ($detail_project as $data_project) {
                                             <?php $i=0;foreach ($prosedur_kerja as $prosedur_kerja): ?>
                                                 <div class="col-md-4">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input prosedur_kerja" name="prosedur_kerja" id="p<?php echo $i ?>" value="<?php echo $prosedur_kerja['kode_prosedur_kerja'] ?>">
-                                                    <label class="custom-control-label" for="p<?php echo $i ?>"><?php echo $prosedur_kerja['nama_prosedur_kerja'] ?></label>
+                                                    <input type="checkbox" class="custom-control-input prosedur_kerja" name="prosedur_kerja" id="pro<?php echo $i ?>" value="<?php echo $prosedur_kerja['kode_prosedur_kerja'] ?>">
+                                                    <label class="custom-control-label" for="pro<?php echo $i ?>"><?php echo $prosedur_kerja['nama_prosedur_kerja'] ?></label>
                                                 </div>
                                                 </div>   
                                             <?php $i++;endforeach ?>
@@ -505,26 +505,15 @@ foreach ($detail_project as $data_project) {
                                         <?php $i=0;foreach ($lampiran_izin_kerja as $lampiran_izin_kerja): ?>
                                             <div class="col-md-4">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input lampiran_izin" name="lampiran_izin" id="l<?php echo $i ?>" value="<?php echo $lampiran_izin_kerja['kode_lampiran_izin_kerja'] ?>">
-                                                    <label class="custom-control-label" for="l<?php echo $i ?>"><?php echo $lampiran_izin_kerja['nama_lampiran_izin_kerja'] ?></label>
+                                                    <input type="checkbox" class="custom-control-input lampiran_izin" name="lampiran_izin" id="lamp<?php echo $i ?>" value="<?php echo $lampiran_izin_kerja['kode_lampiran_izin_kerja'] ?>">
+                                                    <label class="custom-control-label" for="lamp<?php echo $i ?>"><?php echo $lampiran_izin_kerja['nama_lampiran_izin_kerja'] ?></label>
                                                 </div>
                                             </div>
                                         <?php $i++;endforeach ?>
                                     </div>
                                 </div>
                             </div>
-<!--                     <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-4 text-left col-form-label">Pelaksana Pembebasan</label>
-                                <div class="col-md-8">
-                                        <input type="text" class="form-control" value="PT. Mahiza Karya Mandiri dan ULP KOTA" disabled> 
-                                </div>
-                            </div>
-                        </div>
-                        <!--/span-->
-                    <!-- </div> -->
-                    <hr>
+                           <hr>
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-6">
