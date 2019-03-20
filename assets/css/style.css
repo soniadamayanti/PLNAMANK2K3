@@ -4045,6 +4045,138 @@ Timeline page
   margin-top: 5px; }
 
 /*******************
+Timelinemini page
+******************/
+.timelinemini {
+  position: relative;
+  padding: 20px 0 20px;
+  list-style: none;
+  max-width: 1200px;
+  margin: 0 auto; }
+
+.timelinemini:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 9%;
+  width: 3px;
+  margin-left: -1.5px;
+  background-color: #f2f7f8; }
+
+.timelinemini > li {
+  position: relative;
+  margin-bottom: 20px; }
+
+.timelinemini > li:before,
+.timelinemini > li:after {
+  content: " ";
+  display: table; }
+
+.timelinemini > li:after {
+  clear: both; }
+
+.timelinemini > li:before,
+.timelinemini > li:after {
+  content: " ";
+  display: table; }
+
+.timelinemini > li:after {
+  clear: both; }
+
+.timelinemini > li > .timelinemini-panel {
+  float: right;
+  position: relative;
+  padding: 15px;
+  left: 20%;
+  border: 1px solid rgba(120, 130, 140, 0.13);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05); }
+
+.timelinemini > li > .timelinemini-panel:before {
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  top: 26px;
+  right: -8px;
+  border-top: 8px solid transparent;
+  border-right: 0 solid rgba(120, 130, 140, 0.13);
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid rgba(120, 130, 140, 0.13); }
+
+.timelinemini > li > .timelinemini-panel:after {
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  top: 27px;
+  right: -7px;
+  border-top: 7px solid transparent;
+  border-right: 0 solid #ffffff;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #ffffff; }
+
+.timelinemini > li > .timelinemini-badge {
+  z-index: 10;
+  position: absolute;
+  top: 16px;
+  left: 10%;
+  width: 40px;
+  height: 40px;
+  margin-left: -25px;
+  border-radius: 50% 50% 50% 50%;
+  text-align: center;
+  font-size: 1.4em;
+  line-height: 40px;
+  color: #fff;
+  overflow: hidden; }
+
+.timelinemini > li.timelinemini-inverted > .timelinemini-panel {
+  float: left; }
+
+.timelinemini > li.timelinemini-inverted > .timelinemini-panel:before {
+  right: auto;
+  left: -8px;
+  border-right-width: 8px;
+  border-left-width: 0; }
+
+.timelinemini > li.timelinemini-inverted > .timelinemini-panel:after {
+  right: auto;
+  left: -7px;
+  border-right-width: 7px;
+  border-left-width: 0; }
+
+.timelinemini-badge.primary {
+  background-color: #7460ee; }
+
+.timelinemini-badge.success {
+  background-color: #55ce63; }
+
+.timelinemini-badge.warning {
+  background-color: #ffbc34; }
+
+.timelinemini-badge.danger {
+  background-color: #f62d51; }
+
+.timelinemini-badge.info {
+  background-color: #009efb; }
+
+.timelinemini-badge.secondary {
+  background-color: #54667a; }
+
+.timelinemini-title {
+  margin-top: 0;
+  color: inherit;
+  font-weight: 400; }
+
+.timelinemini-body > p,
+.timelinemini-body > ul {
+  margin-bottom: 0; }
+
+.timelinemini-body > p + p {
+  margin-top: 5px; }
+
+/*******************
 Horizontal Timeline page
 ******************/
 .cd-horizontal-timeline .events a {
