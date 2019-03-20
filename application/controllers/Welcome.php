@@ -22,4 +22,41 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+	function get_project(){
+		// Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+          $where = array(
+          	'kode_user' => $this->session->userdata('kode_user')
+          );
+          $project['data_project'] = $this->database_model->get_where('tb_project',$where);
+          $data = array();
+          foreach($project['data_project'] as $r) {
+          	$b['cek_approval'] = $this->database_model->cek_approval($r['kode_project'],4);
+          	if (count($b['cek_approval']) > 0) {
+          		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-info"');
+          	}else{
+          		// $button = "<a class='btn btn-info' disabled href='".base_url()."Download/printPDF/".$r['uniqid']."'>Print PDF</a>";
+          		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-secondary disabled" ');
+          	}
+          	
+            $data[] = array(
+                $r['kode_project'],
+                $r['tgl_project'],
+                $r['tgl_selesai'],
+                $button
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => count($project['data_project']),
+                 "bPaginate"=> false,
+                 "recordsFiltered" => count($project['data_project']),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+	}
 }
