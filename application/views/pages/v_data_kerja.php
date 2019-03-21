@@ -51,33 +51,37 @@
                             <td>
                                 <ul class="feeds">
                                     <li>
-                                        <i class="fa fa-circle mr-1 <?php echo ($data['kode_jenis_pekerjaan'] == '')? 'text-secondary' : 'text-success' ?>"></i> <a href="rencana/sop_pemadaman/<?php echo $data['uniqid'] ?>">SOP Pemdaman</a>
+                                        <i class="fa fa-circle mr-1 <?php echo ($data['kode_jenis_pekerjaan'] == '')? 'text-secondary' : 'text-success' ?>"></i> <a href="#?>">SOP Pemdaman</a>
                                     </li>
                                     <li>
-                                        <i class="fa fa-circle mr-1 <?php echo ($data['kode_line'] == '')? 'text-secondary' : 'text-success' ?>"></i> <a href="rencana/slp/<?php echo $data['uniqid'] ?>">SLP Penyulang</a>
+                                        <i class="fa fa-circle mr-1 <?php echo ($data['kode_line'] == '')? 'text-secondary' : 'text-success' ?>"></i> <a href="#">SLP Penyulang</a>
                                     </li>
                                     <li>
-                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/working_permit/<?php echo $data['uniqid'] ?>">Working Permit</a>
+                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="#">Working Permit</a>
                                     </li>
                                     <li>
-                                        <i class="fa fa-circle mr-1 text-secondary"></i> <a href="rencana/jsa/<?php echo $data['uniqid'] ?>">JSA</a>
+                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="#">JSA</a>
                                     </li>
                                     <li>
-                                        <i class="fa fa-circle mr-1 text-secondary"></i> <a href="rencana/hirarc/<?php echo $data['uniqid'] ?>">HIRARC</a>
+                                        <i class="fa fa-circle mr-1 text-success"></i> <a href="rencana/hirarc/<?php echo $data['uniqid'] ?>">HIRARC</a>
                                     </li>
                                 </ul>
                             </td>
                             <td class="txt-oflo">
-                            <span class="label label-warning">Belum Selesai</span></td>
+                            <span class="label label-warning"><?php echo $data['status'] ?></span></td>
                             <td class="txt-oflo"><?php echo $data['tgl_project'] ?></td>
                             <td class="txt-oflo">
                                 <?php 
                                 if ($this->session->userdata('kode_divisi') == 1) {
-                                 echo anchor('Rencana/approval/'.$data['uniqid'],'Kirim & TTD Rencana','class="btn btn-success"');  
+                                    if ($data['status'] == 'new') {
+                                        echo anchor('Rencana/approval/'.$data['uniqid'],'Kirim & TTD Rencana','class="btn btn-success"');  
                                     }else{
-                                         echo anchor('Rencana/tolak/'.$data['uniqid'],'Tolak','class="btn btn-danger"');    
-                                        echo anchor('Rencana/approval/'.$data['uniqid'],'Setuju & TTD','class="btn btn-info"'); 
+                                        echo anchor('#','Pending','class="btn btn-secondary disabled"');  
                                     }
+                                }else{
+                                     echo anchor('Rencana/tolak/'.$data['uniqid'],'Tolak','class="btn btn-danger"');    
+                                    echo anchor('Rencana/approval/'.$data['uniqid'],'Setuju & TTD','class="btn btn-info"'); 
+                                }
                                    ?>
                                 
                             </td>

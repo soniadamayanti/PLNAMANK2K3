@@ -43,9 +43,9 @@ class Database_model extends CI_Model
 		return $query->result_array();
 	}
 	function project_rencana($data){
-		$this->db->select('DISTINCT(tb_project.kode_project),tb_project.uniqid,tb_project.kode_jenis_pekerjaan,tb_project.kode_line,tb_project.tgl_project');
+		$this->db->select('*');
 		$this->db->from('tb_project');
-		$this->db->join('tb_status_project','tb_project.kode_project = tb_status_project.kode_project');
+		$this->db->join('tb_sld','tb_project.kode_line = tb_sld.kode_sld');
 		$this->db->where($data);
 		$query = $this->db->get();
 		return $query->result_array();
