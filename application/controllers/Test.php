@@ -63,6 +63,7 @@ class Test extends CI_Controller
 		$this->load->view('parts/menu', $data);
 		$this->load->view('pages/v_form_penyelesaian', $data);
 		$this->load->view('parts/footer', $data);
+	}
 
 	function hee(){
 		$kode_project = 'K.005/AMANK2K3/CIANJUR/III/2019';
