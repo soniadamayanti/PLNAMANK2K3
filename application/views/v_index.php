@@ -112,7 +112,6 @@
                                                 ?>
                                             </td>
                                             <td class="txt-oflo">
-
                                                 <?php
                                                         if( $data['status'] == 'new'){
                                                             echo '
