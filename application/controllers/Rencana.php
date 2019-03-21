@@ -454,8 +454,7 @@ class Rencana extends CI_Controller
           $start = intval($this->input->get("start"));
           $length = intval($this->input->get("length"));
           $where = array(
-          	'kode_user' => $this->session->userdata('kode_user'),
-          	'status' => 'success'
+          	'kode_user' => $this->session->userdata('kode_user')
           );
           $project['data_project'] = $this->database_model->get_where('tb_project',$where);
           $data = array();
@@ -465,7 +464,8 @@ class Rencana extends CI_Controller
           		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-info"');
           	}else{
           		// $button = "<a class='btn btn-info' disabled href='".base_url()."Download/printPDF/".$r['uniqid']."'>Print PDF</a>";
-          		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-info" ');
+          		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-secondary disabled" ').'<br><br>'.
+          		anchor('Rencana/penyelesaian/'.$r['uniqid'],'Penyelesaian','class="btn btn-success" ');
           	}
           	
             $data[] = array(
