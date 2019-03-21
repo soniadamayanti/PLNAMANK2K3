@@ -1,14 +1,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="card card-outline-info">
-            <div class="card-header">
-                <h4 class="mb-0 text-white">FORM PENYELESAIAN</h4>
-            </div>
-            <div class="card-body">
-
-            </div>
-        </div>
+        
     </div>
     <div class="col-lg-12">
         <div class="table-responsive">
