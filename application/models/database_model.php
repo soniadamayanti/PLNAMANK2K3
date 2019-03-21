@@ -33,9 +33,21 @@ class Database_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+	function update($table,$data,$where){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
 	function cek_data(){
 		$this->db->where($data);
 		$query = $this->db->get($table);
+		return $query->result_array();
+	}
+	function project_rencana($data){
+		$this->db->select('*');
+		$this->db->from('tb_project');
+		$this->db->join('tb_status_project','tb_project.kode_project = tb_status_project.kode_project');
+		$this->db->where($data);
+		$query = $this->db->get();
 		return $query->result_array();
 	}
 	function get_atasan($data){
