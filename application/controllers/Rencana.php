@@ -668,14 +668,33 @@ class Rencana extends CI_Controller
 		}else{
 			$status = 'approve';
 		}
-		$berkas_terakhir = array(
-			'kode_project' => $kode,
-			'kode_divisi' => $this->session->userdata('kode_divisi'),
-			'parent_divisi' => $this->session->userdata('parent_divisi'),
-			'tgl' => date('Y-m-d H:i:s')
-		);
-		$this->database_model->insert('tb_berkas_terakhir',$berkas_terakhir);
-		
+		if ($this->session->userdata('kode_divisi') == 1) {
+			$berkas_terakhir = array(
+				'kode_project' => $kode,
+				'kode_divisi' => $this->session->userdata('kode_divisi'),
+				'parent_divisi' => $this->session->userdata('parent_divisi'),
+				'tgl' => date('Y-m-d H:i:s')
+			);
+			$this->database_model->insert('tb_berkas_terakhir',$berkas_terakhir);
+		}else{
+			$data['cek_berkas'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_project'=> $kode,'kode_user'=> $this->session->userdata('kode_user')));
+			if (count($data['cek_berkas']) == 0) {
+				$data['cek_ttd'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_project'=> $kode,'kode_divisi'=> $this->session->userdata('child_divisi')));
+				if (count($data['cek_ttd']) == 0) {
+					echo "Maaf anda belum bisa ttd saat ini sebelum yang dibawah ttd";
+				}else{
+					$berkas_terakhir = array(
+						'kode_project' => $kode,
+						'kode_divisi' => $this->session->userdata('kode_divisi'),
+						'parent_divisi' => $this->session->userdata('parent_divisi'),
+						'tgl' => date('Y-m-d H:i:s')
+					);
+					$this->database_model->insert('tb_berkas_terakhir',$berkas_terakhir);
+				}
+				
+			}
+		}
+
 		$data_approval = array(
 			'kode_project' => $kode,
 			'kode_user' => $this->session->userdata('kode_user'),
