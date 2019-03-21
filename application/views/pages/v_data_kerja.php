@@ -73,11 +73,9 @@
                             <td class="txt-oflo">
                                 <?php 
                                 if ($this->session->userdata('kode_divisi') == 1) {
-                                 ?>
-                                 <button type="button" class="btn btn-success" name="btnKirimRencanaKerja" id="btnKirimRencanaKerja" uniqid="<?php echo $data['uniqid'] ?>">Kirim & TTD Rencan Kerja</button>
-                                 <?php 
+                                 echo anchor('Rencana/approval/'.$data['uniqid'],'Kirim & TTD Rencana','class="btn btn-success"');  
                                     }else{
-
+                                         echo anchor('Rencana/tolak/'.$data['uniqid'],'Tolak','class="btn btn-danger"');    
                                         echo anchor('Rencana/approval/'.$data['uniqid'],'Setuju & TTD','class="btn btn-info"'); 
                                     }
                                    ?>
