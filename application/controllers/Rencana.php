@@ -12,7 +12,12 @@ class Rencana extends CI_Controller
 		$this->load->model('test_model');
 	}
 	function index(){
-		$data['data_project'] = $this->database_model->get('tb_project');
+		
+		$where_project = array(
+			'tb_status_project.kode_user' => $this->session->userdata('kode_user'),
+			'tb_status_project.status_project'=> 'pending'
+		);
+		$data['data_project'] = $this->database_model->project_rencana($where_project);
 		$data['jml_project'] = count($data['data_project']);
 		$where = array(
 			'kode_user' => $this->session->userdata('kode_user')
@@ -180,13 +185,7 @@ class Rencana extends CI_Controller
 			'last_modified_user' => $this->session->userdata('kode_user')
 		);
 		$this->database_model->update_project($kode_project,$data_project);
-		$berkas_terakhir = array(
-			'kode_project' => $kode_project,
-			'kode_divisi' => $this->session->userdata('kode_divisi'),
-			'parent_divisi' => $this->session->userdata('parent_divisi'),
-			'tgl' => date('Y-m-d H:i:s')
-		);
-		$this->database_model->insert('tb_berkas_terakhir',$berkas_terakhir);
+
 		if (isset($klasifikasi)) {
 			foreach ($klasifikasi as $data) {
 				$array = array(
@@ -292,6 +291,7 @@ class Rencana extends CI_Controller
         	'jenis_project' => $jenis,
         	'uniqid' => $uniqid 
         );
+        
         $this->database_model->insert('tb_project',$data);
         $data_approval = array(
 				'id' => '',
@@ -300,7 +300,7 @@ class Rencana extends CI_Controller
 				'tgl' => date('Y-m-d H:i:s'),
 				'type'=> 'new'
 			);
-			$this->database_model->insert('tb_approval',$data_approval);
+		$this->database_model->insert('tb_approval',$data_approval);
 		$get_ttd = array(
 			'lokasi' => $this->session->userdata('lokasi'),
 			'kode_divisi !=' =>$this->session->userdata('kode_divisi')
@@ -313,14 +313,41 @@ class Rencana extends CI_Controller
 			);
 			$this->database_model->insert('tb_det_project',$array);
 		}
-		$array_status = array(
+		$data['berkas'] = $this->database_model->get_where('tb_users',
+			array(
+				'lokasi'=>$this->session->userdata('lokasi'),
+				'kode_divisi >' => $this->session->userdata('kode_divisi') 
+			));
+		foreach ($data['berkas'] as $v) {
+			$array_status = array(
+				'kode_project'=> $kode_project,
+				'status_project' =>'pending',
+				'tgl' => date('Y-m-d H:i:s'),
+				'kode_user' => $v['kode_user']
+			);
+			$this->database_model->insert('tb_status_project',$array_status);
+		}
+		$data['berkas_atas'] = $this->database_model->get_where('tb_users',
+			array(
+				'lokasi'=>'ULP'
+			));
+		foreach ($data['berkas_atas'] as $b) {
+			$array_status = array(
+				'kode_project'=> $kode_project,
+				'status_project' =>'pending',
+				'tgl' => date('Y-m-d H:i:s'),
+				'kode_user' => $b['kode_user']
+			);
+			$this->database_model->insert('tb_status_project',$array_status);
+		}
+		$array_status_sendiri = array(
 				'kode_project'=> $kode_project,
 				'status_project' =>'pending',
 				'tgl' => date('Y-m-d H:i:s'),
 				'kode_user' => $this->session->userdata('kode_user')
 			);
-		$this->database_model->insert('tb_status_project',$array_status);
-        redirect('Test/sop_pemadaman/'.$uniqid);
+		$this->database_model->insert('tb_status_project',$array_status_sendiri);
+        redirect('Rencana/form/'.$uniqid);
 	}
 	function ditolak(){
 	    $data['new'] = "
@@ -389,52 +416,52 @@ class Rencana extends CI_Controller
           echo json_encode($output);
           exit();
 	}
-	function approval($uniqid){
-		$where_project = array(
-			'uniqid' => $uniqid
-		);
-		$data['project'] = $this->database_model->get_where('tb_project',$where_project);
-		foreach ($data['project'] as $data) {
-			$kode_project =  $data['kode_project'];
-		}
-		$where = array(
-			'kode_divisi' => $this->session->userdata('child_divisi')
-		);
-		$data['user'] = $this->database_model->get_where('tb_users',$where);
-		foreach ($data['user'] as $data) {
-			$kode =  $data['kode_user'];
-			$nama_divisi = $data['nama_user'];
-		}
-		$where_cari_user = array(
-			'kode_user' => $kode
-		);
-		$data['data_approval'] = $this->database_model->get_where('tb_approval',$where_cari_user);
-		if (count($data['data_approval']) == 0) {
-			echo $nama_user." belum menyetujui";
-		}else{
-			$data_approval = array(
-				'id' => '',
-				'kode_project' => $kode_project,
-				'kode_user'=> $this->session->userdata('kode_user')
-			);
-			$this->database_model->insert('tb_approval',$data_approval);
-			$array_status = array(
-				'kode_project'=> $kode_project,
-				'status_project' =>'approve',
-				'tgl' => date('Y-m-d H:i:s'),
-				'kode_user' => $this->session->userdata('kode_user')
-			);
-		$this->database_model->insert('tb_status_project',$array_status);
-		$data_berkas = array(
-			'kode_project' => $kode_project,
-			'kode_divisi' => $this->session->userdata('kode_divisi'),
-			'parent_divisi' => $this->session->userdata('parent_divisi'),
-			'tgl' => date('Y-m-d H:i:s')
-		);
-		$this->database_model->insert('tb_berkas_terakhir',$data_berkas);
-			echo 1;
-		}
-	}
+	// function approval($uniqid){
+	// 	$where_project = array(
+	// 		'uniqid' => $uniqid
+	// 	);
+	// 	$data['project'] = $this->database_model->get_where('tb_project',$where_project);
+	// 	foreach ($data['project'] as $data) {
+	// 		$kode_project =  $data['kode_project'];
+	// 	}
+	// 	$where = array(
+	// 		'kode_divisi' => $this->session->userdata('child_divisi')
+	// 	);
+	// 	$data['user'] = $this->database_model->get_where('tb_users',$where);
+	// 	foreach ($data['user'] as $data) {
+	// 		$kode =  $data['kode_user'];
+	// 		$nama_divisi = $data['nama_user'];
+	// 	}
+	// 	$where_cari_user = array(
+	// 		'kode_user' => $kode
+	// 	);
+	// 	$data['data_approval'] = $this->database_model->get_where('tb_approval',$where_cari_user);
+	// 	if (count($data['data_approval']) == 0) {
+	// 		echo $nama_user." belum menyetujui";
+	// 	}else{
+	// 		$data_approval = array(
+	// 			'id' => '',
+	// 			'kode_project' => $kode_project,
+	// 			'kode_user'=> $this->session->userdata('kode_user')
+	// 		);
+	// 		$this->database_model->insert('tb_approval',$data_approval);
+	// 		$array_status = array(
+	// 			'kode_project'=> $kode_project,
+	// 			'status_project' =>'approve',
+	// 			'tgl' => date('Y-m-d H:i:s'),
+	// 			'kode_user' => $this->session->userdata('kode_user')
+	// 		);
+	// 	$this->database_model->insert('tb_status_project',$array_status);
+	// 	$data_berkas = array(
+	// 		'kode_project' => $kode_project,
+	// 		'kode_divisi' => $this->session->userdata('kode_divisi'),
+	// 		'parent_divisi' => $this->session->userdata('parent_divisi'),
+	// 		'tgl' => date('Y-m-d H:i:s')
+	// 	);
+	// 	$this->database_model->insert('tb_berkas_terakhir',$data_berkas);
+	// 		echo 1;
+	// 	}
+	// }
 	function get_temp_pelaksaan(){
 		// Datatables Variables
           $draw = intval($this->input->get("draw"));
@@ -591,6 +618,48 @@ class Rencana extends CI_Controller
 		}
 
 		echo json_encode($data_peralatan);
+	}
+	function approval($uniq){
+		$where_project = array(
+			'uniqid' => $uniq
+		);
+		$data['project'] = $this->database_model->get_where('tb_project',$where_project);
+		foreach ($data['project'] as $a) {
+			$kode = $a['kode_project'];
+		}
+		if ($this->session->userdata('kode_divisi') ==1) {
+			$status = 'send';
+		}else{
+			$status = 'approve';
+		}
+		$berkas_terakhir = array(
+			'kode_project' => $kode,
+			'kode_divisi' => $this->session->userdata('kode_divisi'),
+			'parent_divisi' => $this->session->userdata('parent_divisi'),
+			'tgl' => date('Y-m-d H:i:s')
+		);
+		$this->database_model->insert('tb_berkas_terakhir',$berkas_terakhir);
+		
+		$data_approval = array(
+			'kode_project' => $kode,
+			'kode_user' => $this->session->userdata('kode_user'),
+			'type' => $status,
+			'tgl' => date('Y-m-d H:i:s')
+		);
+		$this->database_model->insert('tb_approval',$data_approval);
+		$data_project = array(
+			'status' => 'pending'
+		);
+		$this->database_model->update_project($kode,$data);
+		$where_user = array(
+			'user' => $this->session->userdata('kode_user'),
+			'kode_project' => $kode,
+		);
+		$data_status = array(
+			'status_project' => 'approve'
+		);
+		$this->database_model->update('tb_status_project',$data_status,$where_user);
+		redirect('Rencana');
 	}		
 
 }
