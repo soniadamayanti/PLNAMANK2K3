@@ -26,10 +26,11 @@ class Index extends CI_Controller
 		$data['project'] = $this->database_model->get_where('tb_project',$where);
 		$data['history_project'] = $this->index_model->get_history();
 		$data['pending']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="pending"')->num_rows();
-		$data['berjalan']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="berjalan"')->num_rows();
-		$data['selesai']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="selesai"')->num_rows();
-		$data['dibatalkan']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="dibatalkan"')->num_rows();
-		$data['ditolak']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="ditolak"')->num_rows();
+		$data['berjalan']=$this->db->query('SELECT s.kode_project,s.status_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="pending"')->num_rows();
+		$data['final']=$this->db->query('SELECT s.kode_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="final"')->num_rows();
+		$data['success']=$this->db->query('SELECT s.kode_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="success"')->num_rows();
+		$data['selesai'] = $data['success']+$data['final'];
+		$data['revisi']=$this->db->query('SELECT s.kode_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="revisi"')->num_rows();
 
 		$data['berkas_staff']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE parent_divisi="1" AND kode_user="'.$kode_user.'"')->num_rows();
 		$data['berkas_k3']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE parent_divisi="2" AND lokasi="'.$lokasi.'"')->num_rows();
@@ -44,7 +45,7 @@ class Index extends CI_Controller
 		$data['judul'] = "Dashboard";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', compact('data','headerbulan'));
-		$this->load->view('v_index',compact('data',''));
+		$this->load->view('v_index',compact('data','lokasi'));
 		$this->load->view('parts/footer', $data);
 	}
 }

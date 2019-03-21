@@ -32,8 +32,8 @@
                     <div class="col-md-6 col-lg-3 col-xlg-3">
                         <div class="card card-inverse card-warning">
                             <div class="box text-center">
-                                <h1 class="font-light text-white"><?php echo $ditolak; ?></h1>
-                                <h6 class="text-white">Di Tolak</h6>
+                                <h1 class="font-light text-white"><?php echo $revisi; ?></h1>
+                                <h6 class="text-white">Revisi</h6>
                             </div>
                         </div>
                     </div>
