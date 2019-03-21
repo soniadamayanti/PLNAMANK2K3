@@ -118,10 +118,10 @@
                             <div class="modal-body">
                                 <div class="row">
                                 <div class="col-lg-6 col-md-6">
-                                    <?php echo anchor('Test/insert_project/Preventif','Preventif','class="btn btn-block btn-lg btn-info"') ?>
+                                    <?php echo anchor('Rencana/insert_project/Preventif','Preventif','class="btn btn-block btn-lg btn-info"') ?>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
-                                    <?php echo anchor('Test/insert_project/Korektif','Korektif','class="btn btn-block btn-lg btn-success"') ?>
+                                    <?php echo anchor('Rencana/insert_project/Korektif','Korektif','class="btn btn-block btn-lg btn-success"') ?>
                                 </div>
                                 </div>
                             </div>
