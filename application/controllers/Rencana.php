@@ -677,7 +677,7 @@ class Rencana extends CI_Controller
 			);
 			$this->database_model->insert('tb_berkas_terakhir',$berkas_terakhir);
 		}else{
-			$data['cek_berkas'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_project'=> $kode,'kode_user'=> $this->session->userdata('kode_user')));
+			$data['cek_berkas'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_project'=> $kode,'kode_divisi'=> $this->session->userdata('kode_divisi')));
 			if (count($data['cek_berkas']) == 0) {
 				$data['cek_ttd'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_project'=> $kode,'kode_divisi'=> $this->session->userdata('child_divisi')));
 				if (count($data['cek_ttd']) == 0) {
@@ -705,9 +705,9 @@ class Rencana extends CI_Controller
 		$data_project = array(
 			'status' => 'pending'
 		);
-		$this->database_model->update_project($kode,$data);
+		$this->database_model->update_project($kode,$data_project);
 		$where_user = array(
-			'user' => $this->session->userdata('kode_user'),
+			'kode_user' => $this->session->userdata('kode_user'),
 			'kode_project' => $kode,
 		);
 		$data_status = array(
