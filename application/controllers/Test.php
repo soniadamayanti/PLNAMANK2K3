@@ -11,6 +11,36 @@ class Test extends CI_Controller
 		$this->load->model('database_model');
 		$this->load->model('test_model');
 	}
+	function hee(){
+		$kode_project = 'K.005/AMANK2K3/CIANJUR/III/2019';
+		$data['berkas'] = $this->database_model->get_where('tb_users',
+			array(
+				'lokasi'=>$this->session->userdata('lokasi'),
+				'kode_divisi >' => $this->session->userdata('kode_divisi') 
+			));
+		foreach ($data['berkas'] as $v) {
+			$array_status = array(
+				'kode_project'=> $kode_project,
+				'status_project' =>'pending',
+				'tgl' => date('Y-m-d H:i:s'),
+				'kode_user' => $v['kode_user']
+			);
+			$this->database_model->insert('tb_status_project',$array_status);
+		}
+		$data['berkas_atas'] = $this->database_model->get_where('tb_users',
+			array(
+				'lokasi'=>'ULP'
+			));
+		foreach ($data['berkas_atas'] as $b) {
+			$array_status = array(
+				'kode_project'=> $kode_project,
+				'status_project' =>'pending',
+				'tgl' => date('Y-m-d H:i:s'),
+				'kode_user' => $b['kode_user']
+			);
+			$this->database_model->insert('tb_status_project',$array_status);
+		}
+	}
 	function sop_pemadaman(){
 
 		
