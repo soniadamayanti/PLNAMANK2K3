@@ -13,12 +13,20 @@ class Laporan extends CI_Controller
 	}
 	function index(){
 	    $data['new'] = "
-	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
 	    ";
 		$data['judul'] = "";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', compact('data','headerbulan'));
 		$this->load->view('pages/v_lap_rekap_bulanan',compact('data','lokasi'));
+		$this->load->view('parts/footer', $data);
+	}
+	function pencapaian(){
+	    $data['new'] = "
+	    ";
+		$data['judul'] = "";
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', compact('data','headerbulan'));
+		$this->load->view('pages/v_lap_pencapaian',compact('data','lokasi'));
 		$this->load->view('parts/footer', $data);
 	}
 }

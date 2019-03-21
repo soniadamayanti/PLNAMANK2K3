@@ -25,18 +25,16 @@
                             <a href="<?php echo base_url() ?>index" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</a>
                         </li>
                         <li>
-                            <a class="has-arrow " href="<?php echo base_url() ?>rencana" aria-expanded="false" ><i class="mdi mdi-book"></i><span class="hide-menu">Rencana Kerja </span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="<?php echo base_url() ?>rencana">Data Pekerjaan <span class="label label-rounded label-primary">1</span></a></li>
-                                <li><a href="<?php echo base_url() ?>rencana/ditolak">Pekerjaan Ditolak <span class="label label-rounded label-warning">2</span></a></li>
-                                <li><a href="<?php echo base_url() ?>rencana/dibatalkan">Pembatalan Pekerjaan</a></li>
-                            </ul>
+                            <a class="" href="#" aria-expanded="false"><i class="mdi mdi-bookmark-remove"></i><span class="hide-menu">Pembatalan Pekerjaan</span></a>
                         </li>
                         <li>
-                            <a class="" href="#" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Rekap Bulanan</span></a>
+                            <a href="<?php echo base_url() ?>rencana" aria-expanded="false" ><i class="mdi mdi-book"></i><span class="hide-menu">Rencana Kerja </span></a>
                         </li>
                         <li>
-                            <a class="" href="#" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i><span class="hide-menu">Pencapaian Kinerja</span></a>
+                            <a class="" href="<?php echo base_url() ?>laporan" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Rekap Bulanan</span></a>
+                        </li>
+                        <li>
+                            <a class="" href="<?php echo base_url() ?>laporan/pencapaian" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i><span class="hide-menu">Pencapaian Kinerja</span></a>
                         </li>
                         <li>
                             <a class="" href="<?php echo base_url() ?>rencana/selesai" aria-expanded="false"><i class="mdi mdi-checkbox-multiple-marked-outline"></i><span class="hide-menu">Penyelesaian Pekerjaan</span></a>
@@ -87,59 +85,4 @@
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
 
-                <div class="row page-titles">
-                    <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0"><?php 
-                        echo $judul;
-                         ?></h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="javascript:void(0)"><?php echo anchor('Index','Home','class="breadcrumb-item"'); ?></a></li>
-                            <li class="breadcrumb-item active">
-                                <?php 
-                                    if ($this->uri->segment(2) == '') {
-                                        echo "";
-                                    }else
-                                    echo
-                                    anchor('Index/'.$this->uri->segment(2),
-                                    strtoupper(str_replace('_', ' ', $this->uri->segment(2))),'class="breadcrumb-item active"');
-                                ?> 
-                            </li>
-                        </ol>
-                    </div>
-                    <div class="col-md-6 col-4 align-self-center">
-                        <?php 
-                        echo $new;
-                         ?>
-                        
-                        <div class="dropdown float-right mr-2 hidden-sm-down">
-                            <button class="btn btn-secondary" type="button" aria-haspopup="true" aria-expanded="false"> <?php echo date('F Y');?> </button>
-                        </div>
-                    </div>
-                </div>
-                    
-                <div id="BuatRencanaKerja" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Buat Rencana Kerja</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <?php echo anchor('Rencana/insert_project/Preventif','Preventif','class="btn btn-block btn-lg btn-info"') ?>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <?php echo anchor('Rencana/insert_project/Korektif','Korektif','class="btn btn-block btn-lg btn-success"') ?>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
+                

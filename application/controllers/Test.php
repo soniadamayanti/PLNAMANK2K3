@@ -20,7 +20,6 @@ class Test extends CI_Controller
 		$data['project'] = $this->database_model->get_where('tb_project',$where);
 		$data['judul'] = "Penyelesaian Rencana";
 	    $data['new'] = "
-	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
 	    ";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -86,7 +85,6 @@ class Test extends CI_Controller
 		);
 		$data['kode_project'] = $this->database_model->get_where('tb_project',$wk);
 		$data['new'] = "
-	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
 	    ";
 		$data['pelaksana_pekerja'] = $this->database_model->get('tb_pelaksana_pekerja');
 		$data['atasan'] = $this->database_model->get_atasan($where_atasan);

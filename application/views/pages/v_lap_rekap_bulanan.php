@@ -8,8 +8,9 @@
                     <label class="control-label">KAB</label>
                     
                     <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                        <option value="Category 1">CIANJUR</option>
-                        <option value="Category 2">BOGOR</option>
+                        <option value="Category 1">KOTA</option>
+                        <option value="Category 2">CIPANAS</option>
+                        <option value="Category 2">KUTA</option>
                     </select>
                 </div>
             </div>
