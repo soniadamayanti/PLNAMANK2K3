@@ -3,33 +3,40 @@
                 <div class="row">
                     <!-- Column -->
                     <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <a href="<?php echo site_url(); ?>rencana">
                         <div class="card card-inverse card-inverse">
                             <div class="box bg-primary text-center">
                                 <h1 class="font-light text-white"><?php echo $pending; ?></h1>
                                 <h6 class="text-white">Pending</h6>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <!-- Column -->
                     <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <a href="<?php echo site_url(); ?>rencana">
                         <div class="card card-info card-info">
                             <div class="box text-center">
                                 <h1 class="font-light text-white"><?php echo $berjalan; ?></h1>
                                 <h6 class="text-white">Berjalan</h6>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <!-- Column -->
                     <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <a href="<?php echo site_url(); ?>rencana/selesai">
                         <div class="card card-inverse card-success">
                             <div class="box text-center">
                                 <h1 class="font-light text-white"><?php echo $selesai; ?></h1>
                                 <h6 class="text-white">Selesai</h6>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <!-- Column -->
                     <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <a href="<?php echo site_url(); ?>rencana">
                         <div class="card card-inverse card-warning">
                             <div class="box text-center">
                                 <h1 class="font-light text-white"><?php echo $revisi; ?></h1>
@@ -41,7 +48,7 @@
                 <!-- Row -->
                 <div class="row">
                     <!-- Column -->
-                    <div class="col-lg-7">
+                    <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex no-block">
@@ -118,33 +125,39 @@
                                                 ?>
                                             </td>
                                             <td class="txt-oflo">
-                                                <?php 
-                                                    $kode = $data['kode_project'] ;
-                                                    $sql = "SELECT * FROM tb_approval WHERE kode_project = '$kode' ORDER BY tgl DESC LIMIT 1";
-                                                    $result = $this->db->query($sql);
-                                                    foreach ($result->result() as $r) {
-                                                        if( $r->type == 'new'){
+
+                                                <?php
+                                                        if( $data['status'] == 'new'){
                                                             echo '
                                                             <span class="label label-light-warning">
                                                             Belum Selesai
                                                             </span>';
-                                                        }elseif($r->type == 'send'){
+                                                        }elseif($data['status'] == 'pending'){
                                                             echo '
                                                             <span class="label label-light-primary">
-                                                            Dikirim
+                                                            Pending
                                                             </span>';
-                                                        }elseif($r->type == 'pending'){
+                                                        }elseif($data['status'] == 'final'){
                                                             echo '
                                                             <span class="label label-light-primary">
-                                                            Menunggu Approval
+                                                            Penyelesaian
                                                             </span>';
-                                                        }elseif($r->type == 'approve'){
+                                                        }elseif($data['status'] == 'success'){
                                                             echo '
                                                             <span class="label label-light-success">
-                                                            Disetujui
+                                                            Selesai
+                                                            </span>';
+                                                        }elseif($data['status'] == 'revisi'){
+                                                            echo '
+                                                            <span class="label label-light-success">
+                                                            Revisi
+                                                            </span>';
+                                                        }elseif($data['status'] == 'cancel'){
+                                                            echo '
+                                                            <span class="label label-light-success">
+                                                            Dibatalkan
                                                             </span>';
                                                         }
-                                                    }
                                                 ?>
                                                     
                                                 </td>
@@ -160,13 +173,13 @@
                         </div>
                     </div>
                     <!-- Column -->
-                    <div class="col-lg-5">
+                    <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">History Approval</h4>
                                 <h6 class="card-subtitle">24 new support ticket request generate</h6>
                             </div>
-                            <div class="comment-widgets">
+                            <div class="comment-widgets" style="margin-left: 20px;">
                                 
                                 <ul class="timelinemini">
                                     <li class="timelinemini-inverted">

@@ -21,7 +21,7 @@ class Index extends CI_Controller
 		$where = array(
 			'kode_user' => $this->session->userdata('kode_user')
 		);
-		$data['data_project'] = $this->index_model->get_data_project($lokasi);
+		$data['data_project'] = $this->index_model->get_data_project_tidak($lokasi,'success');
 		$data['jml_project'] = count($data['data_project']);
 		$data['project'] = $this->database_model->get_where('tb_project',$where);
 		$data['history_project'] = $this->index_model->get_history();

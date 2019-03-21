@@ -14,7 +14,7 @@ class Download extends CI_Controller
         $data['judul'] = "Download";
         $this->load->view('d_rencana', $a);
     }
-    function penyelesaian(){
+    function printpenyelesaian(){
     $id = $this->uri->segment(3);
     $where = array(
       'uniqid' => $id

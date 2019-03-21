@@ -112,15 +112,15 @@ if (!isset($kode_user)) {
                     <!-- ============================================================== -->
                     <ul class="navbar-nav my-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo site_url(); ?>assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo site_url(); ?>assets/arsip/ttd/<?php echo $this->session->userdata('ttd') ?>" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="<?php echo site_url(); ?>assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-img"><img src="<?php echo site_url(); ?>assets/arsip/ttd/<?php echo $this->session->userdata('ttd') ?>" alt="user"></div>
                                             <div class="u-text">
                                                 <h4><?php echo $this->session->userdata('nama_user') ?></h4>
-                                                <p class="text-muted">Staf Teknisi ULP</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                                <p class="text-muted"><?php echo $this->session->userdata('nama_divisi') ?></p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
@@ -129,7 +129,9 @@ if (!isset($kode_user)) {
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li>
+                <?php echo anchor('Login/logout','<i class="fa fa-power-off"></i> Logout','class="link" data-toggle="tooltip" title="Logout"') ?>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

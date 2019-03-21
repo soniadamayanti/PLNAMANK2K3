@@ -11,7 +11,7 @@
                 <!-- User profile -->
                 <div class="user-profile">
                     <!-- User profile image -->
-                    <div class="profile-img"> <img src="<?php echo site_url(); ?>assets/images/users/1.jpg" alt="user" /> </div>
+                    <div class="profile-img"> <img src="<?php echo site_url(); ?>assets/arsip/ttd/<?php echo $this->session->userdata('ttd') ?>" alt="user" /> </div>
                     <!-- User profile text-->
                     <div class="profile-text"> <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><?php echo $this->session->userdata('nama_user') ?><span class="caret"></span></a>
                     </div>
@@ -93,8 +93,18 @@
                         echo $judul;
                          ?></h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo anchor('Index','Home','class="breadcrumb-item"'); ?></a></li>
-                            <li class="breadcrumb-item active"><?php echo anchor('Index/'.$this->uri->segment(2),strtoupper(str_replace('_', ' ', $this->uri->segment(2))),'class="breadcrumb-item active"'); ?></li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0)"><?php echo anchor('Index','Home','class="breadcrumb-item"'); ?></a></li>
+                            <li class="breadcrumb-item active">
+                                <?php 
+                                    if ($this->uri->segment(2) == '') {
+                                        echo "";
+                                    }else
+                                    echo
+                                    anchor('Index/'.$this->uri->segment(2),
+                                    strtoupper(str_replace('_', ' ', $this->uri->segment(2))),'class="breadcrumb-item active"');
+                                ?> 
+                            </li>
                         </ol>
                     </div>
                     <div class="col-md-6 col-4 align-self-center">
