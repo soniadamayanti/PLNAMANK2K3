@@ -15,7 +15,6 @@ class Index_model extends CI_Model
 
 	}
 	function get_data_project($lokasi, $status){
-
 		$this->db->select('*');
 		$this->db->from('tb_project');
 		$this->db->join('tb_users','tb_users.kode_user = tb_project.kode_user');
