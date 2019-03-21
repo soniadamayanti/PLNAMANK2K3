@@ -14,7 +14,9 @@ class Rencana extends CI_Controller
 	function index(){
 		$data['cek_berkas'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_divisi' => $this->session->userdata('child_divisi')));
 		if ($this->session->userdata('kode_divisi') == 1) {
-			$data['data_project'] = $this->database_model->get_where('tb_project',array('kode_user'=>$this->session->userdata('kode_user')));	
+			$data['data_project'] = $this->database_model->get_where('tb_project',array(
+				'kode_user'=>$this->session->userdata('kode_user'),
+				'status !=' => 'sukses'));	
 		}else{
 			$data['data_project'] = $this->database_model->get_where('tb_project',array('tb_project.status'=>'pending'));	
 		}
@@ -692,24 +694,30 @@ class Rencana extends CI_Controller
 			if (count($data['cek_ttd']) == 0) {
 				echo "Anda belum bisa ttd";
 			}else{
-				$array_berkas_terakhir = array(
-					'kode_project' => $kode,
-					'kode_divisi' => $this->session->userdata('kode_divisi'),
-					'parent_divisi' => $this->session->userdata('parent_divisi'),
-					'tgl' => date('Y-m-d H:i:s')
-				);
-				$array_approval = array(
-					'kode_project' => $kode,
-					'kode_user' => $this->session->userdata('kode_user'),
-					'type' => 'approve',
-					'tgl' => date('Y-m-d H:i:s')
-				);
-				$array_status_project = array(
-					'status_project' => 'approve'
-				);
-				$this->database_model->insert('tb_berkas_terakhir',$array_berkas_terakhir);
-				$this->database_model->insert('tb_approval',$array_approval);
-				$this->database_model->update('tb_status_project',$array_status_project,array('kode_project' => $kode, 'kode_user' => $this->session->userdata('kode_user')));
+				$data['cek_ttd_anda'] = $this->database_model->get_where('tb_approval',array('kode_project' => $kode, 'kode_user' => $this->session->userdata('kode_user')));
+				if ($data['cek_ttd_anda'] == 1) {
+					echo "Anda sudah menyetujui berkas ini";
+				}else{
+					$array_berkas_terakhir = array(
+						'kode_project' => $kode,
+						'kode_divisi' => $this->session->userdata('kode_divisi'),
+						'parent_divisi' => $this->session->userdata('parent_divisi'),
+						'tgl' => date('Y-m-d H:i:s')
+					);
+					$array_approval = array(
+						'kode_project' => $kode,
+						'kode_user' => $this->session->userdata('kode_user'),
+						'type' => 'approve',
+						'tgl' => date('Y-m-d H:i:s')
+					);
+					$array_status_project = array(
+						'status_project' => 'approve'
+					);
+					$this->database_model->insert('tb_berkas_terakhir',$array_berkas_terakhir);
+					$this->database_model->insert('tb_approval',$array_approval);
+					$this->database_model->update('tb_status_project',$array_status_project,array('kode_project' => $kode, 'kode_user' => $this->session->userdata('kode_user')));
+				}
+				
 			}
 		}
 		redirect('Rencana');
