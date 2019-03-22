@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Mar 2019 pada 19.07
+-- Waktu pembuatan: 22 Mar 2019 pada 17.14
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.2.12
 
@@ -381,6 +381,24 @@ INSERT INTO `tb_divisi` (`kode_divisi`, `nama_divisi`, `last_modified`, `last_mo
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_gardu_induk`
+--
+
+CREATE TABLE `tb_gardu_induk` (
+  `kode_gardu_induk` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_gardu_induk`
+--
+
+INSERT INTO `tb_gardu_induk` (`kode_gardu_induk`, `nama`) VALUES
+(1, 'Cianjur');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_jenis_pekerjaan`
 --
 
@@ -497,11 +515,49 @@ CREATE TABLE `tb_pelaksana_pekerja` (
 --
 
 INSERT INTO `tb_pelaksana_pekerja` (`kode_pelaksana_pekerja`, `kode_pelaksama`, `nama_pelaksana_pekerja`) VALUES
-(1, 1, 'Endang'),
-(2, 2, 'Yusup'),
-(3, 3, 'Alvin'),
-(4, 4, 'Dadu Yus'),
-(5, 1, 'HArdinas');
+(1, 2, 'Eman'),
+(2, 2, 'Tatang'),
+(3, 2, 'Asep'),
+(4, 2, 'Ramlan'),
+(5, 2, 'Hamdan'),
+(6, 2, 'Dede'),
+(7, 2, 'Ishan'),
+(8, 2, 'Dadang'),
+(9, 1, 'Yayan Sasmita'),
+(10, 1, 'Kosasih'),
+(11, 1, 'Deny MR'),
+(12, 1, 'Iwan Suryadi'),
+(13, 1, 'Cece Kusnadi'),
+(14, 1, 'Rida Firmansyah'),
+(15, 1, 'Apud'),
+(16, 1, 'Junaedi'),
+(17, 1, 'Adi Muhamad Yusup'),
+(18, 1, 'Iwan Setiawan'),
+(19, 1, 'Dudi Supriyadi'),
+(20, 1, 'Mulyadi'),
+(21, 1, 'Kusnadi SP'),
+(22, 1, 'Wahyu Mediawan'),
+(23, 1, 'Siti Emi'),
+(24, 1, 'Reza'),
+(25, 1, 'Yusup Irsyad'),
+(26, 1, 'Alfi'),
+(27, 1, 'M Sani'),
+(28, 1, 'A Taufik'),
+(29, 1, 'Iman Harisman'),
+(30, 1, 'Yudi Alpayadi'),
+(31, 1, 'Iwan Wahyudin'),
+(32, 1, 'Didin Sansudin'),
+(33, 1, 'Ridwan'),
+(34, 1, 'Ujang Dedi'),
+(35, 1, 'Agustyo'),
+(36, 1, 'Dadan'),
+(37, 1, 'Deni Aripin'),
+(38, 1, 'M Taufik Ibrahim'),
+(39, 1, 'Agus Rusnandi'),
+(40, 1, 'Yayat Efendi'),
+(41, 1, 'Fauji'),
+(42, 1, 'Ruby Prana'),
+(43, 1, 'Deni Alamsyah');
 
 -- --------------------------------------------------------
 
@@ -559,6 +615,7 @@ CREATE TABLE `tb_project` (
   `kode_user` char(5) NOT NULL,
   `kode_jenis_pekerjaan` char(5) NOT NULL,
   `kode_line` char(5) NOT NULL,
+  `segment` varchar(50) NOT NULL,
   `uniqid` varchar(20) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'new'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -567,12 +624,12 @@ CREATE TABLE `tb_project` (
 -- Dumping data untuk tabel `tb_project`
 --
 
-INSERT INTO `tb_project` (`kode_project`, `tgl_project`, `tgl_pengajuan`, `tgl_pelaksanaan`, `tgl_selesai`, `tgl_approval`, `tegangan`, `alamat_project`, `jml_tenaga_kerja`, `material`, `peralatan_kerja`, `gardu`, `jenis_project`, `last_modified`, `last_modified_user`, `kode_user`, `kode_jenis_pekerjaan`, `kode_line`, `uniqid`, `status`) VALUES
-('K.001/AMANK2K3/CIANJUR/III/2019', '2019-03-20 12:05:55', '2019-03-20 00:00:00', '2019-03-20 09:09:00', '2019-03-20 22:10:00', '0000-00-00 00:00:00', 20, 'jasdakjsbd', 0, 'Lengkap', 'Lengkap', 'sgvb, syaduh, a ,asdyh', 'Korektif', '2019-03-20 12:05:55', 'U0001', 'U0001', 'H0001', 'S0002', '5c921c2e099ee', 'pending'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '2019-03-20 14:15:30', '2019-03-20 00:00:00', '2019-03-20 09:10:00', '2019-03-20 03:10:00', '0000-00-00 00:00:00', 20, 'asdbahskd', 0, 'Lengkap', 'Lengkap', 'jsdjf, dsfhkd, sdfhsdf', 'Korektif', '2019-03-20 14:15:30', 'U0001', 'U0001', 'H0004', 'S0004', '5c923ca043109', 'pending'),
-('K.003/AMANK2K3/CIANJUR/III/2019', '2019-03-20 15:05:49', '2019-03-20 00:00:00', '2019-03-20 09:00:00', '2019-03-20 17:00:00', '0000-00-00 00:00:00', 20, 'Jl. Barisan Banteng', 0, 'Lengkap', 'Lengkap', 'RIZKI, HARDINAS, PERMANA', 'Korektif', '2019-03-20 15:05:49', 'U0001', 'U0001', 'H0005', 'S0002', '5c92485ad4504', 'success'),
-('K.004/AMANK2K3/CIANJUR/III/2019', '2019-03-21 18:33:23', '2019-03-21 00:00:00', '2019-03-21 10:00:00', '2019-03-21 00:00:00', '0000-00-00 00:00:00', 20, 'BARISAN BANTENG', 0, 'Lengkap', 'Lengkap', 'AMA, AKU, KAMU', 'Korektif', '2019-03-21 18:33:23', 'U0001', 'U0001', 'H0002', 'S0002', '5c93745bd8220', 'new'),
-('P.001/AMANK2K3/CIANJUR/III/2019', '2019-03-21 16:40:24', '2019-03-21 00:00:00', '2019-03-25 08:00:00', '2019-03-26 11:00:00', '0000-00-00 00:00:00', 20, 'Jl. Sirnagalih', 0, 'Lengkap', 'Lengkap', 'ABC, DEF, GHI, JKL', 'Preventif', '2019-03-21 16:40:24', 'U0001', 'U0001', 'H0002', 'S0004', '5c935ad903521', 'pending');
+INSERT INTO `tb_project` (`kode_project`, `tgl_project`, `tgl_pengajuan`, `tgl_pelaksanaan`, `tgl_selesai`, `tgl_approval`, `tegangan`, `alamat_project`, `jml_tenaga_kerja`, `material`, `peralatan_kerja`, `gardu`, `jenis_project`, `last_modified`, `last_modified_user`, `kode_user`, `kode_jenis_pekerjaan`, `kode_line`, `segment`, `uniqid`, `status`) VALUES
+('K.001/AMANK2K3/CIANJUR/III/2019', '2019-03-20 12:05:55', '2019-03-20 00:00:00', '2019-03-20 09:09:00', '2019-03-20 22:10:00', '0000-00-00 00:00:00', 20, 'jasdakjsbd', 0, 'Lengkap', 'Lengkap', 'sgvb, syaduh, a ,asdyh', 'Korektif', '2019-03-20 12:05:55', 'U0001', 'U0001', 'H0001', 'S0002', '', '5c921c2e099ee', 'pending'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '2019-03-20 14:15:30', '2019-03-20 00:00:00', '2019-03-20 09:10:00', '2019-03-20 03:10:00', '0000-00-00 00:00:00', 20, 'asdbahskd', 0, 'Lengkap', 'Lengkap', 'jsdjf, dsfhkd, sdfhsdf', 'Korektif', '2019-03-20 14:15:30', 'U0001', 'U0001', 'H0004', 'S0004', '', '5c923ca043109', 'pending'),
+('K.003/AMANK2K3/CIANJUR/III/2019', '2019-03-20 15:05:49', '2019-03-20 00:00:00', '2019-03-20 09:00:00', '2019-03-20 17:00:00', '0000-00-00 00:00:00', 20, 'Jl. Barisan Banteng', 0, 'Lengkap', 'Lengkap', 'RIZKI, HARDINAS, PERMANA', 'Korektif', '2019-03-20 15:05:49', 'U0001', 'U0001', 'H0005', 'S0002', '', '5c92485ad4504', 'success'),
+('K.004/AMANK2K3/CIANJUR/III/2019', '2019-03-21 18:33:23', '2019-03-21 00:00:00', '2019-03-21 10:00:00', '2019-03-21 00:00:00', '0000-00-00 00:00:00', 20, 'BARISAN BANTENG', 0, 'Lengkap', 'Lengkap', 'AMA, AKU, KAMU', 'Korektif', '2019-03-21 18:33:23', 'U0001', 'U0001', 'H0002', 'S0002', '', '5c93745bd8220', 'new'),
+('P.001/AMANK2K3/CIANJUR/III/2019', '2019-03-21 16:40:24', '2019-03-21 00:00:00', '2019-03-25 08:00:00', '2019-03-26 11:00:00', '0000-00-00 00:00:00', 20, 'Jl. Sirnagalih', 0, 'Lengkap', 'Lengkap', 'ABC, DEF, GHI, JKL', 'Preventif', '2019-03-21 16:40:24', 'U0001', 'U0001', 'H0002', 'S0004', '', '5c935ad903521', 'pending');
 
 -- --------------------------------------------------------
 
@@ -792,7 +849,7 @@ INSERT INTO `tb_users` (`kode_user`, `nama_user`, `no_telp_user`, `lokasi`, `ulp
 ('U0002', 'Virgea Krismanda', '0821755517033', 'KOTA', 'CIANJUR', 'virgea', 'virgea', 'U0002.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '2'),
 ('U0003', 'Ainul Yaqin', '087742359100', 'KOTA', 'CIANJUR', 'ainul', 'ainul', 'U0003.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '3'),
 ('U0004', 'Andis Verinda Putra', '082232473311', 'KOTA', 'CIANJUR', 'andis', 'andis', 'U0004.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '4'),
-('U0005', 'HARJAR', '089503800600', 'ULP', 'CIANJUR', 'harjar', 'harjar', 'U0005.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '6'),
+('U0005', 'HARJAR', '089503800600', 'ULP', 'CIANJUR', 'harjar', 'harjar', 'U0005.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '5'),
 ('U0006', 'OPOIST', '089503800600', 'ULP', 'CIANJUR', 'opoist', 'opoist', 'U0006.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '6'),
 ('U0007', 'MB', '089503800600', 'ULP', 'CIANJUR', 'mb', 'mb', 'U0006.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '7'),
 ('U0011', 'WIlly Setiawan', '089503800600', 'KOTA', 'CIANJUR', 'willy', 'willy', 'U0011.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '1');
@@ -837,6 +894,24 @@ ALTER TABLE `tb_det_uraian_pekerjaan`
   ADD PRIMARY KEY (`kode_uraian_pekerjaan`);
 
 --
+-- Indeks untuk tabel `tb_gardu_induk`
+--
+ALTER TABLE `tb_gardu_induk`
+  ADD PRIMARY KEY (`kode_gardu_induk`);
+
+--
+-- Indeks untuk tabel `tb_pelaksana`
+--
+ALTER TABLE `tb_pelaksana`
+  ADD PRIMARY KEY (`kode_pelaksana`);
+
+--
+-- Indeks untuk tabel `tb_pelaksana_pekerja`
+--
+ALTER TABLE `tb_pelaksana_pekerja`
+  ADD PRIMARY KEY (`kode_pelaksana_pekerja`);
+
+--
 -- Indeks untuk tabel `tb_project`
 --
 ALTER TABLE `tb_project`
@@ -869,6 +944,24 @@ ALTER TABLE `tb_approval`
 --
 ALTER TABLE `tb_det_uraian_pekerjaan`
   MODIFY `kode_uraian_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_gardu_induk`
+--
+ALTER TABLE `tb_gardu_induk`
+  MODIFY `kode_gardu_induk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_pelaksana`
+--
+ALTER TABLE `tb_pelaksana`
+  MODIFY `kode_pelaksana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_pelaksana_pekerja`
+--
+ALTER TABLE `tb_pelaksana_pekerja`
+  MODIFY `kode_pelaksana_pekerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_status_project`
