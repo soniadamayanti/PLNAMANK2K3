@@ -10,7 +10,7 @@
                         $kode_divisi = $this->session->userdata('kode_divisi');
                         if ( $kode_divisi == '1' ) {
                             echo '
-                            <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal"  data-target="#ModalTambahPerusahaan"><i class="mdi mdi-plus-circle"></i> Tambah Pelaksana Pekerjaan</button>';
+                            <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal"  data-target="#ModalTambahPekerja"><i class="mdi mdi-plus-circle"></i> Tambah Pelaksana Pekerjaan</button>';
                         }else {
                             echo '';
                         }
@@ -25,6 +25,7 @@
                             <tr>
                                 <th>Perusahaan</th>
                                 <th>Nama Pekerja</th>
+                                <th>Tanggal</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -36,7 +37,7 @@
         </div>
     </div>
 
-                <div id="ModalTambahPerusahaan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div id="ModalTambahPekerja" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -48,22 +49,28 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label" >Nama Perusahaan</label>
-                                            <select class="form-control custom-select" tabindex="1" id="kode_jenis_pekerjaan">
-                                                    <option value="">PT Mahiza Karya Mandiri</option><option value="">PT. Syaldi</option><option value="">PT Sanjur Trida Raya</option><option value="">PT Ardis</option>
+                                            <select class="form-control custom-select" tabindex="1" id="a_kode_perusahaan">
+                                                <?php 
+                                                    foreach ($pelaksana as $data) {
+                                                        echo "<option value='".$data['kode_pelaksana']."'>".$data['nama_pelaksana']."</option>";
+                                                    }
+                                                     ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label" >Nama Pekerja</label>
-                                            <input type="text" class="form-control" id="nama_pekerja">
+                                            <input type="text" class="form-control" id="a_kode_pekerja">
+                                            <input type="text" class="form-control" id="a_nama_pekerja">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success waves-effect" id="">Simpan</button>
-                                <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
+
+                                <button type="button" class="btn btn-success waves-effect" id="btnTambahPekerja" status="insert">Simpan</button>
+                                <button type="button" class="btn btn-info waves-effect" id="btnCancelPekerja">Close</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->

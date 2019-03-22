@@ -284,31 +284,12 @@
         $(document).on('click','#btnTambahJenisPekerjaan',function(){
             location.href = "<?php echo base_url() ?>Arsip/tambah_jenis_pekerjaan";
         });
-        $('#table_arsip_sld').DataTable({
-            "ajax": {
-                url:'<?php echo base_url() ?>arsip/dt_sld',
-                "type": "POST"
-            },
-        });
         $('#table_selesai').DataTable({
             "ajax": {
                 url:'<?php echo base_url() ?>Rencana/get_selesai',
                 "type": "POST"
             },
         });
-        $('#table_arsip_jenis_pekerjaan').DataTable({
-            "ajax": {
-                url:'<?php echo base_url() ?>arsip/dt_jenis_pekerjaan',
-                "type": "POST"
-            },
-        });
-        $('#table_arsip_perusahaan_pelaksana').DataTable({
-            "ajax": {
-                url:'<?php echo base_url() ?>arsip/dt_perusahaan_pelaksana',
-                "type": "POST"
-            },
-        });
-        
         $('#table_temp_uraian_pekerjaan').DataTable({
             searching: false,
             paging:   false,

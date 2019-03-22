@@ -53,6 +53,7 @@ class Arsip extends CI_Controller
     $this->load->view('parts/footer', $data);
   }
   function pelaksana_pekerjaan(){
+    $data['pelaksana'] = $this->database_model->get('tb_pelaksana');
     $data['judul'] = "Pelaksana Pekerjaan";
     $this->load->view('parts/header', $data);
     $this->load->view('parts/menu', $data);
@@ -63,9 +64,95 @@ class Arsip extends CI_Controller
   function tambah_pelaksana(){
     $nama_pelaksana = $this->input->post('nama_pelaksana');
     $data = array(
-      'nama_pelaksana' => $nama_pelaksana
+      'nama_pelaksana' => $nama_pelaksana,
+      'tgl' => date('Y-m-d')
     );
     $this->database_model->insert('tb_pelaksana',$data);
+  }
+  function update_pelaksana(){
+    $kode_pelaksana = $this->input->post('kode_pelaksana');
+    $nama_pelaksana = $this->input->post('nama_pelaksana');
+    $data = array(
+      'nama_pelaksana' => $nama_pelaksana,
+      'tgl' => date('Y-m-d')
+    );
+    $where = array(
+      'kode_pelaksana' => $kode_pelaksana
+    );
+    $this->database_model->update('tb_pelaksana',$data,$where);
+  }
+  function delete_pelaksana(){
+    $kode_pelaksana = $this->input->post('kode_pelaksana');
+    $query = $this->arsip_model->hapus_pelaksana($kode_pelaksana);
+    if ($query) {
+      echo 1;
+    }else{
+      echo 0;
+    }
+  }
+  function tambah_gardu(){
+    $gardu_induk = $this->input->post('gardu_induk');
+    $data = array(
+      'nama_gardu' => $gardu_induk,
+      'tgl' => date('Y-m-d')
+    );
+    $this->database_model->insert('tb_gardu_induk',$data);
+  }
+  function update_gardu(){
+    $kode_gardu = $this->input->post('kode_gardu');
+    $gardu_induk = $this->input->post('gardu_induk');
+    $data = array(
+      'nama_gardu' => $gardu_induk,
+      'tgl' => date('Y-m-d')
+    );
+    $where = array(
+      'kode_gardu_induk' => $kode_gardu
+    );
+    $this->database_model->update('tb_gardu_induk',$data,$where);
+  }
+  function delete_gardu(){
+    $kode_gardu_induk = $this->input->post('kode_gardu_induk');
+    $query = $this->arsip_model->hapus_gardu($kode_gardu_induk);
+    if ($query) {
+      echo 1;
+    }else{
+      echo 0;
+    }
+  }
+
+
+  function tambah_pekerja(){
+    $kode_perusahaan = $this->input->post('kode_perusahaan');
+    $nama_pekerja = $this->input->post('nama_pekerja');
+    $data = array(
+      'kode_pelaksana' => $kode_perusahaan,
+      'nama_pelaksana_pekerja' => $nama_pekerja,
+      'tgl' => date('Y-m-d')
+    );
+    $this->database_model->insert('tb_pelaksana_pekerja',$data);
+  }
+  function update_pekerja(){
+    $kode_pekerja = $this->input->post('kode_pekerja');
+    $kode_perusahaan = $this->input->post('kode_perusahaan');
+    $nama_pekerja = $this->input->post('nama_pekerja');
+    $data = array(
+      'kode_pelaksana' => $kode_perusahaan,
+      'nama_pelaksana_pekerja' => $nama_pekerja,
+      'tgl' => date('Y-m-d')
+    );
+    $where = array(
+      'kode_pelaksana_pekerja' => $kode_pekerja
+    );
+    $this->database_model->update('tb_pelaksana_pekerja',$data,$where);
+  }
+  function delete_pekerja(){
+    $kode_pekerja = $this->input->post('kode_pekerja');
+    $query = $this->arsip_model->hapus_pelaksana_pekerja($kode_pekerja);
+    if ($query) {
+      echo 1;
+    }else{
+      echo 0;
+    }
   }
 
   function tambah_sld(){
@@ -103,7 +190,7 @@ class Arsip extends CI_Controller
           	$button = '
 	          <a href="'.base_url().'assets/arsip/sld.vsd"><button type="button" class="btn waves-effect waves-light btn-secondary">Lihat SLD</button></a>
 	          <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
-	          <button type="button" class="btn waves-effect waves-light btn-danger">Delete</button>
+	          <button type="button" class="btn waves-effect waves-light btn-danger">Hapus</button>
           	';
 
             $data[] = array(
@@ -135,46 +222,13 @@ class Arsip extends CI_Controller
           $data = array();
           foreach($query->result() as $r) {
             $button = '
-            <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
-            <button type="button" class="btn waves-effect waves-light btn-danger">Delete</button>
+            <button type="button" class="btn waves-effect waves-light btn-info" id="getUpdateGardu" data-kode="'.$r->kode_gardu_induk.'" data-nama="'.$r->nama_gardu.'">Edit</button>
+            <button type="button" class="btn waves-effect waves-light btn-danger" id="btnHapusGardu" data-kode="'.$r->kode_gardu_induk.'">Hapus</button>
             ';
 
             $data[] = array(
-                $r->kode_gardu_induk,
-                $r->nama,
-                $button
-               );
-          }
-
-          $output = array(
-               "draw" => $draw,
-                 "recordsTotal" => $query->num_rows(),
-                 "recordsFiltered" => $query->num_rows(),
-                 "data" => $data
-            );
-          echo json_encode($output);
-          exit();
-     }
-  function dt_pelaksana_pekerjaan()
-     {
-
-          // Datatables Variables
-          $draw = intval($this->input->get("draw"));
-          $start = intval($this->input->get("start"));
-          $length = intval($this->input->get("length"));
-
-
-          $query = $this->arsip_model->get_arsip_pelaksana_pekerjaan();
-          $data = array();
-          foreach($query->result() as $r) {
-            $button = '
-            <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
-            <button type="button" class="btn waves-effect waves-light btn-danger">Delete</button>
-            ';
-
-            $data[] = array(
-                $r->nama_pelaksana,
-                $r->nama_pelaksana_pekerja,
+                $r->nama_gardu,
+                $r->tgl,
                 $button
                );
           }
@@ -203,7 +257,7 @@ class Arsip extends CI_Controller
           	$button = '
 	          <button type="button" class="btn waves-effect waves-light btn-secondary">Cek Gambar</button>
 	          <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
-	          <button type="button" class="btn waves-effect waves-light btn-danger">Delete</button>
+	          <button type="button" class="btn waves-effect waves-light btn-danger">Hapus</button>
           	';
 
             $data[] = array(
@@ -233,14 +287,51 @@ class Arsip extends CI_Controller
           $query = $this->arsip_model->get_arsip_perusahaan_pelaksana();
           $data = array();
           foreach($query->result() as $r) {
+            
             $button = '
-            <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
-            <button type="button" class="btn waves-effect waves-light btn-danger">Delete</button>
+            <button type="button" class="btn waves-effect waves-light btn-info" id="getUpdatePelaksana" data-kode="'.$r->kode_pelaksana.'" data-nama="'.$r->nama_pelaksana.'">Edit</button>
+            <button type="button" class="btn waves-effect waves-light btn-danger" id="btnHapusPelaksana" data-kode="'.$r->kode_pelaksana.'">Hapus</button>
             ';
 
             $data[] = array(
-                $r->kode_pelaksana,
                 $r->nama_pelaksana,
+                $r->tgl,
+                $button
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => $query->num_rows(),
+                 "recordsFiltered" => $query->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+     }
+
+    function dt_pelaksana_pekerjaan()
+     {
+
+          // Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+
+
+          $query = $this->arsip_model->get_arsip_pelaksana_pekerjaan();
+          $data = array();
+          foreach($query->result() as $r) {
+
+            $button = '
+            <button type="button" class="btn waves-effect waves-light btn-info" id="getUpdatePekerja" data-kode="'.$r->kode_pelaksana_pekerja.'" data-perusahaan="'.$r->kode_pelaksana.'" data-nama="'.$r->nama_pelaksana_pekerja.'">Edit</button>
+            <button type="button" class="btn waves-effect waves-light btn-danger" id="btnHapusPekerja" data-kode="'.$r->kode_pelaksana_pekerja.'">Hapus</button>
+            ';
+
+            $data[] = array(
+                $r->nama_pelaksana,
+                $r->nama_pelaksana_pekerja,
+                $r->tgl,
                 $button
                );
           }

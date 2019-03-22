@@ -319,7 +319,7 @@ foreach ($detail_project as $data_project) {
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">Nama Penyulang</label>
-                                <div class="col-md-8">
+                                <div class="col-md-2">
                                     <select class="form-control custom-select" tabindex="1" onchange="
                                         $('#imageToSwap').attr('src', '<?php echo base_url() ?>assets/arsip/sld/'+this.options[this.selectedIndex].value+'.jpg');
                                         $('#kode_line').val(this.options[this.selectedIndex].value)">
@@ -331,6 +331,12 @@ foreach ($detail_project as $data_project) {
                                         </select>
                                         <input type="hidden" id="kode_line" >
                                 </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" disabled>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="Segment" id="segment" value="<?php echo (isset($data_project['gardu']) != '')? $data_project['gardu'] : ""  ?>" >
+                                </div>
                             </div>
                         </div>
                         <!--/span-->
@@ -340,7 +346,7 @@ foreach ($detail_project as $data_project) {
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">Gardu Padam</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" id="gardu"value="<?php echo (isset($data_project['gardu']) != '')? $data_project['gardu'] : ""  ?>">
+                                    <input type="text" class="form-control" id="gardu" value="<?php echo (isset($data_project['gardu']) != '')? $data_project['gardu'] : ""  ?>">
                                 </div>
                             </div>
                         </div>

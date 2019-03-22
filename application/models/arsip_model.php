@@ -24,9 +24,23 @@ class Arsip_model extends CI_Model
 	function get_arsip_pelaksana_pekerjaan(){
 		$this->db->select('*');
 		$this->db->from('tb_pelaksana_pekerja');
-		$this->db->join('tb_pelaksana','tb_pelaksana.kode_pelaksana = tb_pelaksana_pekerja.kode_pelaksama');
+		$this->db->join('tb_pelaksana','tb_pelaksana.kode_pelaksana = tb_pelaksana_pekerja.kode_pelaksana');
 		return $this->db->get();
 	}
+
+	function hapus_gardu($id){
+		$this->db->where('kode_gardu_induk',$id);
+		$this->db->delete('tb_gardu_induk');
+	}
+	function hapus_pelaksana($id){
+		$this->db->where('kode_pelaksana',$id);
+		$this->db->delete('tb_pelaksana');
+	}
+	function hapus_pelaksana_pekerja($id){
+		$this->db->where('kode_pelaksana_pekerja',$id);
+		$this->db->delete('tb_pelaksana_pekerja');
+	}
+
 
 }
 

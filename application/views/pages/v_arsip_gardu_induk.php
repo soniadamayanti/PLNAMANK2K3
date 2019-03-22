@@ -10,7 +10,7 @@
                         $kode_divisi = $this->session->userdata('kode_divisi');
                         if ( $kode_divisi == '1' ) {
                             echo '
-                            <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal"  data-target="#ModalTambahPerusahaan"><i class="mdi mdi-plus-circle"></i> Tambah Gardu Induk</button>';
+                            <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal"  data-target="#ModalTambahGardu"><i class="mdi mdi-plus-circle"></i> Tambah Gardu Induk</button>';
                         }else {
                             echo '';
                         }
@@ -23,8 +23,8 @@
                     <table id="table_arsip_gardu_induk" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>No</th>
                                 <th>Gardu Induk</th>
+                                <th>Tanggal</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -36,26 +36,27 @@
         </div>
     </div>
 
-                <div id="ModalTambahPerusahaan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div id="ModalTambahGardu" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Tambah Perusahaan Pelaksana</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">Tambah Gardu Induk</h4>
+                                <button type="button" class="close" id="btnCancelGarduInduk" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="control-label" >Nama Perusahaan</label>
-                                            <input type="text" class="form-control" id="a_nama_perusahaan">
+                                            <label class="control-label" >Nama Gardu</label>
+                                            <input type="text" class="form-control" id="a_kode_gardu" hidden>
+                                            <input type="text" class="form-control" id="a_gardu_induk">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success waves-effect" id="btnTambahPerusahaanPelaksana">Simpan</button>
-                                <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success waves-effect" id="btnTambahGarduInduk" status="insert">Simpan</button>
+                                <button type="button" class="btn btn-info waves-effect" id="btnCancelGarduInduk">Close</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->

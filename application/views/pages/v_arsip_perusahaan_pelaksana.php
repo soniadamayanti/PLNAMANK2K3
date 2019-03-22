@@ -23,8 +23,8 @@
                     <table id="table_arsip_perusahaan_pelaksana" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>No</th>
                                 <th>Nama Perusahaan</th>
+                                <th>Tanggal</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -41,21 +41,23 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">Tambah Perusahaan Pelaksana</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <button type="button" class="close" id="btnCancelPerusahaanPelaksana" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label" >Nama Perusahaan</label>
-                                            <input type="text" class="form-control" id="a_nama_perusahaan">
+                                            <input type="text" class="form-control" id="a_kode_pelaksana" hidden>
+                                            <input type="text" class="form-control" id="a_nama_pelaksana">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success waves-effect" id="btnTambahPerusahaanPelaksana">Simpan</button>
-                                <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success waves-effect" id="btnTambahPerusahaanPelaksana" status="insert">Simpan</button>
+                                <button type="button" class="btn btn-info waves-effect"  id="btnCancelPerusahaanPelaksana">Close</button>
+
                             </div>
                         </div>
                         <!-- /.modal-content -->
