@@ -44,8 +44,6 @@
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url() ?>arsip/gardu_induk">Gardu Induk</a></li>
                                 <li><a href="<?php echo base_url() ?>arsip/penyulang">Penyulang</a></li>
-                                <li><a href="<?php echo base_url() ?>arsip/gardu_distribusi">Gardu Distribusi</a></li>
-                                <li><a href="<?php echo base_url() ?>arsip/sld">Single Line Diagram (SLD)</a></li>
                                 <li><a href="<?php echo base_url() ?>arsip/jenis_pekerjaan">HIRARC</a></li>
                                 <li><a href="<?php echo base_url() ?>arsip/jenis_pekerjaan">Jenis Pekerjaan</a></li>
                                 <li><a href="<?php echo base_url() ?>arsip/perusahaan_pelaksana">Perusahaan Pelaksana Pekerjaan</a></li>

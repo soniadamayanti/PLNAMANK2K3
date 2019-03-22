@@ -234,7 +234,7 @@
                         <div class="timelinemini-badge info"><?php echo $berkas_staff; ?></div>
                         <div class="timelinemini-panel">
                             <div class="timelinemini-heading">
-                                <h5 class="timelinemini-title"><b>Staff Teknisi ULP</b></h5>
+                                <h5 class="timelinemini-title"><b>Staf Teknik ULP</b></h5>
                             </div>
                         </div>
                     </li>
@@ -242,7 +242,7 @@
                         <div class="timelinemini-badge info"><?php echo $berkas_k3; ?></div>
                         <div class="timelinemini-panel">
                             <div class="timelinemini-heading">
-                                <h5 class="timelinemini-title"><b>PPK3U ULP</b></h5>
+                                <h5 class="timelinemini-title"><b>PPK3L ULP</b></h5>
                             </div>
                         </div>
                     </li>
@@ -250,7 +250,7 @@
                         <div class="timelinemini-badge info"><?php echo $berkas_spvulp; ?></div>
                         <div class="timelinemini-panel">
                             <div class="timelinemini-heading">
-                                <h5 class="timelinemini-title"><b>SPV. ULP</b></h5>
+                                <h5 class="timelinemini-title"><b>SPV. TEK ULP</b></h5>
                             </div>
                         </div>
                     </li>
@@ -274,7 +274,7 @@
                         <div class="timelinemini-badge info"><?php echo $berkas_opoist; ?></div>
                         <div class="timelinemini-panel">
                             <div class="timelinemini-heading">
-                                <h5 class="timelinemini-title"><b>SPV.OPOIST</b></h5>
+                                <h5 class="timelinemini-title"><b>SPV.OPDIST</b></h5>
                             </div>
                         </div>
                     </li>

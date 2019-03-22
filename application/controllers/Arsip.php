@@ -18,14 +18,18 @@ class Arsip extends CI_Controller
 		$this->load->view('pages/v_arsip', $data);
 		$this->load->view('parts/footer');
 	}
-	function sld(){
-		$data['judul'] = "Single Line Diagram";
-    $data['new'] = "
-    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnTambahSld'><i class='mdi mdi-plus-circle'></i> Tambah SLD</button>
-    ";
+  function gardu_induk(){
+    $data['judul'] = "Gardu Induk";
+    $this->load->view('parts/header', $data);
+    $this->load->view('parts/menu', $data);
+    $this->load->view('pages/v_arsip_gardu_induk', $data);
+    $this->load->view('parts/footer', $data);
+  }
+	function penyulang(){
+		$data['judul'] = "Penyulang";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
-		$this->load->view('pages/v_arsip_sld', $data);
+		$this->load->view('pages/v_arsip_penyulang', $data);
 		$this->load->view('parts/footer', $data);
 	}
 	function jenis_pekerjaan(){
@@ -47,6 +51,14 @@ class Arsip extends CI_Controller
     $this->load->view('parts/menu', $data);
     $this->load->view('pages/v_arsip_perusahaan_pelaksana', $data);
     $this->load->view('parts/footer', $data);
+  }
+
+  function tambah_pelaksana(){
+    $nama_pelaksana = $this->input->post('nama_pelaksana');
+    $data = array(
+      'nama_pelaksana' => $nama_pelaksana
+    );
+    $this->database_model->insert('tb_pelaksana',$data);
   }
 
   function tambah_sld(){
@@ -82,7 +94,7 @@ class Arsip extends CI_Controller
           $data = array();
           foreach($query->result() as $r) {
           	$button = '
-	          <button type="button" class="btn waves-effect waves-light btn-secondary">Cek Gambar</button>
+	          <a href="'.base_url().'assets/arsip/sld.vsd"><button type="button" class="btn waves-effect waves-light btn-secondary">Lihat SLD</button></a>
 	          <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
 	          <button type="button" class="btn waves-effect waves-light btn-danger">Delete</button>
           	';
@@ -90,6 +102,39 @@ class Arsip extends CI_Controller
             $data[] = array(
                 $r->lokasi,
                 $r->nama_sld,
+                $button
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => $query->num_rows(),
+                 "recordsFiltered" => $query->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+     }
+  function dt_gardu_induk()
+     {
+
+          // Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+
+
+          $query = $this->arsip_model->get_arsip_gardu_induk();
+          $data = array();
+          foreach($query->result() as $r) {
+            $button = '
+            <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
+            <button type="button" class="btn waves-effect waves-light btn-danger">Delete</button>
+            ';
+
+            $data[] = array(
+                $r->kode_gardu_induk,
+                $r->nama,
                 $button
                );
           }
