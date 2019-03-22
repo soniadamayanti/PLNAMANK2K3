@@ -122,8 +122,8 @@
                                         echo anchor('#','Pending','class="btn btn-secondary disabled"');  
                                     }
                                 }else{
-                                     echo anchor('Rencana/tolak/'.$data['uniqid'],'Tolak','class="btn btn-danger"');    
-                                    echo anchor('Rencana/approval/'.$data['uniqid'],'Setuju & TTD','class="btn btn-info"'); 
+                                    echo anchor('Rencana/tolak/'.$data['uniqid'],'Tolak','class="btn btn-danger"');    
+                                    echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnSetuju">Setuju & TTD</button>'; 
                                 }
                                    ?>
                                 
