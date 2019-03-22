@@ -143,6 +143,16 @@
                 });
             }
         });
+        $(document).on('click','#btnHapusDetail',function(){
+            var kode_project = $('#kode_project').val();
+            var id = $('#id_other').val();
+            var status = $('#status').val();
+            var value =  {
+                kode_project:kode_project,
+                id:id,
+                status
+            };
+        }); 
         $(document).on('click','#btnTambahPelaksana',function(){
             var kode_project = $('#kode_project').val();
             var kode_pelaksana = $('#kode_pelaksana').val();
@@ -162,6 +172,16 @@
                     success:function(data){ 
                     var table = $('#table_temp_pelaksana').DataTable();
                     table.ajax.reload(null,false);
+                        
+                    }
+                });
+                $.ajax({
+                    url:'<?php echo base_url() ?>Rencana/get_pekerja',
+                    data:value,
+                    type:'POST',
+                    success:function(data){ 
+                        $('#kode_pekerja').html(data);
+                        alert(data);
                         
                     }
                 });
