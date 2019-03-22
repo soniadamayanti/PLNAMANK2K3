@@ -27,6 +27,11 @@
                 url:'<?php echo base_url() ?>arsip/dt_gardu_induk',
                 "type": "POST"
             },
+        });$('#table_arsip_pelaksana_pekerjaan').DataTable({
+            "ajax": {
+                url:'<?php echo base_url() ?>arsip/dt_pelaksana_pekerjaan',
+                "type": "POST"
+            },
         });
       
 </script>

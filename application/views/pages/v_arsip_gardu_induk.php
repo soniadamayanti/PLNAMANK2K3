@@ -6,8 +6,15 @@
                 <div class="d-flex no-block">
                     <h4 class="card-title">Gardu Induk</h4>
                     <div class="ml-auto">
-                        
-                        <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal"  data-target="#ModalTambahPerusahaan"><i class="mdi mdi-plus-circle"></i> Tambah Gardu Induk</button>
+                        <?php 
+                        $kode_divisi = $this->session->userdata('kode_divisi');
+                        if ( $kode_divisi == '1' ) {
+                            echo '
+                            <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal"  data-target="#ModalTambahPerusahaan"><i class="mdi mdi-plus-circle"></i> Tambah Gardu Induk</button>';
+                        }else {
+                            echo '';
+                        }
+                         ?>
                     </div>
                 </div>
                 <h6 class="card-subtitle"></h6>

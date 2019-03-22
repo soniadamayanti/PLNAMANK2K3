@@ -10,7 +10,7 @@
                     <div class="col-6">
                         <h2 class="mb-0">Rencana Kerja Selesai</h2>
                         <h4 class="font-light mt-0">Data Rencana Kerja</h4></div>
-                    <div class="col-6 align-self-center display-6 text-danger text-right">3</div>
+                    <div class="col-6 align-self-center display-6 text-danger text-right"></div>
                 </div>
             </div>
             <div class="table-responsive">

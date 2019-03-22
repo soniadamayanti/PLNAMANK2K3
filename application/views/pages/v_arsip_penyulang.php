@@ -7,7 +7,15 @@
                     <h4 class="card-title">Penyulang</h4>
                     <div class="ml-auto">
 
-                        <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal"  data-target="#ModalTambahPenyulang"><i class="mdi mdi-plus-circle"></i> Tambah Penyulang</button>
+                        <?php 
+                        $kode_divisi = $this->session->userdata('kode_divisi');
+                        if ( $kode_divisi == '1' ) {
+                            echo '
+                            <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal"  data-target="#ModalTambahPenyulang"><i class="mdi mdi-plus-circle"></i> Tambah Penyulang</button>';
+                        }else {
+                            echo '';
+                        }
+                         ?>
                     </div>
                 </div>
                 <h6 class="card-subtitle">5 SLD </h6>

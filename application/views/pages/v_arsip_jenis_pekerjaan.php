@@ -6,7 +6,15 @@
                 <div class="d-flex no-block">
                     <h4 class="card-title">Arsip Jenis Pekerjaan</h4>
                     <div class="ml-auto">
-                        
+                        <?php 
+                        $kode_divisi = $this->session->userdata('kode_divisi');
+                        if ( $kode_divisi == '2' ) {
+                            echo '
+                            <button class="btn float-right hidden-sm-down btn-success" data-toggle="modal"  data-target="#ModalJenisPekerjaan"><i class="mdi mdi-plus-circle"></i> Tambah Jenis Pekerjaan</button>';
+                        }else {
+                            echo '';
+                        }
+                         ?>
                     </div>
                 </div>
                 <h6 class="card-subtitle">5 Jenis Pekerjaan </h6>
