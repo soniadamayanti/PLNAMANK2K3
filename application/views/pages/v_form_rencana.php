@@ -189,56 +189,6 @@ foreach ($detail_project as $data_project) {
                         <!--/span-->
                     	</div>
                         <!--/row-->
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 text-left col-form-label">Tenaga Kerja</label>
-                                    <div class="col-md-8">
-
-	                                    <div class="row mb-3">
-	                                        <div class="col-md-10">
-	                                        	
-                                            	<select class="form-control custom-select" tabindex="1" id="kode_pekerja">
-                                                </select>
-	                                        </div>
-	                                        <div class="col-md-1">
-	                                            <div class="btn-group">
-	                                            <button type="button" id="btnTambahPekerja" class="btn btn-info" aria-haspopup="true" aria-expanded="false">
-	                                                <i class="ti-plus"></i>
-	                                            </button>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-4 text-left col-form-label">&nbsp;</label>
-                                <div class="col-md-8">
-                                    
-                                    <div class="table-responsive">
-                                        <table class="table" id="table_pekerja">
-                                            <thead class="bg-info text-white">
-                                                <tr>
-                                                    <th>Nama Tenaga Kerja</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            <!--/span-->
-                        </div>
-                        <!--/row-->
                     <h4 class="box-title mt-3">JADWAL PEKERJAAN</h4>
                     <hr class="mt-2 mb-3">
                     <!--/row-->
@@ -409,7 +359,6 @@ foreach ($detail_project as $data_project) {
                         <!--/span-->
                     </div>
 
-
                     <h4 class="box-title mt-3">PERALATAN KESELAMATAN</h4>
                     <hr class="mt-2 mb-3">
 
@@ -457,28 +406,30 @@ foreach ($detail_project as $data_project) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                    <h4 class="box-title mt-3">Tenaga Kerja</h4>
+                    <hr class="mt-2 mb-3">
+
+                        <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group row">
-                                    <label class="col-sm-4 text-left col-form-label">Perlengkapan Keselamatan & Darurat</label>
-                                    
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
 
-                                        <div class="form-group row">
-                                            <?php $i=0;foreach ($keselamatan as $data): ?>
-                                            <div class="col-md-4">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input peralatan" value="<?php echo $data['kode_peralatan_kerja'] ?>" name="keselamatan" id="ke<?php echo $i; ?>">
-                                                    <label class="custom-control-label" for="ke<?php echo $i; ?>"><?php echo $data['nama_peralatan_kerja'] ?></label>
+                                        <div class="form-group row" id="tenaga_kerja">     <?php $i = 0;foreach ($tenaga_kerja as $tenaga_kerja): ?>
+                                                <div class="col-md-4">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input tenaga_kerja" value="<?php echo $tenaga_kerja['kode_pelaksana_pekerja'] ?>" name="tenaga_kerja" id="tk<?php echo $tenaga_kerja['kode_pelaksana_pekerja'] ?>">
+                                                        <label class="custom-control-label" for="tk<?php echo $tenaga_kerja['kode_pelaksana_pekerja'] ?>"><?php echo $tenaga_kerja['nama_pelaksana_pekerja'] ?>- <b><?php echo $tenaga_kerja['nama_pelaksana'] ?></b></label>
+                                                    </div>
                                                 </div>
-                                            </div>  
-                                        <?php $i++;endforeach ?>
+                                            <?php $i++;endforeach ?>     
                                         </div>
                                             
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="row">
                             <h4 class="box-title mt-3">KLASIFIKASI PEKERJAAN</h4>
                         <hr class="mt-2 mb-3">
                             <div class="row">
