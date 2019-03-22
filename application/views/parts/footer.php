@@ -433,6 +433,9 @@
           ]
         });
     </script>
+     <?php 
+$this->load->view('parts/jquery');
+ ?>
 
 </body>
 
