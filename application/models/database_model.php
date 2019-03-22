@@ -185,6 +185,11 @@ class Database_model extends CI_Model
 
 		return $query->result_array();
 	}
+	function cek_ttd($id){
+		$this->db->where('kode_divisi',$id);
+		$query = $this->db->get('tb_berkas_terakhir');
+		return $query->result_array();
+	}
 
 }
 

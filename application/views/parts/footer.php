@@ -413,7 +413,24 @@
             var uniqid = $('#uniqid').val();
             location.href = '<?php echo base_url() ?>Rencana/kirim_Rencana/'+uniqid;
         });
-
+        $(document).on('click','#btnSetuju',function(){
+            var uniqid = $(this).attr('uniqid');
+            var value = {
+                uniqid:uniqid
+            }
+            $.ajax({
+                url:'<?php echo base_url() ?>Rencana/approval',
+                data:value,
+                type:'POST',
+                success:function(data){
+                    if (data == 1) {
+                        location.reload();
+                    }else{
+                        alert(data);
+                    }
+                }
+            });
+        });
         
     </script>
     <script type="text/javascript">
