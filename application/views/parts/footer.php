@@ -150,7 +150,7 @@
             var value =  {
                 kode_project:kode_project,
                 id:id,
-                status
+                status:status
             };
         }); 
         $(document).on('click','#btnTambahPelaksana',function(){
@@ -172,17 +172,8 @@
                     success:function(data){ 
                     var table = $('#table_temp_pelaksana').DataTable();
                     table.ajax.reload(null,false);
-                        
-                    }
-                });
-                $.ajax({
-                    url:'<?php echo base_url() ?>Rencana/get_pekerja',
-                    data:value,
-                    type:'POST',
-                    success:function(data){ 
-                        $('#kode_pekerja').html(data);
-                        alert(data);
-                        
+                    $('#tenaga_kerja').empty();
+                    $('#tenaga_kerja').html(data);
                     }
                 });
             }
@@ -223,7 +214,6 @@
             var tgl_selesai = $('#tgl_selesai').val();
             var jam_mulai = $('#jam_mulai').val();
             var jam_selesai = $('#jam_selesai').val();
-            var jml_tenaga_kerja = $('#jml_tenaga_kerja').val();
             var klasifikasi = [];
             $.each($("input[name='klasifikasi']:checked"), function(){            
                 klasifikasi.push($(this).val());
@@ -244,6 +234,10 @@
             $.each($("input[name='keselamatan']:checked"), function(){            
                 keselamatan.push($(this).val());
             });
+            var tenaga_kerja = [];
+            $.each($("input[name='tenaga_kerja']:checked"), function(){            
+                tenaga_kerja.push($(this).val());
+            });
             var gardu = $('#gardu').val();
             var kode_line = $('#kode_line').val();
             var value = {
@@ -257,7 +251,6 @@
                 tgl_selesai:tgl_selesai,
                 jam_mulai:jam_mulai,
                 jam_selesai:jam_selesai,
-                jml_tenaga_kerja:jml_tenaga_kerja,
                 peralatan_kerja:peralatan_kerja,
                 gardu:gardu,
                 kode_line:kode_line,
@@ -265,7 +258,8 @@
                 klasifikasi:klasifikasi,
                 prosedur_kerja:prosedur_kerja,
                 perlindungan:perlindungan,
-                keselamatan:keselamatan
+                keselamatan:keselamatan,
+                tenaga_kerja:tenaga_kerja
             };
             $.ajax({
                 url:'<?php echo base_url(); ?>Rencana/update_project',
@@ -359,6 +353,18 @@
                 var json = jQuery.parseJSON(data);
                 for (var i = 0; i < json.length; i++) {
                     $('input.klasifikasi[value="'+json[i]+'"]').prop('checked', true);
+                }
+
+            }
+        });
+        $.ajax({
+            url:'<?php echo base_url() ?>Rencana/get_checked_tenaga_kerja',
+            data:value,
+            type:'POST',
+            success:function(data){
+                var json = jQuery.parseJSON(data);
+                for (var i = 0; i < json.length; i++) {
+                    $('input.tenaga_kerja[value="'+json[i]+'"]').prop('checked', true);
                 }
 
             }

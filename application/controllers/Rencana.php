@@ -35,8 +35,6 @@ class Rencana extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function form(){
-
-		
 		$data['detail_project'] = $this->database_model->detail_project($this->uri->segment(3));
 	    $wpk1 = array(
 	    	'type'=>'Perlindungan'
@@ -60,12 +58,14 @@ class Rencana extends CI_Controller
 			'uniqid' => $this->uri->segment(3)
 		);
 		$data['kode_project'] = $this->database_model->get_where('tb_project',$wk);
-		$data['new'] = "
-	    ";
+		foreach ($data['kode_project'] as $v) {
+			$kode_project = $v['kode_project'];
+		}
 		$data['pelaksana_pekerja'] = $this->database_model->get('tb_pelaksana_pekerja');
 		$data['atasan'] = $this->database_model->get_atasan($where_atasan);
 		$data['pengawas_k3'] = $this->database_model->get_atasan($where_pengawas_k3);
 	    $data['perlindungan'] =$this->database_model->get_where('tb_peralatan_kerja',$wpk1);
+	    $data['tenaga_kerja'] =$this->database_model->get_pelaksana_kerja($kode_project);
 	    $data['keselamatan'] =$this->database_model->get_where('tb_peralatan_kerja',$wpk2);
 		$data['klasifikasi_kerja'] = $this->database_model->get('tb_klasifikasi_kerja');
 		$data['prosedur_kerja'] = $this->database_model->get('tb_prosedur_kerja');
@@ -138,6 +138,17 @@ class Rencana extends CI_Controller
 			'kode_project' => $kode_project
 		);
 		$this->database_model->insert('tb_det_pelaksana',$data);
+		$data['hore'] = $this->database_model->get_pelaksana_kerja($kode_project);
+		$array_data_pelaksana = array();
+		foreach ($data['hore'] as $a) {
+			 
+			echo '<div class="col-md-4">
+	                <div class="custom-control custom-checkbox">
+	                    <input type="checkbox" class="custom-control-input peralatan" value="'.$a['kode_pelaksana_pekerja'].'" name="tenaga_kerja" id="tk'.$a['kode_pelaksana_pekerja'].'">
+	                    <label class="custom-control-label" for="tk'.$a['kode_pelaksana_pekerja'].'">'.$a['nama_pelaksana_pekerja'].'- <b>'.$a['nama_pelaksana'].'</b></label>
+	                </div>
+	            </div> '; 
+			}
 	}
 	function insert_det_pekerja(){
 		$kode_project = $this->input->post('kode_project');
@@ -204,6 +215,7 @@ class Rencana extends CI_Controller
 		$keselamatan = $this->input->post('keselamatan'); 
 		$mulai_fix = $tgl_mulai. " ".$jam_mulai.":00";
 		$selesai_fix = $tgl_selesai. " ".$jam_selesai.":00";
+		$tenaga_kerja = $this->input->post('tenaga_kerja');
 		$data_project = array(
 			'kode_jenis_pekerjaan' => $kode_jenis_pekerjaan,
 			'tgl_project' => date('Y-m-d H:i:s'),
@@ -265,6 +277,15 @@ class Rencana extends CI_Controller
 					'kode_peralatan_kerja' => $data
 				);
 				$this->database_model->insert('tb_det_peralatan_kerja',$array);
+			}
+		}if (isset($tenaga_kerja)) {
+			
+			foreach ($tenaga_kerja as $data) {
+				$array = array(
+					'kode_project' => $kode_project,
+					'kode_user' => $data
+				);
+				$this->database_model->insert('tb_det_pekerja',$array);
 			}
 		}
 		
@@ -653,6 +674,17 @@ class Rencana extends CI_Controller
 
 		echo json_encode($data_klasifikasi);
 	}
+	function get_checked_tenaga_kerja(){
+		$where = array(
+			'kode_project' => 'K.001/AMANK2K3/CIANJUR/III/2019'
+		);
+		$data['data_pelaksana'] = $this->database_model->get_where('tb_det_pekerja',$where);
+		$data_pelaksana = array();
+		foreach ($data['data_pelaksana'] as $r) {
+			$data_pelaksana[] = $r['kode_user'];
+		}
+		echo json_encode($data_pelaksana);
+	}
 	function get_checked_prosedur(){
 		$where = array(
 			'kode_project' => $this->input->post('kode_project')
@@ -688,15 +720,6 @@ class Rencana extends CI_Controller
 		}
 
 		echo json_encode($data_peralatan);
-	}
-	function get_pekerja(){
-		$kode_project = $this->input->post('kode_project');
-		$data['hore'] = $this->database_model->get_pelaksana_kerja($kode_project);
-		$array_data_pelaksana = array();
-		foreach ($data['hore'] as $a) {
-			echo "<option value='".$a['kode_pelaksana_pekerja']."'>".$a['nama_pelaksana_pekerja']." - ".$a['nama_pelaksana']."</option>"; 
-		}
-		
 	}
 	function approval($uniq){
 		$where_project = array(
