@@ -14,9 +14,14 @@ class Index extends CI_Controller
 	function index(){
 		$kode_user = $this->session->userdata('kode_user');
 		$lokasi = $this->session->userdata('lokasi');
-	    $data['new'] = "
+	    if ($this->session->userdata('kode_divisi') == 1) {
+	    	$data['new'] = "
 	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
 	    ";
+	    }else{
+	    	$data['new'] = "";	
+	    }
+	    
 
 		$where = array(
 			'kode_user' => $this->session->userdata('kode_user')
