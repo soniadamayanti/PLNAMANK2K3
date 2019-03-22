@@ -179,6 +179,12 @@ class Database_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+	function get_pelaksana_kerja($kode){
+		
+		$query = $this->db->query("SELECT tb_det_pelaksana.kode_pelaksana,tb_pelaksana_pekerja.nama_pelaksana_pekerja,tb_pelaksana_pekerja.kode_pelaksana_pekerja, tb_pelaksana.nama_pelaksana FROM `tb_pelaksana_pekerja` INNER JOIN tb_det_pelaksana ON tb_det_pelaksana.kode_pelaksana = tb_pelaksana_pekerja.kode_pelaksana INNER JOIN tb_pelaksana ON tb_pelaksana_pekerja.kode_pelaksana = tb_pelaksana.kode_pelaksana WHERE tb_det_pelaksana.kode_project ='$kode' ORDER BY tb_pelaksana.nama_pelaksana ASC");
+
+		return $query->result_array();
+	}
 
 }
 

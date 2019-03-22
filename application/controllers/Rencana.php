@@ -548,7 +548,7 @@ class Rencana extends CI_Controller
 		$query = $this->database_model->get_det_pelaksana($uraian_pekerjaan[0]['kode_project']);  
           $data = array();
           foreach($query->result() as $r) {
-          	$button = '<button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.'" kode_pelaksana="'.$r->kode_pelaksana.'"><i class="mdi mdi-delete"></i></button>
+          	$button = '<button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.'" id_other="'.$r->kode_pelaksana.'" id="btnHapusDetail"><i class="mdi mdi-delete"></i></button>
           	';
             $data[] = array(
                 $r->nama_pelaksana,
@@ -584,7 +584,7 @@ class Rencana extends CI_Controller
           
           foreach($query->result() as $r) {
           	$button = '
-	          <button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.' kode_uraian_pekerjaan="'.$r->kode_uraian_pekerjaan.'"><i class="mdi mdi-delete"></i></button>
+	          <button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.' id_other="'.$r->kode_uraian_pekerjaan.'" id="btnHapusDetail"><i class="mdi mdi-delete"></i></button>
           	';
 
             $data[] = array(
@@ -622,7 +622,7 @@ class Rencana extends CI_Controller
           $data = array();
           foreach($query->result() as $r) {
           	$button = '
-	          <button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.' kode_user="'.$r->kode_user.'"><i class="mdi mdi-delete"></i></button>
+	          <button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.' id_other="'.$r->kode_user.'"><i class="mdi mdi-delete" id="btnHapusDetail"></i></button>
           	';
 
             $data[] = array(
@@ -688,6 +688,15 @@ class Rencana extends CI_Controller
 		}
 
 		echo json_encode($data_peralatan);
+	}
+	function get_pekerja(){
+		$kode_project = $this->input->post('kode_project');
+		$data['hore'] = $this->database_model->get_pelaksana_kerja($kode_project);
+		$array_data_pelaksana = array();
+		foreach ($data['hore'] as $a) {
+			echo "<option value='".$a['kode_pelaksana_pekerja']."'>".$a['nama_pelaksana_pekerja']." - ".$a['nama_pelaksana']."</option>"; 
+		}
+		
 	}
 	function approval($uniq){
 		$where_project = array(
