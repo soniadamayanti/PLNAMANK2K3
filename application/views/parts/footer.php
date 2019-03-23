@@ -221,6 +221,7 @@
             var alamat_project = $('#alamat_project').val();
             var tgl_pengajuan = $('#tgl_pengajuan').val();
             var tgl_mulai = $('#tgl_mulai').val();
+            var segment = $('#segment').val();
             var tgl_selesai = $('#tgl_selesai').val();
             var jam_mulai = $('#jam_mulai').val();
             var jam_selesai = $('#jam_selesai').val();
@@ -251,6 +252,7 @@
             var gardu = $('#gardu').val();
             var kode_line = $('#kode_line').val();
             var value = {
+                segment:segment,
                 kode_project:kode_project,
                 tegangan:tegangan,
                 kode_jenis_pekerjaan:kode_jenis_pekerjaan,
