@@ -194,7 +194,7 @@ class Database_model extends CI_Model
 		return $query->result_array();
 	}
 	function cek_ttd($id){
-		$this->db->where('kode_divisi',$id);
+		$this->db->where('divisi_tujuan',$id);
 		$query = $this->db->get('tb_berkas_terakhir');
 		return $query->result_array();
 	}
@@ -202,7 +202,7 @@ class Database_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('tb_project');
 		$this->db->join('tb_berkas_terakhir','tb_project.kode_project = tb_berkas_terakhir.kode_project');
-		$this->db->where('tb_project.status !=','success');
+		// $this->db->where('tb_project.status !=','success');
 		$this->db->where('tb_project.status !=','failed');
 		$this->db->where('tb_berkas_terakhir.divisi_tujuan','0');
 		$query = $this->db->get();
