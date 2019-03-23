@@ -325,7 +325,7 @@ foreach ($detail_project as $data_project) {
                                         $('#kode_line').val(this.options[this.selectedIndex].value)">
                                             <?php 
                                             foreach ($sld as $a) {
-                                                echo  "<option value='".$a['kode_sld']."'>".substr($a['nama_sld'], 0,strpos($a['nama_sld'], '-'))."</option>";
+                                                echo  "<option value='".$a['kode_sld']."'>".$a['nama_sld']."</option>";
                                             }
                                              ?>
                                         </select>
