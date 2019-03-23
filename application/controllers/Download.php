@@ -134,6 +134,8 @@ class Download extends CI_Controller
         $a['detail_keselamatan'] = $this->database_model->detail_peralatan(array('kode_project' => $kode,'type'=>'Keselamatan'));
         $a['detail_perlindungan'] = $this->database_model->detail_peralatan(array('kode_project' => $kode,'type'=>'Perlindungan'));
         $a['project'] = $this->database_model->detail_project($id);
+
+        $file_name = $kode.'.pdf';
         $data = $this->load->view('d_rencana', $a, TRUE);
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4']);
         $stylesheet = file_get_contents('assets/css/grid.css');
@@ -146,8 +148,14 @@ class Download extends CI_Controller
         $mpdf->AddPage('P','','','','',15,15,15,15,10,10);
         $data3 = $this->load->view('d_penyelesaian', [], TRUE);
         $mpdf->WriteHTML($data3,3);
-        $mpdf->Output();
+
+        $mpdf->Output($file_name, 'D');
       }
 }
+
+// 'D': download the PDF file
+// 'I': serves in-line to the browser
+// 'S': returns the PDF document as a string
+// 'F': save as file $file_out
 
  ?>

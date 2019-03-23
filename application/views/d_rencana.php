@@ -96,7 +96,7 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     PT PLN (Persero)<br>
-                        DISTRIBUSI JAWA BARAT <br>
+                        UNIT INDUK DISTRIBUSI JAWA BARAT <br>
                         UP3 CIANJUR - ULP CIANJUR KOTA
                 </div>
             </div>
@@ -174,8 +174,8 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                     <td><?php echo $project['peralatan_kerja'] ?></td>
                 </tr>
                 <tr>
-                    <td>Pelaksana</td>
-                    <td>:</td>
+                    <td class="text-top">Pelaksana</td>
+                    <td class="text-top">:</td>
                     <td>
                         <?php 
                             $i=1;
@@ -230,8 +230,8 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                     <td class="caps"><?php echo $project['alamat_project'] ?></td>
                 </tr>
                 <tr>
-                    <td>Pelaksana Pembebasan</td>
-                    <td>:</td>
+                    <td class="text-top">Pelaksana Pembebasan</td>
+                    <td class="text-top">:</td>
                     <td><?php 
                         $i=1;
                         foreach ($detail_pelaksana as $detail_pelaksana) {
@@ -329,7 +329,7 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
             </table>
         </div>
         <div class="col-sm-12 b-full center " style="height: 70mm;">
-            <h1>
+            <h1 class="center">
                 Gambar Terlampir<br>
                 SINGLE LINE <?php echo $project['tegangan'] ?> KV<br>
                 <?php echo $project['nama_sld'] ?>
@@ -340,7 +340,7 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
 
     <div class="page">
         <?php echo $project['kode_project'] ?><br>
-        <img src="<?php echo site_url(); ?>assets/arsip/sld/<?php echo $project['kode_line'] ?>.jpg" style>
+        <img src="<?php echo site_url(); ?>assets/arsip/sld/<?php echo $project['kode_line'] ?>.jpg" class="imgsld">
     </div>
 
     <div class="page">
@@ -600,9 +600,9 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                     <td><?php echo $project['nama_sld'] ?></td>
                 </tr>
                 <tr>
-                    <td>4</td>
-                    <td>Perusahaan Pelaksana Kerja</td>
-                    <td>:</td>
+                    <td class="text-top">4</td>
+                    <td class="text-top">Perusahaan Pelaksana Kerja</td>
+                    <td class="text-top">:</td>
                     <td>
                         <?php 
                         
@@ -614,16 +614,22 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                          ?>
                     </td>
                 </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Pengawas Pekerjaan</td>
-                    <td>:</td>
-                    <td>Ainul Yaqin</td>
+                <tr >
+                    <td class="text-top">5</td>
+                    <td class="text-top">Pengawas Pekerjaan</td>
+                    <td class="text-top">:</td>
+                    <td><?php 
+                                foreach ($spvtek->result() as $r) {
+                                    echo $r->nama_user;
+                                };
+                             ?>
+                        
+                    </td>
                 </tr>
                 <tr>
-                    <td>6</td>
-                    <td>Pelaksana Pekerja</td>
-                    <td>:</td>
+                    <td class="text-top">6</td>
+                    <td class="text-top">Pelaksana Pekerja</td>
+                    <td class="text-top">:</td>
                     <td>
                         <div class="">
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -654,20 +660,20 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                     <td colspan="3">PERALATAN PEKERJAAN</td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>ALAT PELINDUNG DIRI</td>
-                    <td>:</td>
-                    <td>
+                    <td class="text-top">1</td>
+                    <td class="text-top">ALAT PELINDUNG DIRI</td>
+                    <td class="text-top">:</td>
+                    <td class="text-top">
                         <?php $i=1;foreach ($detail_perlindungan as $detail_perlindungan): ?>
                             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><?php echo $i ?>. <?php echo $detail_perlindungan['nama_peralatan_kerja'] ?></div>    
                         <?php $i++;endforeach ?>
                     </td>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td>PERLENGKAPAN KESELAMATAN & DARURAT</td>
-                    <td>:</td>
-                    <td>
+                    <td class="text-top">2</td>
+                    <td class="text-top">PERLENGKAPAN KESELAMATAN & DARURAT</td>
+                    <td class="text-top">:</td>
+                    <td class="text-top">
                         <?php $i=1;foreach ($detail_keselamatan as $detail_keselamatan): ?>
                             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><?php echo $i ?>. <?php echo $detail_keselamatan['nama_peralatan_kerja'] ?></div>    
                         <?php $i++;endforeach ?>
@@ -677,13 +683,9 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                     <td>C</td>
                     <td colspan="3">ANALISA KESELAMATAN KERJA</td>
                 </tr>
-                <tr>
-                    <td colspan="4">
-                        <img src="<?php echo site_url(); ?>assets/arsip/jsa/H0001.jpg" class="imgjsa">
-                    </td>
-                </tr>
             </table>
 
+                        <img src="<?php echo site_url(); ?>assets/arsip/jsa/<?php echo $project['kode_jenis_pekerjaan'] ?>.jpg" class="imgjsa">
             <table class="ttd">
                 <tbody>
                     <tr>

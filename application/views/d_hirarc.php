@@ -18,7 +18,7 @@ $mulp = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.
 ?>
 <link href="<?php echo site_url(); ?>assets/css/grid.css" rel="stylesheet" />
     <div class="page-l">
-        <img src="<?php echo site_url(); ?>assets/arsip/hirarc/H0001.jpg" class="imghirac">
+        <img src="<?php echo site_url(); ?>assets/arsip/hirarc/<?php echo $project['kode_jenis_pekerjaan'] ?>.jpg" class="imghirac">
 
             <table class="ttd2">
                 <tbody>
@@ -28,6 +28,7 @@ $mulp = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.
                         <td>DIPERIKSA OLEH :</td>
                         <td>DISUSUN OLEH :</td>
                     </tr>
+                    <tr>
                         <td>
                             <?php 
                                 foreach ($mulp->result() as $r) {

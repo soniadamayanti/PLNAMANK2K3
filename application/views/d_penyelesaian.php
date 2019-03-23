@@ -9,7 +9,6 @@ $user = $project['user'] ;
 
 
 $ulp = $this->db->query("SELECT * FROM tb_users WHERE kode_user = '".$user."'");
-
 $aju_tahun = substr($project['tgl_selesai'], 0,4);
 $aju_bulan_angka = substr($project['tgl_selesai'], 5,2);
 
@@ -90,7 +89,12 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                 <tr>
                     <td>ULP</td>
                     <td>:</td>
-                    <td ><?php echo $project['lokasi'] ?></td>
+                    <td ><?php 
+                            foreach ($ulp->result() as $u) {
+                                echo $u->ulp;
+                            };
+                         ?>  
+                    </td>
                 </tr>
                 <tr>
                     <td>Action taken / langkah pekerjaan / perbaikan</td>
@@ -115,9 +119,7 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
         <div class="col-sm-12 b-full">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-2">
                 <p class="col-xs-11 col-sm-11 col-md-11 col-lg-11" style="height: 130mm;">
-                    Jika Anda sudah menambahkan beberapa akun Instagram, Anda mungkin mendapatkan pemberitahuan otomatis dari akun yang sudah Anda nyalakan. Ini bergantung pada kapan terakhir kali Anda masuk dan jumlah perangkat yang Anda gunakan untuk masuk ke akun.
-
-                    Untuk melihat jumlah pemberitahuan untuk setiap akun yang Anda tambahkan secara cepat, buka profil Anda dan ketuk nama pengguna di bagian atas.
+                    <?php echo $project['keterangan'] ?>
                 </p>
             </div>
         </div>
