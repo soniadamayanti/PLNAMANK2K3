@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-login">
 
 <head>
     <meta charset="utf-8">
@@ -15,10 +15,16 @@
     <link href="<?php echo site_url(); ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo site_url(); ?>assets/css/style.css" rel="stylesheet">
+    <link href="<?php echo site_url(); ?>assets/css/login.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="<?php echo site_url(); ?>assetscss/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="<?php echo site_url(); ?>assets/css/colors/blue.css" id="theme" rel="stylesheet">
 </head>
 
+<!--     <header>
+         <div class="head">
+            <a href="index"><img src="<?php echo site_url(); ?>assets/images/logo.png" class="img-responsive logo" url="www.amank2k3.web.id" alt='Logo AMANK2K3'  title='AMANK2K3'></a>
+         </div>
+    </header> -->
 <body>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
@@ -31,10 +37,12 @@
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <section id="wrapper">
-        <div class="login-register" style="background-image:url(<?php echo site_url(); ?>assets/images/background/login-register.jpg);">        
+        <div class="login-register" >        
             <div class="login-box card">
+                <div class="card-head">
+                    <a href="index"><img src="<?php echo site_url(); ?>assets/images/logo.png" class="img-responsive logo" url="www.amank2k3.web.id" alt='Logo AMANK2K3'  title='AMANK2K3'></a>
+                </div>
             <div class="card-body">
-                    <h3 class="box-title mb-3">Masuk</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input class="form-control" type="text" id="username" required="" placeholder="Username"> </div>
