@@ -332,9 +332,6 @@ foreach ($detail_project as $data_project) {
                                         <input type="hidden" id="kode_line" >
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" disabled>
-                                </div>
-                                <div class="col-md-3">
                                     <input type="text" class="form-control" placeholder="Segment" id="segment" value="<?php echo (isset($data_project['gardu']) != '')? $data_project['gardu'] : ""  ?>" >
                                 </div>
                             </div>

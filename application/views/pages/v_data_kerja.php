@@ -118,7 +118,10 @@
                                 if ($this->session->userdata('kode_divisi') == 1) {
                                     if ($data['status'] == 'new') {
                                         echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnKirim">Kirim & TTD</button>';  
-                                    }else{
+                                    }else if ($data['status'] == 'denied') {
+                                        echo anchor('Rencana/form/'.$data['uniqid'],'Edit','class="btn btn-warning"');  
+                                    } 
+                                    else{
                                         echo anchor('#','Pending','class="btn btn-secondary disabled"');  
                                     }
                                 }else{
