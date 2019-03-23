@@ -28,7 +28,7 @@
     <!-- chartist chart -->
     <script src="<?php echo site_url(); ?>assets/plugins/chartist-js/dist/chartist.min.js"></script>
     <!-- Chart JS -->
-    <scriptbtnKirimRencanaKerja src="<?php echo site_url(); ?>assets/plugins/Chart.js/Chart.min.js"></script>
+    <script src="<?php echo site_url(); ?>assets/plugins/Chart.js/Chart.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery.toast.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
@@ -385,14 +385,6 @@
                 }
 
             }
-        });
-        $(document).on('click','#btnSimpanHirarc',function(){
-            location.href = "<?php echo base_url() ?>Rencana";
-        });
-        
-        $(document).on('click','#btnKirimRencanaKerja',function(){
-            var uniqid = $('#uniqid').val();
-            location.href = '<?php echo base_url() ?>Rencana/kirim_Rencana/'+uniqid;
         });
         $(document).on('click','#btnSetuju',function(){
             var uniqid = $(this).attr('uniqid');
