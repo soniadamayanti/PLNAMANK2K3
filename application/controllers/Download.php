@@ -37,7 +37,8 @@ class Download extends CI_Controller
     $a['detail_perlindungan'] = $this->database_model->detail_peralatan(array('kode_project' => $kode,'type'=>'Perlindungan'));
     $a['project'] = $this->database_model->detail_project($id);
         $data['judul'] = "Penyelesaian";
-        $this->load->view('d_penyelesaian', $a);
+
+    $this->load->view('d_penyelesaian', $a);
     }
 	function pdftest(){
     $id = $this->uri->segment(3);
@@ -51,6 +52,8 @@ class Download extends CI_Controller
     $dimana = array(
       'kode_project' => $kode
     );
+    $a['data_user'] = $this->db->query('SELECT s.*,u.nama_user,u.kode_divisi,d.nama_divisi FROM tb_status_project s INNER JOIN (tb_users u INNER JOIN tb_divisi d ON u.kode_divisi=d.kode_divisi) ON u.kode_user = s.kode_user WHERE kode_project = "'.$kode.'" ORDER BY kode_divisi ASC');
+
     $a['uraian_pekerjaan'] = $this->database_model->get_where('tb_det_uraian_pekerjaan',$dimana);
     $a['detail_pelaksana'] = $this->database_model->detail_pelaksana($kode);
     $a['detail_pelaksana2'] = $this->database_model->detail_pelaksana($kode);

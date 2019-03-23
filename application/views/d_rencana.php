@@ -2,6 +2,56 @@
     
 <?php endforeach ?>
 
+<?php foreach ($data_user as $user): ?>
+    
+<?php endforeach ?>
+
+<?php 
+
+$kode = $project['kode_project'] ;
+$user = $project['user'] ;
+
+$staf = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.nama_divisi,u.ttd FROM tb_status_project s INNER JOIN (tb_users u INNER JOIN tb_divisi d ON u.kode_divisi=d.kode_divisi) ON u.kode_user = s.kode_user WHERE s.kode_project = '".$kode."' AND u.kode_divisi = '1'");
+$k3 = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.nama_divisi,u.ttd FROM tb_status_project s INNER JOIN (tb_users u INNER JOIN tb_divisi d ON u.kode_divisi=d.kode_divisi) ON u.kode_user = s.kode_user WHERE s.kode_project = '".$kode."' AND u.kode_divisi = '2'");
+$spvtek = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.nama_divisi,u.ttd FROM tb_status_project s INNER JOIN (tb_users u INNER JOIN tb_divisi d ON u.kode_divisi=d.kode_divisi) ON u.kode_user = s.kode_user WHERE s.kode_project = '".$kode."' AND u.kode_divisi = '3'");
+$mulp = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.nama_divisi,u.ttd FROM tb_status_project s INNER JOIN (tb_users u INNER JOIN tb_divisi d ON u.kode_divisi=d.kode_divisi) ON u.kode_user = s.kode_user WHERE s.kode_project = '".$kode."' AND u.kode_divisi = '4'");
+
+$jml_tenaga_kerja=$this->db->query('SELECT kode_project FROM tb_det_pekerja WHERE kode_project="'.$kode.'"')->num_rows();
+
+$ulp = $this->db->query("SELECT * FROM tb_users WHERE kode_user = '".$user."'");
+
+$aju_tahun = substr($project['tgl_pengajuan'], 0,4);
+$aju_bulan_angka = substr($project['tgl_pengajuan'], 5,2);
+
+if ($aju_bulan_angka == '01') {
+    $aju_bulan = 'Januari';
+}else if ($aju_bulan_angka == '02') {
+    $aju_bulan = 'Februari';
+}else if ($aju_bulan_angka == '03') {
+    $aju_bulan = 'Maret';
+}else if ($aju_bulan_angka == '04') {
+    $aju_bulan = 'April';
+}else if ($aju_bulan_angka == '05') {
+    $aju_bulan = 'Mei';
+}else if ($aju_bulan_angka == '06') {
+    $aju_bulan = 'Juni';
+}else if ($aju_bulan_angka == '07') {
+    $aju_bulan = 'Juli';
+}else if ($aju_bulan_angka == '08') {
+    $aju_bulan = 'Agustus';
+}else if ($aju_bulan_angka == '09') {
+    $aju_bulan = 'September';
+}else if ($aju_bulan_angka == '10') {
+    $aju_bulan = 'Oktober';
+}else if ($aju_bulan_angka == '11') {
+    $aju_bulan = 'November';
+}else if ($aju_bulan_angka == '12') {
+    $aju_bulan = 'Desember';
+}
+$aju_tgl = substr($project['tgl_pengajuan'], 8,2);
+$tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
+ ?>
+
 <link href="<?php echo site_url(); ?>assets/css/grid.css" rel="stylesheet" />
 
     <div class="page">
@@ -68,12 +118,24 @@
                 <tr>
                     <td style="width: 44%">PENGAWAS</td>
                     <td style="width: 3%">:</td>
-                    <td style="width: 53%">AINUL YAQIN</td>
+                    <td style="width: 53%" class="caps">
+                        <?php 
+                            foreach ($spvtek->result() as $r) {
+                                echo $r->nama_user;
+                            };
+                         ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>JABATAN</td>
                     <td>:</td>
-                    <td>AE PENGENDALIAN KOSNTRUKSI</td>
+                    <td class="caps">
+                        <?php 
+                            foreach ($spvtek->result() as $r) {
+                                echo $r->nama_divisi;
+                            };
+                         ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>PEMBEBASAN JARINGAN HARI/TANGGAL</td>
@@ -104,7 +166,7 @@
                 <tr>
                     <td>Jumlah Tenaga Kerja</td>
                     <td>:</td>
-                    <td><?php echo $project['jml_tenaga_kerja'] ?> Orang</td>
+                    <td><?php echo $jml_tenaga_kerja ?> Orang</td>
                 </tr>
                 <tr>
                     <td>Peralatan Kerja</td>
@@ -116,12 +178,13 @@
                     <td>:</td>
                     <td>
                         <?php 
-                        $i=1;
-                        foreach ($detail_pelaksana2 as $detail_pelaksana2) {
-                            echo $i.". ".$detail_pelaksana2['nama_pelaksana'].'<br>';
-                        $i++;
-                        }
+                            $i=1;
+                            foreach ($detail_pelaksana2 as $detail_pelaksana2) {
+                                echo $i.". ".$detail_pelaksana2['nama_pelaksana'].'<br>';
+                            $i++;
+                            }
                          ?>
+
                     </td>
                 </tr>
                 </tbody>
@@ -159,12 +222,12 @@
                 <tr>
                     <td>Gardu Padam</td>
                     <td>:</td>
-                    <td><?php echo $project['gardu'] ?></td>
+                    <td class="caps"><?php echo $project['gardu'] ?></td>
                 </tr>
                 <tr>
                     <td>Lokasi Padam</td>
                     <td>:</td>
-                    <td><?php echo $project['alamat_project'] ?></td>
+                    <td class="caps"><?php echo $project['alamat_project'] ?></td>
                 </tr>
                 <tr>
                     <td>Pelaksana Pembebasan</td>
@@ -175,7 +238,9 @@
                             echo $i.". ".$detail_pelaksana['nama_pelaksana'].'<br>';
                         $i++;
                         }
-                         ?></td>
+                         ?>
+                             
+                    </td>
                 </tr>
             </table>
 
@@ -184,13 +249,15 @@
                 <tbody>
                     <tr>
                         <td colspan="2">&nbsp;</td>
-                        <td><?php  
-                        $awal =strpos($project['kode_project'], '/',14);
-                        $akhir = strpos($project['kode_project'], '/',15);
-                        $len = strlen($project['kode_project']);
-                        $panjang = ($len-$awal)-($len-$akhir); 
-                        echo substr($project['kode_project'], $awal+1,$panjang-1);
-                        ?>, <?php echo $project['tgl_approval'] ?></td>
+                        <td>
+                        <?php 
+                            foreach ($ulp->result() as $u) {
+                                echo $u->ulp;
+                            };
+                            echo ", ";
+                            echo $tgl;
+                         ?>
+                         </td>
                     </tr>
                     <tr>
                         <td>Menyetujui</td>
@@ -198,22 +265,54 @@
                         <td>Pemohon</td>
                     </tr>
                     <tr>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0001.png"></td>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0002.png"></td>
+                        <td>
+                            <?php 
+                                foreach ($mulp->result() as $r) {
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
+                                };
+                             ?>
+                        </td>
+                        <td>
+                            <?php 
+                                foreach ($spvtek->result() as $r) {
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
+                                };
+                             ?>
+                        </td>
                         <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0004.png"></td>
                     </tr>
                     <tr>
                         <td>
-                            <u>ANDIS VP</u><br>
-                            Manager ULP Cianjur Kota
+                            <?php 
+                                foreach ($mulp->result() as $r) {
+                                    echo "<u>".$r->nama_user."</u><br>";
+                                    echo $r->nama_divisi;
+                                };
+                             ?>
                         </td>
                         <td>
-                            <u>ANDIS VP</u><br>
-                            Manager ULP Cianjur Kota
+                            <?php 
+                                foreach ($spvtek->result() as $r) {
+                                    echo "<u>".$r->nama_user."</u><br>";
+                                    echo $r->nama_divisi;
+                                };
+                             ?>
                         </td>
                         <td>
-                            <u>ANDIS VP</u><br>
-                            Manager ULP Cianjur Kota
+                            <?php 
+                                foreach ($staf->result() as $r) {
+                                    echo "<u>".$r->nama_user."</u><br>";
+                                    echo $r->nama_divisi;
+                                };
+                             ?>
                         </td>
                     </tr>
                 </tbody>
@@ -255,7 +354,7 @@
                     <td style="width: 3%">1.</td>
                     <td style="width: 29%">Tanggal Pengajuan</td>
                     <td style="width: 3%">:</td>
-                    <td style="width: 70%" colspan="2"><?php echo $project['tgl_project'] ?></td>
+                    <td style="width: 70%" colspan="2"><?php echo $tgl; ?></td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -279,16 +378,26 @@
                     <td>5</td>
                     <td>Pengawas Pekerjaan</td>
                     <td>:</td>
-                    <td>Ainul Yaqin</td>
-                    <td>No.Telp : 089503800600</td>
+                    <?php 
+                        foreach ($spvtek->result() as $r) {
+                            echo "
+                            <td>".$r->nama_user."</td>
+                            <td>No.Telp : ".$r->no_telp_user."</td>";
+                        };
+                     ?>
 
                 </tr>
                 <tr>
                     <td>6</td>
                     <td>Pengawas K3</td>
                     <td>:</td>
-                    <td>Virgea Krismanda</td>
-                    <td>No.Telp : 089503800600</td>
+                    <?php 
+                        foreach ($k3->result() as $r) {
+                            echo "
+                            <td>".$r->nama_user."</td>
+                            <td>No.Telp : ".$r->no_telp_user."</td>";
+                        };
+                     ?>
                 </tr>
 
 
@@ -372,6 +481,12 @@
                     </tr>
                     <tr>
                         <td>
+                            <?php 
+                                foreach ($staf->result() as $r) {
+                                    echo "<u>".$r->nama_user."</u><br>";
+                                    echo $r->nama_divisi;
+                                };
+                            ?>
                             (ANDIS VERINDA P)
                         </td>
                         <td>
