@@ -435,7 +435,7 @@
             });
         });
         $(document).on('click','#btnTolak',function(){
-            $('#ModalTolak').modal('show');
+            
             var uniqid = $(this).attr('uniqid');
             var value = {
                 uniqid:uniqid
@@ -447,7 +447,10 @@
                 success:function(data){
                     if (data == 1) {
                         location.reload();
-                    }else{
+                    }else if(data== 2){
+                        $('#ModalTolak').modal('show');
+                    }
+                    else{
                         alert(data);
                     }
                 }

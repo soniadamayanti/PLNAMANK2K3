@@ -16,11 +16,9 @@ foreach ($detail_project as $data_project) {
                 <h4 class="mb-0 text-white">FORM PENYELESAIAN</h4>
             </div>
             <div class="card-body">
-                <?php echo form_open('Rencana/working_permit/'.$this->uri->segment(3)) ?>
+                <?php echo form_open('Rencana/finish/'.$this->uri->segment(3)) ?>
                     <div class="form-body">
                         <h4><b><?php echo $data['kode_project'] ?></b> <span class="float-right"></span></h4>
-                        <input type="hidden" class="form-control" id="kode_project" value="<?php echo  $a[0]['kode_project'] ?>">
-                        <input type="hidden" class="form-control" id="type" value="<?php echo  $this->uri->segment(3) ?>"> 
                         <?php echo substr($a[0]['tgl_selesai'], 0, 10) ?>
                         <br>
                         <hr class="mt-0 mb-5">
@@ -29,7 +27,7 @@ foreach ($detail_project as $data_project) {
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">Keterangan Pemberitahuan</label>
                                     <div class="col-md-8">
-                                    <textarea class="form-control" rows=6 id="ketPemberitahuan"></textarea>
+                                    <textarea name="keterangan" class="form-control" rows=6 id="ketPemberitahuan"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -40,13 +38,13 @@ foreach ($detail_project as $data_project) {
                                 <div class="form-group row">
                                     <label class="col-sm-4 text-left col-form-label">&nbsp;</label>
                                     <div class="col-md-8">
-                                        <button type="submit" class="btn btn-success" id="btnSimpanPenyelesaian">Simpan</button>
+                                        <input name="btnSimpanPenyelesaian" type="submit" class="btn btn-success" id="btnSimpanPenyelesaian" value="Simpan" />
                                     </div>
                                 </div>
                             </div>
                             <!--/span-->
                         </div>
-                </form>
+                <?php echo  form_close() ?>
             </div>
         </div>
     </div>
