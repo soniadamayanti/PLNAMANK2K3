@@ -95,6 +95,9 @@ class Download extends CI_Controller
     $mpdf->AddPage('L','','','','',5,5,10,5,10,10);
     $data2 = $this->load->view('d_hirarc', [], TRUE);
     $mpdf->WriteHTML($data2,3);
+    $mpdf->AddPage('P','','','','',15,15,15,15,10,10);
+    $data3 = $this->load->view('d_penyelesaian', [], TRUE);
+    $mpdf->WriteHTML($data3,3);
     $mpdf->Output();
   }
 }

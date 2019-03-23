@@ -9,7 +9,7 @@
         <div class="col-sm-12 b-full">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-2">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                    <img src="<?php echo site_url(); ?>assets/images/logo-icon.png">
+                    <img src="<?php echo site_url(); ?>assets/images/logo-icon-pln.png">
                 </div>
                 <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                     PT PLN (Persero)<br>
@@ -77,7 +77,7 @@
                 <div class="center" style="padding-top: 3mm; padding-bottom: 3mm;">
                     Pemberitahuna penyelesaian pekerjaan
                 </div>
-                <p class="col-xs-11 col-sm-11 col-md-11 col-lg-11" style="height: 170mm;">
+                <p class="col-xs-11 col-sm-11 col-md-11 col-lg-11" style="height: 130mm;">
                     Jika Anda sudah menambahkan beberapa akun Instagram, Anda mungkin mendapatkan pemberitahuan otomatis dari akun yang sudah Anda nyalakan. Ini bergantung pada kapan terakhir kali Anda masuk dan jumlah perangkat yang Anda gunakan untuk masuk ke akun.
 
                     Untuk melihat jumlah pemberitahuan untuk setiap akun yang Anda tambahkan secara cepat, buka profil Anda dan ketuk nama pengguna di bagian atas.
