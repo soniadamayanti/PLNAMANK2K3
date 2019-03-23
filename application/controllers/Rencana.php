@@ -717,7 +717,7 @@ class Rencana extends CI_Controller
 					'tgl' => date('Y-m-d H:i:s')
 				);
 				$array_status_project = array(
-					'status_project' => 'approve'
+					'status_project' => 'approve',
 					'tgl' => date('Y-m-d H:i:s')
 				);
 				$this->database_model->update('tb_berkas_terakhir',$array_berkas_terakhir,array('kode_project'=>$kode));
