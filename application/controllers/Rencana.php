@@ -227,6 +227,7 @@ class Rencana extends CI_Controller
 			'tgl_project' => date('Y-m-d H:i:s'),
 			'tgl_pengajuan' => $tgl_pengajuan,
 			'tgl_pelaksanaan' => $mulai_fix,
+			'jml_tenaga_kerja' => count($tenaga_kerja),
 			'tgl_selesai' => $selesai_fix,
 			'tegangan' => $tegangan,
 			'alamat_project' => $alamat_project,
@@ -529,7 +530,7 @@ class Rencana extends CI_Controller
 		$query = $this->database_model->get_det_pelaksana($uraian_pekerjaan[0]['kode_project']);  
           $data = array();
           foreach($query->result() as $r) {
-          	$button = '<button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.'" id_other="'.$r->kode_pelaksana.'" id="btnHapusDetail"><i class="mdi mdi-delete"></i></button>
+          	$button = '<button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.'" id_other="'.$r->kode_pelaksana.'" id="btnHapusDetail" status="temp_pelaksana"><i class="mdi mdi-delete"></i></button>
           	';
             $data[] = array(
                 $r->nama_pelaksana,
@@ -565,49 +566,13 @@ class Rencana extends CI_Controller
           
           foreach($query->result() as $r) {
           	$button = '
-	          <button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.' id_other="'.$r->kode_uraian_pekerjaan.'" id="btnHapusDetail"><i class="mdi mdi-delete"></i></button>
+	          <button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.'" id_other="'.$r->kode_uraian_pekerjaan.'" id="btnHapusDetail" status="temp_uraian_pekerjaan"><i class="mdi mdi-delete"></i></button>
           	';
 
             $data[] = array(
                 $r->uraian_pekerjaan,
                 $r->jam,
                 $r->keterangan,
-                $button
-               );
-          }
-
-          $output = array(
-               "draw" => $draw,
-                 "recordsTotal" => $query->num_rows(),
-                 "bPaginate"=> false,
-                 "recordsFiltered" => $query->num_rows(),
-                 "data" => $data
-            );
-          echo json_encode($output);
-          exit();
-	}
-	function get_temp_pekerja(){
-		// Datatables Variables
-          $draw = intval($this->input->get("draw"));
-          $start = intval($this->input->get("start"));
-          $length = intval($this->input->get("length"));
-          $where = array(
-          	'uniqid' => $this->uri->segment(3)
-          );
-          $c['perkerja'] = $this->database_model->get_where('tb_project',$where);
-          $uraian_pekerjaan = array();
-          foreach ($c['perkerja'] as $b) {
-          	$uraian_pekerjaan[] = $b;
-          }
-          $query = $this->database_model->get_det_pekerja($uraian_pekerjaan[0]['kode_project']);
-          $data = array();
-          foreach($query->result() as $r) {
-          	$button = '
-	          <button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.' id_other="'.$r->kode_user.'"><i class="mdi mdi-delete" id="btnHapusDetail"></i></button>
-          	';
-
-            $data[] = array(
-                $r->nama_pelaksana_pekerja,
                 $button
                );
           }
@@ -751,6 +716,63 @@ class Rencana extends CI_Controller
 				
 			}
 		}
+	}
+	function delete_detail(){
+		$kode_project = $this->input->post('kode_project');
+		$id_other = $this->input->post('id_other');
+		$status = $this->input->post('status');
+		$table = str_replace('temp', 'tb_det', $status);
+		$kolom = str_replace('temp', 'kode', $status);
+		$array = array(
+			'kode_project'=> $kode_project,
+			$kolom => $id_other
+		);
+		$this->database_model->delete_detail($table,$array);
+	}
+	function tolak(){
+		$uniq = $this->input->post('uniqid');
+		$where_project = array(
+			'uniqid' => $uniq
+		);
+		$data['project'] = $this->database_model->get_where('tb_project',$where_project);
+		foreach ($data['project'] as $a) {
+			$kode = $a['kode_project'];
+		}
+		$data['cek_ttd'] = $this->database_model->cek_ttd($this->session->userdata('child_divisi'));
+			if (count($data['cek_ttd']) > 0) {
+				$data['cek_ttd_anda'] = $this->database_model->get_where('tb_approval',
+					array(
+						'kode_project' => $kode, 
+						'kode_user' => $this->session->userdata('kode_user'),
+					)
+				);
+				if (count($data['cek_ttd_anda']) == 1) {
+					echo "Anda sudah menolak berkas ini";
+				}else{
+					$array_berkas_terakhir = array(
+						'kode_project' => $kode,
+						'kode_divisi' => $this->session->userdata('kode_divisi'),
+						'parent_divisi' => $this->session->userdata('parent_divisi'),
+						'tgl' => date('Y-m-d H:i:s')
+					);
+					$array_approval = array(
+						'kode_project' => $kode,
+						'kode_user' => $this->session->userdata('kode_user'),
+						'type' => 'approve',
+						'tgl' => date('Y-m-d H:i:s')
+					);
+					$array_status_project = array(
+						'status_project' => 'tolak'
+					);
+					$this->database_model->insert('tb_berkas_terakhir',$array_berkas_terakhir);
+					$this->database_model->insert('tb_approval',$array_approval);
+					$this->database_model->update('tb_status_project',$array_status_project,array('kode_project' => $kode, 'kode_user' => $this->session->userdata('kode_user')));
+				}
+				echo 1;
+			}else{
+				echo "Anda blm bisa ttd";
+				
+			}
 	}
 }
 

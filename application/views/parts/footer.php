@@ -1,4 +1,4 @@
-<footer class="footer">
+    <footer class="footer">
                 &copy; 2019 IFD
             </footer>
             <!-- ============================================================== -->
@@ -144,14 +144,24 @@
             }
         });
         $(document).on('click','#btnHapusDetail',function(){
-            var kode_project = $('#kode_project').val();
-            var id = $('#id_other').val();
-            var status = $('#status').val();
+            var kode_project = $(this).attr('kode_project');
+            var id_other = $(this).attr('id_other');
+            var status = $(this).attr('status');
             var value =  {
                 kode_project:kode_project,
-                id:id,
+                id_other:id_other,
                 status:status
             };
+            $.ajax({
+                url:'<?php echo base_url(); ?>Rencana/delete_detail',
+                data:value,
+                type:'POST',
+                success:function(data){
+                    
+                    var table = $('#table_'+status).DataTable();
+                    table.ajax.reload(null,false);
+                }
+            })
         }); 
         $(document).on('click','#btnTambahPelaksana',function(){
             var kode_project = $('#kode_project').val();
