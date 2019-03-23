@@ -484,9 +484,9 @@ class Rencana extends CI_Controller
           echo json_encode($output);
           exit();
 	}
-	function failed(){
-		$uniqid = $this->input->post('uniqid');
-		$keterangan = $this->input->post('keterangan');
+	function failed($uniq){
+		// $uniqid = $this->input->post('uniqid');
+		// $keterangan = $this->input->post('keterangan');
 		$where_project = array(
 			'uniqid' => $uniq
 		);
@@ -496,8 +496,7 @@ class Rencana extends CI_Controller
 		}
 		$array_status_project = array(
 			'status_project' => 'failed',
-			'kode_user' => $this->session->userdata('kode_user'),
-			'keterangan' => $keterangan
+			'kode_user' => $this->session->userdata('kode_user')
 		);
 		$array_penyelesaian = array(
 			'status' => 'failed'
@@ -522,12 +521,10 @@ class Rencana extends CI_Controller
           $project['data_project'] = $this->database_model->get_data_selesai();
           $data = array();
           foreach($project['data_project'] as $r) {
-          	$b['cek_approval'] = $this->database_model->cek_approval($r['kode_project'],4);
-          	if (count($b['cek_approval']) > 0) {
+          	if ($r['status'] == 'success') {
           		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-info"');
           	}else{
-          		// $button = "<a class='btn btn-info' disabled href='".base_url()."Download/printPDF/".$r['uniqid']."'>Print PDF</a>";
-          		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-secondary disabled" ').'<br><br>'.
+          		$button = 
           		anchor('Rencana/penyelesaian/'.$r['uniqid'],'Penyelesaian','class="btn btn-success" ');
           	}
           	
@@ -691,7 +688,7 @@ class Rencana extends CI_Controller
 			$kode = $a['kode_project'];
 		}
 		$array_pending = array(
-			'status_project' => $pending
+			'status_project' => 'pending'
 		);
 		$this->database_model->update('tb_status_project',$array_pending,array('kode_project'=>$kode));
 		$array_berkas_terakhir = array(
@@ -710,7 +707,8 @@ class Rencana extends CI_Controller
 			'status_project' => 'approve'
 		);
 		$array_project = array(
-			'status' => 'pending'
+			'status' => 'pending',
+			'tgl_approval' => date('Y-m-d H:i:s')
 		);
 		$this->database_model->insert('tb_berkas_terakhir',$array_berkas_terakhir);
 		$this->database_model->insert('tb_approval',$array_approval);
@@ -727,7 +725,7 @@ class Rencana extends CI_Controller
 		foreach ($data['project'] as $a) {
 			$kode = $a['kode_project'];
 		}
-		$data['cek_ttd'] = $this->database_model->cek_ttd($this->session->userdata('child_divisi'));
+		$data['cek_ttd'] = $this->database_model->cek_ttd($this->session->userdata('kode_divisi'));
 		if (count($data['cek_ttd']) > 0) {
 			$data['cek_ttd_anda'] = $this->database_model->get_where('tb_approval',
 				array(
@@ -786,7 +784,7 @@ class Rencana extends CI_Controller
 		foreach ($data['project'] as $a) {
 			$kode = $a['kode_project'];
 		}
-		$data['cek_ttd'] = $this->database_model->cek_ttd($this->session->userdata('child_divisi'));
+		$data['cek_ttd'] = $this->database_model->cek_ttd($this->session->userdata('kode_divisi'));
 			if (count($data['cek_ttd']) > 0) {
 				$data['cek_ttd_anda'] = $this->database_model->get_where('tb_approval',
 					array(
@@ -795,7 +793,7 @@ class Rencana extends CI_Controller
 					)
 				);
 				if (count($data['cek_ttd_anda']) == 1) {
-					echo "Anda sudah menolak berkas ini";
+					echo 2;
 				}else{
 					$array_berkas_terakhir = array(
 						'kode_project' => $kode,
@@ -822,6 +820,15 @@ class Rencana extends CI_Controller
 				echo "Anda blm bisa ttd";
 				
 			}
+	}
+	function finish($uniq){
+		$keterangan = $this->input->post('keterangan');
+		$array_penyelesaian = array(
+			'keterangan' => $keterangan,
+			'status' => 'success'
+		);
+		$this->database_model->update('tb_project',$array_penyelesaian,array('uniqid' => $uniq));
+		redirect('Rencana/selesai');
 	}
 }
 
