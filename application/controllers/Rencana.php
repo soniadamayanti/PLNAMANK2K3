@@ -13,7 +13,7 @@ class Rencana extends CI_Controller
 		date_default_timezone_set('Asia/Jakarta');
 	}
 	function index(){
-		$data['cek_berkas'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_divisi' => $this->session->userdata('child_divisi')));
+		$data['cek_berkas'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_user' => $this->session->userdata('kode_user')));
 		if ($this->session->userdata('kode_divisi') == 1) {
 			$data['data_project'] = $this->database_model->get_where('tb_project',array(
 				'kode_user'=>$this->session->userdata('kode_user'),
