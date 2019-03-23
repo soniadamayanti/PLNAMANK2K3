@@ -125,7 +125,7 @@
                                         echo anchor('#','Pending','class="btn btn-secondary disabled"');  
                                     }
                                 }else{
-                                    if ($this->session->userdata('kode_divisi') >3) {
+                                    if ($this->session->userdata('kode_divisi') >4) {
                                         echo '<button class="btn btn-danger" uniqid="'.$data['uniqid'].'" id="btnTolak">Tolak</button>';   
                                     }
                                     echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnSetuju">Setuju & TTD</button>'; 
@@ -150,10 +150,10 @@
                             <div class="modal-body">
                                 <div class="row">
                                 <div class="col-lg-6 col-md-6">
-                                    <?php echo anchor('Rencana/insert_project/Preventif','Revisi','class="btn btn-block btn-lg btn-warning"') ?>
+                                    <?php echo anchor('Rencana/tolak','Revisi','class="btn btn-block btn-lg btn-warning" id="btnDenied"') ?>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
-                                    <?php echo anchor('Rencana/insert_project/Korektif','Tolak','class="btn btn-block btn-lg btn-danger"') ?>
+                                    <?php echo anchor('Rencana/failed','Tolak','class="btn btn-block btn-lg btn-danger" id="btnFailed"') ?>
                                 </div>
                                 </div>
                             </div>
