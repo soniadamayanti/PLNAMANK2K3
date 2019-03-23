@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2019 at 05:11 PM
+-- Generation Time: Mar 23, 2019 at 04:13 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -63,8 +63,8 @@ INSERT INTO `tb_approval` (`id`, `kode_project`, `kode_user`, `type`, `ket`, `tg
 
 CREATE TABLE `tb_berkas_terakhir` (
   `kode_project` char(35) NOT NULL,
-  `kode_divisi` char(5) NOT NULL,
-  `parent_divisi` char(5) NOT NULL,
+  `kode_user` char(5) NOT NULL,
+  `divisi_tujuan` char(5) NOT NULL,
   `tgl` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -72,15 +72,12 @@ CREATE TABLE `tb_berkas_terakhir` (
 -- Dumping data for table `tb_berkas_terakhir`
 --
 
-INSERT INTO `tb_berkas_terakhir` (`kode_project`, `kode_divisi`, `parent_divisi`, `tgl`) VALUES
-('K.001/AMANK2K3/CIANJUR/III/2019', '2', '3', '2019-03-20 12:05:55'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '3', '4', '2019-03-20 14:15:30'),
-('K.003/AMANK2K3/CIANJUR/III/2019', '7', '0', '2019-03-20 15:05:49'),
-('P.001/AMANK2K3/CIANJUR/III/2019', '1', '2', '2019-03-21 16:43:15'),
-('P.001/AMANK2K3/CIANJUR/III/2019', '2', '3', '2019-03-21 17:15:40'),
-('P.001/AMANK2K3/CIANJUR/III/2019', '2', '3', '2019-03-21 18:22:12'),
-('K.004/AMANK2K3/CIANJUR/III/2019', '1', '2', '2019-03-22 14:09:14'),
-('K.004/AMANK2K3/CIANJUR/III/2019', '1', '2', '2019-03-22 14:11:54');
+INSERT INTO `tb_berkas_terakhir` (`kode_project`, `kode_user`, `divisi_tujuan`, `tgl`) VALUES
+('K.001/AMANK2K3/CIANJUR/III/2019', 'U0002', '3', '2019-03-20 12:05:55'),
+('K.002/AMANK2K3/CIANJUR/III/2019', 'U0003', '4', '2019-03-20 14:15:30'),
+('K.003/AMANK2K3/CIANJUR/III/2019', 'U0007', '0', '2019-03-20 15:05:49'),
+('P.001/AMANK2K3/CIANJUR/III/2019', 'U0002', '3', '2019-03-21 17:15:40'),
+('K.004/AMANK2K3/CIANJUR/III/2019', 'U0001', '2', '2019-03-22 14:09:14');
 
 -- --------------------------------------------------------
 
@@ -187,7 +184,9 @@ INSERT INTO `tb_det_pekerja` (`kode_project`, `kode_user`) VALUES
 ('K.005/AMANK2K3/CIANJUR/III/2019', '42'),
 ('K.005/AMANK2K3/CIANJUR/III/2019', '17'),
 ('K.005/AMANK2K3/CIANJUR/III/2019', '1'),
-('K.005/AMANK2K3/CIANJUR/III/2019', '4');
+('K.005/AMANK2K3/CIANJUR/III/2019', '4'),
+('K.001/AMANK2K3/CIANJUR/III/2019', '3'),
+('K.001/AMANK2K3/CIANJUR/III/2019', '2');
 
 -- --------------------------------------------------------
 
@@ -213,7 +212,9 @@ INSERT INTO `tb_det_pelaksana` (`kode_pelaksana`, `kode_project`) VALUES
 (2, 'P.001/AMANK2K3/CIANJUR/III/2019'),
 (1, 'K.005/AMANK2K3/CIANJUR/III/2019'),
 (3, 'K.005/AMANK2K3/CIANJUR/III/2019'),
-(2, 'K.005/AMANK2K3/CIANJUR/III/2019');
+(2, 'K.005/AMANK2K3/CIANJUR/III/2019'),
+(1, 'K.001/AMANK2K3/CIANJUR/III/2019'),
+(2, 'K.001/AMANK2K3/CIANJUR/III/2019');
 
 -- --------------------------------------------------------
 
@@ -830,11 +831,6 @@ INSERT INTO `tb_users` (`kode_user`, `nama_user`, `no_telp_user`, `lokasi`, `ulp
 -- (See below for the actual view)
 --
 CREATE TABLE `v_berkas_terakhir` (
-`kode_project` char(35)
-,`kode_divisi` char(5)
-,`parent_divisi` char(5)
-,`kode_user` char(5)
-,`lokasi` varchar(40)
 );
 
 -- --------------------------------------------------------
@@ -963,12 +959,12 @@ ALTER TABLE `tb_gardu_induk`
 -- AUTO_INCREMENT for table `tb_pelaksana`
 --
 ALTER TABLE `tb_pelaksana`
-  MODIFY `kode_pelaksana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `kode_pelaksana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_pelaksana_pekerja`
 --
 ALTER TABLE `tb_pelaksana_pekerja`
-  MODIFY `kode_pelaksana_pekerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `kode_pelaksana_pekerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `tb_status_project`
 --

@@ -287,7 +287,17 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                                 };
                              ?>
                         </td>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0004.png"></td>
+                        <td>
+                            <?php 
+                                foreach ($staf->result() as $r) {
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
+                                };
+                             ?>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -474,29 +484,79 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                         <td>DISUSUN OLEH :</td>
                     </tr>
                     <tr>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0001.png"></td>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0002.png"></td>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0003.png"></td>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/<?php echo $this->session->userdata('ttd') ?>"></td>
-                    </tr>
-                    <tr>
+                        <td>
+                            <?php 
+                                foreach ($mulp->result() as $r) {
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
+                                };
+                             ?>
+                        </td>
+                        <td>
+                            <?php 
+                                foreach ($spvtek->result() as $r) {
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
+                                };
+                             ?>
+                        </td>
+                        <td>
+                            <?php 
+                                foreach ($k3->result() as $r) {
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
+                                };
+                             ?>
+                        </td>
                         <td>
                             <?php 
                                 foreach ($staf->result() as $r) {
-                                    echo "<u>".$r->nama_user."</u><br>";
-                                    echo $r->nama_divisi;
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
                                 };
-                            ?>
-                            (ANDIS VERINDA P)
+                             ?>
+                        </td>
+                    </tr>
+                    <tr class="caps">
+                        <td>
+                            <?php 
+                                foreach ($mulp->result() as $r) {
+                                    echo "(".$r->nama_user.")";
+                                };
+                             ?>
                         </td>
                         <td>
-                            (AINUL YAQIN)
+                            <?php 
+                                foreach ($spvtek->result() as $r) {
+                                    echo "(".$r->nama_user.")";
+                                };
+                             ?>
                         </td>
                         <td>
-                            (VIRGEA KRISMANDA)
+                            <?php 
+                                foreach ($k3->result() as $r) {
+                                    echo "(".$r->nama_user.")";
+                                };
+                             ?>
                         </td>
                         <td>
-                            (<?php echo strtoupper($this->session->userdata('nama_user')) ?>)
+                            <?php 
+                                foreach ($staf->result() as $r) {
+                                    echo "(".$r->nama_user.")";
+                                };
+                             ?>
                         </td>
                     </tr>
                 </tbody>
@@ -525,7 +585,7 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                     <td style="width: 3%">1</td>
                     <td style="width: 24%">Tanggal</td>
                     <td style="width: 3%">:</td>
-                    <td style="width: 60%"><?php echo $project['tgl_project'] ?></td>
+                    <td style="width: 60%"><?php echo $tgl ?></td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -545,9 +605,10 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                     <td>:</td>
                     <td>
                         <?php 
+                        
                         $i=1;
                         foreach ($detail_pelaksana3 as $detail_pelaksana3) {
-                            echo $detail_pelaksana3['nama_pelaksana'].', ';
+                            echo $i.". ".$detail_pelaksana3['nama_pelaksana'].'<br>';
                         $i++;
                         }
                          ?>
@@ -564,22 +625,26 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                     <td>Pelaksana Pekerja</td>
                     <td>:</td>
                     <td>
-                        <div class="row">
+                        <div class="">
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <span class="center">Nama</span><br>
-                                1. <br>
-                                2. <br>
-                                3. <br>
-                                4. <br>
-                                5. <br>
+                                <div class="center">Nama</div><br>
+                                <?php 
+                                    $i=1;
+                                    foreach ($detail_pekerja as $detail_pekerja) {
+                                        echo $i.". ".$detail_pekerja['nama_pelaksana_pekerja'].'<br>';
+                                    $i++;
+                                    }
+                                 ?>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <span class="center">Tanda Tangan</span><br>
-                                1. <br>
-                                2. <br>
-                                3. <br>
-                                4. <br>
-                                5. <br>
+                                <div class="center">Tanda Tangan</div><br>
+                                <?php 
+                                    $i=1;
+                                    foreach ($ttd_pekerja as $ttd_pekerja) {
+                                        echo $i.'<br>';
+                                    $i++;
+                                    }
+                                 ?>
                             </div>
                         </div>
                     </td>
@@ -628,23 +693,79 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                         <td>DISUSUN OLEH :</td>
                     </tr>
                     <tr>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0001.png"></td>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0002.png"></td>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0003.png"></td>
-                        <td><img src="<?php echo site_url(); ?>assets/arsip/ttd/U0004.png"></td>
+                        <td>
+                            <?php 
+                                foreach ($mulp->result() as $r) {
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
+                                };
+                             ?>
+                        </td>
+                        <td>
+                            <?php 
+                                foreach ($spvtek->result() as $r) {
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
+                                };
+                             ?>
+                        </td>
+                        <td>
+                            <?php 
+                                foreach ($k3->result() as $r) {
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
+                                };
+                             ?>
+                        </td>
+                        <td>
+                            <?php 
+                                foreach ($staf->result() as $r) {
+                                    if ($r->status_project == "approve") {
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                    }else{
+                                        echo "";
+                                    }
+                                };
+                             ?>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr class="caps">
                         <td>
-                            (ANDIS VERINDA P)
+                            <?php 
+                                foreach ($mulp->result() as $r) {
+                                    echo "(".$r->nama_user.")";
+                                };
+                             ?>
                         </td>
                         <td>
-                            (AINUL YAQIN)
+                            <?php 
+                                foreach ($spvtek->result() as $r) {
+                                    echo "(".$r->nama_user.")";
+                                };
+                             ?>
                         </td>
                         <td>
-                            (VIRGEA KRISMANDA)
+                            <?php 
+                                foreach ($k3->result() as $r) {
+                                    echo "(".$r->nama_user.")";
+                                };
+                             ?>
                         </td>
                         <td>
-                            (RIKY JAPUTRA)
+                            <?php 
+                                foreach ($staf->result() as $r) {
+                                    echo "(".$r->nama_user.")";
+                                };
+                             ?>
                         </td>
                     </tr>
                 </tbody>

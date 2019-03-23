@@ -109,7 +109,7 @@ class Database_model extends CI_Model
 		$this->db->delete($table);	
 	}
 	function detail_project($uniqid){
-		$this->db->select('*,tb_project.kode_user as user,SUBSTR(tb_project.tgl_pelaksanaan,1,10) as tgl,DATE_FORMAT(tgl_approval,"%d, %M %Y") as tgl_approval,DATE_FORMAT(tgl_pelaksanaan,"%d %M %Y") as tgl_pelaksanaan,DATE_FORMAT(tgl_pelaksanaan,"%d %M %Y") as tgl_pelaksanaan,DATE_FORMAT(tgl_pelaksanaan,"%H:%i") as jam_pelaksanaan,DATE_FORMAT(tgl_selesai,"%d %M %Y") as tgl_selesai,DATE_FORMAT(tgl_pelaksanaan,"%H:%i") as jam_selesai');
+		$this->db->select('*,tb_project.kode_user as user,SUBSTR(tb_project.tgl_pelaksanaan,1,10) as tgl,DATE_FORMAT(tgl_pelaksanaan,"%H:%i") as jam_pelaksanaan,DATE_FORMAT(tgl_pelaksanaan,"%H:%i") as jam_selesai');
 		$this->db->from('tb_project');
 		$this->db->join('tb_sld','tb_sld.kode_sld=tb_project.kode_line');
 		$this->db->join('tb_jenis_pekerjaan','tb_project.kode_jenis_pekerjaan=tb_jenis_pekerjaan.kode_jenis_pekerjaan');
@@ -129,6 +129,14 @@ class Database_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('tb_pelaksana');
 		$this->db->join('tb_det_pelaksana','tb_pelaksana.kode_pelaksana = tb_det_pelaksana.kode_pelaksana');
+		$this->db->where('kode_project',$kode);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	function detail_pekerja($kode){
+		$this->db->select('*');
+		$this->db->from('tb_pelaksana_pekerja');
+		$this->db->join('tb_det_pekerja','tb_pelaksana_pekerja.kode_pelaksana_pekerja = tb_det_pekerja.kode_user');
 		$this->db->where('kode_project',$kode);
 		$query = $this->db->get();
 		return $query->result_array();
