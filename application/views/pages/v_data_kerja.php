@@ -117,7 +117,7 @@
                                 <?php 
                                 if ($this->session->userdata('kode_divisi') == 1) {
                                     if ($data['status'] == 'new') {
-                                        echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnSetuju">Kirim & TTD</button>';  
+                                        echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnTolak">Kirim & TTD</button>';  
                                     }else{
                                         echo anchor('#','Pending','class="btn btn-secondary disabled"');  
                                     }
