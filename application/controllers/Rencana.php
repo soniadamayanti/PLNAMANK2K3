@@ -10,6 +10,7 @@ class Rencana extends CI_Controller
 		parent::__construct();
 		$this->load->model('database_model');
 		$this->load->model('test_model');
+		date_default_timezone_set('Asia/Jakarta');
 	}
 	function index(){
 		$data['cek_berkas'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_divisi' => $this->session->userdata('child_divisi')));
@@ -242,6 +243,7 @@ class Rencana extends CI_Controller
 		$this->database_model->update_project($kode_project,$data_project);
 
 		if (isset($klasifikasi)) {
+			$this->database_model->delete_detail('tb_det_klasifikasi',array('kode_project'=>$kode_project));
 			foreach ($klasifikasi as $data) {
 				$array = array(
 					'kode_project' => $kode_project,
@@ -251,6 +253,7 @@ class Rencana extends CI_Controller
 			}	
 		}
 		if (isset($prosedur_kerja)) {
+			$this->database_model->delete_detail('tb_det_prosedur_kerja',array('kode_project'=>$kode_project));
 			foreach ($prosedur_kerja as $data) {
 				$array = array(
 					'kode_project' => $kode_project,
@@ -260,6 +263,7 @@ class Rencana extends CI_Controller
 			}
 		}
 		if (isset($lampiran_izin)) {
+			$this->database_model->delete_detail('tb_det_lampiran_izin_kerja',array('kode_project'=>$kode_project));
 			foreach ($lampiran_izin as $data) {
 				$array = array(
 					'kode_project' => $kode_project,
@@ -269,6 +273,7 @@ class Rencana extends CI_Controller
 			}
 		}
 		if (isset($perlindungan)) {
+			$this->database_model->delete_detail('tb_det_peralatan_kerja',array('kode_project'=>$kode_project));
 			foreach ($perlindungan as $data) {
 				$array = array(
 					'kode_project' => $kode_project,
@@ -277,7 +282,7 @@ class Rencana extends CI_Controller
 				$this->database_model->insert('tb_det_peralatan_kerja',$array);
 			}
 		}if (isset($keselamatan)) {
-			
+			$this->database_model->delete_detail('tb_det_peralatan_kerja',array('kode_project'=>$kode_project));
 			foreach ($keselamatan as $data) {
 				$array = array(
 					'kode_project' => $kode_project,
@@ -286,7 +291,7 @@ class Rencana extends CI_Controller
 				$this->database_model->insert('tb_det_peralatan_kerja',$array);
 			}
 		}if (isset($tenaga_kerja)) {
-			
+			$this->database_model->delete_detail('tb_det_pekerja',array('kode_project'=>$kode_project));
 			foreach ($tenaga_kerja as $data) {
 				$array = array(
 					'kode_project' => $kode_project,
@@ -713,8 +718,9 @@ class Rencana extends CI_Controller
 				);
 				$array_status_project = array(
 					'status_project' => 'approve'
+					'tgl' => date('Y-m-d H:i:s')
 				);
-				$this->database_model->update('tb_berkas_terakhir',$array_berkas_terakhir,$kode);
+				$this->database_model->update('tb_berkas_terakhir',$array_berkas_terakhir,array('kode_project'=>$kode));
 				$this->database_model->insert('tb_approval',$array_approval);
 				$this->database_model->update('tb_status_project',$array_status_project,array('kode_project' => $kode, 'kode_user' => $this->session->userdata('kode_user')));
 			}
@@ -770,9 +776,9 @@ class Rencana extends CI_Controller
 						'tgl' => date('Y-m-d H:i:s')
 					);
 					$array_status_project = array(
-						'status_project' => 'tolak'
+						'status_project' => 'denied'
 					);
-					$this->database_model->insert('tb_berkas_terakhir',$array_berkas_terakhir);
+					$this->database_model->update('tb_berkas_terakhir',$array_berkas_terakhir,array('kode_project' => $kode));
 					$this->database_model->insert('tb_approval',$array_approval);
 					$this->database_model->update('tb_status_project',$array_status_project,array('kode_project' => $kode, 'kode_user' => $this->session->userdata('kode_user')));
 				}
