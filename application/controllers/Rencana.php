@@ -758,7 +758,7 @@ class Rencana extends CI_Controller
 					$array_approval = array(
 						'kode_project' => $kode,
 						'kode_user' => $this->session->userdata('kode_user'),
-						'type' => 'approve',
+						'type' => 'denied',
 						'tgl' => date('Y-m-d H:i:s')
 					);
 					$array_status_project = array(
