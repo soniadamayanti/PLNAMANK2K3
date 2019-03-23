@@ -187,6 +187,7 @@ class Database_model extends CI_Model
 	}
 	function cek_ttd($id){
 		$this->db->where('kode_divisi',$id);
+		$this->db->where('type','approve');
 		$query = $this->db->get('tb_berkas_terakhir');
 		return $query->result_array();
 	}
