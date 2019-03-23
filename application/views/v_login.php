@@ -56,14 +56,14 @@
                             <div class="checkbox checkbox-primary float-left pt-0">
                                 <input id="checkbox-signup" type="checkbox">
                                 <label for="checkbox-signup"> Remember me </label>
-                            </div> <a href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i class="fa fa-lock mr-1"></i> Lupa pwd?</a> </div>
+                            </div> <a href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i class="fa fa-lock mr-1"></i> Forget Password?</a> </div>
                     </div>
                     <div class="form-group text-center mt-3">
                         <div class="col-xs-12">
                             <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" id="btnLogin">Log In</button>
                         </div>
                     </div>
-                <form class="form-horizontal" id="recoverform" action="https://wrappixel.com/demos/admin-templates/monster-admin/main/index.html">
+                <form class="form-horizontal" id="recoverform" action="">
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <h3>Ganti Password</h3>
