@@ -1,0 +1,26 @@
+header{
+  position: relative;
+  z-index: 5;
+	margin-top: 0 !important;
+}
+.head{
+	padding-top: 18px;
+  	width: 100%;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #e2e0e0;
+    background-color: #fff;
+  	position: fixed;
+}
+.logo{
+	width: 210px !important;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+@media (max-width: 415px) {
+	
+	.logo { width: 60% !important; }
+
+}
