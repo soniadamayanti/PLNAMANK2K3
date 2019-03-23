@@ -117,12 +117,14 @@
                                 <?php 
                                 if ($this->session->userdata('kode_divisi') == 1) {
                                     if ($data['status'] == 'new') {
-                                        echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnTolak">Kirim & TTD</button>';  
+                                        echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnKirim">Kirim & TTD</button>';  
                                     }else{
                                         echo anchor('#','Pending','class="btn btn-secondary disabled"');  
                                     }
                                 }else{
-                                    echo '<button class="btn btn-danger" uniqid="'.$data['uniqid'].'" id="btnTolak">Tolak</button>';   
+                                    if ($this->session->userdata('kode_divisi') >3) {
+                                        echo '<button class="btn btn-danger" uniqid="'.$data['uniqid'].'" id="btnTolak">Tolak</button>';   
+                                    }
                                     echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnSetuju">Setuju & TTD</button>'; 
                                 }
                                    ?>

@@ -414,6 +414,24 @@
                 }
             });
         });
+        $(document).on('click','#btnKirim',function(){
+            var uniqid = $(this).attr('uniqid');
+            var value = {
+                uniqid:uniqid
+            }
+            $.ajax({
+                url:'<?php echo base_url() ?>Rencana/kirim',
+                data:value,
+                type:'POST',
+                success:function(data){
+                    if (data == 1) {
+                        location.reload();
+                    }else{
+                        alert(data);
+                    }
+                }
+            });
+        });
         $(document).on('click','#btnTolak',function(){
             var uniqid = $(this).attr('uniqid');
             var value = {
