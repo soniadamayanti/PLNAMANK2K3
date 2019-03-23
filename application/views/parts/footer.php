@@ -433,6 +433,7 @@
             });
         });
         $(document).on('click','#btnTolak',function(){
+            $('#ModalTolak').modal('show');
             var uniqid = $(this).attr('uniqid');
             var value = {
                 uniqid:uniqid

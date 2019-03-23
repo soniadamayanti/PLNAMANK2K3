@@ -137,6 +137,31 @@
                         
                     </tbody>
                 </table>
+                <div id="ModalTolak" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Tolak Rencana Kerja</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <?php echo anchor('Rencana/insert_project/Preventif','Revisi','class="btn btn-block btn-lg btn-warning"') ?>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <?php echo anchor('Rencana/insert_project/Korektif','Tolak','class="btn btn-block btn-lg btn-danger"') ?>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
             </div>
         </div>
     </div>
