@@ -830,6 +830,43 @@ class Rencana extends CI_Controller
 		$this->database_model->update('tb_project',$array_penyelesaian,array('uniqid' => $uniq));
 		redirect('Rencana/selesai');
 	}
+	
+    function review(){
+        $uniqid = $this->uri->segment(3);
+        $data['detail_project'] = $this->database_model->detail_project($this->uri->segment(3));
+        $wpk1 = array(
+            'type'=>'Perlindungan'
+        );
+        $wpk2 = array(
+            'type'=>'Keselamatan'
+        );
+
+        $a = array(
+            'lokasi' => $this->session->userdata('lokasi')
+        );
+        $where_atasan = array(
+            'tb_users.lokasi' => $this->session->userdata('lokasi'),
+            'tb_divisi.kode_divisi' => 3
+        );
+        $where_pengawas_k3 = array(
+            'tb_users.lokasi' => $this->session->userdata('lokasi'),
+            'tb_divisi.kode_divisi' => 2
+        );
+        $wk = array(
+            'uniqid' => $this->uri->segment(3)
+        );
+        $data['kode_project'] = $this->database_model->get_where('tb_project',$wk);
+        $data['new'] = "
+        ";
+        $data['pelaksana_pekerja'] = $this->database_model->get('tb_pelaksana_pekerja');
+        $data['atasan'] = $this->database_model->get_atasan($where_atasan);
+        $data['judul'] = "Penyelesaian";
+        
+        $this->load->view('parts/header', $data);
+        $this->load->view('parts/menu', $data);
+        $this->load->view('pages/v_review_rencana',compact('data','uniqid'));
+        $this->load->view('parts/footer', $data);
+    }
 }
 
  ?>

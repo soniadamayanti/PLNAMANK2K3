@@ -115,8 +115,9 @@
                             <td class="txt-oflo"><?php echo $data['tgl_project'] ?></td>
                             <td class="txt-oflo">
                                 <?php 
+                                echo '<button class="btn btn-success" style="margin-bottom:10px;" uniqid="'.$data['uniqid'].'" id="btnReview">Lihat Data</button><br>';
                                 if ($this->session->userdata('kode_divisi') == 1) {
-                                    if ($data['status'] == 'new') {
+                                    if ($data['status'] == 'new') { 
                                         echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnKirim">Kirim & TTD</button>';  
                                     }else if ($data['status'] == 'denied') {
                                         echo anchor('Rencana/form/'.$data['uniqid'],'Edit','class="btn btn-warning"');  

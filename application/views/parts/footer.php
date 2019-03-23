@@ -398,6 +398,13 @@
 
             }
         });
+        $(document).on('click','#btnReview',function(){
+            var uniqid = $(this).attr('uniqid');
+            var value = {
+                uniqid:uniqid
+            }
+            window.location.replace("<?php echo base_url() ?>Rencana/review/"+uniqid);
+        });
         $(document).on('click','#btnSetuju',function(){
             var uniqid = $(this).attr('uniqid');
             var value = {
@@ -422,7 +429,7 @@
                 uniqid:uniqid
             }
             $.ajax({
-                url:'<?php echo base_url() ?>Rencana/kirim',
+                url:'<?php echo base_url() ?>Rencana/approval',
                 data:value,
                 type:'POST',
                 success:function(data){
@@ -434,6 +441,7 @@
                 }
             });
         });
+
         $(document).on('click','#btnTolak',function(){
             
             var uniqid = $(this).attr('uniqid');
