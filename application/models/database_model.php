@@ -205,8 +205,6 @@ class Database_model extends CI_Model
 		$this->db->where('tb_project.status !=','success');
 		$this->db->where('tb_project.status !=','failed');
 		$this->db->where('tb_berkas_terakhir.divisi_tujuan','0');
-
-
 	}
 
 }

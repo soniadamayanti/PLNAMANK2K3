@@ -14,6 +14,42 @@ class Download extends CI_Controller
         $data['judul'] = "Download";
         $this->load->view('d_rencana', $a);
     }
+    function review(){
+        $uniqid = $this->uri->segment(3);
+        $data['detail_project'] = $this->database_model->detail_project($this->uri->segment(3));
+        $wpk1 = array(
+            'type'=>'Perlindungan'
+        );
+        $wpk2 = array(
+            'type'=>'Keselamatan'
+        );
+
+        $a = array(
+            'lokasi' => $this->session->userdata('lokasi')
+        );
+        $where_atasan = array(
+            'tb_users.lokasi' => $this->session->userdata('lokasi'),
+            'tb_divisi.kode_divisi' => 3
+        );
+        $where_pengawas_k3 = array(
+            'tb_users.lokasi' => $this->session->userdata('lokasi'),
+            'tb_divisi.kode_divisi' => 2
+        );
+        $wk = array(
+            'uniqid' => $this->uri->segment(3)
+        );
+        $data['kode_project'] = $this->database_model->get_where('tb_project',$wk);
+        $data['new'] = "
+        ";
+        $data['pelaksana_pekerja'] = $this->database_model->get('tb_pelaksana_pekerja');
+        $data['atasan'] = $this->database_model->get_atasan($where_atasan);
+        $data['judul'] = "Penyelesaian";
+        
+        $this->load->view('parts/header', $data);
+        $this->load->view('parts/menu', $data);
+        $this->load->view('pages/v_review_rencana',compact('data','uniqid'));
+        $this->load->view('parts/footer', $data);
+    }
     function penyelesaian(){
         $id = $this->uri->segment(3);
         $where = array(
@@ -105,6 +141,36 @@ class Download extends CI_Controller
 
         $data['judul'] = "Download";
         $this->load->view('d_hirarc', $a);
+    }
+    function page_review(){
+        $id = $this->uri->segment(3);
+        $where = array(
+          'uniqid' => $id
+        );
+        $a['detail_project'] = $this->database_model->get_where('tb_project',$where);
+        foreach ($a['detail_project'] as $detail_project) {
+          $kode = $detail_project['kode_project'];
+        }
+        $dimana = array(
+          'kode_project' => $kode
+        );
+        $a['data_user'] = $this->db->query('SELECT s.*,u.nama_user,u.kode_divisi,d.nama_divisi FROM tb_status_project s INNER JOIN (tb_users u INNER JOIN tb_divisi d ON u.kode_divisi=d.kode_divisi) ON u.kode_user = s.kode_user WHERE kode_project = "'.$kode.'" ORDER BY kode_divisi ASC');
+
+        $a['uraian_pekerjaan'] = $this->database_model->get_where('tb_det_uraian_pekerjaan',$dimana);
+        $a['detail_pekerja'] = $this->database_model->detail_pekerja($kode);
+        $a['ttd_pekerja'] = $this->database_model->detail_pekerja($kode);
+        $a['detail_pelaksana'] = $this->database_model->detail_pelaksana($kode);
+        $a['detail_pelaksana2'] = $this->database_model->detail_pelaksana($kode);
+        $a['detail_pelaksana3'] = $this->database_model->detail_pelaksana($kode);
+        $a['detail_klasifikasi'] = $this->database_model->detail_klasifikasi($kode);
+        $a['detail_prosedur_kerja'] = $this->database_model->detail_prosedur_kerja($kode);
+        $a['detail_lampiran_izin_kerja'] = $this->database_model->detail_lampiran_izin_kerja($kode);
+        $a['detail_keselamatan'] = $this->database_model->detail_peralatan(array('kode_project' => $kode,'type'=>'Keselamatan'));
+        $a['detail_perlindungan'] = $this->database_model->detail_peralatan(array('kode_project' => $kode,'type'=>'Perlindungan'));
+        $a['project'] = $this->database_model->detail_project($id);
+
+        $data['judul'] = "Review";
+        $this->load->view('d_review', $a);
     }
     public function printPDF($id){
         $where = array(
