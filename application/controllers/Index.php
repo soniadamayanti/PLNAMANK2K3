@@ -37,13 +37,13 @@ class Index extends CI_Controller
 		$data['selesai'] = $data['success']+$data['final'];
 		$data['revisi']=$this->db->query('SELECT s.kode_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="revisi"')->num_rows();
 
-		$data['berkas_staff']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="1" AND kode_user="'.$kode_user.'"')->num_rows();
-		$data['berkas_k3']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="2" AND lokasi="'.$lokasi.'"')->num_rows();
-		$data['berkas_spvulp']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="3" AND lokasi="'.$lokasi.'"')->num_rows();
-		$data['berkas_mulp']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="4" AND lokasi="'.$lokasi.'"')->num_rows();
-		$data['berkas_harjar']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="5" AND lokasi="'.$lokasi.'"')->num_rows();
-		$data['berkas_opoist']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="6"  AND lokasi="'.$lokasi.'"')->num_rows();
-		$data['berkas_mbjaringan']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="7" AND lokasi="'.$lokasi.'"')->num_rows();
+		$data['berkas_staff']=$this->db->query('SELECT kode_project FROM tb_project WHERE status="new" AND kode_user="'.$kode_user.'"')->num_rows();
+		$data['berkas_k3']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="2"')->num_rows();
+		$data['berkas_spvulp']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="3"')->num_rows();
+		$data['berkas_mulp']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="4"')->num_rows();
+		$data['berkas_harjar']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="5"')->num_rows();
+		$data['berkas_opoist']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="6" ')->num_rows();
+		$data['berkas_mbjaringan']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="7"')->num_rows();
 
 		$data['berkas_mbjaringan']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="7"')->num_rows();
 
