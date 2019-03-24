@@ -23,16 +23,25 @@ class Rencana extends CI_Controller
 		}
 			
 		$data['jml_project'] = count($data['data_project']);
-		$where = array(
-			'kode_user' => $this->session->userdata('kode_user')
-		);
-		$data['project'] = $this->database_model->get_where('tb_project',$where);
 		$data['judul'] = "Data Rencana Kerja";
 	    $data['new'] = "
 	    ";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
 		$this->load->view('pages/v_data_kerja', $data);
+		$this->load->view('parts/footer', $data);
+	}
+	function pembatalan(){
+		$data['cek_berkas'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_user' => $this->session->userdata('kode_user')));
+			$data['data_project'] = $this->db->query('SELECT * FROM tb_project WHERE status="denied" OR status="failed"')->result_array();	
+			
+		$data['jml_project'] = count($data['data_project']);
+		$data['judul'] = "Data Rencana Kerja";
+	    $data['new'] = "
+	    ";
+		$this->load->view('parts/header', $data);
+		$this->load->view('parts/menu', $data);
+		$this->load->view('pages/v_data_pembatalan', $data);
 		$this->load->view('parts/footer', $data);
 	}
 	function form(){
@@ -224,6 +233,7 @@ class Rencana extends CI_Controller
 		$mulai_fix = $tgl_mulai. " ".$jam_mulai.":00";
 		$selesai_fix = $tgl_selesai. " ".$jam_selesai.":00";
 		$tenaga_kerja = $this->input->post('tenaga_kerja');
+		
 		$data_project = array(
 			'kode_jenis_pekerjaan' => $kode_jenis_pekerjaan,
 			'tgl_project' => date('Y-m-d H:i:s'),
@@ -274,16 +284,7 @@ class Rencana extends CI_Controller
 				$this->database_model->insert('tb_det_lampiran_izin_kerja',$array);
 			}
 		}
-		if (isset($perlindungan)) {
-			$this->database_model->delete_detail('tb_det_peralatan_kerja',array('kode_project'=>$kode_project));
-			foreach ($perlindungan as $data) {
-				$array = array(
-					'kode_project' => $kode_project,
-					'kode_peralatan_kerja' => $data
-				);
-				$this->database_model->insert('tb_det_peralatan_kerja',$array);
-			}
-		}if (isset($keselamatan)) {
+		if (isset($keselamatan) && isset($perlindungan)) {
 			$this->database_model->delete_detail('tb_det_peralatan_kerja',array('kode_project'=>$kode_project));
 			foreach ($keselamatan as $data) {
 				$array = array(
@@ -292,6 +293,14 @@ class Rencana extends CI_Controller
 				);
 				$this->database_model->insert('tb_det_peralatan_kerja',$array);
 			}
+			foreach ($perlindungan as $data) {
+				$array = array(
+					'kode_project' => $kode_project,
+					'kode_peralatan_kerja' => $data
+				);
+				$this->database_model->insert('tb_det_peralatan_kerja',$array);
+			}
+
 		}if (isset($tenaga_kerja)) {
 			$this->database_model->delete_detail('tb_det_pekerja',array('kode_project'=>$kode_project));
 			foreach ($tenaga_kerja as $data) {
@@ -487,7 +496,7 @@ class Rencana extends CI_Controller
 	}
 	function failed(){
 		$uniq = $this->input->post('uniqid');
-		// $keterangan = $this->input->post('keterangan');
+		$keterangan = $this->input->post('keterangan');
 		$where_project = array(
 			'uniqid' => $uniq
 		);
@@ -499,9 +508,10 @@ class Rencana extends CI_Controller
 			'status_project' => 'failed',
 		);
 		$array_penyelesaian = array(
-			'status' => 'failed'
+			'status' => 'failed',
+			'keterangan' => $keterangan
 		);
-		$this->database_model->update('tb_status_project',$array_status_project,array('kode_project'=> $kode, 'kode_user'=> $this->database_model->userdata('kode_user')));
+		$this->database_model->update('tb_status_project',$array_status_project,array('kode_project'=> $kode, 'kode_user'=> $this->session->userdata('kode_user')));
 		$this->database_model->update('tb_project',$array_penyelesaian,array('kode_project'=>$kode));
 		echo 1;
 	}
@@ -520,13 +530,28 @@ class Rencana extends CI_Controller
           $length = intval($this->input->get("length"));
           
           $project['data_project'] = $this->database_model->get_data_selesai();
+
           $data = array();
           foreach($project['data_project'] as $r) {
-          	if ($r['status'] == 'success') {
+
+      		if ($this->session->userdata('kode_divisi') == 3){
+      			if ($r['status'] == 'pending') {
+		      		$button = 
+		      		anchor('Rencana/penyelesaian/'.$r['uniqid'],'Penyelesaian','class="btn btn-success" ');
+      			}else if  ($r['status'] == 'success'){
           		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-info"');
-          	}else{
-          		$button = 
-          		anchor('Rencana/penyelesaian/'.$r['uniqid'],'Penyelesaian','class="btn btn-success" ');
+
+      			}else{
+          		$button ="";
+
+      			}
+      			
+      		}else{
+      			if ($r['status'] == 'success') {
+          		$button = anchor('Download/printPDF/'.$r['uniqid'],'<i class="ti-printer"></i> PDF','class="btn btn-info"');
+          		}else{
+          			$button ="";
+          		}
           	}
           	
             $data[] = array(
@@ -785,6 +810,7 @@ class Rencana extends CI_Controller
 	}
 	function tolak(){
 		$uniq = $this->input->post('uniqid');
+		$keterangan = $this->input->post('keterangan');
 		$where_project = array(
 			'uniqid' => $uniq
 		);
@@ -821,7 +847,8 @@ class Rencana extends CI_Controller
 						'status_project' => 'denied'
 					);
 					$array_project = array(
-						'status' => 'denied'
+						'status' => 'denied',
+						'keterangan' => $keterangan
 					);
 					$this->database_model->update('tb_berkas_terakhir',$array_berkas_terakhir,array('kode_project' => $kode));
 					$this->database_model->insert('tb_approval',$array_approval);
