@@ -151,15 +151,15 @@
                             <div class="modal-body">
                                 <div class="row">
                                 <div class="col-lg-6 col-md-6">
-                                    <?php echo anchor('Rencana/tolak','Revisi','class="btn btn-block btn-lg btn-warning" id="btnDenied"') ?>
+                                    <button class="btn btn-block btn-lg btn-warning" id="btnDenied">Revisi</button>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
-                                    <?php echo anchor('Rencana/failed','Tolak','class="btn btn-block btn-lg btn-danger" id="btnFailed"') ?>
+                                    <button class="btn btn-block btn-lg btn-danger" id="btnFailed">Tolak</button>
                                 </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Tutup</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->

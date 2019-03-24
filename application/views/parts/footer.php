@@ -441,9 +441,7 @@
                 }
             });
         });
-
-        $(document).on('click','#btnTolak',function(){
-            
+        $(document).on('click','#btnDenied',function(){
             var uniqid = $(this).attr('uniqid');
             var value = {
                 uniqid:uniqid
@@ -455,14 +453,35 @@
                 success:function(data){
                     if (data == 1) {
                         location.reload();
-                    }else if(data== 2){
-                        $('#ModalTolak').modal('show');
-                    }
-                    else{
+                    }else{
                         alert(data);
                     }
                 }
             });
+        });
+        $(document).on('click','#btnFailed',function(){
+            var uniqid = $(this).attr('uniqid');
+            var value = {
+                uniqid:uniqid
+            }
+            $.ajax({
+                url:'<?php echo base_url() ?>Rencana/tolak',
+                data:value,
+                type:'POST',
+                success:function(data){
+                    if (data == 1) {
+                        location.reload();
+                    }else{
+                        alert(data);
+                    }
+                }
+            });
+        });
+        $(document).on('click','#btnTolak',function(){
+            $('#ModalTolak').modal('show');
+            var uniqid = $(this).attr('uniqid');
+            $('#btnDenied').attr('uniqid',uniqid);
+            $('#btnFailed').attr('uniqid',uniqid);
         });
         
     </script>

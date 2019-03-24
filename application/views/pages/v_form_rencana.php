@@ -320,19 +320,24 @@ foreach ($detail_project as $data_project) {
                             <div class="form-group row">
                                 <label class="col-sm-4 text-left col-form-label">Nama Penyulang</label>
                                 <div class="col-md-2">
-                                    <select class="form-control custom-select" tabindex="1" onchange="
-                                        $('#imageToSwap').attr('src', '<?php echo base_url() ?>assets/arsip/sld/'+this.options[this.selectedIndex].value+'.jpg');
-                                        $('#kode_line').val(this.options[this.selectedIndex].value)">
+                                    <select class="form-control custom-select" tabindex="1"
+                                    id="kode_line">
+                                        
                                             <?php 
                                             foreach ($sld as $a) {
-                                                echo  "<option value='".$a['kode_sld']."'>".$a['nama_sld']."</option>";
+                                                if (isset($data_project['kode_line']) == $a['kode_sld']) {
+                                                    $select = 'selected="selected"';
+                                                }else{
+                                                    $select = '';
+                                                }
+                                                echo  "<option value='".$a['kode_sld']."' ".$select.">".$a['nama_sld']."</option>";
                                             }
                                              ?>
                                         </select>
-                                        <input type="hidden" id="kode_line" >
+                                        <input type="hidden" >
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="Segment" id="segment" value="<?php echo (isset($data_project['gardu']) != '')? $data_project['gardu'] : ""  ?>" >
+                                    <input type="text" class="form-control" placeholder="Segment" id="segment" value="<?php echo (isset($data_project['segment']) != '')? $data_project['segment'] : ""  ?>" >
                                 </div>
                             </div>
                         </div>

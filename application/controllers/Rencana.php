@@ -485,8 +485,8 @@ class Rencana extends CI_Controller
           echo json_encode($output);
           exit();
 	}
-	function failed($uniq){
-		// $uniqid = $this->input->post('uniqid');
+	function failed(){
+		$uniqid = $this->input->post('uniqid');
 		// $keterangan = $this->input->post('keterangan');
 		$where_project = array(
 			'uniqid' => $uniq
@@ -634,7 +634,7 @@ class Rencana extends CI_Controller
 	}
 	function get_checked_tenaga_kerja(){
 		$where = array(
-			'kode_project' => 'K.001/AMANK2K3/CIANJUR/III/2019'
+			'kode_project' => $this->input->post('kode_project')
 		);
 		$data['data_pelaksana'] = $this->database_model->get_where('tb_det_pekerja',$where);
 		$data_pelaksana = array();
@@ -688,6 +688,7 @@ class Rencana extends CI_Controller
 		foreach ($data['project'] as $a) {
 			$kode = $a['kode_project'];
 		}
+		$data['cek_approval'] = $this->database_model->cek_data('tb_approval',array('kode_project'=> $kode));
 		$array_pending = array(
 			'status_project' => 'pending'
 		);
@@ -711,8 +712,15 @@ class Rencana extends CI_Controller
 			'status' => 'pending',
 			'tgl_approval' => date('Y-m-d H:i:s')
 		);
+
 		$this->database_model->insert('tb_berkas_terakhir',$array_berkas_terakhir);
-		$this->database_model->insert('tb_approval',$array_approval);
+		if (count($data['cek_approval']) > 0) {
+			$this->database_model->update('tb_approval',array('type'=>'pending'),array('kode_project' => $kode));
+		}else{
+			$this->database_model->insert('tb_approval',$array_approval);	
+		}
+		
+		
 		$this->database_model->update('tb_status_project',$array_status_project,array('kode_project' => $kode, 'kode_user' => $this->session->userdata('kode_user')));
 		$this->database_model->update('tb_project',$array_project,array('kode_project'=> $kode));
 		echo 1;
@@ -731,7 +739,8 @@ class Rencana extends CI_Controller
 			$data['cek_ttd_anda'] = $this->database_model->get_where('tb_approval',
 				array(
 					'kode_project' => $kode, 
-					'kode_user' => $this->session->userdata('kode_user')
+					'kode_user' => $this->session->userdata('kode_user'),
+					'type !='=> 'pending'
 				)
 			);
 			if (count($data['cek_ttd_anda']) == 1) {
@@ -784,6 +793,7 @@ class Rencana extends CI_Controller
 		$data['project'] = $this->database_model->get_where('tb_project',$where_project);
 		foreach ($data['project'] as $a) {
 			$kode = $a['kode_project'];
+			$kode_user = $a['kode_user'];
 		}
 		$data['cek_ttd'] = $this->database_model->cek_ttd($this->session->userdata('kode_divisi'));
 			if (count($data['cek_ttd']) > 0) {
@@ -796,6 +806,7 @@ class Rencana extends CI_Controller
 				if (count($data['cek_ttd_anda']) == 1) {
 					echo 2;
 				}else{
+
 					$array_berkas_terakhir = array(
 						'kode_project' => $kode,
 						'kode_user' => $this->session->userdata('kode_divisi'),
@@ -811,10 +822,14 @@ class Rencana extends CI_Controller
 					$array_status_project = array(
 						'status_project' => 'denied'
 					);
+					$array_project = array(
+						'status' => 'denied'
+					);
 					$this->database_model->update('tb_berkas_terakhir',$array_berkas_terakhir,array('kode_project' => $kode));
 					$this->database_model->insert('tb_approval',$array_approval);
 					$this->database_model->update('tb_status_project',$array_status_project,array('kode_project' => $kode, 'kode_user' => $this->session->userdata('kode_user')));
-					$this->database_model->update('tb_project',$array_status_project,array('kode_project'=>$kode));
+					$this->database_model->update('tb_project',$array_project,array('kode_project'=>$kode));
+					$this->database_model->update('tb_status_project',array('status'=> 'pending'),array('kode_user'=> $kode_user,'kode_project'=> $kode));
 				}
 				echo 1;
 			}else{

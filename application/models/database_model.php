@@ -37,7 +37,7 @@ class Database_model extends CI_Model
 		$this->db->where($where);
 		$this->db->update($table,$data);
 	}
-	function cek_data(){
+	function cek_data($table,$data){
 		$this->db->where($data);
 		$query = $this->db->get($table);
 		return $query->result_array();
