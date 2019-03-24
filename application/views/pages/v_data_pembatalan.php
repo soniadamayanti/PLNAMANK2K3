@@ -35,6 +35,8 @@
                             <td class="text-center"><?php echo $i ?></td>
                             <td class="txt-oflo">
                                 <b><?php echo $data['kode_project'] ?></b><br>
+                                <small>Ket Revisi: <?php echo $data['keterangan'] ?></small>
+                                
                                
                                 <!-- <small><?php echo $data['nama_sld'] ?><br><?php echo $data['nama_jenis_pekerjaan'] ?></small> -->
                             </td>
@@ -79,24 +81,19 @@
                                         <span class="label label-light-primary">
                                         Pending
                                         </span>';
-                                    }elseif($data['status'] == 'final'){
-                                        echo '
-                                        <span class="label label-light-primary">
-                                        Penyelesaian
-                                        </span>';
                                     }elseif($data['status'] == 'success'){
                                         echo '
                                         <span class="label label-light-success">
                                         Selesai
                                         </span>';
-                                    }elseif($data['status'] == 'revisi'){
+                                    }elseif($data['status'] == 'denied'){
                                         echo '
-                                        <span class="label label-light-success">
+                                        <span class="label label-light-warning">
                                         Revisi
                                         </span>';
-                                    }elseif($data['status'] == 'cancel'){
+                                    }elseif($data['status'] == 'failed'){
                                         echo '
-                                        <span class="label label-light-success">
+                                        <span class="label label-light-danger">
                                         Dibatalkan
                                         </span>';
                                     }

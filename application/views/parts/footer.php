@@ -278,10 +278,9 @@
                 type:'POST',
                 data:value,
                 success:function(data){
-                    alert(data);
-                    // if (data ==1) {
-                    //     window.location='<?php echo base_url(); ?>Rencana/';
-                    // }
+                    if (data ==1) {
+                        window.location='<?php echo base_url(); ?>Rencana/';
+                    }
                 }
             });
         });

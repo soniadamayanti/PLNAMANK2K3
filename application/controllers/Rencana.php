@@ -556,7 +556,7 @@ class Rencana extends CI_Controller
           	
             $data[] = array(
                 $r['kode_project'],
-                $r['tgl_project'],
+                $r['tgl_pengajuan'],
                 $r['tgl_selesai'],
                 $button
                );

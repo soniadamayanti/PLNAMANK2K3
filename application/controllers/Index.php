@@ -14,7 +14,8 @@ class Index extends CI_Controller
 	function index(){
 		$kode_user = $this->session->userdata('kode_user');
 		$lokasi = $this->session->userdata('lokasi');
-	    if ($this->session->userdata('kode_divisi') == 1) {
+		$kode_divisi = $this->session->userdata('kode_divisi');
+	    if ($kode_divisi == 1) {
 	    	$data['new'] = "
 	    <button class='btn float-right hidden-sm-down btn-success' data-toggle='modal' id='btnModalBuatRencanaKerja'><i class='mdi mdi-plus-circle'></i> Buat Rencana Kerja</button>
 	    ";
@@ -31,11 +32,10 @@ class Index extends CI_Controller
 		$data['project'] = $this->database_model->get_where('tb_project',$where);
 		$data['history_project'] = $this->index_model->get_history();
 		$data['pending']=$this->db->query('SELECT kode_project FROM tb_status_project WHERE kode_user="'.$kode_user.'" AND status_project="pending"')->num_rows();
-		$data['berjalan']=$this->db->query('SELECT s.kode_project,s.status_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="pending"')->num_rows();
-		$data['final']=$this->db->query('SELECT s.kode_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="final"')->num_rows();
+		$data['berjalan']=$this->db->query('SELECT b.kode_project FROM tb_status_project s INNER JOIN (tb_berkas_terakhir b INNER JOIN tb_project p ON b.kode_project=p.kode_project) ON s.kode_project=b.kode_project WHERE s.kode_user="'.$kode_user.'" AND p.status="pending" AND s.status_project="approve" ')->num_rows();
 		$data['success']=$this->db->query('SELECT s.kode_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="success"')->num_rows();
-		$data['selesai'] = $data['success']+$data['final'];
-		$data['revisi']=$this->db->query('SELECT s.kode_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="revisi"')->num_rows();
+		$data['revisi']=$this->db->query('SELECT s.kode_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="denied"')->num_rows();
+		$data['failed']=$this->db->query('SELECT s.kode_project,p.status FROM tb_status_project s INNER JOIN tb_project p ON s.kode_project=p.kode_project  WHERE s.kode_user="'.$kode_user.'" AND p.status="failed"')->num_rows();
 
 		$data['berkas_staff']=$this->db->query('SELECT kode_project FROM tb_project WHERE status="new" AND kode_user="'.$kode_user.'"')->num_rows();
 		$data['berkas_k3']=$this->db->query('SELECT kode_project FROM v_berkas_terakhir WHERE divisi_tujuan="2"')->num_rows();

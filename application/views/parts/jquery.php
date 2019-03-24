@@ -1,5 +1,4 @@
 <script type="text/javascript">
-  
         $('#table_arsip_jenis_pekerjaan').DataTable({
             "ajax": {
                 url:'<?php echo base_url() ?>arsip/dt_jenis_pekerjaan',
