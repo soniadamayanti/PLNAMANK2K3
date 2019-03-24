@@ -25,7 +25,7 @@
                             <a href="<?php echo base_url() ?>index" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</a>
                         </li>
                         <li>
-                            <a class="" href="#" aria-expanded="false"><i class="mdi mdi-bookmark-remove"></i><span class="hide-menu">Pembatalan Pekerjaan</span></a>
+                            <a href="<?php echo base_url() ?>rencana/pembatalan" aria-expanded="false"><i class="mdi mdi-bookmark-remove"></i><span class="hide-menu">Pembatalan Pekerjaan</span></a>
                         </li>
                         <li>
                             <a href="<?php echo base_url() ?>rencana" aria-expanded="false" ><i class="mdi mdi-book"></i><span class="hide-menu">Rencana Kerja </span></a>
