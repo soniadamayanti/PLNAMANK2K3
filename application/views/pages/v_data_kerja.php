@@ -117,9 +117,14 @@
                                 <?php 
                                 echo '<button class="btn btn-success" style="margin-bottom:10px;" uniqid="'.$data['uniqid'].'" id="btnReview">Lihat Data</button><br>';
                                 if ($this->session->userdata('kode_divisi') == 1) {
-                                    if ($data['status'] == 'new') { 
-                                        echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnKirim">Kirim & TTD</button>';  
-                                    }else if ($data['status'] == 'denied') {
+                                    if ($data['status'] == 'new' && $data['tegangan'] == '0' && $data['alamat_project'] == '' ) { 
+                                        echo anchor('Rencana/form/'.$data['uniqid'],'Edit','class="btn btn-warning"');  
+
+                                    }else if ($data['status'] == 'new' && $data['tegangan'] > 0 && $data['alamat_project'] !== '' ) {
+                                        echo '<button class="btn btn-info" uniqid="'.$data['uniqid'].'" id="btnKirim">Kirim & TTD</button>';
+
+                                    }
+                                    else if ($data['status'] == 'denied') {
                                         echo anchor('Rencana/form/'.$data['uniqid'],'Edit','class="btn btn-warning"');  
                                     } 
                                     else{
@@ -149,6 +154,11 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label class="control-label" >Keterangan</label>
+                                    <textarea class="form-control" id="keterangantolak"></textarea> 
+                                </div>
                                 <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <button class="btn btn-block btn-lg btn-warning" id="btnDenied">Revisi</button>
