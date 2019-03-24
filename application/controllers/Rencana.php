@@ -307,7 +307,8 @@ class Rencana extends CI_Controller
 		echo 1;
 	}
 	function insert_project($jenis){
-		$kota = "CIANJUR";
+		$lokasi = $this->session->userdata('lokasi');
+		$kota = strtoupper($lokasi);
 		// $kota = $this->session->userdata('kota');
 		$awal = substr($jenis, 0,1);
 		$tahun = date('Y');

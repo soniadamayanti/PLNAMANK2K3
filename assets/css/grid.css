@@ -1104,8 +1104,15 @@ td{
 }
 .ttd2 td{
   text-align: center;
+  font-size: 2.5mm !important;
 }
-
+.ttdhirarc{
+  height: 20mm !important;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  float: center;
+}
 .working{
   font-size: 3.3mm;
   margin-top: 5mm;

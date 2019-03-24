@@ -33,7 +33,7 @@ $mulp = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.
                             <?php 
                                 foreach ($mulp->result() as $r) {
                                     if ($r->status_project == "approve") {
-                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd." class='ttdhirarc'>";
                                     }else{
                                         echo "";
                                     }
@@ -44,7 +44,7 @@ $mulp = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.
                             <?php 
                                 foreach ($spvtek->result() as $r) {
                                     if ($r->status_project == "approve") {
-                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd." class='ttdhirarc'>";
                                     }else{
                                         echo "";
                                     }
@@ -55,7 +55,7 @@ $mulp = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.
                             <?php 
                                 foreach ($k3->result() as $r) {
                                     if ($r->status_project == "approve") {
-                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd." class='ttdhirarc'>";
                                     }else{
                                         echo "";
                                     }
@@ -66,7 +66,7 @@ $mulp = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.
                             <?php 
                                 foreach ($staf->result() as $r) {
                                     if ($r->status_project == "approve") {
-                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd.">";
+                                        echo "<img src=".site_url()."assets/arsip/ttd/".$r->ttd." class='ttdhirarc'>";
                                     }else{
                                         echo "";
                                     }
