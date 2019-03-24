@@ -278,9 +278,10 @@
                 type:'POST',
                 data:value,
                 success:function(data){
-                    if (data ==1) {
-                        window.location='<?php echo base_url(); ?>Rencana/';
-                    }
+                    alert(data);
+                    // if (data ==1) {
+                    //     window.location='<?php echo base_url(); ?>Rencana/';
+                    // }
                 }
             });
         });
@@ -297,6 +298,7 @@
             location.href = "<?php echo base_url() ?>Arsip/tambah_jenis_pekerjaan";
         });
         $('#table_selesai').DataTable({
+            "order": [[ 1, "desc" ],[ 2, "desc" ]],
             "ajax": {
                 url:'<?php echo base_url() ?>Rencana/get_selesai',
                 "type": "POST"
@@ -443,8 +445,10 @@
         });
         $(document).on('click','#btnDenied',function(){
             var uniqid = $(this).attr('uniqid');
+            var keterangan = $('#keterangan').val();
             var value = {
-                uniqid:uniqid
+                uniqid:uniqid,
+                keterangan:keterangan
             }
             $.ajax({
                 url:'<?php echo base_url() ?>Rencana/tolak',
@@ -461,8 +465,10 @@
         });
         $(document).on('click','#btnFailed',function(){
             var uniqid = $(this).attr('uniqid');
+            var keterangan = $('#keterangantolak').val();
             var value = {
-                uniqid:uniqid
+                uniqid:uniqid,
+                keterangan:keterangan
             }
             $.ajax({
                 url:'<?php echo base_url() ?>Rencana/failed',
