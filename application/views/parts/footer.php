@@ -465,7 +465,7 @@
                 uniqid:uniqid
             }
             $.ajax({
-                url:'<?php echo base_url() ?>Rencana/tolak',
+                url:'<?php echo base_url() ?>Rencana/failed',
                 data:value,
                 type:'POST',
                 success:function(data){

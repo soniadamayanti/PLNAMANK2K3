@@ -486,7 +486,7 @@ class Rencana extends CI_Controller
           exit();
 	}
 	function failed(){
-		$uniqid = $this->input->post('uniqid');
+		$uniq = $this->input->post('uniqid');
 		// $keterangan = $this->input->post('keterangan');
 		$where_project = array(
 			'uniqid' => $uniq
@@ -502,6 +502,7 @@ class Rencana extends CI_Controller
 		$array_penyelesaian = array(
 			'status' => 'failed'
 		);
+		$this->database_model->update('tb_status_project',$array_status_project,array('kode_project'=>$kode, 'kode_user'=> $this->database_model->userdata('kode_user')));
 		$this->database_model->update('tb_project',$array_penyelesaian,array('kode_project'=>$kode));
 		echo 1;
 	}
@@ -719,8 +720,6 @@ class Rencana extends CI_Controller
 		}else{
 			$this->database_model->insert('tb_approval',$array_approval);	
 		}
-		
-		
 		$this->database_model->update('tb_status_project',$array_status_project,array('kode_project' => $kode, 'kode_user' => $this->session->userdata('kode_user')));
 		$this->database_model->update('tb_project',$array_project,array('kode_project'=> $kode));
 		echo 1;
@@ -830,8 +829,9 @@ class Rencana extends CI_Controller
 					$this->database_model->update('tb_status_project',$array_status_project,array('kode_project' => $kode, 'kode_user' => $this->session->userdata('kode_user')));
 					$this->database_model->update('tb_project',$array_project,array('kode_project'=>$kode));
 					$this->database_model->update('tb_status_project',array('status'=> 'pending'),array('kode_user'=> $kode_user,'kode_project'=> $kode));
+					echo 1;
 				}
-				echo 1;
+				
 			}else{
 				echo "Anda blm bisa ttd";
 				
