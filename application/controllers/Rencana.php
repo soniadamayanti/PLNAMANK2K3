@@ -497,12 +497,11 @@ class Rencana extends CI_Controller
 		}
 		$array_status_project = array(
 			'status_project' => 'failed',
-			'kode_user' => $this->session->userdata('kode_user')
 		);
 		$array_penyelesaian = array(
 			'status' => 'failed'
 		);
-		$this->database_model->update('tb_status_project',$array_status_project,array('kode_project'=>$kode, 'kode_user'=> $this->database_model->userdata('kode_user')));
+		$this->database_model->update('tb_status_project',$array_status_project,array('kode_project'=> $kode, 'kode_user'=> $this->database_model->userdata('kode_user')));
 		$this->database_model->update('tb_project',$array_penyelesaian,array('kode_project'=>$kode));
 		echo 1;
 	}
