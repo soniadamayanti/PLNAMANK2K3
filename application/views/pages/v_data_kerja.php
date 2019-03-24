@@ -3,24 +3,10 @@
     <!-- Column -->
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-body">
-                <div class="d-flex no-block">
-                    <h4 class="card-title">Selamat Datang Riky</h4>
-                    <div class="ml-auto">
-                        <select class="custom-select">
-                            <option selected="">Maret   </option>
-                            <option value="1">February</option>
-                            <option value="2">May</option>
-                            <option value="3">April</option>
-                        </select>
-                    </div>
-                </div>
-                <h6 class="card-subtitle">Data Projectmu </h6>
-            </div>
             <div class="card-body bg-light">
                 <div class="row">
                     <div class="col-6">
-                        <h2 class="mb-0">Maret   2019</h2>
+                        <h2 class="mb-0">Maret 2019</h2>
                         <h4 class="font-light mt-0">Project SOP Pemadaman</h4></div>
                     <div class="col-6 align-self-center display-6 text-info text-right"><?php echo $jml_project ?></div>
                 </div>

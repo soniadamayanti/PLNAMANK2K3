@@ -737,8 +737,13 @@ class Rencana extends CI_Controller
 			'status' => 'pending',
 			'tgl_approval' => date('Y-m-d H:i:s')
 		);
-
-		$this->database_model->insert('tb_berkas_terakhir',$array_berkas_terakhir);
+		$data['cek_kode_berkas'] = $this->database_model->cek_data('tb_berkas_terakhir',array('kode_project'=> $kode));
+		if(count($data['cek_kode_berkas']) > 0){
+			$this->database_model->update('tb_berkas_terakhir',$array_berkas_terakhir,array('kode_project' => $kode));
+		}else{
+			$this->database_model->insert('tb_berkas_terakhir',$array_berkas_terakhir);
+		}
+		
 		if (count($data['cek_approval']) > 0) {
 			$this->database_model->update('tb_approval',array('type'=>'pending'),array('kode_project' => $kode));
 		}else{
