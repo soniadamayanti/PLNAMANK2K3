@@ -114,8 +114,9 @@
                             </td>
                             <td class="txt-oflo"><?php echo $data['tgl_project'] ?></td>
                             <td class="txt-oflo">
-                                <?php 
-                                echo '<button class="btn btn-success" style="margin-bottom:10px;" uniqid="'.$data['uniqid'].'" id="btnReview">Lihat Data</button><br>';
+                                    <?php 
+                                    echo '<button class="btn btn-success" style="margin-bottom:10px;" uniqid="'.$data['uniqid'].'" id="btnReview">Lihat Data</button><br>';
+
                                 if ($this->session->userdata('kode_divisi') == 1) {
                                     if ($data['status'] == 'new' && $data['tegangan'] == '0' && $data['alamat_project'] == '' ) { 
                                         echo anchor('Rencana/form/'.$data['uniqid'],'Edit','class="btn btn-warning"');  
@@ -130,7 +131,10 @@
                                     else{
                                         echo anchor('#','Pending','class="btn btn-secondary disabled"');  
                                     }
-                                }else{
+                                }else if($this->session->userdata('kode_divisi') == 8){
+                                    echo'';
+                                }
+                                else{
                                     if ($this->session->userdata('kode_divisi') >4) {
                                         echo '<button class="btn btn-danger" uniqid="'.$data['uniqid'].'" id="btnTolak">Tolak</button>';   
                                     }
