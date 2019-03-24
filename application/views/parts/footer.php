@@ -429,7 +429,7 @@
                 uniqid:uniqid
             }
             $.ajax({
-                url:'<?php echo base_url() ?>Rencana/approval',
+                url:'<?php echo base_url() ?>Rencana/kirim',
                 data:value,
                 type:'POST',
                 success:function(data){
