@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Mar 2019 pada 09.45
+-- Waktu pembuatan: 24 Mar 2019 pada 16.24
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.2.12
 
@@ -43,13 +43,9 @@ CREATE TABLE `tb_approval` (
 
 INSERT INTO `tb_approval` (`id`, `kode_project`, `kode_user`, `type`, `ket`, `tgl`) VALUES
 (1, 'K.001/AMANK2K3/CIANJUR/III/2019', 'U0001', 'new', '', '2019-03-20 11:55:42'),
-(2, 'K.002/AMANK2K3/CIANJUR/III/2019', 'U0001', 'new', '', '2019-03-20 14:14:08'),
+(2, 'K.002/AMANK2K3/CIANJUR/III/2019', 'U0001', 'pending', '', '2019-03-20 14:14:08'),
 (3, 'K.003/AMANK2K3/CIANJUR/III/2019', 'U0001', 'new', '', '2019-03-20 15:04:10'),
-(6, 'P.001/AMANK2K3/CIANJUR/III/2019', 'U0001', 'new', '', '2019-03-21 16:35:21'),
-(7, 'P.001/AMANK2K3/CIANJUR/III/2019', 'U0001', 'send', '', '2019-03-21 16:43:15'),
-(8, 'K.002/AMANK2K3/CIANJUR/III/2019', 'U0003', 'approve', '', '2019-03-21 16:54:47'),
-(9, 'P.001/AMANK2K3/CIANJUR/III/2019', 'U0002', 'approve', '', '2019-03-21 17:15:40'),
-(10, 'P.001/AMANK2K3/CIANJUR/III/2019', 'U0002', 'approve', '', '2019-03-21 18:22:12'),
+(8, 'K.002/AMANK2K3/CIANJUR/III/2019', 'U0003', 'pending', '', '2019-03-21 16:54:47'),
 (11, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0001', 'new', '', '2019-03-21 18:24:11'),
 (12, 'K.005/AMANK2K3/CIANJUR/III/2019', 'U0001', 'new', '', '2019-03-22 13:20:22'),
 (13, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0001', 'approve', '', '2019-03-22 14:09:14'),
@@ -63,7 +59,21 @@ INSERT INTO `tb_approval` (`id`, `kode_project`, `kode_user`, `type`, `ket`, `tg
 (22, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0006', 'approve', '', '2019-03-24 08:50:42'),
 (23, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0007', 'approve', '', '2019-03-24 08:51:30'),
 (24, 'P.002/AMANK2K3/KOTA/III/2019', 'U0001', 'new', '', '2019-03-24 09:13:41'),
-(25, 'P.003/AMANK2K3/KOTA/III/2019', 'U0001', 'new', '', '2019-03-24 09:35:21');
+(25, 'P.003/AMANK2K3/KOTA/III/2019', 'U0001', 'new', '', '2019-03-24 09:35:21'),
+(26, 'P.004/AMANK2K3/KOTA/III/2019', 'U0001', 'new', '', '2019-03-24 14:24:32'),
+(27, 'K.005/AMANK2K3/KOTA/III/2019', 'U0001', 'pending', '', '2019-03-24 14:26:46'),
+(28, 'K.005/AMANK2K3/KOTA/III/2019', 'U0002', 'approve', '', '2019-03-24 14:53:11'),
+(29, 'K.005/AMANK2K3/KOTA/III/2019', 'U0003', 'approve', '', '2019-03-24 14:53:50'),
+(30, 'K.005/AMANK2K3/KOTA/III/2019', 'U0004', 'approve', '', '2019-03-24 14:54:17'),
+(31, 'K.005/AMANK2K3/KOTA/III/2019', 'U0005', 'approve', '', '2019-03-24 14:55:18'),
+(32, 'K.005/AMANK2K3/KOTA/III/2019', 'U0006', 'approve', '', '2019-03-24 14:55:59'),
+(33, 'K.005/AMANK2K3/KOTA/III/2019', 'U0007', 'approve', '', '2019-03-24 14:56:11'),
+(34, 'K.002/AMANK2K3/CIANJUR/III/2019', 'U0004', 'pending', '', '2019-03-24 14:59:20'),
+(35, 'K.002/AMANK2K3/CIANJUR/III/2019', 'U0005', 'pending', '', '2019-03-24 14:59:52'),
+(36, 'K.002/AMANK2K3/CIANJUR/III/2019', 'U0002', 'approve', '', '2019-03-24 15:03:09'),
+(37, 'K.002/AMANK2K3/CIANJUR/III/2019', 'U0003', 'approve', '', '2019-03-24 15:03:26'),
+(38, 'K.002/AMANK2K3/CIANJUR/III/2019', 'U0004', 'approve', '', '2019-03-24 15:03:50'),
+(39, 'K.002/AMANK2K3/CIANJUR/III/2019', 'U0005', 'approve', '', '2019-03-24 15:04:09');
 
 -- --------------------------------------------------------
 
@@ -84,10 +94,11 @@ CREATE TABLE `tb_berkas_terakhir` (
 
 INSERT INTO `tb_berkas_terakhir` (`kode_project`, `kode_user`, `divisi_tujuan`, `tgl`) VALUES
 ('K.001/AMANK2K3/CIANJUR/III/2019', '5', '1', '2019-03-24 08:49:06'),
-('K.002/AMANK2K3/CIANJUR/III/2019', 'U0003', '4', '2019-03-20 14:15:30'),
+('K.002/AMANK2K3/CIANJUR/III/2019', 'U0005', '6', '2019-03-24 15:04:09'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', 'U0007', '0', '2019-03-20 15:05:49'),
-('P.001/AMANK2K3/CIANJUR/III/2019', 'U0002', '3', '2019-03-21 17:15:40'),
-('K.004/AMANK2K3/CIANJUR/III/2019', 'U0007', '0', '2019-03-24 08:51:30');
+('K.004/AMANK2K3/CIANJUR/III/2019', 'U0007', '0', '2019-03-24 08:51:30'),
+('K.005/AMANK2K3/KOTA/III/2019', 'U0007', '0', '2019-03-24 14:56:11'),
+('K.002/AMANK2K3/CIANJUR/III/2019', 'U0005', '6', '2019-03-24 15:04:09');
 
 -- --------------------------------------------------------
 
@@ -113,9 +124,6 @@ INSERT INTO `tb_det_klasifikasi` (`kode_project`, `kode_klasifikasi_kerja`) VALU
 ('K.001/AMANK2K3/CIANJUR/III/2019', '96360'),
 ('K.001/AMANK2K3/CIANJUR/III/2019', '99399'),
 ('K.001/AMANK2K3/CIANJUR/III/2019', '99892'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '51466'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '82132'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '99399'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '51466'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '78501'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '82132'),
@@ -135,7 +143,13 @@ INSERT INTO `tb_det_klasifikasi` (`kode_project`, `kode_klasifikasi_kerja`) VALU
 ('K.005/AMANK2K3/CIANJUR/III/2019', '23892'),
 ('K.005/AMANK2K3/CIANJUR/III/2019', '78501'),
 ('K.006/AMANK2K3/CIANJUR/III/2019', '23892'),
-('K.006/AMANK2K3/CIANJUR/III/2019', '78501');
+('K.006/AMANK2K3/CIANJUR/III/2019', '78501'),
+('K.005/AMANK2K3/KOTA/III/2019', '23892'),
+('K.005/AMANK2K3/KOTA/III/2019', '78501'),
+('K.005/AMANK2K3/KOTA/III/2019', '96360'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '51466'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '82132'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '99399');
 
 -- --------------------------------------------------------
 
@@ -155,7 +169,6 @@ CREATE TABLE `tb_det_lampiran_izin_kerja` (
 INSERT INTO `tb_det_lampiran_izin_kerja` (`kode_project`, `kode_lampiran_izin_kerja`) VALUES
 ('K.001/AMANK2K3/CIANJUR/III/2019', '22235'),
 ('K.001/AMANK2K3/CIANJUR/III/2019', '3969'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '26038'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '22235'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '26038'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '3969'),
@@ -167,7 +180,15 @@ INSERT INTO `tb_det_lampiran_izin_kerja` (`kode_project`, `kode_lampiran_izin_ke
 ('K.004/AMANK2K3/CIANJUR/III/2019', '3969'),
 ('K.005/AMANK2K3/CIANJUR/III/2019', '22235'),
 ('K.006/AMANK2K3/CIANJUR/III/2019', '22235'),
-('K.006/AMANK2K3/CIANJUR/III/2019', '3969');
+('K.006/AMANK2K3/CIANJUR/III/2019', '3969'),
+('K.005/AMANK2K3/KOTA/III/2019', '22235'),
+('K.005/AMANK2K3/KOTA/III/2019', '26038'),
+('K.005/AMANK2K3/KOTA/III/2019', '35449'),
+('K.005/AMANK2K3/KOTA/III/2019', '3969'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '22235'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '26038'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '35449'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '3969');
 
 -- --------------------------------------------------------
 
@@ -185,8 +206,6 @@ CREATE TABLE `tb_det_pekerja` (
 --
 
 INSERT INTO `tb_det_pekerja` (`kode_project`, `kode_user`) VALUES
-('K.002/AMANK2K3/CIANJUR/III/2019', '2'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '3'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '3'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '5'),
 ('P.001/AMANK2K3/CIANJUR/III/2019', '1'),
@@ -202,7 +221,14 @@ INSERT INTO `tb_det_pekerja` (`kode_project`, `kode_user`) VALUES
 ('K.001/AMANK2K3/CIANJUR/III/2019', '3'),
 ('K.001/AMANK2K3/CIANJUR/III/2019', '2'),
 ('K.006/AMANK2K3/CIANJUR/III/2019', '3'),
-('K.006/AMANK2K3/CIANJUR/III/2019', '6');
+('K.006/AMANK2K3/CIANJUR/III/2019', '6'),
+('K.005/AMANK2K3/KOTA/III/2019', '15'),
+('K.005/AMANK2K3/KOTA/III/2019', '38'),
+('K.005/AMANK2K3/KOTA/III/2019', '13'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '17'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '40'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '22'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '29');
 
 -- --------------------------------------------------------
 
@@ -223,7 +249,6 @@ INSERT INTO `tb_det_pelaksana` (`kode_pelaksana`, `kode_project`) VALUES
 (1, 'K.002/AMANK2K3/CIANJUR/III/2019'),
 (1, 'K.003/AMANK2K3/CIANJUR/III/2019'),
 (3, 'K.003/AMANK2K3/CIANJUR/III/2019'),
-(4, 'K.002/AMANK2K3/CIANJUR/III/2019'),
 (1, 'P.001/AMANK2K3/CIANJUR/III/2019'),
 (2, 'P.001/AMANK2K3/CIANJUR/III/2019'),
 (1, 'K.005/AMANK2K3/CIANJUR/III/2019'),
@@ -231,7 +256,8 @@ INSERT INTO `tb_det_pelaksana` (`kode_pelaksana`, `kode_project`) VALUES
 (2, 'K.005/AMANK2K3/CIANJUR/III/2019'),
 (1, 'K.001/AMANK2K3/CIANJUR/III/2019'),
 (2, 'K.001/AMANK2K3/CIANJUR/III/2019'),
-(2, 'K.006/AMANK2K3/CIANJUR/III/2019');
+(2, 'K.006/AMANK2K3/CIANJUR/III/2019'),
+(1, 'K.005/AMANK2K3/KOTA/III/2019');
 
 -- --------------------------------------------------------
 
@@ -255,11 +281,6 @@ INSERT INTO `tb_det_peralatan_kerja` (`kode_project`, `kode_peralatan_kerja`) VA
 ('K.001/AMANK2K3/CIANJUR/III/2019', 3332),
 ('K.001/AMANK2K3/CIANJUR/III/2019', 6493),
 ('K.001/AMANK2K3/CIANJUR/III/2019', 57694),
-('K.002/AMANK2K3/CIANJUR/III/2019', 26912),
-('K.002/AMANK2K3/CIANJUR/III/2019', 31556),
-('K.002/AMANK2K3/CIANJUR/III/2019', 73528),
-('K.002/AMANK2K3/CIANJUR/III/2019', 6493),
-('K.002/AMANK2K3/CIANJUR/III/2019', 57694),
 ('K.003/AMANK2K3/CIANJUR/III/2019', 26912),
 ('K.003/AMANK2K3/CIANJUR/III/2019', 31556),
 ('K.003/AMANK2K3/CIANJUR/III/2019', 69929),
@@ -281,7 +302,11 @@ INSERT INTO `tb_det_peralatan_kerja` (`kode_project`, `kode_peralatan_kerja`) VA
 ('K.005/AMANK2K3/CIANJUR/III/2019', 3332),
 ('K.005/AMANK2K3/CIANJUR/III/2019', 6493),
 ('K.006/AMANK2K3/CIANJUR/III/2019', 6493),
-('K.006/AMANK2K3/CIANJUR/III/2019', 57694);
+('K.006/AMANK2K3/CIANJUR/III/2019', 57694),
+('K.005/AMANK2K3/KOTA/III/2019', 3332),
+('K.005/AMANK2K3/KOTA/III/2019', 73529),
+('K.002/AMANK2K3/CIANJUR/III/2019', 6493),
+('K.002/AMANK2K3/CIANJUR/III/2019', 57694);
 
 -- --------------------------------------------------------
 
@@ -332,7 +357,13 @@ INSERT INTO `tb_det_project` (`kode_project`, `kode_user`) VALUES
 ('P.002/AMANK2K3/KOTA/III/2019', 'U0004'),
 ('P.003/AMANK2K3/KOTA/III/2019', 'U0002'),
 ('P.003/AMANK2K3/KOTA/III/2019', 'U0003'),
-('P.003/AMANK2K3/KOTA/III/2019', 'U0004');
+('P.003/AMANK2K3/KOTA/III/2019', 'U0004'),
+('P.004/AMANK2K3/KOTA/III/2019', 'U0002'),
+('P.004/AMANK2K3/KOTA/III/2019', 'U0003'),
+('P.004/AMANK2K3/KOTA/III/2019', 'U0004'),
+('K.005/AMANK2K3/KOTA/III/2019', 'U0002'),
+('K.005/AMANK2K3/KOTA/III/2019', 'U0003'),
+('K.005/AMANK2K3/KOTA/III/2019', 'U0004');
 
 -- --------------------------------------------------------
 
@@ -355,9 +386,6 @@ INSERT INTO `tb_det_prosedur_kerja` (`kode_project`, `kode_prosedur_kerja`) VALU
 ('K.001/AMANK2K3/CIANJUR/III/2019', '56289'),
 ('K.001/AMANK2K3/CIANJUR/III/2019', '78284'),
 ('K.001/AMANK2K3/CIANJUR/III/2019', '91262'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '22132'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '56289'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '91262'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '20792'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '48097'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '78284'),
@@ -375,7 +403,13 @@ INSERT INTO `tb_det_prosedur_kerja` (`kode_project`, `kode_prosedur_kerja`) VALU
 ('K.005/AMANK2K3/CIANJUR/III/2019', '48097'),
 ('K.005/AMANK2K3/CIANJUR/III/2019', '78284'),
 ('K.006/AMANK2K3/CIANJUR/III/2019', '22132'),
-('K.006/AMANK2K3/CIANJUR/III/2019', '56289');
+('K.006/AMANK2K3/CIANJUR/III/2019', '56289'),
+('K.005/AMANK2K3/KOTA/III/2019', '20792'),
+('K.005/AMANK2K3/KOTA/III/2019', '78284'),
+('K.005/AMANK2K3/KOTA/III/2019', '91262'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '22132'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '56289'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '91262');
 
 -- --------------------------------------------------------
 
@@ -408,7 +442,9 @@ INSERT INTO `tb_det_uraian_pekerjaan` (`kode_uraian_pekerjaan`, `uraian_pekerjaa
 (10, 'Selesai', '08:00:00', 'selesai', 'K.005/AMANK2K3/CIANJUR/III/2019'),
 (11, 'Penyampaian', '10:00:00', 'pembagian kerjaan', 'K.006/AMANK2K3/CIANJUR/III/2019'),
 (12, 'Mulai', '10:30:00', '', 'K.006/AMANK2K3/CIANJUR/III/2019'),
-(13, 'Selesai', '00:00:00', '', 'K.006/AMANK2K3/CIANJUR/III/2019');
+(13, 'Selesai', '00:00:00', '', 'K.006/AMANK2K3/CIANJUR/III/2019'),
+(14, 'Mulai', '00:00:00', '1', 'K.005/AMANK2K3/KOTA/III/2019'),
+(15, 'Selesai', '01:00:00', '1', 'K.005/AMANK2K3/KOTA/III/2019');
 
 -- --------------------------------------------------------
 
@@ -450,6 +486,7 @@ INSERT INTO `tb_divisi` (`kode_divisi`, `nama_divisi`, `last_modified`, `last_mo
 CREATE TABLE `tb_gardu_induk` (
   `kode_gardu_induk` int(11) NOT NULL,
   `nama_gardu` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
   `tgl` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -457,11 +494,8 @@ CREATE TABLE `tb_gardu_induk` (
 -- Dumping data untuk tabel `tb_gardu_induk`
 --
 
-INSERT INTO `tb_gardu_induk` (`kode_gardu_induk`, `nama_gardu`, `tgl`) VALUES
-(1, 'Cianjur', '2019-03-21'),
-(6, 'Cijoho', '2019-03-21'),
-(7, 'Leweng', '2019-03-21'),
-(13, 'Bojong', '2019-03-22');
+INSERT INTO `tb_gardu_induk` (`kode_gardu_induk`, `nama_gardu`, `alamat`, `tgl`) VALUES
+(1, 'CIANJUR', 'CIANJUR KOTA', '2019-03-21');
 
 -- --------------------------------------------------------
 
@@ -704,12 +738,13 @@ CREATE TABLE `tb_project` (
 
 INSERT INTO `tb_project` (`kode_project`, `tgl_project`, `tgl_pengajuan`, `tgl_pelaksanaan`, `tgl_selesai`, `tgl_approval`, `tegangan`, `alamat_project`, `jml_tenaga_kerja`, `material`, `peralatan_kerja`, `gardu`, `jenis_project`, `last_modified`, `last_modified_user`, `kode_user`, `kode_jenis_pekerjaan`, `kode_line`, `segment`, `keterangan`, `uniqid`, `status`) VALUES
 ('K.001/AMANK2K3/CIANJUR/III/2019', '2019-03-20 12:05:55', '2019-03-20 00:00:00', '2019-03-20 09:09:00', '2019-03-20 22:10:00', '0000-00-00 00:00:00', 20, 'jasdakjsbd', 0, 'Lengkap', 'Lengkap', 'sgvb, syaduh, a ,asdyh', 'Korektif', '2019-03-20 12:05:55', 'U0001', 'U0001', 'H0001', 'S0002', '', '', '5c921c2e099ee', 'pending'),
-('K.002/AMANK2K3/CIANJUR/III/2019', '2019-03-20 14:15:30', '2019-03-20 00:00:00', '2019-03-20 09:10:00', '2019-03-20 03:10:00', '0000-00-00 00:00:00', 20, 'asdbahskd', 0, 'Lengkap', 'Lengkap', 'jsdjf, dsfhkd, sdfhsdf', 'Korektif', '2019-03-20 14:15:30', 'U0001', 'U0001', 'H0004', 'S0004', '', '', '5c923ca043109', 'pending'),
+('K.002/AMANK2K3/CIANJUR/III/2019', '2019-03-24 15:02:02', '2019-03-24 00:00:00', '2019-03-24 00:00:00', '2019-03-24 00:00:00', '2019-03-24 15:02:13', 20, 'asdbahskd', 0, 'Belum Lengkap', 'Belum Lengkap', 'jsdjf, dsfhkd, sdfhsdf', 'Korektif', '2019-03-24 15:02:02', 'U0001', 'U0001', 'H0005', 'S0005', 'AAAA', '', '5c923ca043109', 'pending'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '2019-03-20 15:05:49', '2019-03-20 00:00:00', '2019-03-20 09:00:00', '2019-03-20 17:00:00', '0000-00-00 00:00:00', 20, 'Jl. Barisan Banteng', 0, 'Lengkap', 'Lengkap', 'RIZKI, HARDINAS, PERMANA', 'Korektif', '2019-03-20 15:05:49', 'U0001', 'U0001', 'H0005', 'S0002', '', '', '5c92485ad4504', 'success'),
 ('K.004/AMANK2K3/CIANJUR/III/2019', '2019-03-21 18:33:23', '2019-03-21 00:00:00', '2019-03-21 10:00:00', '2019-03-21 00:00:00', '0000-00-00 00:00:00', 20, 'BARISAN BANTENG', 0, 'Lengkap', 'Lengkap', 'AMA, AKU, KAMU', 'Korektif', '2019-03-21 18:33:23', 'U0001', 'U0001', 'H0002', 'S0002', '', 'selesai dengan cepat', '5c93745bd8220', 'success'),
-('P.001/AMANK2K3/CIANJUR/III/2019', '2019-03-21 16:40:24', '2019-03-21 00:00:00', '2019-03-25 08:00:00', '2019-03-26 11:00:00', '0000-00-00 00:00:00', 20, 'Jl. Sirnagalih', 0, 'Lengkap', 'Lengkap', 'ABC, DEF, GHI, JKL', 'Preventif', '2019-03-21 16:40:24', 'U0001', 'U0001', 'H0002', 'S0004', '', '', '5c935ad903521', 'pending'),
+('K.005/AMANK2K3/KOTA/III/2019', '2019-03-24 14:51:58', '2019-03-24 00:00:00', '2019-03-24 00:00:00', '2019-03-24 00:00:00', '2019-03-24 14:52:27', 20, 'TESSSS', 0, 'Lengkap', 'Lengkap', 'AKJ, AJSHa', 'Korektif', '2019-03-24 14:51:58', 'U0001', 'U0001', 'H0001', 'S0001', 'A B C D', '', '5c973136bc597', 'pending'),
 ('P.002/AMANK2K3/KOTA/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', 'U0001', '', '', '', '', '5c96e7d572b76', 'new'),
-('P.003/AMANK2K3/KOTA/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', 'U0001', '', '', '', '', '5c96ece905d8a', 'new');
+('P.003/AMANK2K3/KOTA/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', 'U0001', '', '', '', '', '5c96ece905d8a', 'new'),
+('P.004/AMANK2K3/KOTA/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', 'U0001', '', '', '', '', '5c9730b0608fd', 'new');
 
 -- --------------------------------------------------------
 
@@ -750,23 +785,25 @@ INSERT INTO `tb_prosedur_kerja` (`kode_prosedur_kerja`, `nama_prosedur_kerja`, `
 CREATE TABLE `tb_sld` (
   `kode_sld` char(5) NOT NULL,
   `nama_sld` varchar(50) NOT NULL,
+  `kode_gardu_induk` int(11) NOT NULL,
   `lokasi` varchar(20) NOT NULL,
   `tgl_input_sld` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   `last_modified_user` char(5) NOT NULL,
-  `src` text NOT NULL
+  `src` text NOT NULL,
+  `visio` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_sld`
 --
 
-INSERT INTO `tb_sld` (`kode_sld`, `nama_sld`, `lokasi`, `tgl_input_sld`, `last_modified`, `last_modified_user`, `src`) VALUES
-('S0001', 'P.GBRG', 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', 'U0000', 'S0001.jpg'),
-('S0002', 'P.LAMPEGAN', 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', 'U0000', 'S0002.jpg'),
-('S0003', 'P.DPRD', 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', 'U0000', 'S0003.jpg'),
-('S0004', 'P.KOTU', 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', 'U0000', 'S0004.jpg'),
-('S0005', 'P.BNJT', 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', 'U0000', 'S0005.jpg');
+INSERT INTO `tb_sld` (`kode_sld`, `nama_sld`, `kode_gardu_induk`, `lokasi`, `tgl_input_sld`, `last_modified`, `last_modified_user`, `src`, `visio`) VALUES
+('S0001', 'P.GBRG', 1, 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', 'U0000', 'S0001.jpg', 'S0001.vsd'),
+('S0002', 'P.LAMPEGAN', 1, 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', 'U0000', 'S0002.jpg', 'S0002.vsd'),
+('S0003', 'P.DPRD', 1, 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', 'U0000', 'S0003.jpg', 'S0003.vsd'),
+('S0004', 'P.KOTU', 1, 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', 'U0000', 'S0004.jpg', 'S0004.vsd'),
+('S0005', 'P.BNJT', 1, 'KOTA', '2019-03-16 00:00:00', '2019-03-16 00:00:00', 'U0000', 'S0005.jpg', 'S0005.vsd');
 
 -- --------------------------------------------------------
 
@@ -797,10 +834,10 @@ INSERT INTO `tb_status_project` (`kode_status_project`, `kode_project`, `status_
 (7, 'K.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-20 11:55:46', '', 'U0006'),
 (8, 'K.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-20 11:55:47', '', 'U0007'),
 (9, 'K.002/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 14:14:01', '', 'U0001'),
-(10, 'K.002/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 14:14:08', '', 'U0002'),
-(11, 'K.002/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 14:14:09', '', 'U0003'),
-(12, 'K.002/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-20 14:14:10', '', 'U0004'),
-(13, 'K.002/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-20 14:14:11', '', 'U0005'),
+(10, 'K.002/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 15:03:09', '', 'U0002'),
+(11, 'K.002/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 15:03:26', '', 'U0003'),
+(12, 'K.002/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 15:03:50', '', 'U0004'),
+(13, 'K.002/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 15:04:09', '', 'U0005'),
 (14, 'K.002/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-20 14:14:12', '', 'U0006'),
 (15, 'K.002/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-20 14:14:13', '', 'U0007'),
 (16, 'K.003/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 15:04:11', '', 'U0002'),
@@ -809,13 +846,6 @@ INSERT INTO `tb_status_project` (`kode_status_project`, `kode_project`, `status_
 (19, 'K.003/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 15:04:14', '', 'U0005'),
 (20, 'K.003/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 15:04:16', '', 'U0006'),
 (21, 'K.003/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 15:04:17', '', 'U0007'),
-(28, 'P.001/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-21 16:35:21', '', 'U0002'),
-(29, 'P.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 16:35:21', '', 'U0003'),
-(30, 'P.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 16:35:21', '', 'U0004'),
-(31, 'P.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 16:35:21', '', 'U0005'),
-(32, 'P.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 16:35:21', '', 'U0006'),
-(33, 'P.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 16:35:21', '', 'U0007'),
-(34, 'P.001/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-21 16:35:21', '', 'U0001'),
 (35, 'K.004/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 08:46:08', '', 'U0002'),
 (36, 'K.004/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 08:46:46', '', 'U0003'),
 (37, 'K.004/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 08:47:43', '', 'U0004'),
@@ -836,7 +866,21 @@ INSERT INTO `tb_status_project` (`kode_status_project`, `kode_project`, `status_
 (66, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0005'),
 (67, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0006'),
 (68, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0007'),
-(69, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0001');
+(69, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0001'),
+(70, 'P.004/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 14:24:32', '', 'U0002'),
+(71, 'P.004/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 14:24:32', '', 'U0003'),
+(72, 'P.004/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 14:24:32', '', 'U0004'),
+(73, 'P.004/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 14:24:32', '', 'U0005'),
+(74, 'P.004/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 14:24:32', '', 'U0006'),
+(75, 'P.004/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 14:24:32', '', 'U0007'),
+(76, 'P.004/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 14:24:32', '', 'U0001'),
+(77, 'K.005/AMANK2K3/KOTA/III/2019', 'approve', '2019-03-24 14:53:11', '', 'U0002'),
+(78, 'K.005/AMANK2K3/KOTA/III/2019', 'approve', '2019-03-24 14:53:50', '', 'U0003'),
+(79, 'K.005/AMANK2K3/KOTA/III/2019', 'approve', '2019-03-24 14:54:17', '', 'U0004'),
+(80, 'K.005/AMANK2K3/KOTA/III/2019', 'approve', '2019-03-24 14:55:18', '', 'U0005'),
+(81, 'K.005/AMANK2K3/KOTA/III/2019', 'approve', '2019-03-24 14:55:59', '', 'U0006'),
+(82, 'K.005/AMANK2K3/KOTA/III/2019', 'approve', '2019-03-24 14:56:11', '', 'U0007'),
+(83, 'K.005/AMANK2K3/KOTA/III/2019', 'approve', '2019-03-24 14:26:47', '', 'U0001');
 
 -- --------------------------------------------------------
 
@@ -869,10 +913,9 @@ INSERT INTO `tb_users` (`kode_user`, `nama_user`, `no_telp_user`, `lokasi`, `ulp
 ('U0002', 'Virgea Krismanda', '0821755517033', 'KOTA', 'CIANJUR', 'virgea', 'virgea', 'U0002.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '2'),
 ('U0003', 'Ainul Yaqin', '087742359100', 'KOTA', 'CIANJUR', 'ainul', 'ainul', 'U0003.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '3'),
 ('U0004', 'Andis Verinda Putra', '082232473311', 'KOTA', 'CIANJUR', 'andis', 'andis', 'U0004.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '4'),
-('U0005', 'HARJAR', '089503800600', 'ULP', 'CIANJUR', 'harjar', 'harjar', 'U0005.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '5'),
-('U0006', 'OPDIST', '089503800600', 'ULP', 'CIANJUR', 'opdist', 'opdist', 'U0006.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '6'),
-('U0007', 'MB', '089503800600', 'ULP', 'CIANJUR', 'mb', 'mb', 'U0006.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '7'),
-('U0011', 'WIlly Setiawan', '089503800600', 'KOTA', 'CIANJUR', 'willy', 'willy', 'U0011.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '1');
+('U0005', 'Ahmad Amaludin', '089503800600', 'ULP', 'CIANJUR', 'ahmad', 'ahmad', 'U0005.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '5'),
+('U0006', 'Akhmad Akhmalluhuda', '089503800600', 'ULP', 'CIANJUR', 'akhmad', 'akhmad', 'U0006.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '6'),
+('U0007', 'Kondhang Paramarta', '089503800600', 'ULP', 'CIANJUR', 'kondhang', 'kondhang', 'U0006.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '7');
 
 -- --------------------------------------------------------
 
@@ -998,19 +1041,19 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT untuk tabel `tb_approval`
 --
 ALTER TABLE `tb_approval`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_det_uraian_pekerjaan`
 --
 ALTER TABLE `tb_det_uraian_pekerjaan`
-  MODIFY `kode_uraian_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `kode_uraian_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_gardu_induk`
 --
 ALTER TABLE `tb_gardu_induk`
-  MODIFY `kode_gardu_induk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `kode_gardu_induk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pelaksana`
@@ -1034,7 +1077,7 @@ ALTER TABLE `tb_peralatan_kerja`
 -- AUTO_INCREMENT untuk tabel `tb_status_project`
 --
 ALTER TABLE `tb_status_project`
-  MODIFY `kode_status_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `kode_status_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
