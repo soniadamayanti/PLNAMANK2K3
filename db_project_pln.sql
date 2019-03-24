@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2019 at 04:53 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Waktu pembuatan: 24 Mar 2019 pada 09.45
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_approval`
+-- Struktur dari tabel `tb_approval`
 --
 
 CREATE TABLE `tb_approval` (
@@ -38,7 +38,7 @@ CREATE TABLE `tb_approval` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_approval`
+-- Dumping data untuk tabel `tb_approval`
 --
 
 INSERT INTO `tb_approval` (`id`, `kode_project`, `kode_user`, `type`, `ket`, `tgl`) VALUES
@@ -53,12 +53,22 @@ INSERT INTO `tb_approval` (`id`, `kode_project`, `kode_user`, `type`, `ket`, `tg
 (11, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0001', 'new', '', '2019-03-21 18:24:11'),
 (12, 'K.005/AMANK2K3/CIANJUR/III/2019', 'U0001', 'new', '', '2019-03-22 13:20:22'),
 (13, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0001', 'approve', '', '2019-03-22 14:09:14'),
-(14, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0001', 'approve', '', '2019-03-22 14:11:54');
+(14, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0001', 'approve', '', '2019-03-22 14:11:54'),
+(16, 'K.001/AMANK2K3/CIANJUR/III/2019', 'U0002', 'approve', '', '2019-03-24 08:45:01'),
+(17, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0002', 'approve', '', '2019-03-24 08:46:08'),
+(18, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0003', 'approve', '', '2019-03-24 08:46:46'),
+(19, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0004', 'approve', '', '2019-03-24 08:47:43'),
+(20, 'K.001/AMANK2K3/CIANJUR/III/2019', 'U0005', 'denied', '', '2019-03-24 08:49:06'),
+(21, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0005', 'approve', '', '2019-03-24 08:49:48'),
+(22, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0006', 'approve', '', '2019-03-24 08:50:42'),
+(23, 'K.004/AMANK2K3/CIANJUR/III/2019', 'U0007', 'approve', '', '2019-03-24 08:51:30'),
+(24, 'P.002/AMANK2K3/KOTA/III/2019', 'U0001', 'new', '', '2019-03-24 09:13:41'),
+(25, 'P.003/AMANK2K3/KOTA/III/2019', 'U0001', 'new', '', '2019-03-24 09:35:21');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_berkas_terakhir`
+-- Struktur dari tabel `tb_berkas_terakhir`
 --
 
 CREATE TABLE `tb_berkas_terakhir` (
@@ -69,20 +79,20 @@ CREATE TABLE `tb_berkas_terakhir` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_berkas_terakhir`
+-- Dumping data untuk tabel `tb_berkas_terakhir`
 --
 
 INSERT INTO `tb_berkas_terakhir` (`kode_project`, `kode_user`, `divisi_tujuan`, `tgl`) VALUES
-('K.001/AMANK2K3/CIANJUR/III/2019', 'U0002', '3', '2019-03-20 12:05:55'),
+('K.001/AMANK2K3/CIANJUR/III/2019', '5', '1', '2019-03-24 08:49:06'),
 ('K.002/AMANK2K3/CIANJUR/III/2019', 'U0003', '4', '2019-03-20 14:15:30'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', 'U0007', '0', '2019-03-20 15:05:49'),
 ('P.001/AMANK2K3/CIANJUR/III/2019', 'U0002', '3', '2019-03-21 17:15:40'),
-('K.004/AMANK2K3/CIANJUR/III/2019', 'U0001', '2', '2019-03-22 14:09:14');
+('K.004/AMANK2K3/CIANJUR/III/2019', 'U0007', '0', '2019-03-24 08:51:30');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_det_klasifikasi`
+-- Struktur dari tabel `tb_det_klasifikasi`
 --
 
 CREATE TABLE `tb_det_klasifikasi` (
@@ -91,7 +101,7 @@ CREATE TABLE `tb_det_klasifikasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_det_klasifikasi`
+-- Dumping data untuk tabel `tb_det_klasifikasi`
 --
 
 INSERT INTO `tb_det_klasifikasi` (`kode_project`, `kode_klasifikasi_kerja`) VALUES
@@ -123,12 +133,14 @@ INSERT INTO `tb_det_klasifikasi` (`kode_project`, `kode_klasifikasi_kerja`) VALU
 ('K.004/AMANK2K3/CIANJUR/III/2019', '23892'),
 ('K.004/AMANK2K3/CIANJUR/III/2019', '78501'),
 ('K.005/AMANK2K3/CIANJUR/III/2019', '23892'),
-('K.005/AMANK2K3/CIANJUR/III/2019', '78501');
+('K.005/AMANK2K3/CIANJUR/III/2019', '78501'),
+('K.006/AMANK2K3/CIANJUR/III/2019', '23892'),
+('K.006/AMANK2K3/CIANJUR/III/2019', '78501');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_det_lampiran_izin_kerja`
+-- Struktur dari tabel `tb_det_lampiran_izin_kerja`
 --
 
 CREATE TABLE `tb_det_lampiran_izin_kerja` (
@@ -137,7 +149,7 @@ CREATE TABLE `tb_det_lampiran_izin_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_det_lampiran_izin_kerja`
+-- Dumping data untuk tabel `tb_det_lampiran_izin_kerja`
 --
 
 INSERT INTO `tb_det_lampiran_izin_kerja` (`kode_project`, `kode_lampiran_izin_kerja`) VALUES
@@ -153,12 +165,14 @@ INSERT INTO `tb_det_lampiran_izin_kerja` (`kode_project`, `kode_lampiran_izin_ke
 ('P.001/AMANK2K3/CIANJUR/III/2019', '3969'),
 ('K.004/AMANK2K3/CIANJUR/III/2019', '22235'),
 ('K.004/AMANK2K3/CIANJUR/III/2019', '3969'),
-('K.005/AMANK2K3/CIANJUR/III/2019', '22235');
+('K.005/AMANK2K3/CIANJUR/III/2019', '22235'),
+('K.006/AMANK2K3/CIANJUR/III/2019', '22235'),
+('K.006/AMANK2K3/CIANJUR/III/2019', '3969');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_det_pekerja`
+-- Struktur dari tabel `tb_det_pekerja`
 --
 
 CREATE TABLE `tb_det_pekerja` (
@@ -167,7 +181,7 @@ CREATE TABLE `tb_det_pekerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_det_pekerja`
+-- Dumping data untuk tabel `tb_det_pekerja`
 --
 
 INSERT INTO `tb_det_pekerja` (`kode_project`, `kode_user`) VALUES
@@ -186,12 +200,14 @@ INSERT INTO `tb_det_pekerja` (`kode_project`, `kode_user`) VALUES
 ('K.005/AMANK2K3/CIANJUR/III/2019', '1'),
 ('K.005/AMANK2K3/CIANJUR/III/2019', '4'),
 ('K.001/AMANK2K3/CIANJUR/III/2019', '3'),
-('K.001/AMANK2K3/CIANJUR/III/2019', '2');
+('K.001/AMANK2K3/CIANJUR/III/2019', '2'),
+('K.006/AMANK2K3/CIANJUR/III/2019', '3'),
+('K.006/AMANK2K3/CIANJUR/III/2019', '6');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_det_pelaksana`
+-- Struktur dari tabel `tb_det_pelaksana`
 --
 
 CREATE TABLE `tb_det_pelaksana` (
@@ -200,7 +216,7 @@ CREATE TABLE `tb_det_pelaksana` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_det_pelaksana`
+-- Dumping data untuk tabel `tb_det_pelaksana`
 --
 
 INSERT INTO `tb_det_pelaksana` (`kode_pelaksana`, `kode_project`) VALUES
@@ -214,12 +230,13 @@ INSERT INTO `tb_det_pelaksana` (`kode_pelaksana`, `kode_project`) VALUES
 (3, 'K.005/AMANK2K3/CIANJUR/III/2019'),
 (2, 'K.005/AMANK2K3/CIANJUR/III/2019'),
 (1, 'K.001/AMANK2K3/CIANJUR/III/2019'),
-(2, 'K.001/AMANK2K3/CIANJUR/III/2019');
+(2, 'K.001/AMANK2K3/CIANJUR/III/2019'),
+(2, 'K.006/AMANK2K3/CIANJUR/III/2019');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_det_peralatan_kerja`
+-- Struktur dari tabel `tb_det_peralatan_kerja`
 --
 
 CREATE TABLE `tb_det_peralatan_kerja` (
@@ -228,7 +245,7 @@ CREATE TABLE `tb_det_peralatan_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_det_peralatan_kerja`
+-- Dumping data untuk tabel `tb_det_peralatan_kerja`
 --
 
 INSERT INTO `tb_det_peralatan_kerja` (`kode_project`, `kode_peralatan_kerja`) VALUES
@@ -262,12 +279,14 @@ INSERT INTO `tb_det_peralatan_kerja` (`kode_project`, `kode_peralatan_kerja`) VA
 ('K.004/AMANK2K3/CIANJUR/III/2019', 69929),
 ('K.005/AMANK2K3/CIANJUR/III/2019', 26912),
 ('K.005/AMANK2K3/CIANJUR/III/2019', 3332),
-('K.005/AMANK2K3/CIANJUR/III/2019', 6493);
+('K.005/AMANK2K3/CIANJUR/III/2019', 6493),
+('K.006/AMANK2K3/CIANJUR/III/2019', 6493),
+('K.006/AMANK2K3/CIANJUR/III/2019', 57694);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_det_project`
+-- Struktur dari tabel `tb_det_project`
 --
 
 CREATE TABLE `tb_det_project` (
@@ -276,7 +295,7 @@ CREATE TABLE `tb_det_project` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_det_project`
+-- Dumping data untuk tabel `tb_det_project`
 --
 
 INSERT INTO `tb_det_project` (`kode_project`, `kode_user`) VALUES
@@ -304,12 +323,21 @@ INSERT INTO `tb_det_project` (`kode_project`, `kode_user`) VALUES
 ('K.004/AMANK2K3/CIANJUR/III/2019', 'U0004'),
 ('K.005/AMANK2K3/CIANJUR/III/2019', 'U0002'),
 ('K.005/AMANK2K3/CIANJUR/III/2019', 'U0003'),
-('K.005/AMANK2K3/CIANJUR/III/2019', 'U0004');
+('K.005/AMANK2K3/CIANJUR/III/2019', 'U0004'),
+('K.006/AMANK2K3/CIANJUR/III/2019', 'U0002'),
+('K.006/AMANK2K3/CIANJUR/III/2019', 'U0003'),
+('K.006/AMANK2K3/CIANJUR/III/2019', 'U0004'),
+('P.002/AMANK2K3/KOTA/III/2019', 'U0002'),
+('P.002/AMANK2K3/KOTA/III/2019', 'U0003'),
+('P.002/AMANK2K3/KOTA/III/2019', 'U0004'),
+('P.003/AMANK2K3/KOTA/III/2019', 'U0002'),
+('P.003/AMANK2K3/KOTA/III/2019', 'U0003'),
+('P.003/AMANK2K3/KOTA/III/2019', 'U0004');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_det_prosedur_kerja`
+-- Struktur dari tabel `tb_det_prosedur_kerja`
 --
 
 CREATE TABLE `tb_det_prosedur_kerja` (
@@ -318,7 +346,7 @@ CREATE TABLE `tb_det_prosedur_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_det_prosedur_kerja`
+-- Dumping data untuk tabel `tb_det_prosedur_kerja`
 --
 
 INSERT INTO `tb_det_prosedur_kerja` (`kode_project`, `kode_prosedur_kerja`) VALUES
@@ -345,12 +373,14 @@ INSERT INTO `tb_det_prosedur_kerja` (`kode_project`, `kode_prosedur_kerja`) VALU
 ('K.004/AMANK2K3/CIANJUR/III/2019', '20792'),
 ('K.004/AMANK2K3/CIANJUR/III/2019', '56289'),
 ('K.005/AMANK2K3/CIANJUR/III/2019', '48097'),
-('K.005/AMANK2K3/CIANJUR/III/2019', '78284');
+('K.005/AMANK2K3/CIANJUR/III/2019', '78284'),
+('K.006/AMANK2K3/CIANJUR/III/2019', '22132'),
+('K.006/AMANK2K3/CIANJUR/III/2019', '56289');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_det_uraian_pekerjaan`
+-- Struktur dari tabel `tb_det_uraian_pekerjaan`
 --
 
 CREATE TABLE `tb_det_uraian_pekerjaan` (
@@ -362,7 +392,7 @@ CREATE TABLE `tb_det_uraian_pekerjaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_det_uraian_pekerjaan`
+-- Dumping data untuk tabel `tb_det_uraian_pekerjaan`
 --
 
 INSERT INTO `tb_det_uraian_pekerjaan` (`kode_uraian_pekerjaan`, `uraian_pekerjaan`, `jam`, `keterangan`, `kode_project`) VALUES
@@ -375,12 +405,15 @@ INSERT INTO `tb_det_uraian_pekerjaan` (`kode_uraian_pekerjaan`, `uraian_pekerjaa
 (7, 'Mulai', '10:00:00', 'mulai ah', 'K.004/AMANK2K3/CIANJUR/III/2019'),
 (8, 'Selesai', '00:00:00', 'mulai ah', 'K.004/AMANK2K3/CIANJUR/III/2019'),
 (9, 'Mulai', '07:00:00', 'Mulai', 'K.005/AMANK2K3/CIANJUR/III/2019'),
-(10, 'Selesai', '08:00:00', 'selesai', 'K.005/AMANK2K3/CIANJUR/III/2019');
+(10, 'Selesai', '08:00:00', 'selesai', 'K.005/AMANK2K3/CIANJUR/III/2019'),
+(11, 'Penyampaian', '10:00:00', 'pembagian kerjaan', 'K.006/AMANK2K3/CIANJUR/III/2019'),
+(12, 'Mulai', '10:30:00', '', 'K.006/AMANK2K3/CIANJUR/III/2019'),
+(13, 'Selesai', '00:00:00', '', 'K.006/AMANK2K3/CIANJUR/III/2019');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_divisi`
+-- Struktur dari tabel `tb_divisi`
 --
 
 CREATE TABLE `tb_divisi` (
@@ -394,7 +427,7 @@ CREATE TABLE `tb_divisi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_divisi`
+-- Dumping data untuk tabel `tb_divisi`
 --
 
 INSERT INTO `tb_divisi` (`kode_divisi`, `nama_divisi`, `last_modified`, `last_modified_user`, `tgl_input_divisi`, `parent_divisi`, `child_divisi`) VALUES
@@ -411,7 +444,7 @@ INSERT INTO `tb_divisi` (`kode_divisi`, `nama_divisi`, `last_modified`, `last_mo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_gardu_induk`
+-- Struktur dari tabel `tb_gardu_induk`
 --
 
 CREATE TABLE `tb_gardu_induk` (
@@ -421,7 +454,7 @@ CREATE TABLE `tb_gardu_induk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_gardu_induk`
+-- Dumping data untuk tabel `tb_gardu_induk`
 --
 
 INSERT INTO `tb_gardu_induk` (`kode_gardu_induk`, `nama_gardu`, `tgl`) VALUES
@@ -433,7 +466,7 @@ INSERT INTO `tb_gardu_induk` (`kode_gardu_induk`, `nama_gardu`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_jenis_pekerjaan`
+-- Struktur dari tabel `tb_jenis_pekerjaan`
 --
 
 CREATE TABLE `tb_jenis_pekerjaan` (
@@ -446,7 +479,7 @@ CREATE TABLE `tb_jenis_pekerjaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_jenis_pekerjaan`
+-- Dumping data untuk tabel `tb_jenis_pekerjaan`
 --
 
 INSERT INTO `tb_jenis_pekerjaan` (`kode_jenis_pekerjaan`, `nama_jenis_pekerjaan`, `tgl_input_pekerjaan`, `last_modified`, `last_modified_user`, `kode_user`) VALUES
@@ -459,7 +492,7 @@ INSERT INTO `tb_jenis_pekerjaan` (`kode_jenis_pekerjaan`, `nama_jenis_pekerjaan`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_klasifikasi_kerja`
+-- Struktur dari tabel `tb_klasifikasi_kerja`
 --
 
 CREATE TABLE `tb_klasifikasi_kerja` (
@@ -472,7 +505,7 @@ CREATE TABLE `tb_klasifikasi_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_klasifikasi_kerja`
+-- Dumping data untuk tabel `tb_klasifikasi_kerja`
 --
 
 INSERT INTO `tb_klasifikasi_kerja` (`kode_klasifikasi_kerja`, `nama_klasifikasi_kerja`, `tgl_input_klasifikasi_kerja`, `last_modified`, `last_modified_user`, `kode_user`) VALUES
@@ -489,7 +522,7 @@ INSERT INTO `tb_klasifikasi_kerja` (`kode_klasifikasi_kerja`, `nama_klasifikasi_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_lampiran_izin_kerja`
+-- Struktur dari tabel `tb_lampiran_izin_kerja`
 --
 
 CREATE TABLE `tb_lampiran_izin_kerja` (
@@ -502,7 +535,7 @@ CREATE TABLE `tb_lampiran_izin_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_lampiran_izin_kerja`
+-- Dumping data untuk tabel `tb_lampiran_izin_kerja`
 --
 
 INSERT INTO `tb_lampiran_izin_kerja` (`kode_lampiran_izin_kerja`, `nama_lampiran_izin_kerja`, `tgl_input_lampiran_izin_kerja`, `last_modified`, `last_modified_user`, `kode_user`) VALUES
@@ -514,7 +547,7 @@ INSERT INTO `tb_lampiran_izin_kerja` (`kode_lampiran_izin_kerja`, `nama_lampiran
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_pelaksana`
+-- Struktur dari tabel `tb_pelaksana`
 --
 
 CREATE TABLE `tb_pelaksana` (
@@ -524,7 +557,7 @@ CREATE TABLE `tb_pelaksana` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_pelaksana`
+-- Dumping data untuk tabel `tb_pelaksana`
 --
 
 INSERT INTO `tb_pelaksana` (`kode_pelaksana`, `nama_pelaksana`, `tgl`) VALUES
@@ -536,7 +569,7 @@ INSERT INTO `tb_pelaksana` (`kode_pelaksana`, `nama_pelaksana`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_pelaksana_pekerja`
+-- Struktur dari tabel `tb_pelaksana_pekerja`
 --
 
 CREATE TABLE `tb_pelaksana_pekerja` (
@@ -547,7 +580,7 @@ CREATE TABLE `tb_pelaksana_pekerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_pelaksana_pekerja`
+-- Dumping data untuk tabel `tb_pelaksana_pekerja`
 --
 
 INSERT INTO `tb_pelaksana_pekerja` (`kode_pelaksana_pekerja`, `kode_pelaksana`, `nama_pelaksana_pekerja`, `tgl`) VALUES
@@ -598,7 +631,7 @@ INSERT INTO `tb_pelaksana_pekerja` (`kode_pelaksana_pekerja`, `kode_pelaksana`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_peralatan_kerja`
+-- Struktur dari tabel `tb_peralatan_kerja`
 --
 
 CREATE TABLE `tb_peralatan_kerja` (
@@ -612,24 +645,32 @@ CREATE TABLE `tb_peralatan_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_peralatan_kerja`
+-- Dumping data untuk tabel `tb_peralatan_kerja`
 --
 
 INSERT INTO `tb_peralatan_kerja` (`kode_peralatan_kerja`, `nama_peralatan_kerja`, `tgl_input`, `last_modified`, `last_modified_user`, `kode_user`, `type`) VALUES
-(3332, 'Radio', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Keselamatan'),
-(6493, 'Pemadam Api', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Keselamatan'),
+(3332, 'Pemadam Api (APAR dll)', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Keselamatan'),
+(6493, 'Radio Telekomunikasi', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Keselamatan'),
 (26912, 'Earmuff', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
 (31556, 'Helm', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
-(40824, 'Loto', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Keselamatan'),
-(50142, 'Tas', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
+(40824, 'LOTO (lock out tag out)', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Keselamatan'),
+(50142, 'Kacamata', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
 (57694, 'Rambu Keselamatan', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Keselamatan'),
-(69929, 'Sepatu', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
-(73528, 'Peci', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan');
+(69929, 'Sepatu Keselamatan', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
+(73528, 'Sarung Tangan Katun', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
+(73529, 'Tangga', '2019-03-24 16:06:59', '2019-03-24 16:06:59', 'U0000', 'U0000', 'Keselamatan'),
+(73530, 'Earplug', '2019-03-24 16:06:59', '2019-03-24 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
+(73531, 'Sarung Tangan Karet', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
+(73532, 'Sarung Tangan 20kV', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
+(73533, 'Pelampung / Life Vest', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
+(73534, 'Tabung Pernafasan', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
+(73535, 'Full Body Harness', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan'),
+(73536, 'Pakaian Kerja', '2019-03-18 16:06:59', '2019-03-18 16:06:59', 'U0000', 'U0000', 'Perlindungan');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_project`
+-- Struktur dari tabel `tb_project`
 --
 
 CREATE TABLE `tb_project` (
@@ -652,27 +693,28 @@ CREATE TABLE `tb_project` (
   `kode_jenis_pekerjaan` char(5) NOT NULL,
   `kode_line` char(5) NOT NULL,
   `segment` varchar(50) NOT NULL,
-  `penyelesaian` text NOT NULL,
+  `keterangan` text NOT NULL,
   `uniqid` varchar(20) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'new'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_project`
+-- Dumping data untuk tabel `tb_project`
 --
 
-INSERT INTO `tb_project` (`kode_project`, `tgl_project`, `tgl_pengajuan`, `tgl_pelaksanaan`, `tgl_selesai`, `tgl_approval`, `tegangan`, `alamat_project`, `jml_tenaga_kerja`, `material`, `peralatan_kerja`, `gardu`, `jenis_project`, `last_modified`, `last_modified_user`, `kode_user`, `kode_jenis_pekerjaan`, `kode_line`, `segment`, `penyelesaian`, `uniqid`, `status`) VALUES
+INSERT INTO `tb_project` (`kode_project`, `tgl_project`, `tgl_pengajuan`, `tgl_pelaksanaan`, `tgl_selesai`, `tgl_approval`, `tegangan`, `alamat_project`, `jml_tenaga_kerja`, `material`, `peralatan_kerja`, `gardu`, `jenis_project`, `last_modified`, `last_modified_user`, `kode_user`, `kode_jenis_pekerjaan`, `kode_line`, `segment`, `keterangan`, `uniqid`, `status`) VALUES
 ('K.001/AMANK2K3/CIANJUR/III/2019', '2019-03-20 12:05:55', '2019-03-20 00:00:00', '2019-03-20 09:09:00', '2019-03-20 22:10:00', '0000-00-00 00:00:00', 20, 'jasdakjsbd', 0, 'Lengkap', 'Lengkap', 'sgvb, syaduh, a ,asdyh', 'Korektif', '2019-03-20 12:05:55', 'U0001', 'U0001', 'H0001', 'S0002', '', '', '5c921c2e099ee', 'pending'),
 ('K.002/AMANK2K3/CIANJUR/III/2019', '2019-03-20 14:15:30', '2019-03-20 00:00:00', '2019-03-20 09:10:00', '2019-03-20 03:10:00', '0000-00-00 00:00:00', 20, 'asdbahskd', 0, 'Lengkap', 'Lengkap', 'jsdjf, dsfhkd, sdfhsdf', 'Korektif', '2019-03-20 14:15:30', 'U0001', 'U0001', 'H0004', 'S0004', '', '', '5c923ca043109', 'pending'),
 ('K.003/AMANK2K3/CIANJUR/III/2019', '2019-03-20 15:05:49', '2019-03-20 00:00:00', '2019-03-20 09:00:00', '2019-03-20 17:00:00', '0000-00-00 00:00:00', 20, 'Jl. Barisan Banteng', 0, 'Lengkap', 'Lengkap', 'RIZKI, HARDINAS, PERMANA', 'Korektif', '2019-03-20 15:05:49', 'U0001', 'U0001', 'H0005', 'S0002', '', '', '5c92485ad4504', 'success'),
-('K.004/AMANK2K3/CIANJUR/III/2019', '2019-03-21 18:33:23', '2019-03-21 00:00:00', '2019-03-21 10:00:00', '2019-03-21 00:00:00', '0000-00-00 00:00:00', 20, 'BARISAN BANTENG', 0, 'Lengkap', 'Lengkap', 'AMA, AKU, KAMU', 'Korektif', '2019-03-21 18:33:23', 'U0001', 'U0001', 'H0002', 'S0002', '', '', '5c93745bd8220', 'pending'),
-('K.005/AMANK2K3/CIANJUR/III/2019', '2019-03-22 13:29:58', '2019-03-22 00:00:00', '2019-03-22 07:00:00', '2019-03-22 08:00:00', '0000-00-00 00:00:00', 20, 'JL. AMALLIA', 0, 'Lengkap', 'Lengkap', 'AMB, AD, ASN, ASD', 'Korektif', '2019-03-22 13:29:58', 'U0001', 'U0001', 'H0003', 'S0002', '', '', '5c94d306280eb', 'new'),
-('P.001/AMANK2K3/CIANJUR/III/2019', '2019-03-21 16:40:24', '2019-03-21 00:00:00', '2019-03-25 08:00:00', '2019-03-26 11:00:00', '0000-00-00 00:00:00', 20, 'Jl. Sirnagalih', 0, 'Lengkap', 'Lengkap', 'ABC, DEF, GHI, JKL', 'Preventif', '2019-03-21 16:40:24', 'U0001', 'U0001', 'H0002', 'S0004', '', '', '5c935ad903521', 'pending');
+('K.004/AMANK2K3/CIANJUR/III/2019', '2019-03-21 18:33:23', '2019-03-21 00:00:00', '2019-03-21 10:00:00', '2019-03-21 00:00:00', '0000-00-00 00:00:00', 20, 'BARISAN BANTENG', 0, 'Lengkap', 'Lengkap', 'AMA, AKU, KAMU', 'Korektif', '2019-03-21 18:33:23', 'U0001', 'U0001', 'H0002', 'S0002', '', 'selesai dengan cepat', '5c93745bd8220', 'success'),
+('P.001/AMANK2K3/CIANJUR/III/2019', '2019-03-21 16:40:24', '2019-03-21 00:00:00', '2019-03-25 08:00:00', '2019-03-26 11:00:00', '0000-00-00 00:00:00', 20, 'Jl. Sirnagalih', 0, 'Lengkap', 'Lengkap', 'ABC, DEF, GHI, JKL', 'Preventif', '2019-03-21 16:40:24', 'U0001', 'U0001', 'H0002', 'S0004', '', '', '5c935ad903521', 'pending'),
+('P.002/AMANK2K3/KOTA/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', 'U0001', '', '', '', '', '5c96e7d572b76', 'new'),
+('P.003/AMANK2K3/KOTA/III/2019', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', 0, '', '', '', 'Preventif', '0000-00-00 00:00:00', '', 'U0001', '', '', '', '', '5c96ece905d8a', 'new');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_prosedur_kerja`
+-- Struktur dari tabel `tb_prosedur_kerja`
 --
 
 CREATE TABLE `tb_prosedur_kerja` (
@@ -685,7 +727,7 @@ CREATE TABLE `tb_prosedur_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_prosedur_kerja`
+-- Dumping data untuk tabel `tb_prosedur_kerja`
 --
 
 INSERT INTO `tb_prosedur_kerja` (`kode_prosedur_kerja`, `nama_prosedur_kerja`, `tgl_input_prosedur_kerja`, `last_modified`, `last_modified_user`, `kode_user`) VALUES
@@ -702,7 +744,7 @@ INSERT INTO `tb_prosedur_kerja` (`kode_prosedur_kerja`, `nama_prosedur_kerja`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_sld`
+-- Struktur dari tabel `tb_sld`
 --
 
 CREATE TABLE `tb_sld` (
@@ -716,7 +758,7 @@ CREATE TABLE `tb_sld` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_sld`
+-- Dumping data untuk tabel `tb_sld`
 --
 
 INSERT INTO `tb_sld` (`kode_sld`, `nama_sld`, `lokasi`, `tgl_input_sld`, `last_modified`, `last_modified_user`, `src`) VALUES
@@ -729,7 +771,7 @@ INSERT INTO `tb_sld` (`kode_sld`, `nama_sld`, `lokasi`, `tgl_input_sld`, `last_m
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_status_project`
+-- Struktur dari tabel `tb_status_project`
 --
 
 CREATE TABLE `tb_status_project` (
@@ -742,16 +784,16 @@ CREATE TABLE `tb_status_project` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_status_project`
+-- Dumping data untuk tabel `tb_status_project`
 --
 
 INSERT INTO `tb_status_project` (`kode_status_project`, `kode_project`, `status_project`, `tgl`, `keterangan`, `kode_user`) VALUES
 (1, 'K.001/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 10:55:28', '', 'U0001'),
 (2, 'K.003/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 11:26:58', '', 'U0001'),
-(3, 'K.001/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 11:55:42', '', 'U0002'),
+(3, 'K.001/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 08:45:01', '', 'U0002'),
 (4, 'K.001/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 11:55:43', '', 'U0003'),
-(5, 'K.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-20 11:55:44', '', 'U0004'),
-(6, 'K.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-20 11:55:45', '', 'U0005'),
+(5, 'K.001/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 11:55:44', '', 'U0004'),
+(6, 'K.001/AMANK2K3/CIANJUR/III/2019', 'denied', '2019-03-20 11:55:45', '', 'U0005'),
 (7, 'K.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-20 11:55:46', '', 'U0006'),
 (8, 'K.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-20 11:55:47', '', 'U0007'),
 (9, 'K.002/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-20 14:14:01', '', 'U0001'),
@@ -774,25 +816,32 @@ INSERT INTO `tb_status_project` (`kode_status_project`, `kode_project`, `status_
 (32, 'P.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 16:35:21', '', 'U0006'),
 (33, 'P.001/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 16:35:21', '', 'U0007'),
 (34, 'P.001/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-21 16:35:21', '', 'U0001'),
-(35, 'K.004/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 18:24:12', '', 'U0002'),
-(36, 'K.004/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 18:24:12', '', 'U0003'),
-(37, 'K.004/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 18:24:12', '', 'U0004'),
-(38, 'K.004/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 18:24:12', '', 'U0005'),
-(39, 'K.004/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 18:24:12', '', 'U0006'),
-(40, 'K.004/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-21 18:24:12', '', 'U0007'),
+(35, 'K.004/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 08:46:08', '', 'U0002'),
+(36, 'K.004/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 08:46:46', '', 'U0003'),
+(37, 'K.004/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 08:47:43', '', 'U0004'),
+(38, 'K.004/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 08:49:48', '', 'U0005'),
+(39, 'K.004/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 08:50:42', '', 'U0006'),
+(40, 'K.004/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-24 08:51:30', '', 'U0007'),
 (41, 'K.004/AMANK2K3/CIANJUR/III/2019', 'approve', '2019-03-21 18:24:12', '', 'U0001'),
-(42, 'K.005/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-22 13:20:22', '', 'U0002'),
-(43, 'K.005/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-22 13:20:22', '', 'U0003'),
-(44, 'K.005/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-22 13:20:22', '', 'U0004'),
-(45, 'K.005/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-22 13:20:22', '', 'U0005'),
-(46, 'K.005/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-22 13:20:22', '', 'U0006'),
-(47, 'K.005/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-22 13:20:22', '', 'U0007'),
-(48, 'K.005/AMANK2K3/CIANJUR/III/2019', 'pending', '2019-03-22 13:20:22', '', 'U0001');
+(56, 'P.002/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:13:41', '', 'U0002'),
+(57, 'P.002/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:13:41', '', 'U0003'),
+(58, 'P.002/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:13:41', '', 'U0004'),
+(59, 'P.002/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:13:41', '', 'U0005'),
+(60, 'P.002/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:13:41', '', 'U0006'),
+(61, 'P.002/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:13:41', '', 'U0007'),
+(62, 'P.002/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:13:41', '', 'U0001'),
+(63, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0002'),
+(64, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0003'),
+(65, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0004'),
+(66, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0005'),
+(67, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0006'),
+(68, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0007'),
+(69, 'P.003/AMANK2K3/KOTA/III/2019', 'pending', '2019-03-24 09:35:21', '', 'U0001');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_users`
+-- Struktur dari tabel `tb_users`
 --
 
 CREATE TABLE `tb_users` (
@@ -811,7 +860,7 @@ CREATE TABLE `tb_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_users`
+-- Dumping data untuk tabel `tb_users`
 --
 
 INSERT INTO `tb_users` (`kode_user`, `nama_user`, `no_telp_user`, `lokasi`, `ulp`, `username`, `password`, `ttd`, `tgl_input_user`, `last_modified`, `last_modified_user`, `kode_divisi`) VALUES
@@ -821,15 +870,15 @@ INSERT INTO `tb_users` (`kode_user`, `nama_user`, `no_telp_user`, `lokasi`, `ulp
 ('U0003', 'Ainul Yaqin', '087742359100', 'KOTA', 'CIANJUR', 'ainul', 'ainul', 'U0003.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '3'),
 ('U0004', 'Andis Verinda Putra', '082232473311', 'KOTA', 'CIANJUR', 'andis', 'andis', 'U0004.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '4'),
 ('U0005', 'HARJAR', '089503800600', 'ULP', 'CIANJUR', 'harjar', 'harjar', 'U0005.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '5'),
-('U0006', 'OPDIST', '089503800600', 'ULP', 'CIANJUR', 'opoist', 'opoist', 'U0006.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '6'),
+('U0006', 'OPDIST', '089503800600', 'ULP', 'CIANJUR', 'opdist', 'opdist', 'U0006.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '6'),
 ('U0007', 'MB', '089503800600', 'ULP', 'CIANJUR', 'mb', 'mb', 'U0006.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '7'),
 ('U0011', 'WIlly Setiawan', '089503800600', 'KOTA', 'CIANJUR', 'willy', 'willy', 'U0011.png', '2019-03-15 00:00:00', '2019-03-15 00:00:00', 'U0000', '1');
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `v_berkas_terakhir`
--- (See below for the actual view)
+-- Stand-in struktur untuk tampilan `v_berkas_terakhir`
+-- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `v_berkas_terakhir` (
 `kode_project` char(35)
@@ -841,7 +890,7 @@ CREATE TABLE `v_berkas_terakhir` (
 -- --------------------------------------------------------
 
 --
--- Structure for view `v_berkas_terakhir`
+-- Struktur untuk view `v_berkas_terakhir`
 --
 DROP TABLE IF EXISTS `v_berkas_terakhir`;
 
@@ -852,129 +901,141 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
--- Indexes for table `tb_approval`
+-- Indeks untuk tabel `tb_approval`
 --
 ALTER TABLE `tb_approval`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_det_uraian_pekerjaan`
+-- Indeks untuk tabel `tb_det_uraian_pekerjaan`
 --
 ALTER TABLE `tb_det_uraian_pekerjaan`
   ADD PRIMARY KEY (`kode_uraian_pekerjaan`);
 
 --
--- Indexes for table `tb_divisi`
+-- Indeks untuk tabel `tb_divisi`
 --
 ALTER TABLE `tb_divisi`
   ADD PRIMARY KEY (`kode_divisi`);
 
 --
--- Indexes for table `tb_gardu_induk`
+-- Indeks untuk tabel `tb_gardu_induk`
 --
 ALTER TABLE `tb_gardu_induk`
   ADD PRIMARY KEY (`kode_gardu_induk`);
 
 --
--- Indexes for table `tb_jenis_pekerjaan`
+-- Indeks untuk tabel `tb_jenis_pekerjaan`
 --
 ALTER TABLE `tb_jenis_pekerjaan`
   ADD PRIMARY KEY (`kode_jenis_pekerjaan`);
 
 --
--- Indexes for table `tb_klasifikasi_kerja`
+-- Indeks untuk tabel `tb_klasifikasi_kerja`
 --
 ALTER TABLE `tb_klasifikasi_kerja`
   ADD PRIMARY KEY (`kode_klasifikasi_kerja`);
 
 --
--- Indexes for table `tb_lampiran_izin_kerja`
+-- Indeks untuk tabel `tb_lampiran_izin_kerja`
 --
 ALTER TABLE `tb_lampiran_izin_kerja`
   ADD PRIMARY KEY (`kode_lampiran_izin_kerja`);
 
 --
--- Indexes for table `tb_pelaksana`
+-- Indeks untuk tabel `tb_pelaksana`
 --
 ALTER TABLE `tb_pelaksana`
   ADD PRIMARY KEY (`kode_pelaksana`);
 
 --
--- Indexes for table `tb_pelaksana_pekerja`
+-- Indeks untuk tabel `tb_pelaksana_pekerja`
 --
 ALTER TABLE `tb_pelaksana_pekerja`
   ADD PRIMARY KEY (`kode_pelaksana_pekerja`);
 
 --
--- Indexes for table `tb_peralatan_kerja`
+-- Indeks untuk tabel `tb_peralatan_kerja`
 --
 ALTER TABLE `tb_peralatan_kerja`
   ADD PRIMARY KEY (`kode_peralatan_kerja`);
 
 --
--- Indexes for table `tb_project`
+-- Indeks untuk tabel `tb_project`
 --
 ALTER TABLE `tb_project`
   ADD PRIMARY KEY (`kode_project`);
 
 --
--- Indexes for table `tb_prosedur_kerja`
+-- Indeks untuk tabel `tb_prosedur_kerja`
 --
 ALTER TABLE `tb_prosedur_kerja`
   ADD PRIMARY KEY (`kode_prosedur_kerja`);
 
 --
--- Indexes for table `tb_sld`
+-- Indeks untuk tabel `tb_sld`
 --
 ALTER TABLE `tb_sld`
   ADD PRIMARY KEY (`kode_sld`);
 
 --
--- Indexes for table `tb_status_project`
+-- Indeks untuk tabel `tb_status_project`
 --
 ALTER TABLE `tb_status_project`
   ADD PRIMARY KEY (`kode_status_project`);
 
 --
--- Indexes for table `tb_users`
+-- Indeks untuk tabel `tb_users`
 --
 ALTER TABLE `tb_users`
   ADD PRIMARY KEY (`kode_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tb_approval`
+-- AUTO_INCREMENT untuk tabel `tb_approval`
 --
 ALTER TABLE `tb_approval`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
 --
--- AUTO_INCREMENT for table `tb_det_uraian_pekerjaan`
+-- AUTO_INCREMENT untuk tabel `tb_det_uraian_pekerjaan`
 --
 ALTER TABLE `tb_det_uraian_pekerjaan`
-  MODIFY `kode_uraian_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `kode_uraian_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
--- AUTO_INCREMENT for table `tb_gardu_induk`
+-- AUTO_INCREMENT untuk tabel `tb_gardu_induk`
 --
 ALTER TABLE `tb_gardu_induk`
   MODIFY `kode_gardu_induk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
--- AUTO_INCREMENT for table `tb_pelaksana`
+-- AUTO_INCREMENT untuk tabel `tb_pelaksana`
 --
 ALTER TABLE `tb_pelaksana`
   MODIFY `kode_pelaksana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `tb_pelaksana_pekerja`
+-- AUTO_INCREMENT untuk tabel `tb_pelaksana_pekerja`
 --
 ALTER TABLE `tb_pelaksana_pekerja`
   MODIFY `kode_pelaksana_pekerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
 --
--- AUTO_INCREMENT for table `tb_status_project`
+-- AUTO_INCREMENT untuk tabel `tb_peralatan_kerja`
+--
+ALTER TABLE `tb_peralatan_kerja`
+  MODIFY `kode_peralatan_kerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73537;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_status_project`
 --
 ALTER TABLE `tb_status_project`
-  MODIFY `kode_status_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;COMMIT;
+  MODIFY `kode_status_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
