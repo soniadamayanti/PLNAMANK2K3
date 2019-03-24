@@ -26,6 +26,7 @@
                             <tr>
                                 <th>Gardu Induk</th>
                                 <th>Penyulang</th>
+                                <th>Single Line Diagram</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -50,8 +51,11 @@
                                 <div class="form-group">
                                     <label class="control-label" >Gardu Induk</label>
                                     <select class="form-control custom-select" tabindex="1" id="kode_jenis_pekerjaan">
-                                            <option 
-                                            value="">CIANJUR</option>
+                                        <?php 
+                                            foreach ($gardu_induk as $gardu) {
+                                                echo "<option value='".$gardu['kode_gardu_induk']."'>".$gardu['nama_gardu']."</option>";
+                                            }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -67,8 +71,24 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="input-file-now">Upload SLD</label>
+                                    <label for="input-file-now">Upload Gambar SLD</label>
                                     <input type="file" id="input-file-now" class="dropify" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Upload Visio</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -37,6 +37,7 @@ class Login extends CI_Controller
 			$this->session->set_userdata('parent_divisi',$user[0]['parent_divisi']);
 			$this->session->set_userdata('child_divisi',$user[0]['child_divisi']);
 			$this->session->set_userdata('lokasi',$user[0]['lokasi']);
+			$this->session->set_userdata('ulp',$user[0]['ulp']);
 			echo 1;
 		}else{
 			echo "Username atau password salah";

@@ -81,7 +81,12 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                 <tr>
                     <td>ULP</td>
                     <td>:</td>
-                    <td><?php echo $project['lokasi'] ?></td>
+                    <td>
+                        <?php 
+                            foreach ($ulp->result() as $u) {
+                                echo $u->ulp;
+                            };
+                         ?></td>
                 </tr>
             </table>
         </div>

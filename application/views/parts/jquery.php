@@ -13,7 +13,27 @@
             autoWidth: false,
             dom: 'Bfrtip',
             buttons: [
-                { extend:'excel', attr: { id: 'allan' } }, 'pdf', 'print'
+                {
+                    extend: 'excel',
+                    title: 'Perusahaan Pelaksana',
+                    exportOptions: {
+                        columns: [ 0, 1 ]
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Perusahaan Pelaksana',
+                    exportOptions: {
+                        columns: [ 0, 1 ]
+                    }
+                },
+                {
+                    extend: 'print',
+                    title: 'Perusahaan Pelaksana',
+                    exportOptions: {
+                        columns: [ 0, 1 ]
+                    }
+                }
             ],
             "ajax": {
                 url:'<?php echo base_url() ?>arsip/dt_perusahaan_pelaksana',
@@ -28,13 +48,33 @@
             },
         });
         $('#table_arsip_gardu_induk').DataTable({
-            "order": [[ 1, "desc" ],[ 0, "asc" ]],
+            "order": [[ 0, "asc" ]],
             "pageLength" : 10,
             lengthChange: false,
             autoWidth: false,
             dom: 'Bfrtip',
             buttons: [
-                { extend:'excel', attr: { id: 'allan' } }, 'pdf', 'print'
+                {
+                    extend: 'excel',
+                    title: 'Gardu Induk',
+                    exportOptions: {
+                        columns: [ 0, 1 ]
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Gardu Induk',
+                    exportOptions: {
+                        columns: [ 0, 1 ]
+                    }
+                },
+                {
+                    extend: 'print',
+                    title: 'Gardu Induk',
+                    exportOptions: {
+                        columns: [ 0, 1 ]
+                    }
+                }
             ],
             "ajax": {
                 url:'<?php echo base_url() ?>arsip/dt_gardu_induk',
@@ -48,7 +88,27 @@
             autoWidth: false,
             dom: 'Bfrtip',
             buttons: [
-                { extend:'excel', attr: { id: 'allan' } }, 'pdf', 'print'
+                {
+                    extend: 'excel',
+                    title: 'Gardu Induk',
+                    exportOptions: {
+                        columns: [ 0, 1, 2 ]
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Gardu Induk',
+                    exportOptions: {
+                        columns: [ 0, 1, 2 ]
+                    }
+                },
+                {
+                    extend: 'print',
+                    title: 'Gardu Induk',
+                    exportOptions: {
+                        columns: [ 0, 1, 2 ]
+                    }
+                }
             ],
             "ajax": {
                 url:'<?php echo base_url() ?>arsip/dt_pelaksana_pekerjaan',
@@ -60,6 +120,7 @@
             var status = 'insert';
             $('#a_kode_gardu').val('');
             $('#a_gardu_induk').val('');
+            $('#a_alamat_gardu').val('');
             $('#btnTambahGarduInduk').attr("status",status);
             $('#ModalTambahGardu').modal('toggle');
         });
@@ -67,14 +128,16 @@
         $(document).on('click','#btnTambahGarduInduk',function(){
             var kode_gardu = $('#a_kode_gardu').val();
             var gardu_induk = $('#a_gardu_induk').val();
+            var alamat = $('#a_alamat_gardu').val();
             var status = $(this).attr("status");
             var statusinsert = 'insert';
             var value = {
                 kode_gardu:kode_gardu,
-                gardu_induk:gardu_induk
+                gardu_induk:gardu_induk,
+                alamat:alamat
             };
-            if (gardu_induk == '') {
-                alert('Nama Gardu tidak boleh kosong');
+            if (gardu_induk == '', alamat == '') {
+                alert('Nama Gardu atau alamat tidak boleh kosong');
             }else{
                 if (status == 'insert') {
                     $.ajax({
@@ -87,6 +150,7 @@
                         $('#ModalTambahGardu').modal('toggle');
                         $('#a_gardu_induk').val('');
                         $('#a_kode_gardu').val('');
+                        $('#a_alamat_gardu').val('');
                         }
                     });
                 }else if (status == 'update') {
@@ -100,6 +164,7 @@
                         $('#ModalTambahGardu').modal('toggle');
                         $('#a_kode_gardu').val('');
                         $('#a_gardu_induk').val('');
+                        $('#a_alamat_gardu').val('');
                         $('#btnTambahGarduInduk').attr("status",statusinsert);
                         }
                     });
@@ -110,10 +175,12 @@
         $(document).on('click','#getUpdateGardu',function(){
             var kode_gardu_induk = $(this).attr("data-kode");
             var nama_gardu = $(this).attr("data-nama");
+            var alamat = $(this).attr("data-alamat");
             var status = 'update';
             $('#ModalTambahGardu').modal('show');
             $('#a_kode_gardu').val(kode_gardu_induk);
             $('#a_gardu_induk').val(nama_gardu);
+            $('#a_alamat_gardu').val(alamat);
             $('#btnTambahGarduInduk').attr("status",status);
         });
 

@@ -8,7 +8,7 @@
 
 <?php 
 
-$kode = $project['kode_project'] ;
+$kode = $project['kode_project'];
 $user = $project['user'] ;
 
 $staf = $this->db->query("SELECT s.*,u.nama_user,u.no_telp_user,u.kode_divisi,d.nama_divisi,u.ttd FROM tb_status_project s INNER JOIN (tb_users u INNER JOIN tb_divisi d ON u.kode_divisi=d.kode_divisi) ON u.kode_user = s.kode_user WHERE s.kode_project = '".$kode."' AND u.kode_divisi = '1'");
@@ -81,7 +81,13 @@ $tgl = $aju_tgl.' '.$aju_bulan.' '.$aju_tahun;
                 <tr>
                     <td>ULP</td>
                     <td>:</td>
-                    <td><?php echo $project['lokasi'] ?></td>
+                    <td>
+                        <?php 
+                            foreach ($ulp->result() as $u) {
+                                echo $u->ulp;
+                            };
+                         ?>
+                    </td>
                 </tr>
             </table>
         </div>

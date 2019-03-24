@@ -24,7 +24,7 @@
                         <thead>
                             <tr>
                                 <th>Gardu Induk</th>
-                                <th>Tanggal</th>
+                                <th>Alamat</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -50,6 +50,10 @@
                                             <label class="control-label" >Nama Gardu</label>
                                             <input type="text" class="form-control" id="a_kode_gardu" hidden>
                                             <input type="text" class="form-control" id="a_gardu_induk">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" >Alamat</label>
+                                            <input type="text" class="form-control" id="a_alamat_gardu">
                                         </div>
                                     </div>
                                 </div>

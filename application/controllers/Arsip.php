@@ -8,6 +8,7 @@ class Arsip extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+    $this->load->library('upload');
 		$this->load->model('database_model');
 		$this->load->model('arsip_model');
 	}
@@ -26,6 +27,7 @@ class Arsip extends CI_Controller
     $this->load->view('parts/footer', $data);
   }
 	function penyulang(){
+    $data['gardu_induk'] = $this->database_model->get('tb_gardu_induk');
 		$data['judul'] = "Penyulang";
 		$this->load->view('parts/header', $data);
 		$this->load->view('parts/menu', $data);
@@ -92,8 +94,10 @@ class Arsip extends CI_Controller
   }
   function tambah_gardu(){
     $gardu_induk = $this->input->post('gardu_induk');
+    $alamat = $this->input->post('alamat');
     $data = array(
       'nama_gardu' => $gardu_induk,
+      'alamat' => $alamat,
       'tgl' => date('Y-m-d')
     );
     $this->database_model->insert('tb_gardu_induk',$data);
@@ -101,8 +105,10 @@ class Arsip extends CI_Controller
   function update_gardu(){
     $kode_gardu = $this->input->post('kode_gardu');
     $gardu_induk = $this->input->post('gardu_induk');
+    $alamat = $this->input->post('alamat');
     $data = array(
       'nama_gardu' => $gardu_induk,
+      'alamat' => $alamat,
       'tgl' => date('Y-m-d')
     );
     $where = array(
@@ -187,15 +193,19 @@ class Arsip extends CI_Controller
           $query = $this->arsip_model->get_arsip_sld();
           $data = array();
           foreach($query->result() as $r) {
+            $sld = '
+            <a href="'.base_url().'arsip/sld/'.$r->kode_sld.'"><button type="button" class="btn waves-effect waves-light btn-secondary">Lihat SLD</button></a>
+            <a href="'.base_url().'assets/arsip/visio/'.$r->visio.'"><button type="button" class="btn waves-effect waves-light btn-secondary">Visio</button></a>
+            ';
           	$button = '
-	          <a href="'.base_url().'assets/arsip/sld.vsd"><button type="button" class="btn waves-effect waves-light btn-secondary">Lihat SLD</button></a>
 	          <button type="button" class="btn waves-effect waves-light btn-info">Edit</button>
 	          <button type="button" class="btn waves-effect waves-light btn-danger">Hapus</button>
           	';
 
             $data[] = array(
-                $r->lokasi,
+                $r->nama_gardu,
                 $r->nama_sld,
+                $sld,
                 $button
                );
           }
@@ -222,13 +232,13 @@ class Arsip extends CI_Controller
           $data = array();
           foreach($query->result() as $r) {
             $button = '
-            <button type="button" class="btn waves-effect waves-light btn-info" id="getUpdateGardu" data-kode="'.$r->kode_gardu_induk.'" data-nama="'.$r->nama_gardu.'">Edit</button>
+            <button type="button" class="btn waves-effect waves-light btn-info" id="getUpdateGardu" data-kode="'.$r->kode_gardu_induk.'" data-nama="'.$r->nama_gardu.'" data-alamat="'.$r->alamat.'">Edit</button>
             <button type="button" class="btn waves-effect waves-light btn-danger" id="btnHapusGardu" data-kode="'.$r->kode_gardu_induk.'">Hapus</button>
             ';
 
             $data[] = array(
                 $r->nama_gardu,
-                $r->tgl,
+                $r->alamat,
                 $button
                );
           }

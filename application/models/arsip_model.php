@@ -10,7 +10,10 @@ class Arsip_model extends CI_Model
 		parent::__construct();
 	}
 	function get_arsip_sld(){
-        return $this->db->get("tb_sld");
+		$this->db->select('*');
+		$this->db->from('tb_sld');
+		$this->db->join('tb_gardu_induk','tb_gardu_induk.kode_gardu_induk = tb_sld.kode_gardu_induk');
+		return $this->db->get();
 	}
 	function get_arsip_gardu_induk(){
         return $this->db->get("tb_gardu_induk");
