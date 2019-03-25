@@ -573,40 +573,6 @@ class Rencana extends CI_Controller
           echo json_encode($output);
           exit();
 	}
-	function get_temp_pelaksaan(){
-		// Datatables Variables
-          $draw = intval($this->input->get("draw"));
-          $start = intval($this->input->get("start"));
-          $length = intval($this->input->get("length"));
-          $where = array(
-          	'uniqid' => $this->uri->segment(3)
-          );
-          $data['temp_pekerjaan'] = $this->database_model->get_where('tb_project',$where);
-          $uraian_pekerjaan = array();
-          foreach ($data['temp_pekerjaan'] as $b) {
-          	$uraian_pekerjaan[] = $b;
-          }
-		$query = $this->database_model->get_det_pelaksana($uraian_pekerjaan[0]['kode_project']);  
-          $data = array();
-          foreach($query->result() as $r) {
-          	$button = '<button type="button" class="btn waves-effect waves-light btn-danger" kode_project="'.$r->kode_project.'" id_other="'.$r->kode_pelaksana.'" id="btnHapusDetail" status="temp_pelaksana"><i class="mdi mdi-delete"></i></button>
-          	';
-            $data[] = array(
-                $r->nama_pelaksana,
-                $button
-               );
-          }
-
-          $output = array(
-               "draw" => $draw,
-                 "recordsTotal" => $query->num_rows(),
-                 "bPaginate"=> false,
-                 "recordsFiltered" => $query->num_rows(),
-                 "data" => $data
-            );
-          echo json_encode($output);
-          exit();
-	}
 	function get_temp_uraian_pekerjaan(){
 		// Datatables Variables
           $draw = intval($this->input->get("draw"));
@@ -836,7 +802,6 @@ class Rencana extends CI_Controller
 				if (count($data['cek_ttd_anda']) == 1) {
 					echo 2;
 				}else{
-
 					$array_berkas_terakhir = array(
 						'kode_project' => $kode,
 						'kode_user' => $this->session->userdata('kode_divisi'),

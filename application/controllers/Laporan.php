@@ -32,33 +32,42 @@ class Laporan extends CI_Controller
 		$this->load->view('parts/footer', $data);
 	}
 	function get_laporan(){
-		$gardu = $this->input->post('gardu');
-		$tgl_awal = $this->input->post('tgl_awal');
-		$tgl_akhir = $this->input->post('tgl_akhir');
-        $where = array(
-        	'nama_gardu' => $gardu,
-        	'tgl_selesai >=' => $tgl_awal,
-        	'tgl_selesai <=' => $tgl_akhir,
-        	'status'=>'success'
-        );
-        $laporan['laporan'] = $this->database_model->get_where('v_laporan',$where
-        );
-        // $laporan['laporan'] = $this->database_model->get('v_laporan');
-        $data = array();
-        $i = 1;
-        foreach($laporan['laporan'] as $r) {
-        		echo "<tr>";
-        		echo "<td>".$i."</td>";
-				echo "<td>".$r['ulp']."</td>";
-				echo "<td>".$r['nama_gardu']."</td>";
-				echo "<td>".$r['kode_project']."</td>";
-				echo "<td>".$r['nama_sld']."</td>";
-            	echo "</tr>";
+		// Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+          $gardu = $this->input->post('gardu');
+          $tgl_awal = $this->input->post('tgl_awal');
+          $tgl_akhir = $this->input->post('tgl_akhir');
+          $gardu = $this->input->post('gardu');
+          $where = array(
+          	'nama_gardu' => $gardu,
+          	'tgl_selesai >='=> $tgl_awal,
+          	'tgl_selesai <='=> $tgl_akhir,
+          );
+          $project['data_project'] = $this->database_model->get_where('v_laporan',$where);
+          $data = array();
+          $i=1;
+          foreach($project['data_project'] as $r) {
+            $data[] = array(
+            	$i,
+                $r['ulp'],
+                $r['ulp'],
+                $r['kode_jenis_pekerjaan'],
+                $r['nama_jenis_pekerjaan']
+               );
             $i++;
-        }
-        // echo json_encode($data);
-        // echo json_encode($output);
-        exit();
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => count($project['data_project']),
+                 "bPaginate"=> false,
+                 "recordsFiltered" => count($project['data_project']),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
 	}
 }
 

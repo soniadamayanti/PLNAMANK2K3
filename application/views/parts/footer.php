@@ -304,10 +304,6 @@
             },
         });
         $('#table_rekap_bulanan').DataTable({
-            "order": [[ 1, "desc" ],[ 0, "asc" ]],
-            "pageLength" : 10,
-            lengthChange: false,
-            autoWidth: false,
             dom: 'Bfrtip',
             buttons: [
                 {
@@ -334,13 +330,33 @@
                 tgl_akhir:tgl_akhir,
                 tgl_awal:tgl_awal
             };
-            $.ajax({
-                url:'<?php echo base_url(); ?>Laporan/get_laporan',
-                type:'POST',
-                data:value,
-                success:function(data){
-                    $('#table_data_rekap').html(data);
-                }
+            $('#table_rekap_bulanan').DataTable({
+                dom: 'Bfrtip',
+                destroy:true,
+                ajax: {
+                    url:'<?php echo base_url() ?>Laporan/get_laporan/',
+                    "type": "POST",
+                    data:{
+                        gardu:gardu,
+                        tgl_awal:tgl_awal,
+                        tgl_akhir:tgl_akhir
+                    }
+                },
+                buttons: [
+                    {
+                        extend: 'excel',
+                        title: 'Rekap Bulanan',
+                        messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+                    },
+                    {
+                        extend: 'pdf',
+                        title: 'Rekap Bulanan'
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Rekap Bulanan'
+                    }
+                ]
             });
             
         });
@@ -496,11 +512,7 @@
                 data:value,
                 type:'POST',
                 success:function(data){
-                    if (data == 1) {
-                        location.reload();
-                    }else{
-                        alert(data);
-                    }
+                    alert(data);
                 }
             });
         });
