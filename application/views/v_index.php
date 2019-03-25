@@ -84,23 +84,34 @@
         </a>
     </div>
     <!-- Column -->
-    <div class="col-md-3 col-lg-3 col-xlg-3">
-        <a href="<?php echo site_url(); ?>rencana/selesai">
-        <div class="card card-inverse card-success">
+    <div class="col-md-2 col-lg-2 col-xlg-2">
+        <a href="<?php echo site_url(); ?>rencana/pembatalan">
+        <div class="card card-inverse card-warning">
             <div class="box text-center">
-                <h1 class="font-light text-white"><?php echo $selesai; ?></h1>
-                <h6 class="text-white">Selesai</h6>
+                <h1 class="font-light text-white"><?php echo $revisi; ?></h1>
+                <h6 class="text-white">Revisi</h6>
             </div>
         </div>
         </a>
     </div>
     <!-- Column -->
-    <div class="col-md-3 col-lg-3 col-xlg-3">
-        <a href="<?php echo site_url(); ?>rencana">
-        <div class="card card-inverse card-warning">
+    <div class="col-md-2 col-lg-2 col-xlg-2">
+        <a href="<?php echo site_url(); ?>rencana/pembatalan">
+        <div class="card card-inverse card-danger">
             <div class="box text-center">
-                <h1 class="font-light text-white"><?php echo $revisi; ?></h1>
-                <h6 class="text-white">Revisi</h6>
+                <h1 class="font-light text-white"><?php echo $failed; ?></h1>
+                <h6 class="text-white">Ditolak</h6>
+            </div>
+        </div>
+        </a>
+    </div>
+    <!-- Column -->
+    <div class="col-md-2 col-lg-2 col-xlg-2">
+        <a href="<?php echo site_url(); ?>rencana/selesai">
+        <div class="card card-inverse card-success">
+            <div class="box text-center">
+                <h1 class="font-light text-white"><?php echo $success; ?></h1>
+                <h6 class="text-white">Selesai</h6>
             </div>
         </div>
         </a>

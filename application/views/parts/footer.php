@@ -278,7 +278,6 @@
                 type:'POST',
                 data:value,
                 success:function(data){
-                    
                     if (data ==1) {
                         window.location='<?php echo base_url(); ?>Rencana/';
                     }

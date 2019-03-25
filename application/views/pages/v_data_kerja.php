@@ -2,24 +2,10 @@
     <!-- Column -->
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-body">
-                <div class="d-flex no-block">
-                    <h4 class="card-title">Selamat Datang Riky</h4>
-                    <div class="ml-auto">
-                        <select class="custom-select">
-                            <option selected="">Maret   </option>
-                            <option value="1">February</option>
-                            <option value="2">May</option>
-                            <option value="3">April</option>
-                        </select>
-                    </div>
-                </div>
-                <h6 class="card-subtitle">Data Projectmu </h6>
-            </div>
             <div class="card-body bg-light">
                 <div class="row">
                     <div class="col-6">
-                        <h2 class="mb-0">Maret   2019</h2>
+                        <h2 class="mb-0">Maret 2019</h2>
                         <h4 class="font-light mt-0">Project SOP Pemadaman</h4></div>
                     <div class="col-6 align-self-center display-6 text-info text-right"><?php echo $jml_project ?></div>
                 </div>
@@ -108,8 +94,9 @@
                             </td>
                             <td class="txt-oflo"><?php echo $data['tgl_project'] ?></td>
                             <td class="txt-oflo">
-                                <?php 
-                                echo '<button class="btn btn-success" style="margin-bottom:10px;" uniqid="'.$data['uniqid'].'" id="btnReview">Lihat Data</button><br>';
+                                    <?php 
+                                    echo '<button class="btn btn-success" style="margin-bottom:10px;" uniqid="'.$data['uniqid'].'" id="btnReview">Lihat Data</button><br>';
+
                                 if ($this->session->userdata('kode_divisi') == 1) {
                                     if ($data['status'] == 'new' && $data['tegangan'] == '0' && $data['alamat_project'] == '' ) { 
                                         echo anchor('Rencana/form/'.$data['uniqid'],'Edit','class="btn btn-warning"');  
@@ -124,7 +111,10 @@
                                     else{
                                         echo anchor('#','Pending','class="btn btn-secondary disabled"');  
                                     }
-                                }else{
+                                }else if($this->session->userdata('kode_divisi') == 8){
+                                    echo'';
+                                }
+                                else{
                                     if ($this->session->userdata('kode_divisi') >4) {
                                         echo '<button class="btn btn-danger" uniqid="'.$data['uniqid'].'" id="btnTolak">Tolak</button>';   
                                     }

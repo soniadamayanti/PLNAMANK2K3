@@ -15,7 +15,7 @@ foreach ($detail_project as $data_project) {
         </h3>
     </div>
     <div class="col-md-6 col-4 align-self-center">
-            <button class="btn float-right hidden-sm-down btn-info" uniqid="'.$data['uniqid'].'" id="btnKirim">Kirim & TTD</button>
+            <!-- <button class="btn float-right hidden-sm-down btn-info" uniqid="'.$data['uniqid'].'" id="btnKirim">Kirim & TTD</button> -->
     </div>
 </div>
 <div class="row">

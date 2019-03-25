@@ -35,6 +35,8 @@
                             <td class="text-center"><?php echo $i ?></td>
                             <td class="txt-oflo">
                                 <b><?php echo $data['kode_project'] ?></b><br>
+                                <small>Ket Revisi: <?php echo $data['keterangan'] ?></small>
+                                
                                
                                 <!-- <small><?php echo $data['nama_sld'] ?><br><?php echo $data['nama_jenis_pekerjaan'] ?></small> -->
                             </td>
