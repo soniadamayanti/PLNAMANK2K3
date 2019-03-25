@@ -192,14 +192,14 @@
                                             <span class="label label-light-success">
                                             Selesai
                                             </span>';
-                                        }elseif($data['status'] == 'revisi'){
+                                        }elseif($data['status'] == 'denied'){
                                             echo '
-                                            <span class="label label-light-success">
+                                            <span class="label label-light-warning">
                                             Revisi
                                             </span>';
-                                        }elseif($data['status'] == 'cancel'){
+                                        }elseif($data['status'] == 'failed'){
                                             echo '
-                                            <span class="label label-light-success">
+                                            <span class="label label-light-danger">
                                             Dibatalkan
                                             </span>';
                                         }

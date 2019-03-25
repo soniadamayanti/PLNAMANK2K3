@@ -7,10 +7,10 @@
                 <div class="form-group">
                     <label class="control-label">KAB</label>
                     
-                    <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                        <option value="Category 1">KOTA</option>
-                        <option value="Category 2">CIPANAS</option>
-                        <option value="Category 2">KUTA</option>
+                    <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" id="gardu">
+                        <?php foreach ($gardu as $gardu): ?>
+                            <option value="<?php echo $gardu['nama_gardu'] ?>"><?php echo $gardu['nama_gardu'] ?></option>
+                        <?php endforeach ?>
                     </select>
                 </div>
             </div>
@@ -18,28 +18,28 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label class="control-label">TGL MULAI</label>
-                    <input type="date" class="form-control">
+                    <input type="date" class="form-control" id="tgl_awal">
                 </div>
             </div>
             <!--/span-->
             <div class="col-md-3">
                 <div class="form-group">
                     <label class="control-label">TGL AKHIR</label>
-                    <input type="date" class="form-control">
+                    <input type="date" class="form-control" id="tgl_akhir">
                 </div>
             </div>
             <!--/span-->
             <div class="col-md-3">
                 <div class="form-group">
                     <label class="control-label">&nbsp;</label>
-                    	<button type="button" class="btn waves-effect waves-light btn-block btn-info">IMPORT EXCEL</button>
+                    	<button type="button" class="btn waves-effect waves-light btn-block btn-info" id="btnGenerateLaporan">Generate</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-12">
         <div class="table-responsive">
-            <table class="table" id="table_rekap">
+            <table class="table" id="table_rekap_bulanan">
                 <thead class="bg-info text-white">
                     <tr>
                         <th class="text-center">#</th>
@@ -48,7 +48,7 @@
                         <th>PEKERJAAN</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="table_data_rekap">
                 </tbody>
             </table>
         </div>

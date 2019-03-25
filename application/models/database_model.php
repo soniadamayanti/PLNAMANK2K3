@@ -190,11 +190,12 @@ class Database_model extends CI_Model
 	function get_pelaksana_kerja($kode){
 		
 		$query = $this->db->query("SELECT tb_det_pelaksana.kode_pelaksana,tb_pelaksana_pekerja.nama_pelaksana_pekerja,tb_pelaksana_pekerja.kode_pelaksana_pekerja, tb_pelaksana.nama_pelaksana FROM `tb_pelaksana_pekerja` INNER JOIN tb_det_pelaksana ON tb_det_pelaksana.kode_pelaksana = tb_pelaksana_pekerja.kode_pelaksana INNER JOIN tb_pelaksana ON tb_pelaksana_pekerja.kode_pelaksana = tb_pelaksana.kode_pelaksana WHERE tb_det_pelaksana.kode_project ='$kode' ORDER BY tb_pelaksana.nama_pelaksana ASC");
-
+	
 		return $query->result_array();
 	}
-	function cek_ttd($id){
+	function cek_ttd($id,$kode_project){
 		$this->db->where('divisi_tujuan',$id);
+		$this->db->where('kode_project',$kode_project);
 		$query = $this->db->get('tb_berkas_terakhir');
 		return $query->result_array();
 	}
@@ -208,6 +209,11 @@ class Database_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 
+	}
+	function get_gardu(){
+		$this->db->select('DISTINCT(nama_gardu)');
+		$query = $this->db->get('v_laporan');
+		return $query->result_array();
 	}
 
 }

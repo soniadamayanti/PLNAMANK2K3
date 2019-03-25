@@ -14,6 +14,7 @@ class Rencana extends CI_Controller
 	}
 	function index(){
 		$data['cek_berkas'] = $this->database_model->get_where('tb_berkas_terakhir',array('kode_user' => $this->session->userdata('kode_user')));
+		$data['cek_setuju'] = $this->database_model->get_where('tb_berkas_terakhir',array('divisi_tujuan' => $this->session->userdata('kode_divisi')));
 		if ($this->session->userdata('kode_divisi') == 1) {
 			$data['data_project'] = $this->database_model->get_where('tb_project',array(
 				'kode_user'=>$this->session->userdata('kode_user'),
@@ -757,8 +758,8 @@ class Rencana extends CI_Controller
 		foreach ($data['project'] as $a) {
 			$kode = $a['kode_project'];
 		}
-		$data['cek_ttd'] = $this->database_model->cek_ttd($this->session->userdata('kode_divisi'));
-		if (count($data['cek_ttd']) > 0) {
+		$data['cek_ttd'] = $this->database_model->cek_ttd($this->session->userdata('kode_divisi'),$kode);
+		if (count($data['cek_ttd']) == 1) {
 			$data['cek_ttd_anda'] = $this->database_model->get_where('tb_approval',
 				array(
 					'kode_project' => $kode, 
@@ -819,7 +820,7 @@ class Rencana extends CI_Controller
 			$kode = $a['kode_project'];
 			$kode_user = $a['kode_user'];
 		}
-		$data['cek_ttd'] = $this->database_model->cek_ttd($this->session->userdata('kode_divisi'));
+		$data['cek_ttd'] = $this->database_model->cek_ttd($this->session->userdata('kode_divisi'),$kode);
 			if (count($data['cek_ttd']) > 0) {
 				$data['cek_ttd_anda'] = $this->database_model->get_where('tb_approval',
 					array(

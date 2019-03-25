@@ -278,10 +278,10 @@
                 type:'POST',
                 data:value,
                 success:function(data){
-                    alert(data);
-                    // if (data ==1) {
-                    //     window.location='<?php echo base_url(); ?>Rencana/';
-                    // }
+                    
+                    if (data ==1) {
+                        window.location='<?php echo base_url(); ?>Rencana/';
+                    }
                 }
             });
         });
@@ -304,6 +304,28 @@
                 "type": "POST"
             },
         });
+        $('#table_rekap_bulanan').DataTable();
+        $(document).on('click','#btnGenerateLaporan',function(){
+            var gardu = $('#gardu').val();
+            var tgl_awal = $('#tgl_awal').val();
+            var tgl_akhir = $('#tgl_akhir').val();
+            var value = {
+                gardu:gardu,
+                tgl_akhir:tgl_akhir,
+                tgl_awal:tgl_awal
+            };
+            $.ajax({
+                url:'<?php echo base_url(); ?>Laporan/get_laporan',
+                type:'POST',
+                data:value,
+                success:function(data){
+                    
+                    $('#table_data_rekap').html(data);
+                }
+            });
+            
+        });
+        
         $('#table_temp_uraian_pekerjaan').DataTable({
             searching: false,
             paging:   false,
@@ -445,7 +467,7 @@
         });
         $(document).on('click','#btnDenied',function(){
             var uniqid = $(this).attr('uniqid');
-            var keterangan = $('#keterangan').val();
+            var keterangan = $('#keterangantolak').val();
             var value = {
                 uniqid:uniqid,
                 keterangan:keterangan
@@ -533,6 +555,7 @@
             {label: "Neutral", value: 10}
           ]
         });
+        
     </script>
      <?php 
 $this->load->view('parts/jquery');
