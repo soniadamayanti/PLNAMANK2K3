@@ -92,7 +92,7 @@
                                     }
                                 ?>
                             </td>
-                            <td class="txt-oflo"><?php echo $data['tgl_project'] ?></td>
+                            <td class="txt-oflo"><?php echo substr($data['tgl_pelaksanaan'], 0,10) ?></td>
                             <td class="txt-oflo">
                                     <?php 
                                     echo '<button class="btn btn-success" style="margin-bottom:10px;" uniqid="'.$data['uniqid'].'" id="btnReview">Lihat Data</button><br>';

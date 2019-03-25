@@ -50,8 +50,9 @@ class Laporan extends CI_Controller
         		echo "<tr>";
         		echo "<td>".$i."</td>";
 				echo "<td>".$r['ulp']."</td>";
-				echo "<td>".$r['ulp']."</td>";
-				echo "<td>".$r['nama_jenis_pekerjaan']."</td>";
+				echo "<td>".$r['nama_gardu']."</td>";
+				echo "<td>".$r['kode_project']."</td>";
+				echo "<td>".$r['nama_sld']."</td>";
             	echo "</tr>";
             $i++;
         }

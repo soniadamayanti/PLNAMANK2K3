@@ -303,7 +303,28 @@
                 "type": "POST"
             },
         });
-        $('#table_rekap_bulanan').DataTable();
+        $('#table_rekap_bulanan').DataTable({
+            "order": [[ 1, "desc" ],[ 0, "asc" ]],
+            "pageLength" : 10,
+            lengthChange: false,
+            autoWidth: false,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    title: 'Rekap Bulanan',
+                    messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Rekap Bulanan'
+                },
+                {
+                    extend: 'print',
+                    title: 'Rekap Bulanan'
+                }
+            ]
+        });
         $(document).on('click','#btnGenerateLaporan',function(){
             var gardu = $('#gardu').val();
             var tgl_awal = $('#tgl_awal').val();
@@ -318,7 +339,6 @@
                 type:'POST',
                 data:value,
                 success:function(data){
-                    
                     $('#table_data_rekap').html(data);
                 }
             });

@@ -16,4 +16,5 @@ TRUNCATE `tb_det_uraian_pekerjaan`;
 TRUNCATE `tb_project`;
 TRUNCATE `tb_status_project`;
 
-CREATE VIEW v_laporan as SELECT tb_project.*,tb_sld.nama_sld,tb_gardu_induk.nama_gardu FROM `tb_project` INNER JOIN tb_sld ON tb_project.kode_line = tb_sld.kode_sld INNER JOIN tb_gardu_induk ON tb_sld.kode_gardu_induk = tb_gardu_induk.kode_gardu_induk
+CREATE VIEW v_laporan as 
+SELECT tb_project.*,tb_sld.nama_sld,tb_gardu_induk.nama_gardu,tb_user.ulp FROM tb_user INNER JOIN tb_project ON tb_users.kode_user=tb_project.kode_user INNER JOIN tb_sld ON tb_project.kode_line = tb_sld.kode_sld INNER JOIN tb_gardu_induk ON tb_sld.kode_gardu_induk = tb_gardu_induk.kode_gardu_induk

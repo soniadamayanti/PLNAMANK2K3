@@ -45,6 +45,7 @@
                         <th class="text-center">#</th>
                         <th>ULP</th>
                         <th>KAB</th>
+                        <th>KODE PEKERJAAN</th>
                         <th>PEKERJAAN</th>
                     </tr>
                 </thead>
