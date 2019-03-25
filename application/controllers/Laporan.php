@@ -52,8 +52,8 @@ class Laporan extends CI_Controller
             $data[] = array(
             	$i,
                 $r['ulp'],
-                $r['ulp'],
-                $r['kode_jenis_pekerjaan'],
+                $r['nama_gardu'],
+                $r['kode_project'],
                 $r['nama_jenis_pekerjaan']
                );
             $i++;

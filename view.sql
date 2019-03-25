@@ -17,4 +17,4 @@ TRUNCATE `tb_project`;
 TRUNCATE `tb_status_project`;
 
 CREATE VIEW v_laporan as 
-SELECT tb_project.*,tb_sld.nama_sld,tb_gardu_induk.nama_gardu,tb_users.ulp,tb_jenis_pekerjaan.nama_jenis_pekerjaan FROM tb_users INNER JOIN tb_project ON tb_users.kode_user=tb_project.kode_user INNER JOIN tb_sld ON tb_project.kode_line = tb_sld.kode_sld INNER JOIN tb_gardu_induk ON tb_sld.kode_gardu_induk = tb_gardu_induk.kode_gardu_induk INNER JOIN tb_jenis_pekerjaan ON tb_project.kode_jenis_pekerjaan = tb_jenis_pekerjaan.kode_jenis_pekerjaan
+SELECT tb_project.*,tb_sld.nama_sld,tb_gardu_induk.nama_gardu,tb_users.ulp,tb_jenis_pekerjaan.nama_jenis_pekerjaan FROM tb_users INNER JOIN tb_project ON tb_users.kode_user=tb_project.kode_user INNER JOIN tb_sld ON tb_project.kode_line = tb_sld.kode_sld INNER JOIN tb_gardu_induk ON tb_sld.kode_gardu_induk = tb_gardu_induk.kode_gardu_induk INNER JOIN tb_jenis_pekerjaan ON tb_project.kode_jenis_pekerjaan = tb_jenis_pekerjaan.kode_jenis_pekerjaan WHERE tb_project.status='success'
