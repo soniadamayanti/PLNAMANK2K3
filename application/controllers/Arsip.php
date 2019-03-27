@@ -355,6 +355,60 @@ class Arsip extends CI_Controller
           echo json_encode($output);
           exit();
      }
+     function upload_penyulang(){
+      // Config SLD
+      $config['upload_path'] = './assets/arsip/sld';
+      $config['allowed_types'] = 'jpg,jpeg,png';
+      $config['max_filename'] = '255';
+      $config['encrypt_name'] = TRUE;
+      $config['max_size'] = '3024'; //1 MB
+
+      $visio['upload_path'] = './assets/arsip/visio';
+      $visio['allowed_types'] = 'jpg,jpeg,png';
+      $visio['max_filename'] = '255';
+      $visio['encrypt_name'] = TRUE;
+      $visio['max_size'] = '3024'; //3 MB
+
+      if (isset($_FILES['sld']['name']) && isset($_FILES['visio']['name'])) {
+          if (0 < $_FILES['sld']['error'] || 0 < $_FILES['visio']['error']) {
+              echo 'Error during file upload' . $_FILES['sld']['error'];
+              echo 'Error during file upload' . $_FILES['visio']['error'];
+          } else {
+              if (file_exists('uploads/' . $_FILES['sld']['name'])) {
+                  echo 'File already exists : uploads/' . $_FILES['sld']['name'];
+              }else if (file_exists('uploads/' . $_FILES['visio']['name'])) {
+                  echo 'File already exists : uploads/' . $_FILES['visio']['name'];
+              }else {
+                  $this->load->library('upload', $config);
+                  $this->load->library('upload', $visio);
+                  if (!$this->upload->do_upload('sld') || !$this->upload->do_upload('visio')) {
+                      echo $this->upload->display_errors();
+                  } else {
+                      $array = array(
+                        'kode_sld' => hexdec(uniqid()),
+                        'nama_sld' => $this->input->post('nama_sld'),
+                        'kode_gardu_induk' => $this->input->post('kode_gardu_induk'),
+                        'tgl_input_sld' => date('Y-m-d H:i:s'),
+                        'last_modified' => date('Y-m-d H:i:s'),
+                        'last_modified_user' => date('Y-m-d H:i:s'),
+                        'src' => $_FILES['sld']['name'].$_FILES['sld']['file_ext'],
+                        'visio' => $_FILES['sld']['name'].$_FILES['visio']['file_ext'],
+                      );
+                      echo json_encode($array);
+                  }
+              }
+          }
+      } else {
+          if (empty($_FILES['sld']['name'])) {
+            echo "Mohon pilih gambar single line";
+          }else if (empty($_FILES['visio']['name'])) {
+            echo "Mohon pilih file visio single line diagram";
+          }else{
+            echo "File belum dipilih";
+          }
+      }
+    }
+  }
 }
 
  ?>
